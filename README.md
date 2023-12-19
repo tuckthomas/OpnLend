@@ -14,7 +14,7 @@ The intent of this project is an "ala carte" approach. The "core apps" are inten
 
 **Background: Commercial Credit Experience (~10 years) and Loan Origination System (LOS) experience.**
 
-I'm in the very beginning stages, including planning and design. While I have been working in commercial credit/underwriting for the last decade, outside of experience with VBA, my experience in coding and databases is beginner to intermediate. Though, am learning more quick than I ever have before thanks to AI toosl.
+I'm in the very beginning stages, including planning and design. While I have been working in commercial credit/underwriting for the last decade, outside of experience with VBA, my experience in coding and databases is beginner to intermediate. Though, am learning more quick than I ever have before thanks to AI tools.
 
 I have experience utilizing various different loan origination systems (Fusion Credit Quest, Abrigo Sageworks, nCino, and others), collaborated with LOS engineers when improving financial institutions' existing integrations, developed various auto filled templates to improve efficiencies, and most recently worked at a FinTech assistig with the micro-loan automated decisioning process. Lastly, using VBA and Microsoft UserForms, along with Microsoft Acccess as an SQL database solution, I've developed simple loan origination systems with the underlying intent on automating redudant tasks. That system inclusive of automated credit memo generation, automated spreading of PDF form fields, and other features more commonly found in (expensive) loan origination systems.
 
