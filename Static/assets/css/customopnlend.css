@@ -1,0 +1,296 @@
+#navbar-toggler:hover {
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .navbar-toggler {
+    margin-left: auto;
+  }
+}
+
+.financial-statement-standard-label {
+  min-width: 290px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+}
+
+.input-field-statement-type {
+  height: 32px;
+}
+
+.financial-statement-sub-label {
+  min-width: 360px;
+  font-style: italic;
+  padding-left: 25px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+}
+
+.generic-label-div {
+  height: 32px;
+  display: flex;
+  align-items: center;
+}
+
+.generic-label-div-contra {
+  height: 32px;
+  align-items: center;
+  min-width: 290px;
+  color: rgb(163,2,2);
+}
+
+.nested-field-labels {
+  position: relative;
+  display: block;
+}
+
+.financial-statement-sub-label-contra {
+  height: 32px;
+  align-items: center;
+  min-width: 350px;
+  font-style: italic;
+  color: rgb(163,2,2);
+  padding-left: 25px;
+  margin-top: 8px;
+}
+
+.custom-label.generic-label-div {
+  display: flex;
+  align-items: center;
+  height: 32px;
+}
+
+.parent-label-div {
+  height: 32px;
+  display: flex;
+  align-items: center;
+}
+
+.custom-input {
+  margin-right: 55px;
+  margin-bottom: 0px;
+  margin-left: 25px;
+  margin-top: 0px;
+  height: 24px;
+  border: 1px solid rgb(0,0,0);
+  border-radius: 5px;
+}
+
+.total-label-div {
+  height: 36px;
+  min-width: 290px;
+  display: flex;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.total-field {
+  height: 36px;
+  min-width: 192px;
+  display: flex;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.total-field-input {
+  height: 32px;
+  box-shadow: 0px 0px 3px 2px rgb(0, 0, 0);
+  background: #eeeeee;
+  font-weight: bold;
+  width: 192px;
+  margin-top: -6px;
+}
+
+.grand-total-field-input {
+  display: flex;
+  height: 32px;
+  border: 1px solid rgb(15,71,17);
+  box-shadow: 0px 0px 3px 2px rgb(15,71,17,5);
+  background: #ffffff;
+  font-weight: bold;
+  width: 192px;
+  margin-top: -6px;
+}
+
+.grand-total-label {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 16px;
+  background-color: #bdf2fe;
+  height: 36px;
+  width: 290px;
+  padding-left: 15px;
+  border: 1px solid rgb(0,0,0);
+  border-radius: 5px;
+  box-shadow: 0px 0px 3px 2px rgba(0,0,0,0.5);
+}
+
+.total-label {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 16px;
+  background-color: #eeeeee;
+  height: 36px;
+  width: 290px;
+  padding-left: 15px;
+  border: 1px solid rgb(0,0,0);
+  border-radius: 5px;
+  box-shadow: 0px 0px 3px 2px rgba(0,0,0,0.5);
+}
+
+.grand-total-label {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 16px;
+  background-color: #ffffff;
+  height: 32px;
+  width: 290px;
+  padding-left: 15px;
+  border: 1px solid rgb(15,71,17);
+  border-radius: 5px;
+  box-shadow: 0px 0px 3px 2px rgba(15,71,17,5);
+}
+
+.custom-field {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  min-width: 206px;
+}
+
+.standard-field {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  min-width: 192px;
+}
+
+.subtotal-field {
+  display: flex;
+  align-items: center;
+  height: 32px;
+}
+
+.standard-input {
+  height: 24px;
+  border: 1px solid rgb(0,0,0);
+  border-radius: 2px;
+  box-shadow: 0px 0px 1px 1.5px rgba(0,0,0,0.5);
+  margin-top: 4px;
+  margin-bottom: 4px;
+  width: 192px;
+}
+
+.generic-label generic-label-div-contra, .generic-label generic-label-div {
+  height: 32px;
+  align-items: center;
+  color: rgb(163,2,2);
+}
+
+.standard-input-contra {
+  height: 24px;
+  width: 192px;
+  border: 1px solid rgb(0,0,0);
+  border-radius: 2px;
+  box-shadow: 0px 0px 1px 1.5px rgba(0,0,0,0.5);
+  background-color: rgb(225,202,202);
+}
+
+.input-container {
+  width: 225px;
+  display: flex;
+}
+
+.container-column {
+  display: inline-block;
+  align-items: center;
+}
+
+.add-or-delete-period-buttons {
+  display: inline-block;
+  height: 32px;
+  min-width: 206px;
+}
+
+grand-total-label-div {
+  height: 36px;
+}
+
+.group-total-label {
+  display: inline-block;
+  align-items: center;
+  font-weight: bold;
+  font-size: 16px;
+  background-color: #eeeeee;
+  height: 74px;
+  width: 290px;
+  padding-left: 15px;
+  border: 1px solid rgb(0,0,0);
+  border-radius: 5px;
+  box-shadow: 0px 0px 3px 5px rgba(0,0,0,0.5);
+  margin-top: 6px;
+  margin-bottom: 10px;
+}
+
+.nested-field-inputs {
+  display: inline-block;
+  align-items: center;
+}
+
+.parent-field, .subtotal-field, .custom-field, .generic-field {
+  height: 32px;
+  min-width: 206px;
+  display: flex;
+  align-items: center;
+}
+
+.generic-contra {
+  height: 32px;
+  width: 290px;
+  color: rgb(163,2,2);
+  display: flex;
+  align-items: center;
+}
+
+.statement-date {
+  height: 32px;
+}
+
+.subtotal-contra {
+  height: 32px;
+  color: rgb(163, 2, 2);
+}
+
+.financial-statement-header {
+  height: 32px;
+  min-width: 290px;
+}
+
+.add-or-delete-statements {
+  height: 32px;
+  align-items: center;
+}
+
+.financial-statement-type-label-div {
+  height: 32px;
+  align-items: center;
+}
+
+.btn-placeholder-xsmall {
+  height: 9.5px;
+}
+
+.reference-input {
+  background: rgb(238,238,238);
+  border-radius: 2.0;
+  height: 24px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  box-shadow: 0px 0px 1px 2px;
+}
+
