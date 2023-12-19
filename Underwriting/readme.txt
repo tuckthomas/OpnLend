@@ -1,1 +1,1 @@
-
+This portion of the OpnLend application is to serve as the dynamic credit memo/loan presentation; allowing organizations to design the structure of their credit memo/loan presentation template from within the browser using components. Then, incorporating it within the document workflow manager (functionatliy later to come), as well as exporting as a PDF and/or Word document.
