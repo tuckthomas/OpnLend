@@ -1,4 +1,4 @@
-**_*Update 12/19/2023: In the spirity of transparency, I've uploaded some initial files. Once I have published the Alpha release of the financial spreading portion of the applicatoin, I'll begin updating this repository with my documented plan. *_**
+**_*Update 12/19/2023: In the spirity of transparency, I've uploaded some initial files. Once I have published the Alpha release of the financial spreading portion of the application, I'll begin updating this repository with my documented plan. *_**
 
 **_*Update 12/17/2023: I've been working on the dynamic financial spreading front-end for the last two weeks and am nearing completion. Once completed, I'll update the files within this repository. In the meantime, if you are interested, you can test the functionality of the spreading model while keeping in mind that it is incomplete and contains bugs that will be resovled soon. That model can be accessed here: https://credit.opnlend.com/Financials/ *_**
 
@@ -6,7 +6,7 @@
 
 ![opnlend-financial-spreading-example](Media/financial_spreading_example.jpg)
 
-**_A framework for an open source, modular commercial and government guaranteed (SBA and USDA) loan origination system._**
+**_A framework for an open source, modular loan origination system. Initially designed for commercial loan origination, while allowing for consumer loan origination moduels to be developed at a later date._**
 
 **_The intent of this project is an "ala carte" approach. The "core apps" are intended to be Loans, Relationships, and Spreading. Each additional app is to be individually installed to the individual or institution's needs (Deposits, Collateral, Profiles, etc.). Later down the road, possibly adding support for the installation of "Third Party Plugins" for community made content (data visualization packages, support for credit reporting agency data pulls, analysis tools, etc.).  Furthermore, it is to be locally hosted; mitigating risk of downtime when compared to a 3rd party cloud server, as the web application would remain accessable on a local area connection. I am currently developing this within a Djano container (LXC) hosted on my Proxmox home server, integrated with my PostgreSQL database hosted in a separate LXC. I'll likely integrate the relational database solution within the web-hosted application as an optional (Docker) database, while providing the ability for an institution to integrate their own database soluition._**
 
