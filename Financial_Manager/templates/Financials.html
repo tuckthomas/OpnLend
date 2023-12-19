@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en" data-bss-forced-theme="light">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=1024, initial-scale=1">
+    <title>Financial Spreading</title>
+    {% load static %}
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css">
+    <link rel="stylesheet" href="{% static 'assets/fonts/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/incomestatement.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/bs-theme-overrides.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/x-dropdown.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/customopnlend.css' %}">
+</head>
+
+<body id="page-top" style="padding-right: 0px;">
+    <div id="wrapper">
+        <!-- Start: #sidebar -->
+        <nav class="navbar align-items-start" style="border-style: ridge;border-radius: 10px;">
+            <div class="container-fluid p-0"><svg id="navbar-toggler" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20" fill="none" style="font-size:35px;color:var(--bs-primary-text-emphasis);margin-left:auto;" data-bs-toggle="collapse" data-bs-target="#navbar-container" aria-expanded="false" aria-controls="collapsibleContent">
+                    <path fill-rule="evenodd" d="M3 4C3 3.44772 3.44772 3 4 3H16C16.5523 3 17 3.44772 17 4C17 4.55228 16.5523 5 16 5H4C3.44772 5 3 4.55228 3 4ZM3 8C3 7.44772 3.44772 7 4 7H16C16.5523 7 17 7.44772 17 8C17 8.55228 16.5523 9 16 9H4C3.44772 9 3 8.55228 3 8ZM3 12C3 11.4477 3.44772 11 4 11H16C16.5523 11 17 11.4477 17 12C17 12.5523 16.5523 13 16 13H4C3.44772 13 3 12.5523 3 12ZM3 16C3 15.4477 3.44772 15 4 15H16C16.5523 15 17 15.4477 17 16C17 16.5523 16.5523 17 16 17H4C3.44772 17 3 16.5523 3 16Z" fill="currentColor"></path>
+                </svg>
+                <div id="navbar-container" class="container collapse"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#"><img src="/static/assets/img/Icons/opnlend_green.png" width="100" height="72" alt="Opnlend Green Icon"></a>
+                    <ul class="navbar-nav flex-column mb-auto" id="accordionSidebar" style="padding: 11px;">
+                        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}"><svg class="bi bi-grid-3x3-gap me-2" fill="currentColor" height="1em" viewbox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M4 2v2H2V2h2zm1 12v-2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm0-5V7a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm0-5V2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm5 10v-2a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm0-5V7a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zm0-5V2a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1zM9 2v2H7V2h2zm5 0v2h-2V2h2zM4 7v2H2V7h2zm5 0v2H7V7h2zm5 0h-2v2h2V7zM4 12v2H2v-2h2zm5 0v2H7v-2h2zm5 0v2h-2v-2h2zM12 1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1h-2zm-1 6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V7zm1 4a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1h-2z"></path></svg>Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link link-body-emphasis" href="#"><svg class="bi bi-globe2 me-2" fill="currentColor" height="1em" viewbox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855-.143.268-.276.56-.395.872.705.157 1.472.257 2.282.287V1.077zM4.249 3.539c.142-.384.304-.744.481-1.078a6.7 6.7 0 0 1 .597-.933A7.01 7.01 0 0 0 3.051 3.05c.362.184.763.349 1.198.49zM3.509 7.5c.036-1.07.188-2.087.436-3.008a9.124 9.124 0 0 1-1.565-.667A6.964 6.964 0 0 0 1.018 7.5h2.49zm1.4-2.741a12.344 12.344 0 0 0-.4 2.741H7.5V5.091c-.91-.03-1.783-.145-2.591-.332zM8.5 5.09V7.5h2.99a12.342 12.342 0 0 0-.399-2.741c-.808.187-1.681.301-2.591.332zM4.51 8.5c.035.987.176 1.914.399 2.741A13.612 13.612 0 0 1 7.5 10.91V8.5H4.51zm3.99 0v2.409c.91.03 1.783.145 2.591.332.223-.827.364-1.754.4-2.741H8.5zm-3.282 3.696c.12.312.252.604.395.872.552 1.035 1.218 1.65 1.887 1.855V11.91c-.81.03-1.577.13-2.282.287zm.11 2.276a6.696 6.696 0 0 1-.598-.933 8.853 8.853 0 0 1-.481-1.079 8.38 8.38 0 0 0-1.198.49 7.01 7.01 0 0 0 2.276 1.522zm-1.383-2.964A13.36 13.36 0 0 1 3.508 8.5h-2.49a6.963 6.963 0 0 0 1.362 3.675c.47-.258.995-.482 1.565-.667zm6.728 2.964a7.009 7.009 0 0 0 2.275-1.521 8.376 8.376 0 0 0-1.197-.49 8.853 8.853 0 0 1-.481 1.078 6.688 6.688 0 0 1-.597.933zM8.5 11.909v3.014c.67-.204 1.335-.82 1.887-1.855.143-.268.276-.56.395-.872A12.63 12.63 0 0 0 8.5 11.91zm3.555-.401c.57.185 1.095.409 1.565.667A6.963 6.963 0 0 0 14.982 8.5h-2.49a13.36 13.36 0 0 1-.437 3.008zM14.982 7.5a6.963 6.963 0 0 0-1.362-3.675c-.47.258-.995.482-1.565.667.248.92.4 1.938.437 3.008h2.49zM11.27 2.461c.177.334.339.694.482 1.078a8.368 8.368 0 0 0 1.196-.49 7.01 7.01 0 0 0-2.275-1.52c.218.283.418.597.597.932zm-.488 1.343a7.765 7.765 0 0 0-.395-.872C9.835 1.897 9.17 1.282 8.5 1.077V4.09c.81-.03 1.577-.13 2.282-.287z"></path></svg>Relationships</a></li>
+                        <li class="nav-item"><a class="nav-link link-body-emphasis" href="{% url 'Financials' %}"><svg class="bi bi-graph-up-arrow me-2" fill="currentColor" height="1em" viewbox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h1v15h15v1H0V0Zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5Z" fill-rule="evenodd"></path></svg> Financials </a></li>
+                        <li class="nav-item"><a class="nav-link link-body-emphasis" href="#"><svg class="bi bi-bank me-2" fill="currentColor" height="1em" viewbox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="m8 0 6.61 3h.89a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H15v7a.5.5 0 0 1 .485.38l.5 2a.498.498 0 0 1-.485.62H.5a.498.498 0 0 1-.485-.62l.5-2A.501.501 0 0 1 1 13V6H.5a.5.5 0 0 1-.5-.5v-2A.5.5 0 0 1 .5 3h.89L8 0ZM3.777 3h8.447L8 1 3.777 3ZM2 6v7h1V6H2Zm2 0v7h2.5V6H4Zm3.5 0v7h1V6h-1Zm2 0v7H12V6H9.5ZM13 6v7h1V6h-1Zm2-1V4H1v1h14Zm-.39 9H1.39l-.25 1h13.72l-.25-1Z"></path></svg> Loans</a></li>
+                        <li class="nav-item"><a class="nav-link link-body-emphasis" href="#"><svg class="bi bi-building-gear me-2" fill="currentColor" height="1em" viewbox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6.5a.5.5 0 0 1-1 0V1H3v14h3v-2.5a.5.5 0 0 1 .5-.5H8v4H3a1 1 0 0 1-1-1V1Z"></path><path d="M4.5 2a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Zm-6 3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Zm-6 3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Zm3 0a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1Zm4.386 1.46c.18-.613 1.048-.613 1.229 0l.043.148a.64.64 0 0 0 .921.382l.136-.074c.561-.306 1.175.308.87.869l-.075.136a.64.64 0 0 0 .382.92l.149.045c.612.18.612 1.048 0 1.229l-.15.043a.64.64 0 0 0-.38.921l.074.136c.305.561-.309 1.175-.87.87l-.136-.075a.64.64 0 0 0-.92.382l-.045.149c-.18.612-1.048.612-1.229 0l-.043-.15a.64.64 0 0 0-.921-.38l-.136.074c-.561.305-1.175-.309-.87-.87l.075-.136a.64.64 0 0 0-.382-.92l-.148-.045c-.613-.18-.613-1.048 0-1.229l.148-.043a.64.64 0 0 0 .382-.921l-.074-.136c-.306-.561.308-1.175.869-.87l.136.075a.64.64 0 0 0 .92-.382l.045-.148ZM14 12.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z"></path></svg> Collateral</a></li>
+                        <li class="nav-item"><a class="nav-link link-body-emphasis" href="#"><svg class="bi bi-cash-stack me-2" fill="currentColor" height="1em" viewbox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1H1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path><path d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V5zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2H3z"></path></svg> Deposits</a></li>
+                        <li class="nav-item"><a class="nav-link link-body-emphasis" href="#"><svg class="bi bi-pencil-square me-2" fill="currentColor" height="1em" viewbox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path><path d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" fill-rule="evenodd"></path></svg> Underwriting</a></li>
+                        <li class="nav-item"><a class="nav-link link-body-emphasis" href="#"><svg class="bi bi-clipboard-check me-2" fill="currentColor" height="1em" viewbox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z" fill-rule="evenodd"></path><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"></path><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"></path></svg> My Workflows</a></li>
+                        <li class="nav-item"><a class="nav-link link-body-emphasis" href="#"><svg class="bi bi-puzzle me-2" fill="currentColor" height="1em" viewbox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.112 3.645A1.5 1.5 0 0 1 4.605 2H7a.5.5 0 0 1 .5.5v.382c0 .696-.497 1.182-.872 1.469a.459.459 0 0 0-.115.118.113.113 0 0 0-.012.025L6.5 4.5v.003l.003.01c.004.01.014.028.036.053a.86.86 0 0 0 .27.194C7.09 4.9 7.51 5 8 5c.492 0 .912-.1 1.19-.24a.86.86 0 0 0 .271-.194.213.213 0 0 0 .039-.063v-.009a.112.112 0 0 0-.012-.025.459.459 0 0 0-.115-.118c-.375-.287-.872-.773-.872-1.469V2.5A.5.5 0 0 1 9 2h2.395a1.5 1.5 0 0 1 1.493 1.645L12.645 6.5h.237c.195 0 .42-.147.675-.48.21-.274.528-.52.943-.52.568 0 .947.447 1.154.862C15.877 6.807 16 7.387 16 8s-.123 1.193-.346 1.638c-.207.415-.586.862-1.154.862-.415 0-.733-.246-.943-.52-.255-.333-.48-.48-.675-.48h-.237l.243 2.855A1.5 1.5 0 0 1 11.395 14H9a.5.5 0 0 1-.5-.5v-.382c0-.696.497-1.182.872-1.469a.459.459 0 0 0 .115-.118.113.113 0 0 0 .012-.025L9.5 11.5v-.003a.214.214 0 0 0-.039-.064.859.859 0 0 0-.27-.193C8.91 11.1 8.49 11 8 11c-.491 0-.912.1-1.19.24a.859.859 0 0 0-.271.194.214.214 0 0 0-.039.063v.003l.001.006a.113.113 0 0 0 .012.025c.016.027.05.068.115.118.375.287.872.773.872 1.469v.382a.5.5 0 0 1-.5.5H4.605a1.5 1.5 0 0 1-1.493-1.645L3.356 9.5h-.238c-.195 0-.42.147-.675.48-.21.274-.528.52-.943.52-.568 0-.947-.447-1.154-.862C.123 9.193 0 8.613 0 8s.123-1.193.346-1.638C.553 5.947.932 5.5 1.5 5.5c.415 0 .733.246.943.52.255.333.48.48.675.48h.238l-.244-2.855zM4.605 3a.5.5 0 0 0-.498.55l.001.007.29 3.4A.5.5 0 0 1 3.9 7.5h-.782c-.696 0-1.182-.497-1.469-.872a.459.459 0 0 0-.118-.115.112.112 0 0 0-.025-.012L1.5 6.5h-.003a.213.213 0 0 0-.064.039.86.86 0 0 0-.193.27C1.1 7.09 1 7.51 1 8c0 .491.1.912.24 1.19.07.14.14.225.194.271a.213.213 0 0 0 .063.039H1.5l.006-.001a.112.112 0 0 0 .025-.012.459.459 0 0 0 .118-.115c.287-.375.773-.872 1.469-.872H3.9a.5.5 0 0 1 .498.542l-.29 3.408a.5.5 0 0 0 .497.55h1.878c-.048-.166-.195-.352-.463-.557-.274-.21-.52-.528-.52-.943 0-.568.447-.947.862-1.154C6.807 10.123 7.387 10 8 10s1.193.123 1.638.346c.415.207.862.586.862 1.154 0 .415-.246.733-.52.943-.268.205-.415.39-.463.557h1.878a.5.5 0 0 0 .498-.55l-.001-.007-.29-3.4A.5.5 0 0 1 12.1 8.5h.782c.696 0 1.182.497 1.469.872.05.065.091.099.118.115.013.008.021.01.025.012a.02.02 0 0 0 .006.001h.003a.214.214 0 0 0 .064-.039.86.86 0 0 0 .193-.27c.14-.28.24-.7.24-1.191 0-.492-.1-.912-.24-1.19a.86.86 0 0 0-.194-.271.215.215 0 0 0-.063-.039H14.5l-.006.001a.113.113 0 0 0-.025.012.459.459 0 0 0-.118.115c-.287.375-.773.872-1.469.872H12.1a.5.5 0 0 1-.498-.543l.29-3.407a.5.5 0 0 0-.497-.55H9.517c.048.166.195.352.463.557.274.21.52.528.52.943 0 .568-.447.947-.862 1.154C9.193 5.877 8.613 6 8 6s-1.193-.123-1.638-.346C5.947 5.447 5.5 5.068 5.5 4.5c0-.415.246-.733.52-.943.268-.205.415-.39.463-.557H4.605z"></path></svg> Add-Ons</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"><svg class="bi bi-percent me-2" fill="currentColor" height="1em" viewbox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M13.442 2.558a.625.625 0 0 1 0 .884l-10 10a.625.625 0 1 1-.884-.884l10-10a.625.625 0 0 1 .884 0zM4.5 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm7 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"></path></svg>Profitability</a></li>
+                        <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" href="#"><svg class="bi bi-gear me-2" fill="currentColor" height="1em" viewbox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"></path><path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"></path></svg><strong>Settings</strong></a>
+                            <div class="shadow dropdown-menu text-small" data-popper-placement="top-start"><a class="dropdown-item" href="#">Add-Ons</a><a class="dropdown-item" href="#">Themes</a><a class="dropdown-item" href="#">Profile</a><a class="dropdown-item" href="#">Administrative</a>
+                                <div class="dropdown-divider"></div><a class="dropdown-item" href="#">Sign out</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <hr class="sidebar-divider my-0">
+                </div>
+            </div>
+        </nav><!-- End: #sidebar -->
+        <div class="d-flex flex-column" id="content-wrapper">
+            <!-- Start: #navbar -->
+            <section>
+                <nav class="navbar navbar-expand bg-white shadow mb-4 topbar static-top navbar-light" style="background: #faf5ef;border-bottom-style: groove;border-radius: 5px;">
+                    <div class="container-fluid">
+                        <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search" style="width: 547px;">
+                            <div class="input-group" style="min-width: 535px;"><input class="form-control form-control" type="text" placeholder="Search Accounts within Global Relationship....." style="border-color: var(--bs-primary-text-emphasis);background: rgb(251,251,251);"><button class="btn btn-primary" type="button" style="border-top-style: ridge;border-top-color: var(--bs-body-color);"><i class="fas fa-search"></i></button></div>
+                        </form><div class="dropdown d-xl-flex align-items-xl-center">
+    <button class="btn btn-primary dropdown-toggle fs-6 fw-semibold" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="background: rgb(255,255,255); color: var(--bs-body-color); border-radius: 10px; height: 34px; padding-top: 2px; padding-right: 12px; padding-bottom: 0px; margin-top: 8px">Financial Statements</button>
+    <div class="dropdown-menu" style="min-width: 330px;"> <!-- Adjust the min-width as needed -->
+        <a class="dropdown-item" href="#" style="color: rgb(0,0,0); font-weight: bold;">Combined Income Statement and Balance Sheet</a>
+        <a class="dropdown-item" href="#" style="color: rgb(0,0,0); font-weight: bold;">Income Statement</a>
+        <a class="dropdown-item" href="#" style="color: rgb(0,0,0); font-weight: bold;">Balance Sheet</a>
+        <a class="dropdown-item" href="#" style="color: rgb(0,0,0); font-weight: bold;">Debt Schedule</a>
+    </div>
+</div>
+<img class="d-xxl-flex" src="/static/assets/img/SVG/name.png" width="600" height="50" style="height: 30px;width: 350px;padding-right: 0px;margin-right: 350px;padding-left: 70px;margin-left: 0px;">
+                    </div>
+                </nav>
+            </section><!-- End: #navbar -->
+            <!-- Start: #header -->
+            <section class="income-statement-header" style="box-shadow: 0px 0px 7px 2px;background: #ffffff;border-radius: 10px;height: 44px;margin-top: -5px;display: inline-flex;">
+                <h2 class="text-truncate" style="margin: 10px;font-size: 23px;display: flex;max-width: inherit;min-width: 66%;"><strong>Income Statement</strong></h2>
+                <div style="display: flex;width: 33%;"></div>
+            </section><!-- End: #header -->
+            <!-- Start: #Income Statement -->
+            <section class="income-statement" style="margin-top: 15px;margin-left: -1px;position: relative;">
+                <!-- Start: #containers -->
+                <div class="parent-container" style="position: relative;display: flex;padding-bottom: 15px;">
+                    <!-- Start: #labels-and-buttons -->
+                    <div class="field-label-container" style="position: relative;display: inline-flex;border-radius: 10px;padding-left: 10px;box-shadow: 0px 0px 10px 2px;background: #ffffff;padding-bottom: 14px;">
+                        <!-- Start: #field-container -->
+                        <div class="container flex-column flex-grow-1" style="display: flex;position: relative;padding-top: 0px;margin-left: -2px;padding-left: 0px;padding-right: 0px;width: 290px;">
+                            <div class="col" style="position: relative;">
+                                <div class="statement-header-group">
+                                    <div class="add-or-delete-statements"><label class="form-label text-start flex-nowrap financial-statement-header" for="Add-or-Delete-Statements-Label"><strong>Add or Delete Statements:</strong></label></div>
+                                    <div class="statement-date"><label class="form-label text-start flex-nowrap financial-statement-header" for="Statement-Date-Label"><strong>Statement Date:</strong></label></div>
+                                    <div class="financial-statement-type-label-div"><label class="form-label text-start flex-nowrap financial-statement-header" for="Statement-Type-Label"><strong>Statement Type:</strong></label></div>
+                                </div><!-- Start: #label-group -->
+                                <div class="group-label" style="position: relative;display: block;" for="Gross-Revenue-Input">
+                                    <!-- Start: #parent -->
+                                    <div class="parent-label-div" for="Gross-Revenue-Subtotal-Label"><label class="form-label text-start flex-nowrap financial-statement-standard-label" for="Gross-Revenue-Input-Group">Gross Revenue</label></div><!-- End: #parent -->
+                                    <!-- Start: #nested -->
+                                    <div class="nested-field-labels" data-id="nested-gross-revenue">
+                                        <!-- Start: #generic -->
+                                        <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Gross Revenue, Generic</label></div><!-- End: #generic -->
+                                        <!-- Start: #custom -->
+                                        <div class="d-xxl-flex align-items-xxl-center custom-label generic-label-div" toggle-id="custom-gross-revenue">
+                                            <!-- Start: #custominput --><input class="flex-nowrap custom-input" type="text"><!-- End: #custominput -->
+                                        </div><!-- End: #custom -->
+                                    </div><!-- End: #nested -->
+                                </div><!-- End: #label-group -->
+                                <div class="subtotal-contra"><label class="form-label text-start flex-nowrap generic-label generic-label-div-contra">Returns and Allowances <strong>(-)</strong></label></div>
+                                <div class="total-label-div"><label class="form-label text-start flex-nowrap total-label">Net Revenue</label></div>
+                                <div class="Cost-of-Goods-Sold-Label-Group" style="position: relative;display: block;">
+                                    <div class="generic-label-div-contra"><label class="form-label text-start flex-nowrap generic-label generic-label-div-contra">Cost of Goods Sold <strong>(-)</strong></label></div><!-- Start: #nested -->
+                                    <div class="nested-field-labels" data-id="nested-cost-of-goods-sold">
+                                        <div class="generic-label generic-label-div" data_id="cost-of-goods-sold-generic"><label class="form-label text-start flex-nowrap financial-statement-sub-label-contra" id="Cost-of-Goods-Sold-Generic-Input">Cost of Goods Sold, Generic <strong>(-)</strong></label></div>
+                                        <div class="generic-label-div-contra" data_id="cost-of-goods-sold-depreciation"><label class="form-label text-start flex-nowrap financial-statement-sub-label-contra" id="Cost-of-Goods-Sold-Custom-Input">Cost of Goods Sold, Depreciation <strong>(-)</strong></label></div>
+                                        <div class="custom-label generic-label-div" toggle-id="custom-cost-of-goods-sold">
+                                            <!-- Start: #custominput --><input class="flex-nowrap custom-input" type="text"><!-- End: #custominput -->
+                                        </div>
+                                    </div><!-- End: #nested -->
+                                </div>
+                                <div class="total-label-div"><label class="form-label text-start flex-nowrap grand-total-label">Gross Profit</label></div>
+                                <div class="Salaries, Wages, and Payroll Taxes generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-standard-label" for="">Salaries, Wages, and Payroll Taxes</label></div>
+                                <div class="Officer-Compensation generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-standard-label">Officers' Compensation</label></div>
+                                <div class="Repairs and Maintenance generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-standard-label">Repairs and Maintenance</label></div>
+                                <div class="Bad Debt generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-standard-label">Bad Debt</label></div>
+                                <div class="Rent generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-standard-label">Rent</label></div>
+                                <div class="Taxes and Licenses generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-standard-label">Taxes and Licenses</label></div>
+                                <div class="Interest Expense generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-standard-label">Interest Expense</label></div>
+                                <div class="Depreciation and Depletion generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-standard-label">Depreciation and Depletion</label></div>
+                                <div class="Amortization generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-standard-label">Amortization</label></div>
+                                <div class="Retirement Plans generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-standard-label">Retirement Plans</label></div>
+                                <div class="Employee Benefit Programs generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-standard-label">Employee Benefits</label></div>
+                                <div style="position: relative;display: block;">
+                                    <div class="generic-label-div" style="position: relative;display: block;height: 32px;"><label class="form-label text-start flex-nowrap financial-statement-standard-label">Other Operating Expenses</label></div><!-- Start: #nested -->
+                                    <div class="nested-field-labels" data-id="nested-other-operating-expenses" style="position: relative;display: block;">
+                                        <div class="generic-label generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Other Operating Expenses, Generic</label></div>
+                                        <div class="custom-label generic-label-div" toggle-id="custom-other-operating-expenses">
+                                            <!-- Start: #custominput --><input class="flex-nowrap custom-input" type="text"><!-- End: #custominput -->
+                                        </div>
+                                    </div><!-- End: #nested -->
+                                </div>
+                                <div class="total-label-div"><label class="form-label text-start flex-nowrap total-label">Total Operating Expenses</label></div>
+                                <div class="total-label-div"><label class="form-label text-start flex-nowrap grand-total-label">Net Operating Income</label></div>
+                                <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-standard-label">Investment Income <strong>&nbsp;(+)</strong></label></div>
+                                <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-standard-label">Gain on Sale of Asset(s) <strong>(+)</strong></label></div>
+                                <div>
+                                    <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-standard-label" for="Other-Income-Subtotal-Label">Other Income <strong>&nbsp;(+)</strong></label></div><!-- Start: #nested -->
+                                    <div class="nested-field-labels" data-id="nested-other-income">
+                                        <div class="generic-label generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label" id="Other-Income-Generic-Input" for="Other-Income-Generic-Label">Other Income, Generic <strong>&nbsp;(+)</strong></label></div>
+                                        <div id="Other-Income-Custom-Input" class="generic-label-div" toggle-id="custom-other-income">
+                                            <!-- Start: #custominput --><input class="flex-nowrap custom-input" type="text" for="Other-Income-Custom-Label"><!-- End: #custominput -->
+                                        </div>
+                                    </div><!-- End: #nested -->
+                                </div>
+                                <div class="generic-label-div"><label class="form-label text-start flex-nowrap generic-label generic-label-div-contra">Loss on Sale of Asset(s) <strong>(-)</strong></label></div>
+                                <div style="position: relative;display: block;">
+                                    <div class="generic-label-div-contra"><label class="form-label text-start flex-nowrap generic-label generic-label-div-contra">Other Expenses <strong>(-)</strong></label></div><!-- Start: #nested -->
+                                    <div class="nested-field-labels" data-id="nested-other-expenses">
+                                        <div class="generic-label generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label-contra" for="Other-Expenses-Generic-Label">Other Expenses, Generic <strong>(-)</strong></label></div>
+                                        <div class="Other-Income-Custom-Input generic-label-div" toggle-id="custom-other-expenses">
+                                            <!-- Start: #custominput --><input class="flex-nowrap custom-input" type="text"><!-- End: #custominput -->
+                                        </div>
+                                    </div><!-- End: #nested -->
+                                </div>
+                                <div class="total-label-div"><label class="form-label text-start flex-nowrap total-label">Total Other Income and Expenses</label></div>
+                                <div class="total-label-div"><label class="form-label text-start flex-nowrap grand-total-label" for="Net-Profit-Label">Net Profit</label></div>
+                                <div class="generic-label generic-label-div-contra"><label class="form-label text-start flex-nowrap generic-label generic-label-div-contra" for="Corporate-Taxes-Label">Corporate Taxes <strong>(-)</strong></label></div>
+                                <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-standard-label" for="Corporate-Tax-Refund-Label">Corporate Tax Refund <strong>(+)</strong></label></div>
+                                <div class="total-label-div"><label class="form-label text-start flex-nowrap grand-total-label" for="Net-Profit-after-Taxes-Label">Net Profit after Taxes</label></div>
+                            </div>
+                        </div><!-- End: #field-container -->
+                        <!-- Start: #field-button-container -->
+                        <div class="field-button-container">
+                            <div class="container flex-column flex-grow-1">
+                                <div class="col">
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder"></div><!-- End: #blankspace -->
+                                    <!-- Start: #togglesubfields --><button class="toggle-subfields" data-target="nested-gross-revenue">↑</button><!-- End: #togglesubfields -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-gross-revenue"></div><!-- End: #blankspace -->
+                                    <!-- Start: #addsubfield --><button class="add-subfield" data-id="nested-gross-revenue" data-target="custom-gross-revenue">+</button>
+<!-- End: #addsubfield -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder-large"></div><!-- End: #blankspace -->
+                                    <!-- Start: #togglesubfields --><button class="toggle-subfields" data-target="nested-cost-of-goods-sold">↑</button><!-- End: #togglesubfields -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-cost-of-goods-sold"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-cost-of-goods-sold"></div><!-- End: #blankspace -->
+                                    <!-- Start: #addsubfield --><button class="add-subfield" data-id="nested-cost-of-goods-sold" data-target="custom-cost-of-goods-sold">+</button>
+<!-- End: #addsubfield -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder-large"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder"></div><!-- End: #blankspace -->
+                                    <!-- Start: #togglesubfields --><button class="toggle-subfields" data-target="nested-other-operating-expenses">↑</button><!-- End: #togglesubfields -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-other-operating-expenses"></div><!-- End: #blankspace -->
+                                    <!-- Start: #addsubfield --><button class="add-subfield" data-id="nested-other-operating-expenses" data-target="custom-other-operating-expenses">+</button>
+<!-- End: #addsubfield -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder-large"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder-large"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder"></div><!-- End: #blankspace -->
+                                    <!-- Start: #togglesubfields --><button class="toggle-subfields" data-target="nested-other-income">↑</button><!-- End: #togglesubfields -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-other-income"></div><!-- End: #blankspace -->
+                                    <!-- Start: #addsubfield --><button class="add-subfield" data-id="nested-other-income" data-target="custom-other-income">+</button>
+<!-- End: #addsubfield -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" style="position: sticky;display: flex;overflow: visible;"></div><!-- End: #blankspace -->
+                                    <!-- Start: #togglesubfields --><button class="toggle-subfields" data-target="nested-other-expenses">↑</button><!-- End: #togglesubfields -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-other-expenses"></div><!-- End: #blankspace -->
+                                    <!-- Start: #addsubfield --><button class="add-subfield" data-id="nested-other-expenses" data-target="custom-other-expenses">+</button>
+<!-- End: #addsubfield -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder"></div><!-- End: #blankspace -->
+                                </div>
+                            </div>
+                        </div><!-- End: #field-button-container -->
+                    </div><!-- End: #labels-and-buttons -->
+                    <div>
+                        <div class="row" style="display: block;min-width: 2400px;">
+                            <div class="col">
+                                <!-- Start: #input-container -->
+                                <div id="Income-Statements" class="input-container">
+                                    <div class="container container-column" period="1">
+                                        <!-- Start: #AddorDeletePeriodButtons -->
+                                        <div class="add-or-delete-period-buttons"><img data-bss-hover-animate="pulse" class="delete-period" src="/static/assets/img/buttons/delete-period-button.png" alt="Add Period" width="70" height="28" style="margin-bottom: 15px;margin-right: 39px;margin-left: 5px;"><img data-bss-hover-animate="pulse" class="add-period" src="/static/assets/img/buttons/add-period-button.png" alt="Add Period" width="70" height="28" style="margin-bottom: 15px;"></div><!-- End: #AddorDeletePeriodButtons -->
+                                        <!-- Start: #StatementDate -->
+                                        <div class="parent-field" style="width: 206px;height: 32px;display: inline-block;"><input class="border rounded" id="Statement-Date-Input" type="date" style="text-align: right;width: 192px;border-style: solid;box-shadow: 0px 0px 3px 1px rgb(0, 0, 0);height: 24px;" period="1"></div><!-- End: #StatementDate -->
+                                        <!-- Start: #StatementType -->
+                                        <div class="input-field-statement-type">
+                                            <!-- Start: Inline Dropdown --><form class="statement-type" style="display: flex; align-items: center;" id="Statement-Type-Input" period="1">
+  <div class="form-group">
+    <select class="form-control-statement-type" style="height: 28px; width: 192px; border-radius: 5px;">
+      <option></option>
+      <optgroup label="CPA Audited">
+        <option>CPA Audited - Unqualified</option>
+        <option>CPA Audited - Qualified</option>
+        <option>CPA Audited - Disclaimer</option>
+        <option>CPA Audited - Adverse</option>
+      </optgroup>
+      <optgroup label="CPA Reviewed">
+        <option>CPA Reviewed - Unqualified</option>
+        <option>CPA Reviewed - Qualified</option>
+      </optgroup>
+      <option>Tax Return</option>
+      <option>CPA Compiled</option>
+      <option>Company Prepared</option>
+      <optgroup label="Projections">
+        <option>Company Projection</option>
+        <option>Lender Projection</option>
+      </optgroup>
+    </select>
+  </div>
+</form>
+<!-- End: Inline Dropdown -->
+                                        </div><!-- End: #StatementType -->
+                                        <!-- Start: #subtotal-account -->
+                                        <div class="Gross-Revenue-Input-Group" calc-group="gross-revenue">
+                                            <!-- Start: #parent -->
+                                            <div class="subtotal-field"><input class="border rounded standard-input" type="text" id="Gross-Revenue-Subtotal-Label" input-type="standard" var="gross-revenue-subtotal" period="1" calc="subtotal"></div><!-- End: #parent -->
+                                            <div class="nested-field-inputs" data-id="nested-gross-revenue">
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field"><input class="border rounded standard-input" type="text" input-type="standard" var="gross-revenue-generic" period="1" calc="sum-generic"></div><!-- End: #generic -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="custom-gross-revenue" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="gross-revenue-custom" custom="1" calc="sum"></div><!-- End: custom -->
+                                            </div>
+                                        </div><!-- End: #subtotal-account -->
+                                        <!-- Start: #contra-account -->
+                                        <div id="Returns-and-Allowances-Input" class="standard-field"><input class="border rounded standard-input-contra" type="text" input-type="contra" var="returns-and-allowances" period="1"></div><!-- End: #contra-account -->
+                                        <!-- Start: #total-account -->
+                                        <div id="Net-Revenue-Input" class="total-field" shadow="total"><input class="border rounded total-field-input" type="text" input-type="variable" var="net-revenue" period="1" style="padding-right: 0px;"></div><!-- End: #total-account -->
+                                        <div class="Cost-of-Goods-Sold-Input-Group" calc-group="cost-of-goods-sold">
+                                            <!-- Start: #parent -->
+                                            <div class="subtotal-field"><input class="border rounded standard-input-contra" type="text" input-type="contra" var="cost-of-goods-sold-subtotal" period="1" calc="subtotal" data-manual-entry="false"></div><!-- End: #parent -->
+                                            <!-- Start: #nested -->
+                                            <div class="nested-field-inputs" data-id="nested-cost-of-goods-sold">
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field" for="Cost-of-Goods-Sold-Generic-Label"><input class="border rounded standard-input-contra" type="text" input-type="contra" var="cost-of-goods-sold-generic" period="1" calc="sum-generic"></div><!-- End: #generic -->
+                                                <div class="custom-field"><input class="border rounded standard-input-contra" type="text" input-type="contra" var="cost-of-goods-sold-depreciation" period="1" calc="sum-depreciation"></div>
+                                                <div class="custom-field" for="Cost-of-Goods-Sold-Custom-Label" toggle-id="custom-cost-of-goods-sold"><input class="border rounded standard-input-contra" type="text" input-type="contra" var="cost-of-goods-sold-custom" period="1" custom="1" calc="sum"></div>
+                                            </div><!-- End: #nested -->
+                                        </div><!-- Start: #GrossProfit/Loss -->
+                                        <div class="total-field"><input class="border rounded grand-total-field-input" type="text" input-type="variable" var="gross-profit" period="1"></div><!-- End: #GrossProfit/Loss -->
+                                        <!-- Start: #OpEx -->
+                                        <div class="standard-field"><input class="border rounded standard-input" type="text" input-type="standard" var="salaries-wages-and-payroll-taxes" period="1"></div><!-- End: #OpEx -->
+                                        <!-- Start: #OpEx -->
+                                        <div class="standard-field"><input class="border rounded standard-input" type="text" input-type="standard" var="officer-compensation" period="1"></div><!-- End: #OpEx -->
+                                        <!-- Start: #OpEx -->
+                                        <div class="standard-field"><input class="border rounded standard-input" type="text" input-type="standard" var="repairs-and-maintenance" period="1"></div><!-- End: #OpEx -->
+                                        <!-- Start: #OpEx -->
+                                        <div class="standard-field"><input class="border rounded standard-input" type="text" input-type="standard" var="bad-debt" period="1"></div><!-- End: #OpEx -->
+                                        <!-- Start: #OpEx -->
+                                        <div class="standard-field"><input class="border rounded standard-input" type="text" input-type="standard" var="rent" period="1"></div><!-- End: #OpEx -->
+                                        <!-- Start: #OpEx -->
+                                        <div class="standard-field"><input class="border rounded standard-input" type="text" input-type="standard" var="taxes-and-licenses" period="1"></div><!-- End: #OpEx -->
+                                        <!-- Start: #OpEx -->
+                                        <div class="standard-field"><input class="border rounded standard-input" type="text" input-type="standard" var="interest-expense" period="1"></div><!-- End: #OpEx -->
+                                        <!-- Start: #OpEx -->
+                                        <div class="standard-field"><input class="border rounded standard-input" type="text" input-type="standard" var="depreciation-and-depletion" period="1"></div><!-- End: #OpEx -->
+                                        <!-- Start: #OpEx -->
+                                        <div class="standard-field"><input class="border rounded standard-input" type="text" input-type="standard" var="amortization" period="1"></div><!-- End: #OpEx -->
+                                        <!-- Start: #OpEx -->
+                                        <div class="standard-field"><input class="border rounded standard-input" type="text" input-type="standard" var="retirement-plans" period="1"></div><!-- End: #OpEx -->
+                                        <!-- Start: #OpEx -->
+                                        <div class="standard-field"><input class="border rounded standard-input" type="text" input-type="standard" var="employee-benefits" period="1"></div><!-- End: #OpEx -->
+                                        <div class="Other-Operating-Expenses-Input-Group" calc-group="other-operating-expenses">
+                                            <!-- Start: #parent -->
+                                            <div class="subtotal-field"><input class="border rounded standard-input" type="text" id="Other-Operating-Expenses-Subtotal-Input" input-type="standard" var="other-operating-expenses-subtotal" period="1" calc="subtotal" data-manual-entry="false"></div><!-- End: #parent -->
+                                            <div class="nested-field-inputs" data-id="nested-other-operating-expenses">
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field"><input class="border rounded standard-input" type="text" for="Other-Operating-Expenses-Generic-Label" input-type="standard" var="other-operating-expenses-generic" period="1" calc="sum-generic"></div><!-- End: #generic -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" for="Other-Operating-Expenses-Custom-Label" toggle-id="custom-other-operating-expenses"><input class="border rounded standard-input" type="text" input-type="standard" var="other-operating-expenses-custom" period="1" calc="sum"></div><!-- End: custom -->
+                                            </div>
+                                        </div><!-- Start: #total-account -->
+                                        <div class="total-field" total="total-operating-expenses"><input class="border rounded total-field-input" type="text" input-type="variable" period="1" var="total-operating-expenses"></div><!-- End: #total-account -->
+                                        <!-- Start: #total-account -->
+                                        <div class="total-field"><input class="border rounded grand-total-field-input" type="text" input-type="variable" period="1" var="net-operating-income"></div><!-- End: #total-account -->
+                                        <!-- Start: #parent -->
+                                        <div class="standard-field"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="investment-income"></div><!-- End: #parent -->
+                                        <!-- Start: #parent -->
+                                        <div class="standard-field" style="width: 206px;height: 32px;"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="gain-on-sale-of-assets"></div><!-- End: #parent -->
+                                        <div class="Other-Income-Input-Group" calc-group="other-income">
+                                            <!-- Start: #parent -->
+                                            <div class="subtotal-field"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="other-income-subtotal" calc="subtotal" data-manual-entry="false"></div><!-- End: #parent -->
+                                            <div class="nested-field-inputs" data-id="nested-other-income">
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field" for="Other-Operating-Expenses-Generic-Label"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="other-income-generic" calc="sum-generic"></div><!-- End: #generic -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" style="width: 206px;height: 32px;margin-bottom: 3px;" for="Other-Income-Custom-Label" toggle-id="custom-other-income"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="other-income-custom" calc="sum"></div><!-- End: custom -->
+                                            </div>
+                                        </div><!-- Start: #parent -->
+                                        <div class="standard-field"><input class="border rounded standard-input-contra" type="text" input-type="contra" period="1" var="loss-on-sale-of-assets"></div><!-- End: #parent -->
+                                        <div class="Other-Expenses-Input-Group" calc-group="other-expenses">
+                                            <!-- Start: #parent -->
+                                            <div class="subtotal-field"><input class="border rounded standard-input-contra" type="text" input-type="contra" period="1" var="other-expenses-subtotal" calc="subtotal" data-manual-entry="false"></div><!-- End: #parent -->
+                                            <div class="nested-field-inputs" data-id="nested-other-expenses" calc-group="other-expenses">
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field" for="Other-Expense-Generic-Label"><input class="border rounded standard-input-contra" type="text" input-type="contra" period="1" calc="sum-generic" var="other-expenses-generic"></div><!-- End: #generic -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" for="Other-Income-Custom-Label" toggle-id="custom-other-expenses"><input class="border rounded standard-input-contra" type="text" input-type="contra" period="1" calc="sum" var="other-expenses-custom"></div><!-- End: custom -->
+                                            </div>
+                                        </div><!-- Start: #total-account -->
+                                        <div class="total-field"><input class="border rounded total-field-input" type="text" input-type="variable" var="total-other-income-and-expenses" period="1"></div><!-- End: #total-account -->
+                                        <!-- Start: #total-account -->
+                                        <div class="total-field"><input class="border rounded grand-total-field-input" type="text" input-type="variable" var="net-profit" period="1"></div><!-- End: #total-account -->
+                                        <!-- Start: #contra-account -->
+                                        <div class="standard-field"><input class="border rounded standard-input-contra" type="text" input-type="contra" period="1" var="corporate-taxes"></div><!-- End: #contra-account -->
+                                        <!-- Start: #OpEx -->
+                                        <div class="standard-field"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="corporate-tax-refund" style="padding-right: 0px;padding-bottom: 0px;padding-left: 0px;"></div><!-- End: #OpEx -->
+                                        <!-- Start: #total-account -->
+                                        <div class="total-field"><input class="border rounded grand-total-field-input" type="text" input-type="variable" var="net-profit-after-taxes" period="1"></div><!-- End: #total-account -->
+                                    </div>
+                                </div><!-- End: #input-container -->
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- End: #containers -->
+            </section><!-- End: #Income Statement -->
+            <!-- Start: #header -->
+            <section class="balance-sheet-header" style="box-shadow: 0px 0px 7px 2px;background: #ffffff;border-radius: 10px;height: 44px;display: inline-flex;margin-top: -5px;">
+                <h2 class="text-truncate" style="margin: 10px;font-size: 23px;display: flex;max-width: inherit;min-width: 66%;"><strong>Balance Sheet</strong></h2>
+            </section><!-- End: #header -->
+            <!-- Start: #Balance Sheet -->
+            <section class="balance-sheet" style="margin-top: 15px;margin-left: -1px;position: relative;">
+                <!-- Start: #containers -->
+                <div class="parent-container" style="position: relative;display: flex;padding-bottom: 15px;">
+                    <!-- Start: #labels-and-buttons -->
+                    <div class="field-label-container" style="position: relative;display: inline-flex;border-radius: 10px;padding-left: 10px;box-shadow: 0px 0px 10px 2px;background: #ffffff;padding-bottom: 14px;">
+                        <!-- Start: #field-container -->
+                        <div class="container flex-column flex-grow-1" style="display: flex;position: relative;padding-top: 0px;margin-left: -2px;padding-left: 0px;padding-right: 0px;width: 290px;">
+                            <div class="col" style="position: relative;">
+                                <!-- Start: #Assets -->
+                                <div class="balance-sheet-assets">
+                                    <div class="statement-header-group" style="height: initial;position: relative;display: block;">
+                                        <div class="statement-date"><label class="form-label text-start flex-nowrap financial-statement-header" for="Statement-Date-Label"><strong>Statement Date:</strong></label></div>
+                                    </div><!-- Start: #label-group -->
+                                    <div class="group-label" for="Gross-Revenue-Input">
+                                        <!-- Start: #parent -->
+                                        <div class="parent-label-div" for="Gross-Revenue-Subtotal-Label"><label class="form-label text-start flex-nowrap financial-statement-standard-label" for="Gross-Revenue-Input-Group">Cash </label></div><!-- End: #parent -->
+                                        <!-- Start: #nested -->
+                                        <div class="nested-field-labels" data-id="nested-bs-cash">
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Cash, Generic</label></div><!-- End: #generic -->
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Cash at Lender's Financial Institution</label></div><!-- End: #generic -->
+                                            <!-- Start: #custom -->
+                                            <div class="d-xxl-flex align-items-xxl-center custom-label generic-label-div" toggle-id="custom-bs-cash">
+                                                <!-- Start: #custominput --><input class="flex-nowrap custom-input" type="text"><!-- End: #custominput -->
+                                            </div><!-- End: #custom -->
+                                        </div><!-- End: #nested -->
+                                    </div><!-- End: #label-group -->
+                                    <!-- Start: #label-group -->
+                                    <div class="group-label" for="Gross-Revenue-Input">
+                                        <!-- Start: #parent -->
+                                        <div class="parent-label-div" for="Gross-Revenue-Subtotal-Label"><label class="form-label text-start flex-nowrap financial-statement-standard-label" for="Gross-Revenue-Input-Group">Accounts Receivable</label></div><!-- End: #parent -->
+                                        <!-- Start: #nested -->
+                                        <div class="nested-field-labels" data-id="nested-bs-accounts-receivable">
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Accounts Receivable, Generic</label></div><!-- End: #generic -->
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label-contra">Allowances for Doubtful Accounts (-)</label></div><!-- End: #generic -->
+                                            <!-- Start: #custom -->
+                                            <div class="d-xxl-flex align-items-xxl-center custom-label generic-label-div" toggle-id="custom-bs-accounts-receivable">
+                                                <!-- Start: #custominput --><input class="flex-nowrap custom-input" type="text"><!-- End: #custominput -->
+                                            </div><!-- End: #custom -->
+                                        </div><!-- End: #nested -->
+                                    </div><!-- End: #label-group -->
+                                    <!-- Start: #label-group -->
+                                    <div class="group-label" style="position: relative;display: block;" for="Gross-Revenue-Input">
+                                        <!-- Start: #parent -->
+                                        <div class="parent-label-div" for="Gross-Revenue-Subtotal-Label"><label class="form-label text-start flex-nowrap financial-statement-standard-label" for="Gross-Revenue-Input-Group">Inventory</label></div><!-- End: #parent -->
+                                        <!-- Start: #nested -->
+                                        <div class="nested-field-labels" data-id="nested-bs-inventory">
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Inventory, Generic</label></div><!-- End: #generic -->
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Raw Materials</label></div><!-- End: #generic -->
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Work in Progress</label></div><!-- End: #generic -->
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Finished Goods</label></div><!-- End: #generic -->
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">In Transit</label></div><!-- End: #generic -->
+                                            <!-- Start: #custom -->
+                                            <div class="d-xxl-flex align-items-xxl-center custom-label generic-label-div" toggle-id="custom-bs-inventory">
+                                                <!-- Start: #custominput --><input class="flex-nowrap custom-input" type="text"><!-- End: #custominput -->
+                                            </div><!-- End: #custom -->
+                                        </div><!-- End: #nested -->
+                                    </div><!-- End: #label-group -->
+                                    <!-- Start: #label-group -->
+                                    <div class="group-label" for="Gross-Revenue-Input">
+                                        <!-- Start: #parent -->
+                                        <div class="parent-label-div" for="Gross-Revenue-Subtotal-Label"><label class="form-label text-start flex-nowrap financial-statement-standard-label" for="Gross-Revenue-Input-Group">Other Current Assets</label></div><!-- End: #parent -->
+                                        <!-- Start: #nested -->
+                                        <div class="nested-field-labels" data-id="nested-bs-other-current-assets">
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Other Current Assets, Generic</label></div><!-- End: #generic -->
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Deposits</label></div><!-- End: #generic -->
+                                            <!-- Start: #custom -->
+                                            <div class="d-xxl-flex align-items-xxl-center custom-label generic-label-div" toggle-id="custom-bs-other-current-assets">
+                                                <!-- Start: #custominput --><input class="flex-nowrap custom-input" type="text"><!-- End: #custominput -->
+                                            </div><!-- End: #custom -->
+                                        </div><!-- End: #nested -->
+                                    </div><!-- End: #label-group -->
+                                    <div class="total-label-div"><label class="form-label text-start flex-nowrap total-label">Total Current Assets</label></div><!-- Start: #label-group -->
+                                    <div class="group-label" style="position: relative;display: block;" for="Gross-Revenue-Input">
+                                        <!-- Start: #parent -->
+                                        <div class="parent-label-div" for="Gross-Revenue-Subtotal-Label"><label class="form-label text-start flex-nowrap financial-statement-standard-label" for="Gross-Revenue-Input-Group">Property, Plant and Equipment</label></div><!-- End: #parent -->
+                                        <!-- Start: #nested -->
+                                        <div class="nested-field-labels" data-id="nested-bs-property-plant-and-equipment">
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Property, Plant and Equipment, Generic</label></div><!-- End: #generic -->
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Machinery and Equipment</label></div><!-- End: #generic -->
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Titled Vehicle(s)</label></div><!-- End: #generic -->
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Computer and Office Equipment</label></div><!-- End: #generic -->
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Leasehold Improvements</label></div><!-- End: #generic -->
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Building(s)</label></div><!-- End: #generic -->
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Construction in Progress</label></div><!-- End: #generic -->
+                                            <!-- Start: #custom -->
+                                            <div class="d-xxl-flex align-items-xxl-center custom-label generic-label-div" toggle-id="custom-bs-property-plant-and-equipment">
+                                                <!-- Start: #custominput --><input class="flex-nowrap custom-input" type="text"><!-- End: #custominput -->
+                                            </div><!-- End: #custom -->
+                                        </div><!-- End: #nested -->
+                                    </div><!-- End: #label-group -->
+                                    <div class="generic-label-div"><label class="form-label text-start flex-nowrap generic-contra">Accumulated Depreciation (-)</label></div>
+                                    <div class="total-label-div"><label class="form-label text-start flex-nowrap total-label">Net Property, Plant, and Equipment</label></div>
+                                    <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-standard-label">Land</label></div>
+                                    <div class="total-label-div"><label class="form-label text-start flex-nowrap total-label">Net Fixed Assets</label></div><!-- Start: #label-group -->
+                                    <div class="group-label" style="position: relative;display: block;" for="Gross-Revenue-Input">
+                                        <!-- Start: #parent -->
+                                        <div class="parent-label-div" for="Gross-Revenue-Subtotal-Label"><label class="form-label text-start flex-nowrap financial-statement-standard-label" for="Gross-Revenue-Input-Group">Intangible Assets</label></div><!-- End: #parent -->
+                                        <!-- Start: #nested -->
+                                        <div class="nested-field-labels" data-id="nested-bs-intangible-assets">
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Intangible Assets, Generic</label></div><!-- End: #generic -->
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Trademarks and LIcenses</label></div><!-- End: #generic -->
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Financing Costs</label></div><!-- End: #generic -->
+                                            <!-- Start: #custom -->
+                                            <div class="d-xxl-flex align-items-xxl-center custom-label generic-label-div" toggle-id="custom-bs-intangible-assets">
+                                                <!-- Start: #custominput --><input class="flex-nowrap custom-input" type="text"><!-- End: #custominput -->
+                                            </div><!-- End: #custom -->
+                                        </div><!-- End: #nested -->
+                                    </div><!-- End: #label-group -->
+                                    <div class="generic-label-div"><label class="form-label text-start flex-nowrap generic-contra">Accumulated Amortization (-)</label></div>
+                                    <div class="total-label-div"><label class="form-label text-start flex-nowrap total-label">Net Intangible Assets</label></div><!-- Start: #label-group -->
+                                    <div class="group-label" for="Gross-Revenue-Input">
+                                        <!-- Start: #parent -->
+                                        <div class="parent-label-div" for="Gross-Revenue-Subtotal-Label"><label class="form-label text-start flex-nowrap financial-statement-standard-label" for="Gross-Revenue-Input-Group">Due from Related Parties</label></div><!-- End: #parent -->
+                                        <!-- Start: #nested -->
+                                        <div class="nested-field-labels" data-id="nested-bs-due-from-related-parties">
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Due from Related Parties, Generic</label></div><!-- End: #generic -->
+                                            <!-- Start: #custom -->
+                                            <div class="d-xxl-flex align-items-xxl-center custom-label generic-label-div" toggle-id="custom-bs-due-from-related-parties">
+                                                <!-- Start: #custominput --><input class="flex-nowrap custom-input" type="text"><!-- End: #custominput -->
+                                            </div><!-- End: #custom -->
+                                        </div><!-- End: #nested -->
+                                    </div><!-- End: #label-group -->
+                                    <!-- Start: #label-group -->
+                                    <div class="group-label" for="Gross-Revenue-Input">
+                                        <!-- Start: #parent -->
+                                        <div class="parent-label-div" for="Gross-Revenue-Subtotal-Label"><label class="form-label text-start flex-nowrap financial-statement-standard-label" for="Gross-Revenue-Input-Group">Due from Shareholder(s)</label></div><!-- End: #parent -->
+                                        <!-- Start: #nested -->
+                                        <div class="nested-field-labels" data-id="nested-bs-due-from-shareholders">
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Due from Shareholder(s), Generic</label></div><!-- End: #generic -->
+                                            <!-- Start: #custom -->
+                                            <div class="d-xxl-flex align-items-xxl-center custom-label generic-label-div" toggle-id="custom-bs-due-from-shareholders">
+                                                <!-- Start: #custominput --><input class="flex-nowrap custom-input" type="text"><!-- End: #custominput -->
+                                            </div><!-- End: #custom -->
+                                        </div><!-- End: #nested -->
+                                    </div><!-- End: #label-group -->
+                                    <!-- Start: #label-group -->
+                                    <div class="group-label" for="Gross-Revenue-Input">
+                                        <!-- Start: #parent -->
+                                        <div class="parent-label-div" for="Gross-Revenue-Subtotal-Label"><label class="form-label text-start flex-nowrap financial-statement-standard-label" for="Gross-Revenue-Input-Group">Other Long-Term Assets</label></div><!-- End: #parent -->
+                                        <!-- Start: #nested -->
+                                        <div class="nested-field-labels" data-id="nested-bs-other-long-term-assets">
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Other Long-Term Assets, Generic</label></div><!-- End: #generic -->
+                                            <!-- Start: #custom -->
+                                            <div class="d-xxl-flex align-items-xxl-center custom-label generic-label-div" toggle-id="custom-bs-other-long-term-assets">
+                                                <!-- Start: #custominput --><input class="flex-nowrap custom-input" type="text"><!-- End: #custominput -->
+                                            </div><!-- End: #custom -->
+                                        </div><!-- End: #nested -->
+                                    </div><!-- End: #label-group -->
+                                    <div class="total-label-div"><label class="form-label text-start flex-nowrap total-label">Total Other Long-Term Assets</label></div>
+                                    <div class="total-label-div"><label class="form-label text-start flex-nowrap total-label">Total Long-Term Assets</label></div>
+                                    <div class="total-label-div"><label class="form-label text-start flex-nowrap grand-total-label">Total Assets</label></div>
+                                </div><!-- End: #Assets -->
+                                <!-- Start: #Liabilities -->
+                                <div class="balance-sheet-liabilities">
+                                    <!-- Start: #label-group -->
+                                    <div class="group-label" for="BS-Accounts-Payable-Input">
+                                        <!-- Start: #parent -->
+                                        <div class="parent-label-div" for="Accounts-Payable-Subtotal-Label"><label class="form-label text-start flex-nowrap financial-statement-standard-label" for="Gross-Revenue-Input-Group">Accounts Payable </label></div><!-- End: #parent -->
+                                        <!-- Start: #nested -->
+                                        <div class="nested-field-labels" data-id="nested-bs-accounts-payable">
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Accounts Payable, Trade</label></div><!-- End: #generic -->
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Accounts Payable, Other</label></div><!-- End: #generic -->
+                                            <!-- Start: #custom -->
+                                            <div class="d-xxl-flex align-items-xxl-center custom-label generic-label-div" toggle-id="custom-bs-accounts-payable">
+                                                <!-- Start: #custominput --><input class="flex-nowrap custom-input" type="text"><!-- End: #custominput -->
+                                            </div><!-- End: #custom -->
+                                        </div><!-- End: #nested -->
+                                    </div><!-- End: #label-group -->
+                                    <!-- Start: #label-group -->
+                                    <div class="group-label" for="BS-Accounts-Payable-Input">
+                                        <!-- Start: #parent -->
+                                        <div class="parent-label-div" for="Accounts-Payable-Subtotal-Label"><label class="form-label text-start flex-nowrap financial-statement-standard-label" for="Gross-Revenue-Input-Group">Current Portion of Long-Term Liabilities</label></div><!-- End: #parent -->
+                                        <!-- Start: #nested -->
+                                        <div class="nested-field-labels" data-id="nested-bs-current-portion-of-long-term-liabilities">
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Current Portion of Long-Term Debt</label></div><!-- End: #generic -->
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label"><br><em>Current Portion of Capital Lease(s)</em><br><br></label></div><!-- End: #generic -->
+                                            <!-- Start: #custom -->
+                                            <div class="d-xxl-flex align-items-xxl-center custom-label generic-label-div" toggle-id="custom-bs-current-portion-of-long-term-liabilities">
+                                                <!-- Start: #custominput --><input class="flex-nowrap custom-input" type="text"><!-- End: #custominput -->
+                                            </div><!-- End: #custom -->
+                                        </div><!-- End: #nested -->
+                                    </div><!-- End: #label-group -->
+                                    <!-- Start: #label-group -->
+                                    <div class="group-label" for="BS-Revolving-Lines-of-Credit-Input-Group">
+                                        <!-- Start: #parent -->
+                                        <div class="parent-label-div" for="Gross-Revenue-Subtotal-Label"><label class="form-label text-start flex-nowrap financial-statement-standard-label" for="Gross-Revenue-Input-Group">Revolving Lines of Credit</label></div><!-- End: #parent -->
+                                        <!-- Start: #nested -->
+                                        <div class="nested-field-labels" data-id="nested-bs-revolving-lines-of-credit">
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Revolving Lines of Credit, Generic</label></div><!-- End: #generic -->
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Promissory Note Lines of Credit</label></div><!-- End: #generic -->
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Credit Cards</label></div><!-- End: #generic -->
+                                            <!-- Start: #custom -->
+                                            <div class="d-xxl-flex align-items-xxl-center custom-label generic-label-div" toggle-id="custom-bs-revolving-lines-of-credit">
+                                                <!-- Start: #custominput --><input class="flex-nowrap custom-input" type="text"><!-- End: #custominput -->
+                                            </div><!-- End: #custom -->
+                                        </div><!-- End: #nested -->
+                                    </div><!-- End: #label-group -->
+                                    <!-- Start: #label-group -->
+                                    <div class="group-label" for="BS-Accrual-Liabilities-Input-Group">
+                                        <!-- Start: #parent -->
+                                        <div class="parent-label-div" for="Gross-Revenue-Subtotal-Label"><label class="form-label text-start flex-nowrap financial-statement-standard-label" for="Gross-Revenue-Input-Group">Accrual Liabilities</label></div><!-- End: #parent -->
+                                        <!-- Start: #nested -->
+                                        <div class="nested-field-labels" data-id="nested-bs-accrual-liabilities">
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Accrual Liabilities, Generic</label></div><!-- End: #generic -->
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Customer Advances</label></div><!-- End: #generic -->
+                                            <!-- Start: #custom -->
+                                            <div class="d-xxl-flex align-items-xxl-center custom-label generic-label-div" toggle-id="custom-bs-accrual-liabilities">
+                                                <!-- Start: #custominput --><input class="flex-nowrap custom-input" type="text"><!-- End: #custominput -->
+                                            </div><!-- End: #custom -->
+                                        </div><!-- End: #nested -->
+                                    </div><!-- End: #label-group -->
+                                    <!-- Start: #label-group -->
+                                    <div class="group-label" for="BS-Other-Current-Liabilities-Input-Group">
+                                        <!-- Start: #parent -->
+                                        <div class="parent-label-div" for="Gross-Revenue-Subtotal-Label"><label class="form-label text-start flex-nowrap financial-statement-standard-label" for="Gross-Revenue-Input-Group">Other Current Liabilities</label></div><!-- End: #parent -->
+                                        <!-- Start: #nested -->
+                                        <div class="nested-field-labels" data-id="nested-bs-other-current-liabilities">
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Other Current Liabilities, Generic</label></div><!-- End: #generic -->
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label"><br><em>Tax Liabilities</em><br><br></label></div><!-- End: #generic -->
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label"><br><em>Payroll Liabilities</em><br><br></label></div><!-- End: #generic -->
+                                            <!-- Start: #custom -->
+                                            <div class="d-xxl-flex align-items-xxl-center custom-label generic-label-div" toggle-id="custom-bs-other-current-liabilities">
+                                                <!-- Start: #custominput --><input class="flex-nowrap custom-input" type="text"><!-- End: #custominput -->
+                                            </div><!-- End: #custom -->
+                                        </div><!-- End: #nested -->
+                                    </div><!-- End: #label-group -->
+                                    <div class="total-label-div"><label class="form-label text-start flex-nowrap total-label">Total Current Liabilities</label></div><!-- Start: #label-group -->
+                                    <div class="group-label" for="BS-Long-Term-Debt-to-be-Refinanced-Input-Group">
+                                        <!-- Start: #parent -->
+                                        <div class="parent-label-div" for="Gross-Revenue-Subtotal-Label"><label class="form-label text-start flex-nowrap financial-statement-standard-label" for="Gross-Revenue-Input-Group">Long-Term Debt to be Refinanced</label></div><!-- End: #parent -->
+                                        <!-- Start: #nested -->
+                                        <div class="nested-field-labels" data-id="nested-bs-long-term-debt-to-be-refinanced">
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Long-Term Debt to be Refinanced, Generic</label></div><!-- End: #generic -->
+                                            <!-- Start: #custom -->
+                                            <div class="d-xxl-flex align-items-xxl-center custom-label generic-label-div" toggle-id="custom-bs-long-term-debt-to-be-refinanced">
+                                                <!-- Start: #custominput --><input class="flex-nowrap custom-input" type="text"><!-- End: #custominput -->
+                                            </div><!-- End: #custom -->
+                                        </div><!-- End: #nested -->
+                                    </div><!-- End: #label-group -->
+                                    <!-- Start: #label-group -->
+                                    <div class="group-label" for="BS-Other-Long-Term-Notes-Payable-Input-Group">
+                                        <!-- Start: #parent -->
+                                        <div class="parent-label-div" for="Gross-Revenue-Subtotal-Label"><label class="form-label text-start flex-nowrap financial-statement-standard-label" for="Gross-Revenue-Input-Group">Other Long-Term Notes Payable</label></div><!-- End: #parent -->
+                                        <!-- Start: #nested -->
+                                        <div class="nested-field-labels" data-id="nested-bs-other-long-term-notes-payable">
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Other Long-Term Notes Payable, Generic</label></div><!-- End: #generic -->
+                                            <!-- Start: #custom -->
+                                            <div class="d-xxl-flex align-items-xxl-center custom-label generic-label-div" toggle-id="custom-bs-other-long-term-notes-payable">
+                                                <!-- Start: #custominput --><input class="flex-nowrap custom-input" type="text"><!-- End: #custominput -->
+                                            </div><!-- End: #custom -->
+                                        </div><!-- End: #nested -->
+                                    </div><!-- End: #label-group -->
+                                    <!-- Start: #label-group -->
+                                    <div class="group-label" for="BS-Due-To-Related-Parties-Input-Group">
+                                        <!-- Start: #parent -->
+                                        <div class="parent-label-div" for="Gross-Revenue-Subtotal-Label"><label class="form-label text-start flex-nowrap financial-statement-standard-label" for="Gross-Revenue-Input-Group">Due to Related Parties</label></div><!-- End: #parent -->
+                                        <!-- Start: #nested -->
+                                        <div class="nested-field-labels" data-id="nested-bs-due-to-related-parties">
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Due to Related Parties, Generic</label></div><!-- End: #generic -->
+                                            <!-- Start: #custom -->
+                                            <div class="d-xxl-flex align-items-xxl-center custom-label generic-label-div" toggle-id="custom-bs-due-to-related-parties">
+                                                <!-- Start: #custominput --><input class="flex-nowrap custom-input" type="text"><!-- End: #custominput -->
+                                            </div><!-- End: #custom -->
+                                        </div><!-- End: #nested -->
+                                    </div><!-- End: #label-group -->
+                                    <!-- Start: #label-group -->
+                                    <div class="group-label" for="BS-Due-to-Shareholders-Input-Group">
+                                        <!-- Start: #parent -->
+                                        <div class="parent-label-div" for="Gross-Revenue-Subtotal-Label"><label class="form-label text-start flex-nowrap financial-statement-standard-label" for="Gross-Revenue-Input-Group">Due to Shareholder(s)</label></div><!-- End: #parent -->
+                                        <!-- Start: #nested -->
+                                        <div class="nested-field-labels" data-id="nested-bs-due-to-shareholders">
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Due from Shareholder(s), Generic</label></div><!-- End: #generic -->
+                                            <!-- Start: #custom -->
+                                            <div class="d-xxl-flex align-items-xxl-center custom-label generic-label-div" toggle-id="custom-bs-due-to-shareholders">
+                                                <!-- Start: #custominput --><input class="flex-nowrap custom-input" type="text"><!-- End: #custominput -->
+                                            </div><!-- End: #custom -->
+                                        </div><!-- End: #nested -->
+                                    </div><!-- End: #label-group -->
+                                    <!-- Start: #label-group -->
+                                    <div class="group-label" for="BS-Other-Long-Term-Liabilities-Input-Group">
+                                        <!-- Start: #parent -->
+                                        <div class="parent-label-div" for="Gross-Revenue-Subtotal-Label"><label class="form-label text-start flex-nowrap financial-statement-standard-label" for="Gross-Revenue-Input-Group">Other Long-Term Liabilities</label></div><!-- End: #parent -->
+                                        <!-- Start: #nested -->
+                                        <div class="nested-field-labels" data-id="nested-bs-other-long-term-liabilities">
+                                            <!-- Start: #generic -->
+                                            <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Other Long-Term Liabilities, Generic</label></div><!-- End: #generic -->
+                                            <!-- Start: #custom -->
+                                            <div class="d-xxl-flex align-items-xxl-center custom-label generic-label-div" toggle-id="custom-bs-other-long-term-liabilities">
+                                                <!-- Start: #custominput --><input class="flex-nowrap custom-input" type="text"><!-- End: #custominput -->
+                                            </div><!-- End: #custom -->
+                                        </div><!-- End: #nested -->
+                                    </div><!-- End: #label-group -->
+                                    <div class="total-label-div"><label class="form-label text-start flex-nowrap total-label">Total Long-Term Liabilities</label></div>
+                                    <div class="total-label-div"><label class="form-label text-start flex-nowrap grand-total-label">Total Liabilities</label></div>
+                                </div><!-- End: #Liabilities -->
+                                <!-- Start: #label-group -->
+                                <div class="group-label" style="position: relative;display: block;" for="BS-Paid-in-Capital-Input-Group">
+                                    <!-- Start: #parent -->
+                                    <div class="parent-label-div" for="Gross-Revenue-Subtotal-Label"><label class="form-label text-start flex-nowrap financial-statement-standard-label" for="Gross-Revenue-Input-Group">Paid in Capital</label></div><!-- End: #parent -->
+                                    <!-- Start: #nested -->
+                                    <div class="nested-field-labels" data-id="nested-bs-paid-in-capital">
+                                        <!-- Start: #generic -->
+                                        <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Paid in Capital, Generic</label></div><!-- End: #generic -->
+                                        <!-- Start: #custom -->
+                                        <div class="d-xxl-flex align-items-xxl-center custom-label generic-label-div" toggle-id="custom-bs-paid-in-capital">
+                                            <!-- Start: #custominput --><input class="flex-nowrap custom-input" type="text"><!-- End: #custominput -->
+                                        </div><!-- End: #custom -->
+                                    </div><!-- End: #nested -->
+                                </div><!-- End: #label-group -->
+                                <!-- Start: #label-group -->
+                                <div class="group-label" style="position: relative;display: block;" for="BS-Retained-Earnings-Input-Group">
+                                    <!-- Start: #parent -->
+                                    <div class="parent-label-div" for="Gross-Revenue-Subtotal-Label"><label class="form-label text-start flex-nowrap financial-statement-standard-label" for="Gross-Revenue-Input-Group">Retained Earnings</label></div><!-- End: #parent -->
+                                    <!-- Start: #nested -->
+                                    <div class="nested-field-labels" data-id="nested-bs-retained-earnings">
+                                        <!-- Start: #generic -->
+                                        <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Prior Year-End Retained Earnings</label></div><!-- End: #generic -->
+                                        <!-- Start: #generic -->
+                                        <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Current Period's Net Profit (Loss) after Taxes</label></div><!-- End: #generic -->
+                                        <!-- Start: #generic -->
+                                        <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label-contra">Current Period's Shareholder Distributions (-)</label></div><!-- End: #generic -->
+                                        <!-- Start: #generic -->
+                                        <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label"><br><em>Current Period's Shareholder Contributions (+)</em><br><br></label></div><!-- End: #generic -->
+                                        <!-- Start: #custom -->
+                                        <div class="d-xxl-flex align-items-xxl-center custom-label generic-label-div" toggle-id="custom-bs-retained-earnings">
+                                            <!-- Start: #custominput --><input class="flex-nowrap custom-input" type="text"><!-- End: #custominput -->
+                                        </div><!-- End: #custom -->
+                                    </div><!-- End: #nested -->
+                                </div><!-- End: #label-group -->
+                                <!-- Start: #label-group -->
+                                <div class="group-label" style="position: relative;display: block;" for="BS-Paid-in-Capital-Input-Group">
+                                    <!-- Start: #parent -->
+                                    <div class="parent-label-div" for="Gross-Revenue-Subtotal-Label"><label class="form-label text-start flex-nowrap financial-statement-standard-label" for="Gross-Revenue-Input-Group">Other Adjustments to Equity</label></div><!-- End: #parent -->
+                                    <!-- Start: #nested -->
+                                    <div class="nested-field-labels" data-id="nested-bs-paid-in-capital">
+                                        <!-- Start: #generic -->
+                                        <div class="generic-label-div"><label class="form-label text-start flex-nowrap financial-statement-sub-label">Other Adjustments to Equity, Generic</label></div><!-- End: #generic -->
+                                        <!-- Start: #custom -->
+                                        <div class="d-xxl-flex align-items-xxl-center custom-label generic-label-div" toggle-id="custom-bs-other-adjustments-to-equity">
+                                            <!-- Start: #custominput --><input class="flex-nowrap custom-input" type="text"><!-- End: #custominput -->
+                                        </div><!-- End: #custom -->
+                                    </div><!-- End: #nested -->
+                                </div><!-- End: #label-group -->
+                                <!-- Start: #Total Equity -->
+                                <div class="total-label-div"><label class="form-label text-start flex-nowrap grand-total-label">Total Equity</label></div><!-- End: #Total Equity -->
+                                <!-- Start: #Total Liabilities and Equity -->
+                                <div class="total-label-div"><label class="form-label text-start flex-nowrap grand-total-label">Total Liabilities and Equity</label></div><!-- End: #Total Liabilities and Equity -->
+                                <!-- Start: #Balance Check -->
+                                <div class="total-label-div"><label class="form-label text-start flex-nowrap total-label" style="background: rgb(225,202,202);">Total Unbalanced Amount</label></div><!-- End: #Balance Check -->
+                            </div>
+                        </div><!-- End: #field-container -->
+                        <!-- Start: #field-button-container -->
+                        <div class="field-button-container">
+                            <div class="container flex-column flex-grow-1">
+                                <div class="col">
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder"></div><!-- End: #blankspace -->
+                                    <!-- Start: #togglesubfields --><button class="toggle-subfields" data-target="nested-bs-cash">↑</button><!-- End: #togglesubfields -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-cash"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-cash"></div><!-- End: #blankspace -->
+                                    <!-- Start: #addsubfield --><button class="add-subfield" data-id="nested-bs-cash" data-target="custom-bs-cash">+</button>
+<!-- End: #addsubfield -->
+                                    <!-- Start: #togglesubfields --><button class="toggle-subfields" data-target="nested-bs-accounts-receivable">↑</button><!-- End: #togglesubfields -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-accounts-receivable"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-accounts-receivable"></div><!-- End: #blankspace -->
+                                    <!-- Start: #addsubfield --><button class="add-subfield" data-id="nested-bs-accounts-receivable" data-target="custom-bs-accounts-receivable">+</button>
+<!-- End: #addsubfield -->
+                                    <!-- Start: #togglesubfields --><button class="toggle-subfields" data-target="nested-bs-inventory">↑</button><!-- End: #togglesubfields -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-inventory"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-inventory"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-inventory"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-inventory"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-inventory"></div><!-- End: #blankspace -->
+                                    <!-- Start: #addsubfield --><button class="add-subfield" data-id="nested-bs-inventory" data-target="custom-bs-inventory">+</button>
+<!-- End: #addsubfield -->
+                                    <!-- Start: #togglesubfields --><button class="toggle-subfields" data-target="nested-bs-other-current-assets">↑</button><!-- End: #togglesubfields -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-other-current-assets"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-other-current-assets"></div><!-- End: #blankspace -->
+                                    <!-- Start: #addsubfield --><button class="add-subfield" data-id="nested-bs-other-current-assets" data-target="custom-bs-other-current-assets">+</button>
+<!-- End: #addsubfield -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder"></div><!-- End: #blankspace -->
+                                    <!-- Start: #togglesubfields --><button class="toggle-subfields" data-target="nested-bs-property-plant-and-equipment">↑</button><!-- End: #togglesubfields -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-property-plant-and-equipment"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-property-plant-and-equipment"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-property-plant-and-equipment"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-property-plant-and-equipment"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-property-plant-and-equipment"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-property-plant-and-equipment"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-property-plant-and-equipment"></div><!-- End: #blankspace -->
+                                    <!-- Start: #addsubfield --><button class="add-subfield" data-id="nested-bs-property-plant-and-equipment" data-target="custom-bs-property-plant-and-equipment">+</button><!-- End: #addsubfield -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder-large"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder-large"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder-large"></div><!-- End: #blankspace -->
+                                    <!-- Start: #togglesubfields --><button class="toggle-subfields" data-target="nested-bs-intangible-assets">↑</button><!-- End: #togglesubfields -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-intangible-assets"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-intangible-assets"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-intangible-assets"></div><!-- End: #blankspace -->
+                                    <!-- Start: #addsubfield --><button class="add-subfield" data-id="nested-bs-intangible-assets" data-target="custom-bs-intangible-assets">+</button>
+<!-- End: #addsubfield -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder-large"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder"></div><!-- End: #blankspace -->
+                                    <!-- Start: #togglesubfields --><button class="toggle-subfields" data-target="nested-bs-due-from-related-parties">↑</button><!-- End: #togglesubfields -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-due-from-related-parties"></div><!-- End: #blankspace -->
+                                    <!-- Start: #addsubfield --><button class="add-subfield" data-id="nested-bs-due-from-related-parties" data-target="custom-bs-due-from-related-parties">+</button>
+<!-- End: #addsubfield -->
+                                    <!-- Start: #togglesubfields --><button class="toggle-subfields" data-target="nested-bs-due-from-shareholders">↑</button><!-- End: #togglesubfields -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-due-from-shareholders"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder-small" data-id="nested-bs-due-from-shareholders"></div><!-- End: #blankspace -->
+                                    <!-- Start: #addsubfield --><button class="add-subfield" data-id="nested-bs-due-from-shareholders" data-target="custom-bs-due-from-shareholders">+</button>
+<!-- End: #addsubfield -->
+                                    <!-- Start: #togglesubfields --><button class="toggle-subfields" data-target="nested-bs-other-long-term-assets">↑</button><!-- End: #togglesubfields -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-other-long-term-assets"></div><!-- End: #blankspace -->
+                                    <!-- Start: #addsubfield --><button class="add-subfield" data-id="nested-bs-other-long-term-assets" data-target="custom-bs-other-long-term-assets">+</button><!-- End: #addsubfield -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder-large"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder-large"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder-large"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder-xsmall"></div><!-- End: #blankspace -->
+                                    <!-- Start: #togglesubfields --><button class="toggle-subfields" data-target="nested-bs-accounts-payable">↑</button><!-- End: #togglesubfields -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-accounts-payable"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-accounts-payable"></div><!-- End: #blankspace -->
+                                    <!-- Start: #addsubfield --><button class="add-subfield" data-id="nested-bs-accounts-payable" data-target="custom-bs-accounts-payable">+</button>
+<!-- End: #addsubfield -->
+                                    <!-- Start: #togglesubfields --><button class="toggle-subfields" data-target="nested-bs-current-portion-of-long-term-liabilities">↑</button><!-- End: #togglesubfields -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-current-portion-of-long-term-liabilities"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-current-portion-of-long-term-liabilities"></div><!-- End: #blankspace -->
+                                    <!-- Start: #addsubfield --><button class="add-subfield" data-id="nested-bs-current-portion-of-long-term-liabilities" data-target="custom-bs-current-portion-of-long-term-liabilities">+</button>
+<!-- End: #addsubfield -->
+                                    <!-- Start: #togglesubfields --><button class="toggle-subfields" data-target="nested-bs-revolving-lines-of-credit">↑</button><!-- End: #togglesubfields -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-revolving-lines-of-credit"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-revolving-lines-of-credit"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-revolving-lines-of-credit"></div><!-- End: #blankspace -->
+                                    <!-- Start: #addsubfield --><button class="add-subfield" data-id="nested-bs-revolving-lines-of-credit" data-target="custom-bs-revolving-lines-of-credit">+</button>
+<!-- End: #addsubfield -->
+                                    <!-- Start: #togglesubfields --><button class="toggle-subfields" data-target="nested-bs-accrual-liabilities">↑</button><!-- End: #togglesubfields -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-accrual-liabilities"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-accrual-liabilities"></div><!-- End: #blankspace -->
+                                    <!-- Start: #addsubfield --><button class="add-subfield" data-id="nested-bs-accrual-liabilities" data-target="custom-bs-accrual-liabilities">+</button>
+<!-- End: #addsubfield -->
+                                    <!-- Start: #togglesubfields --><button class="toggle-subfields" data-target="nested-bs-other-current-liabilities">↑</button><!-- End: #togglesubfields -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-other-current-liabilities"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-other-current-liabilities"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-other-current-liabilities"></div><!-- End: #blankspace -->
+                                    <!-- Start: #addsubfield --><button class="add-subfield" data-id="nested-bs-other-current-liabilities" data-target="custom-bs-other-current-liabilities">+</button>
+<!-- End: #addsubfield -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder-large"></div><!-- End: #blankspace -->
+                                    <!-- Start: #togglesubfields --><button class="toggle-subfields" data-target="nested-bs-long-term-debt-to-be-refinanced">↑</button><!-- End: #togglesubfields -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-long-term-debt-to-be-refinanced"></div><!-- End: #blankspace -->
+                                    <!-- Start: #addsubfield --><button class="add-subfield" data-id="nested-bs-long-term-debt-to-be-refinanced" data-target="custom-bs-long-term-debt-to-be-refinanced">+</button><!-- End: #addsubfield -->
+                                    <!-- Start: #togglesubfields --><button class="toggle-subfields" data-target="nested-bs-other-long-term-notes-payable">↑</button><!-- End: #togglesubfields -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-other-long-term-notes-payable"></div><!-- End: #blankspace -->
+                                    <!-- Start: #addsubfield --><button class="add-subfield" data-id="nested-bs-other-long-term-notes-payable" data-target="custom-bs-other-long-term-notes-payable">+</button><!-- End: #addsubfield -->
+                                    <!-- Start: #togglesubfields --><button class="toggle-subfields" data-target="nested-bs-due-to-related-parties">↑</button><!-- End: #togglesubfields -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-due-to-related-parties"></div><!-- End: #blankspace -->
+                                    <!-- Start: #addsubfield --><button class="add-subfield" data-id="nested-bs-due-to-related-parties" data-target="custom-bs-due-to-related-parties">+</button>
+<!-- End: #addsubfield -->
+                                    <!-- Start: #togglesubfields --><button class="toggle-subfields" data-target="nested-bs-due-to-shareholders">↑</button><!-- End: #togglesubfields -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-due-to-shareholders"></div><!-- End: #blankspace -->
+                                    <!-- Start: #addsubfield --><button class="add-subfield" data-id="nested-bs-due-to-shareholders" data-target="custom-bs-due-to-shareholders">+</button>
+<!-- End: #addsubfield -->
+                                    <!-- Start: #togglesubfields --><button class="toggle-subfields" data-target="nested-bs-other-long-term-liabilities">↑</button><!-- End: #togglesubfields -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-other-long-term-liabilities"></div><!-- End: #blankspace -->
+                                    <!-- Start: #addsubfield --><button class="add-subfield" data-id="nested-bs-other-long-term-liabilities" data-target="custom-bs-other-long-term-liabilities">+</button>
+<!-- End: #addsubfield -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder-large"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder-large"></div><!-- End: #blankspace -->
+                                    <!-- Start: #togglesubfields --><button class="toggle-subfields" data-target="nested-bs-paid-in-capital">↑</button><!-- End: #togglesubfields -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-paid-in-capital"></div><!-- End: #blankspace -->
+                                    <!-- Start: #addsubfield --><button class="add-subfield" data-id="nested-bs-paid-in-capital" data-target="custom-bs-paid-in-capital">+</button>
+<!-- End: #addsubfield -->
+                                    <!-- Start: #togglesubfields --><button class="toggle-subfields" data-target="nested-bs-retained-earnings">↑</button><!-- End: #togglesubfields -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-retained-earnings"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-retained-earnings"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-retained-earnings"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-retained-earnings"></div><!-- End: #blankspace -->
+                                    <!-- Start: #addsubfield --><button class="add-subfield" data-id="nested-bs-retained-earnings" data-target="custom-bs-retained-earnings">+</button>
+<!-- End: #addsubfield -->
+                                    <!-- Start: #togglesubfields --><button class="toggle-subfields" data-target="nested-bs-other-adjustments-to-equity">↑</button><!-- End: #togglesubfields -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder" data-id="nested-bs-paid-in-capital"></div><!-- End: #blankspace -->
+                                    <!-- Start: #addsubfield --><button class="add-subfield" data-id="nested-bs-other-adjustments-to-equity" data-target="custom-bs-other-adjustments-to-equity">+</button>
+<!-- End: #addsubfield -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder-large"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder-large"></div><!-- End: #blankspace -->
+                                    <!-- Start: #blankspace -->
+                                    <div class="btn-placeholder-large"></div><!-- End: #blankspace -->
+                                </div>
+                            </div>
+                        </div><!-- End: #field-button-container -->
+                    </div><!-- End: #labels-and-buttons -->
+                    <div>
+                        <div class="row" style="display: block;min-width: 2400px;">
+                            <div class="col" style="padding-top: 2px;">
+                                <!-- Start: #input-container -->
+                                <div id="Balance-Sheets" class="input-container">
+                                    <div class="container container-column" period="1">
+                                        <!-- Start: #StatementDate -->
+                                        <div class="parent-field" style="width: 206px;height: 30px;display: inline-block;"><input class="border rounded" id="Statement-Date-Input-1" type="date" style="text-align: right;width: 192px;border-style: solid;box-shadow: 0px 0px 3px 1px rgb(0, 0, 0);height: 26px; margin-top: 1px" period="1"></div><!-- End: #StatementDate -->
+                                        <!-- Start: #subtotal-account -->
+                                        <div id="Cash-Subtotal-1" class="Balance-Sheet-Cash-Input-Group" calc-group="gross-revenue">
+                                            <!-- Start: #parent -->
+                                            <div class="subtotal-field"><input class="border rounded standard-input" type="text" id="bs-cash-subtotal" input-type="standard" var="bs-cash-subtotal" period="1" calc="subtotal" data-manual-entry="false"></div><!-- End: #parent -->
+                                            <div class="nested-field-inputs" data-id="nested-bs-cash">
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field"><input class="border rounded standard-input" type="text" input-type="standard" var="bs-cash-generic" period="1" calc="sum-generic"></div><!-- End: #generic -->
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field"><input class="border rounded standard-input" type="text" input-type="standard" var="bs-cash-at-financial-institution" period="1" calc="sum-generic"></div><!-- End: #generic -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="custom-bs-cash" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-cash-custom" custom="1" calc="sum"></div><!-- End: custom -->
+                                            </div>
+                                        </div><!-- End: #subtotal-account -->
+                                        <!-- Start: #Accounts Receivable -->
+                                        <div id="Accounts-Receivable-Subtotal-1" class="Balance-Sheet-Accounts-Receivable-Input-Group" calc-group="accounts-receivable">
+                                            <!-- Start: #parent -->
+                                            <div class="subtotal-field"><input class="border rounded standard-input" type="text" input-type="standard" var="bs-accounts-receivable-subtotal" period="1" calc="subtotal" data-manual-entry="false"></div><!-- End: #parent -->
+                                            <div class="nested-field-inputs" data-id="nested-bs-accounts-receivable">
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field"><input class="border rounded standard-input" type="text" input-type="standard" var="bs-accounts-receivable-generic" period="1" calc="sum-generic"></div><!-- End: #generic -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" custom-id="1"><input class="border rounded standard-input-contra" type="text" input-type="contra" period="1" var="bs-allowance-for-doubtful-accounts" custom="1" calc="sum"></div><!-- End: custom -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="custom-bs-accounts-receivable" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-accounts-receivable-custom" custom="1" calc="sum"></div><!-- End: custom -->
+                                            </div>
+                                        </div><!-- End: #Accounts Receivable -->
+                                        <!-- Start: #Inventory -->
+                                        <div class="Balance-Sheet-Inventory-Input-Group" calc-group="bs-inventory">
+                                            <!-- Start: #parent -->
+                                            <div class="subtotal-field"><input class="border rounded standard-input" type="text" id="Inventory-Subtotal-1" input-type="standard" var="bs-inventory-subtotal" period="1" calc="subtotal" data-manual-entry="false"></div><!-- End: #parent -->
+                                            <!-- Start: #Inventory Subaccounts -->
+                                            <div class="nested-field-inputs" data-id="nested-bs-inventory">
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field"><input class="border rounded standard-input" type="text" input-type="standard" var="bs-inventory-generic" period="1" calc="sum-generic"></div><!-- End: #generic -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="custom-gross-revenue" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-inventory-raw-materials" custom="1" calc="sum"></div><!-- End: custom -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="custom-gross-revenue" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-inventory-work-in-progress" custom="1" calc="sum"></div><!-- End: custom -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="custom-gross-revenue" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-inventory-finished-goods" custom="1" calc="sum"></div><!-- End: custom -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="custom-gross-revenue" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-inventory-in-transit" custom="1" calc="sum"></div><!-- End: custom -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="custom-bs-inventory" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-inventory-custom" custom="1" calc="sum"></div><!-- End: custom -->
+                                            </div><!-- End: #Inventory Subaccounts -->
+                                        </div><!-- End: #Inventory -->
+                                        <!-- Start: #Other Current Assets -->
+                                        <div class="Balance-Sheet-Other-Current-Assets-Input-Group" calc-group="other-current-assets">
+                                            <!-- Start: #parent -->
+                                            <div class="subtotal-field"><input class="border rounded standard-input" type="text" id="Gross-Revenue-Subtotal-Label-4" input-type="standard" var="bs-other-current-assets-subtotal" period="1" calc="subtotal" data-manual-entry="false"></div><!-- End: #parent -->
+                                            <!-- Start: #Generic -->
+                                            <div class="nested-field-inputs" data-id="nested-bs-other-current-assets">
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field"><input class="border rounded standard-input" type="text" input-type="standard" var="bs-other-current-assets-generic" period="1" calc="sum-generic"></div><!-- End: #generic -->
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field"><input class="border rounded standard-input" type="text" input-type="standard" var="bs-other-current-assets-deposits" period="1" calc="sum-generic"></div><!-- End: #generic -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="custom-bs-other-current-assets" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-other-current-assets-custom" custom="1" calc="sum"></div><!-- End: custom -->
+                                            </div><!-- End: #Generic -->
+                                        </div><!-- End: #Other Current Assets -->
+                                        <!-- Start: #total-account -->
+                                        <div id="Total-Current-Assets-1" class="total-field" shadow="total"><input class="border rounded total-field-input" type="text" input-type="variable" var="bs-total-current-assets" period="1"></div><!-- End: #total-account -->
+                                        <!-- Start: #PP&E -->
+                                        <div class="Balance-Sheet-Property-Plant-Equipment-Input-Group" calc-group="property-plant-and-equipment">
+                                            <!-- Start: #parent -->
+                                            <div class="subtotal-field">
+                                                <!-- Start: #PP&E Subtotal --><input class="border rounded standard-input" type="text" id="Property-Plan-and-Equipment-Subtotal-1" input-type="standard" var="bs-property-plant-and-equipment-subtotal" period="1" calc="subtotal" data-manual-entry="false"><!-- End: #PP&E Subtotal -->
+                                            </div><!-- End: #parent -->
+                                            <!-- Start: #Nested PP&E -->
+                                            <div class="nested-field-inputs" data-id="nested-bs-property-plant-and-equipment">
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field"><input class="border rounded standard-input" type="text" input-type="standard" var="bs-property-plant-and-equipment-generic" period="1" calc="sum-generic"></div><!-- End: #generic -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="generic-property-plant-and-equipment" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-machinery-and-equipment" custom="1" calc="sum"></div><!-- End: custom -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="generic-property-plant-and-equipment" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-titled-vehicles" custom="1" calc="sum"></div><!-- End: custom -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="generic-property-plant-and-equipment" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-computer-and-office-equipment" custom="1" calc="sum"></div><!-- End: custom -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="generic-property-plant-and-equipment" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-leasehold-improvements" custom="1" calc="sum"></div><!-- End: custom -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="generic-property-plant-and-equipment" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-buildings" custom="1" calc="sum"></div><!-- End: custom -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="generic-property-plant-and-equipment" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-construction-in-progress" custom="1" calc="sum"></div><!-- End: custom -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="custom-bs-property-plant-and-equipment" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-property-plant-and-equipment-custom" custom="1" calc="sum"></div><!-- End: custom -->
+                                            </div><!-- End: #Nested PP&E -->
+                                        </div><!-- End: #PP&E -->
+                                        <!-- Start: #contra-account -->
+                                        <div id="Accumulated-Depreciation-Input-1" class="standard-field"><input class="border rounded standard-input-contra" type="text" input-type="contra" var="bs-accumulated-depreciation" period="1"></div><!-- End: #contra-account -->
+                                        <!-- Start: #total-account -->
+                                        <div id="Net-Property-Plant-and-Equipemnt" class="total-field" shadow="total"><input class="border rounded total-field-input" type="text" input-type="variable" var="net-property-plant-and-equipment" period="1"></div><!-- End: #total-account -->
+                                        <!-- Start: #OpEx -->
+                                        <div class="standard-field"><input class="border rounded standard-input" type="text" input-type="standard" var="bs-land" period="1"></div><!-- End: #OpEx -->
+                                        <!-- Start: #total-account -->
+                                        <div id="Net-Fixed-Assets-Input-1" class="total-field" shadow="total"><input class="border rounded total-field-input" type="text" input-type="variable" var="bs-net-fixed-assets" period="1"></div><!-- End: #total-account -->
+                                        <!-- Start: #Inventory -->
+                                        <div class="Balance-Sheet-Intangible-Assets-Input-Group" calc-group="intangible-assets">
+                                            <!-- Start: #parent -->
+                                            <div class="subtotal-field"><input class="border rounded standard-input" type="text" id="Gross-Revenue-Subtotal-Label-6" input-type="standard" var="bs-intangible-assets-subtotal" period="1" calc="subtotal" data-manual-entry="false"></div><!-- End: #parent -->
+                                            <!-- Start: #Nested Intangible Assets -->
+                                            <div class="nested-field-inputs" data-id="nested-bs-intangible-assets">
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field"><input class="border rounded standard-input" type="text" input-type="standard" var="bs-intangible-assets-generic" period="1" calc="sum-generic"></div><!-- End: #generic -->
+                                                <!-- Start: custom -->
+                                                <div class="generic-field" period="1" toggle-id="custom-gross-revenue" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-intangible-assets-trademarks-and-licenses" custom="1" calc="sum"></div><!-- End: custom -->
+                                                <!-- Start: custom -->
+                                                <div class="generic-field" period="1" toggle-id="custom-gross-revenue" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-intangible-assets-financing-costs" custom="1" calc="sum"></div><!-- End: custom -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="custom-bs-intangible-assets" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-inangible-assets-custom" custom="1" calc="sum"></div><!-- End: custom -->
+                                            </div><!-- End: #Nested Intangible Assets -->
+                                        </div><!-- End: #Inventory -->
+                                        <!-- Start: #contra-account -->
+                                        <div id="Balance-Sheet-Accumulated-Amortization-1" class="standard-field"><input class="border rounded standard-input-contra" type="text" input-type="contra" var="bs-accumulated-amortization" period="1"></div><!-- End: #contra-account -->
+                                        <!-- Start: #total-account -->
+                                        <div id="Balance-Sheet-Net-Intangible-Assets-1" class="total-field" shadow="total"><input class="border rounded total-field-input" type="text" input-type="variable" var="bs-net-intangible-assets" period="1"></div><!-- End: #total-account -->
+                                        <!-- Start: #subtotal-account -->
+                                        <div class="Balance-Sheet-Due-from-Related-Parties-Input-Group" calc-group="bs-due-from-related-parties">
+                                            <!-- Start: #parent -->
+                                            <div class="subtotal-field"><input class="border rounded standard-input" type="text" id="Gross-Revenue-Subtotal-Label-1" input-type="standard" var="bs-due-from-related-parties-subtotal" period="1" calc="subtotal" data-manual-entry="false"></div><!-- End: #parent -->
+                                            <div class="nested-field-inputs" data-id="nested-bs-due-from-related-parties">
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field"><input class="border rounded standard-input" type="text" input-type="standard" var="bs-due-from-related-parties-generic" period="1" calc="sum-generic"></div><!-- End: #generic -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="custom-bs-due-from-related-parties" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-due-from-related-parties-custom" custom="1" calc="sum"></div><!-- End: custom -->
+                                            </div>
+                                        </div><!-- End: #subtotal-account -->
+                                        <!-- Start: #subtotal-account -->
+                                        <div class="Balance-Sheet-Due-from-Shareholders-Input-Group" calc-group="bs-due-from-shareholders">
+                                            <!-- Start: #parent -->
+                                            <div class="subtotal-field"><input class="border rounded standard-input" type="text" id="Gross-Revenue-Subtotal-Label-7" input-type="standard" var="bs-due-from-shareholders-subtotal" period="1" calc="subtotal" data-manual-entry="false"></div><!-- End: #parent -->
+                                            <div class="nested-field-inputs" data-id="nested-bs-due-from-shareholders">
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field"><input class="border rounded standard-input" type="text" input-type="standard" var="bs-due-from-shareholders-generic" period="1" calc="sum-generic"></div><!-- End: #generic -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="custom-bs-due-from-shareholders" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-due-from-shareholders-custom" custom="1" calc="sum"></div><!-- End: custom -->
+                                            </div>
+                                        </div><!-- End: #subtotal-account -->
+                                        <!-- Start: #subtotal-account -->
+                                        <div class="Balance-Sheet-Other-Long-Term-Assets-Input-Group" calc-group="bs-other-long-term-assets">
+                                            <!-- Start: #parent -->
+                                            <div class="subtotal-field"><input class="border rounded standard-input" type="text" id="Gross-Revenue-Subtotal-Label-8" input-type="standard" var="bs-other-long-term-assets-subtotal" period="1" calc="subtotal" data-manual-entry="false"></div><!-- End: #parent -->
+                                            <div class="nested-field-inputs" data-id="nested-bs-other-long-term-assets">
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field"><input class="border rounded standard-input" type="text" input-type="standard" var="bs-other-long-term-assets-generic" period="1" calc="sum-generic"></div><!-- End: #generic -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="custom-bs-other-long-term-assets" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-other-long-term-assets-custom" custom="1" calc="sum"></div><!-- End: custom -->
+                                            </div>
+                                        </div><!-- End: #subtotal-account -->
+                                        <!-- Start: #Total Other Long-Term Liabilities -->
+                                        <div id="BS-Total-Other-Long-Term-Assets-1" class="total-field" shadow="total"><input class="border rounded total-field-input" type="text" input-type="variable" var="bs-total-other-long-term-assets" period="1"></div><!-- End: #Total Other Long-Term Liabilities -->
+                                        <!-- Start: #Total Long-Term Assets -->
+                                        <div id="Total-Long-Term-Assets-Input" class="total-field" shadow="total"><input class="border rounded total-field-input" type="text" input-type="variable" var="bs-total-long-term-assets" period="1"></div><!-- End: #Total Long-Term Assets -->
+                                        <!-- Start: #Total Assets -->
+                                        <div id="Total-Assets-Input" class="total-field" shadow="total"><input class="border rounded grand-total-field-input" type="text" input-type="variable" var="bs-total-assets" period="1"></div><!-- End: #Total Assets -->
+                                        <!-- Start: #Accounts Payable -->
+                                        <div class="Balance-Sheet-Accounts-Payable-Input-Group" calc-group="accounts-payable">
+                                            <!-- Start: #parent -->
+                                            <div class="subtotal-field"><input class="border rounded standard-input" type="text" id="Accounts-Payable-Subtotal-1" input-type="standard" var="bs-accounts-payable-subtotal" period="1" calc="subtotal" data-manual-entry="false"></div><!-- End: #parent -->
+                                            <!-- Start: #nested -->
+                                            <div class="nested-field-inputs" data-id="nested-bs-accounts-payable">
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field"><input class="border rounded standard-input" type="text" input-type="standard" var="bs-accounts-payable-trade" period="1" calc="sum-generic"></div><!-- End: #generic -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="custom-gross-revenue" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-accounts-payable-other" custom="1" calc="sum"></div><!-- End: custom -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="custom-bs-accounts-payable" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-accounts-payable-custom" custom="1" calc="sum"></div><!-- End: custom -->
+                                            </div><!-- End: #nested -->
+                                        </div><!-- End: #Accounts Payable -->
+                                        <!-- Start: #Current Portion of Long-Term Liabilities -->
+                                        <div class="Balance-Sheet-Current-Portion-of-Long-Term-Liabilities" calc-group="current-portion-of-long-term-liabilities">
+                                            <!-- Start: #parent -->
+                                            <div class="subtotal-field"><input class="border rounded standard-input" type="text" id="Current-Portion-of-Long-Term-Liabilities-1" input-type="standard" var="bs-current-portion-of-long-term-liabilities-subtotal" period="1" calc="subtotal" data-manual-entry="false"></div><!-- End: #parent -->
+                                            <!-- Start: #nested -->
+                                            <div class="nested-field-inputs" data-id="nested-bs-current-portion-of-long-term-liabilities">
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field"><input class="border rounded standard-input" type="text" input-type="standard" var="bs-current-portion-of-long-term-debt" period="1" calc="sum-generic"></div><!-- End: #generic -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="custom-gross-revenue" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-current-portion-of-long-term-capital-leases" custom="1" calc="sum"></div><!-- End: custom -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="custom-bs-current-portion-of-long-term-liabilities" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-current-portion-of-long-term-liabilities-custom" custom="1" calc="sum"></div><!-- End: custom -->
+                                            </div><!-- End: #nested -->
+                                        </div><!-- End: #Current Portion of Long-Term Liabilities -->
+                                        <!-- Start: #Revolving Lines -->
+                                        <div class="Balance-Sheet-Revolving-Lines-of-Credit-Input-Group" calc-group="revolving-lines-of-credit">
+                                            <!-- Start: #parent -->
+                                            <div class="subtotal-field"><input class="border rounded standard-input" type="text" id="Revolving-Lines-of-Credit-Subtotal-1" input-type="standard" var="bs-revolving-lines-of-credit-subtotal" period="1" calc="subtotal" data-manual-entry="false"></div><!-- End: #parent -->
+                                            <!-- Start: #nested -->
+                                            <div class="nested-field-inputs" data-id="nested-bs-revolving-lines-of-credit">
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field"><input class="border rounded standard-input" type="text" input-type="standard" var="bs-revolving-lines-of-credit-generic" period="1" calc="sum-generic"></div><!-- End: #generic -->
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field"><input class="border rounded standard-input" type="text" input-type="standard" var="bs-promissory-note-lines-of-credit" period="1" calc="sum-generic"></div><!-- End: #generic -->
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field"><input class="border rounded standard-input" type="text" input-type="standard" var="bs-credit-cards" period="1" calc="sum-generic"></div><!-- End: #generic -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="custom-bs-revolving-lines-of-credit" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-revolving-lines-of-credit-custom" custom="1" calc="sum"></div><!-- End: custom -->
+                                            </div><!-- End: #nested -->
+                                        </div><!-- End: #Revolving Lines -->
+                                        <!-- Start: #Accrual Liabilities -->
+                                        <div class="Balance-Sheet-Accrual-Liabilities-Input-Group" calc-group="acrual-liabilities">
+                                            <!-- Start: #parent -->
+                                            <div class="subtotal-field"><input class="border rounded standard-input" type="text" id="Accrual-Liabilities-Subtotal-1" input-type="standard" var="bs-accrual-liabilities-subtotal" period="1" calc="subtotal" data-manual-entry="false"></div><!-- End: #parent -->
+                                            <!-- Start: #nested -->
+                                            <div class="nested-field-inputs" data-id="nested-bs-accrual-liabilities">
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field"><input class="border rounded standard-input" type="text" input-type="standard" var="bs-accrual-liabilities-generic" period="1" calc="sum-generic"></div><!-- End: #generic -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="custom-gross-revenue" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-accrual-liabilities-customer-advances" custom="1" calc="sum"></div><!-- End: custom -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="custom-bs-accrual-liabilities" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-accrual-liabilities-custom" custom="1" calc="sum"></div><!-- End: custom -->
+                                            </div><!-- End: #nested -->
+                                        </div><!-- End: #Accrual Liabilities -->
+                                        <!-- Start: #Other Current Liabilities -->
+                                        <div class="Balance-Sheet-Other-Current-Liabilities-Input-Group" calc-group="other-current-liabilities">
+                                            <!-- Start: #parent -->
+                                            <div class="subtotal-field"><input class="border rounded standard-input" type="text" id="Other-Current-Liabilities-Subtotal-1" input-type="standard" var="bs-other-current-liabilities-subtotal" period="1" calc="subtotal" data-manual-entry="false"></div><!-- End: #parent -->
+                                            <!-- Start: #nested -->
+                                            <div class="nested-field-inputs" data-id="nested-bs-other-current-liabilities">
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field"><input class="border rounded standard-input" type="text" input-type="standard" var="bs-other-current-liabilities-generic" period="1" calc="sum-generic"></div><!-- End: #generic -->
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field"><input class="border rounded standard-input" type="text" input-type="standard" var="bs-tax-liabilities" period="1" calc="sum-generic"></div><!-- End: #generic -->
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field"><input class="border rounded standard-input" type="text" input-type="standard" var="bs-payroll-liabilities" period="1" calc="sum-generic"></div><!-- End: #generic -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="custom-bs-other-current-liabilities" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-other-current-liabilities-custom" custom="1" calc="sum"></div><!-- End: custom -->
+                                            </div><!-- End: #nested -->
+                                        </div><!-- End: #Other Current Liabilities -->
+                                        <!-- Start: #Total Current Liabilities -->
+                                        <div id="Total-Current-Liabilities-Input-1" class="total-field" shadow="total"><input class="border rounded total-field-input" type="text" input-type="variable" var="bs-total-current-liabilities" period="1"></div><!-- End: #Total Current Liabilities -->
+                                        <!-- Start: #subtotal-account -->
+                                        <div class="Balance-Sheet-Long-Term-Debt-to-be-Refinanced-Input-Group" calc-group="long-term-debt-to-be-refinanced">
+                                            <!-- Start: #parent -->
+                                            <div class="subtotal-field"><input class="border rounded standard-input" type="text" id="Long-Term-Debt-to-be-Refinanced-1" input-type="standard" var="bs-long-term-debt-to-be-refinanced-subtotal" period="1" calc="subtotal" data-manual-entry="false"></div><!-- End: #parent -->
+                                            <div class="nested-field-inputs" data-id="nested-bs-long-term-debt-to-be-refinanced">
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field"><input class="border rounded standard-input" type="text" input-type="standard" var="bs-long-term-debt-to-be-refinanced-generic" period="1" calc="sum-generic"></div><!-- End: #generic -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="custom-bs-long-term-debt-to-be-refinanced" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-long-term-debt-to-be-refinanced-custom" custom="1" calc="sum"></div><!-- End: custom -->
+                                            </div>
+                                        </div><!-- End: #subtotal-account -->
+                                        <!-- Start: #subtotal-account -->
+                                        <div class="Balance-Sheet-Other-Long-Term-Notes-Payable-Input-Group" calc-group="other-long-term-notes-payable">
+                                            <!-- Start: #parent -->
+                                            <div class="subtotal-field"><input class="border rounded standard-input" type="text" id="Other-Long-Term-Debt-Notes-Payable-1" input-type="standard" var="bs-other-long-term-notes-payable-subtotal" period="1" calc="subtotal" data-manual-entry="false"></div><!-- End: #parent -->
+                                            <div class="nested-field-inputs" data-id="nested-bs-other-long-term-notes-payable">
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field"><input class="border rounded standard-input" type="text" input-type="standard" var="bs-other-long-term-notes-payable-subtotal-generic" period="1" calc="sum-generic"></div><!-- End: #generic -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="custom-bs-other-long-term-notes-payable" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-other-long-term-notes-payable-custom" custom="1" calc="sum"></div><!-- End: custom -->
+                                            </div>
+                                        </div><!-- End: #subtotal-account -->
+                                        <!-- Start: #subtotal-account -->
+                                        <div class="Balance-Sheet-Due-to-Related-Parties-Input-Group" calc-group="due-to-related-parties">
+                                            <!-- Start: #parent -->
+                                            <div class="subtotal-field"><input class="border rounded standard-input" type="text" id="due-to-related-parties-subtotal-1" input-type="standard" var="bs-due-to-related-parties-subtotal" period="1" calc="subtotal" data-manual-entry="false"></div><!-- End: #parent -->
+                                            <div class="nested-field-inputs" data-id="nested-bs-due-to-related-parties">
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field"><input class="border rounded standard-input" type="text" input-type="standard" var="bs-due-to-related-parties-generic" period="1" calc="sum-generic"></div><!-- End: #generic -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="custom-bs-due-to-related-parties" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-due-to-related-parties-custom" custom="1" calc="sum"></div><!-- End: custom -->
+                                            </div>
+                                        </div><!-- End: #subtotal-account -->
+                                        <!-- Start: #subtotal-account -->
+                                        <div class="Balance-Sheet-Due-to-Shareholders-Input-Group" calc-group="due-to-shareholders">
+                                            <!-- Start: #parent -->
+                                            <div class="subtotal-field"><input class="border rounded standard-input" type="text" id="due-to-shareholders-subtotal-1" input-type="standard" var="bs-due-to-shareholders-subtotal" period="1" calc="subtotal" data-manual-entry="false"></div><!-- End: #parent -->
+                                            <div class="nested-field-inputs" data-id="nested-bs-due-to-shareholders">
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field"><input class="border rounded standard-input" type="text" input-type="standard" var="bs-due-to-shareholders-generic" period="1" calc="sum-generic"></div><!-- End: #generic -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="custom-bs-due-to-shareholders" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-due-to-shareholders-custom" custom="1" calc="sum"></div><!-- End: custom -->
+                                            </div>
+                                        </div><!-- End: #subtotal-account -->
+                                        <!-- Start: #subtotal-account -->
+                                        <div class="Balance-Sheet-Other-Long-Term-Liabilities-Input-Group" calc-group="other-long-term-liabilities">
+                                            <!-- Start: #parent -->
+                                            <div class="subtotal-field"><input class="border rounded standard-input" type="text" id="other-long-term-liabilities-subtotal-1" input-type="standard" var="bs-other-long-term-liabilities-subtotal" period="1" calc="subtotal" data-manual-entry="false"></div><!-- End: #parent -->
+                                            <div class="nested-field-inputs" data-id="nested-bs-other-long-term-liabilities">
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field"><input class="border rounded standard-input" type="text" input-type="standard" var="bs-other-long-term-liabilities-generic" period="1" calc="sum-generic"></div><!-- End: #generic -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="custom-bs-other-long-term-liabilities" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-other-long-term-liabilities-custom" custom="1" calc="sum"></div><!-- End: custom -->
+                                            </div>
+                                        </div><!-- End: #subtotal-account -->
+                                        <!-- Start: #total-account -->
+                                        <div id="Total-Long-Term-Liabilities-1" class="total-field" shadow="total"><input class="border rounded total-field-input" type="text" input-type="variable" var="bs-total-long-term-liabilities" period="1"></div><!-- End: #total-account -->
+                                        <!-- Start: #total-account -->
+                                        <div id="Total-Liabilities-1" class="total-field" shadow="total"><input class="border rounded grand-total-field-input" type="text" input-type="variable" var="bs-total-liabilities" period="1"></div><!-- End: #total-account -->
+                                        <!-- Start: #subtotal-account -->
+                                        <div class="Balance-Sheet-Paid-in-Capital-Input-Group" calc-group="paid-in-capital">
+                                            <!-- Start: #parent -->
+                                            <div class="subtotal-field"><input class="border rounded standard-input" type="text" id="Paid-In-Capital-1" input-type="standard" var="bs-paid-in-capital-subtotal" period="1" calc="subtotal" data-manual-entry="false"></div><!-- End: #parent -->
+                                            <div class="nested-field-inputs" data-id="nested-bs-paid-in-capital">
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field"><input class="border rounded standard-input" type="text" input-type="standard" var="bs-paid-in-capital-generic" period="1" calc="sum-generic"></div><!-- End: #generic -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="custom-bs-paid-in-capital" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-paid-in-capital-custom" custom="1" calc="sum"></div><!-- End: custom -->
+                                            </div>
+                                        </div><!-- End: #subtotal-account -->
+                                        <!-- Start: #subtotal-account -->
+                                        <div class="Balance-Sheet-Retained-Earnings-Input-Group" calc-group="retained-earnings">
+                                            <!-- Start: #parent -->
+                                            <div class="subtotal-field"><input class="border rounded standard-input" type="text" id="Retained-Earnings-1" input-type="standard" var="bs-retained-earnings-subtotal" period="1" calc="subtotal" data-manual-entry="false"></div><!-- End: #parent -->
+                                            <div class="nested-field-inputs" data-id="nested-bs-retained-earnings">
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field"><input class="border rounded standard-input" type="text" input-type="standard" var="bs-prior-year-end-retained-earnings" period="1" calc="sum-generic"></div><!-- End: #generic -->
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field"><input class="border rounded reference-input" type="text" input-type="standard" var="bs-current-period-net-profit-after-taxes" period="1" calc="sum-generic"></div><!-- End: #generic -->
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field"><input class="border rounded standard-input" type="text" input-type="standard" var="bs-current-period-distributions" period="1" calc="sum-generic"></div><!-- End: #generic -->
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field"><input class="border rounded standard-input" type="text" input-type="standard" var="bs-current-period-contributions" period="1" calc="sum-generic"></div><!-- End: #generic -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="custom-bs-retained-earnings" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-retained-earnings-custom" custom="1" calc="sum"></div><!-- End: custom -->
+                                            </div>
+                                        </div><!-- End: #subtotal-account -->
+                                        <!-- Start: #subtotal-account -->
+                                        <div class="Balance-Sheet-Other-Adjustments-to-Equity-Input-Group" calc-group="paid-in-capital">
+                                            <!-- Start: #parent -->
+                                            <div class="subtotal-field"><input class="border rounded standard-input" type="text" id="Other-Adjustments-to-Equity-1" input-type="standard" var="bs-other-adjustments-to-equity-subtotal" period="1" calc="subtotal" data-manual-entry="false"></div><!-- End: #parent -->
+                                            <div class="nested-field-inputs" data-id="nested-bs-paid-in-capital">
+                                                <!-- Start: #generic -->
+                                                <div class="generic-field"><input class="border rounded standard-input" type="text" input-type="standard" var="bs-other-adjustments-to-equity-generic" period="1" calc="sum-generic"></div><!-- End: #generic -->
+                                                <!-- Start: custom -->
+                                                <div class="custom-field" period="1" toggle-id="custom-bs-other-adjustments-to-equity" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="bs-other-adjustments-to-equity-custom" custom="1" calc="sum"></div><!-- End: custom -->
+                                            </div>
+                                        </div><!-- End: #subtotal-account -->
+                                        <!-- Start: #total-account -->
+                                        <div id="Toatl-Equity-1" class="total-field" shadow="total"><input class="border rounded grand-total-field-input" type="text" input-type="variable" var="bs-total-equity" period="1"></div><!-- End: #total-account -->
+                                        <!-- Start: #total-account -->
+                                        <div id="Total-Liabilities-and-Equity-1" class="total-field" shadow="total"><input class="border rounded grand-total-field-input" type="text" input-type="variable" var="bs-total-liabilities-and-equity" period="1"></div><!-- End: #total-account -->
+                                        <!-- Start: #total-account -->
+                                        <div id="Total-Unbalanced-Amount-1" class="total-field" shadow="total"><input class="border rounded total-field-input" type="text" input-type="variable" var="bs-total-unbalanced-amount" period="1" style="background: rgb(225,202,202);"></div><!-- End: #total-account -->
+                                    </div>
+                                </div><!-- End: #input-container -->
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- End: #containers -->
+            </section><!-- End: #Balance Sheet -->
+        </div>
+    </div>
+    <footer class="bg-white sticky-footer" style="padding-bottom: 0px;border-radius: 10px;border-top-style: ridge;">
+        <div class="container my-auto">
+            <div class="text-center my-auto copyright"><span>Copyright ©OpnLend Inc.</span></div>
+        </div>
+    </footer>
+    <!-- Load jQuery and jQuery UI -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- Load Bootstrap, Chart.js, and other custom scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+    <!-- Load Select2 script after jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
+    <!-- Load custom dynamic-table.js script with the 'defer' attribute -->
+    <script src="{% static 'assets/js/incomestatement.js' %}" defer></script>
+    </body>
+    </html>
+</body>
+
+</html>
