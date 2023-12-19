@@ -1,4 +1,4 @@
-**_*Update 12/19/2023: In the spirity of transparency, I've uploaded some initial files. Once I have published the Alpha release of the financial spreading portion of the application, I'll begin updating this repository with my documented plan. *_**
+**_*Update 12/19/2023: In the spirity of transparency, I've uploaded some initial files. Once I have published the Alpha release of the financial spreading portion of the application, I'll begin updating this repository with my documented plan. I am performing some bug cleanup at the moment and then I would like to implement the database saving functionality and export to CSV and JSON functionality before publishing the Alpha release. *_**
 
 **_*Update 12/17/2023: I've been working on the dynamic financial spreading front-end for the last two weeks and am nearing completion. Once completed, I'll update the files within this repository. In the meantime, if you are interested, you can test the functionality of the spreading model while keeping in mind that it is incomplete and contains bugs that will be resovled soon. That model can be accessed here: https://credit.opnlend.com/Financials/ *_**
 
