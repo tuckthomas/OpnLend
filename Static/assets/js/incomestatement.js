@@ -59,11 +59,12 @@ window.onload = function() {
     const defaultSelection = document.querySelector('.dropdown-menu a:first-child');
     if (defaultSelection) {
         defaultSelection.style.fontWeight = 'bold';
-        // Add any other styles or classes to highlight the default selection
     }
 
     // Attach event listeners to dropdown items
     const dropdownItems = document.querySelectorAll('.dropdown-menu a');
+    const dropdownButton = document.querySelector('#dropdownMenuButton'); // Reference to the dropdown button
+
     dropdownItems.forEach(item => {
         item.addEventListener('click', function(event) {
             event.preventDefault(); // Prevent default link behavior
@@ -71,8 +72,11 @@ window.onload = function() {
             // Get the text of the clicked item
             const selectedItemText = this.textContent;
 
+            // Update the dropdown button text
+            dropdownButton.textContent = selectedItemText;
+
             // Toggle visibility of sections based on selection
-            // toggleVisibility(selectedItemText); // Ensure this function is defined
+            toggleVisibility(selectedItemText);
         });
     });
 
@@ -80,7 +84,7 @@ window.onload = function() {
     createAndShowPopupforSpreading();
 
     // Initialize the chatbot
-    initializeChatbot(); 
+    initializeChatbot();
 };
 
 // Function to create and initialize the chatbot
@@ -93,9 +97,13 @@ function initializeChatbot() {
             bottom: 20px;
             right: 20px;
             cursor: pointer;
-            width: 150px;
-            height: 150px;
-            background: grey;
+            width: 125px;
+            height: 125px;
+            box-shadow: 
+                0 0 0 3px #0d571d, /* Outermost green border */
+                0 0 0 12px #f5f5dc,  /* Creme/bage background color */
+                0 0 0 15px #0d571d; /* Inner green border */
+            background: grey; /* Creme/bage background color */
             border-radius: 50%;
             z-index: 1001; /* Ensure icon is above speech bubble */
         }
@@ -181,11 +189,84 @@ function toggleVisibility(selectedItemText) {
         balanceSheetSections.forEach(section => section.style.display = 'block');
     } else if (selectedItemText === 'Debt Schedule') {
         showDebtSchedulePopup();
+    } else if (selectedItemText === 'Combined Income Statement and Balance Sheet') {
+        // Show both sections
+        incomeStatementSections.forEach(section => section.style.display = 'block');
+        balanceSheetSections.forEach(section => section.style.display = 'block');
+
+        // Scroll to Income Statement first, then to Balance Sheet
+        smoothScrollTo('.income-statement-header');
+        setTimeout(() => smoothScrollTo('.balance-sheet-header'), 1000); // Adjust time as needed
     } else {
         incomeStatementSections.forEach(section => section.style.display = 'block');
         balanceSheetSections.forEach(section => section.style.display = 'block');
     }
 }
+
+// Create the animateScrollToSection function
+function setupFadeInOnScroll() {
+    // Function to check if an element is in the viewport
+    function isElementInView(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.bottom >= 0 &&
+            rect.right >= 0 &&
+            rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.left <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+
+    // Apply fade-in effect when the element is in the viewport
+    function applyFadeInEffect(element, delay = 0) {
+        setTimeout(() => {
+            if (isElementInView(element)) {
+                element.style.opacity = '1';
+                element.style.transition = 'opacity 2s ease-in';
+            } else {
+                element.style.opacity = '0';
+                element.style.transition = 'opacity 2s ease-out';
+            }
+        }, delay);
+    }
+
+    // Scroll event listener
+    window.addEventListener('scroll', function() {
+        const balanceSheetHeader = document.querySelector('.balance-sheet-header');
+        const balanceSheetSection = document.querySelector('.balance-sheet');
+        const incomeStatementHeader = document.querySelector('.income-statement-header');
+        const incomeStatementSection = document.querySelector('.income-statement');
+
+        if (balanceSheetHeader) {
+            applyFadeInEffect(balanceSheetHeader);
+        }
+        if (balanceSheetSection) {
+            applyFadeInEffect(balanceSheetSection, 750); // Delay for balance sheet section
+        }
+        if (incomeStatementHeader) {
+            applyFadeInEffect(incomeStatementHeader, 750); // Delay for income statement header
+        }
+        if (incomeStatementSection) {
+            applyFadeInEffect(incomeStatementSection); // No delay for income statement section
+        }
+    });
+
+    // Initial application of fade-in effect
+    applyInitialFadeIn('.balance-sheet-header');
+    applyInitialFadeIn('.balance-sheet', 750);
+    applyInitialFadeIn('.income-statement-header', 750);
+    applyInitialFadeIn('.income-statement');
+}
+
+function applyInitialFadeIn(selector, delay = 0) {
+    const element = document.querySelector(selector);
+    if (element) {
+        applyFadeInEffect(element, delay);
+    }
+}
+
+// Call the function to set up the fade-in on scroll
+setupFadeInOnScroll();
+
 
 // Temporary dynamic HTML and CSS to handle the pop-up notification
 // informing the user that the Business Debt Schedule is currently
@@ -1616,7 +1697,6 @@ function attachCalculationListeners(container, period) {
                     input.addEventListener('change', function() {
                         bsDueToRelatedPartiesSubtotalInput.setAttribute('data-manual-entry', 'false');
                         updateDueToRelatedPartiesSubtotal.call(input);
-                        updateTotalDueToRelatedParties.call(input);
                         updateTotalLongTermLiabilities.call(input);
                         updateTotalLiabilities.call(input);
                     });
@@ -1629,7 +1709,6 @@ function attachCalculationListeners(container, period) {
     const bsDueToRelatedPartiesGenericInput = container.querySelector(`input[var="bs-due-to-related--parties-generic"][period="${period}"]`);
     if (bsDueToRelatedPartiesGenericInput) {
         bsDueToRelatedPartiesGenericInput.addEventListener('change', updateDueToRelatedPartiesSubtotal);
-        bsDueToRelatedPartiesGenericInput.addEventListener('change', updateTotalDueToRelatedParties);
         bsDueToRelatedPartiesGenericInput.addEventListener('change', updateTotalLongTermLiabilities);
         bsDueToRelatedPartiesGenericInput.addEventListener('change', updateTotalLiabilities);
     }
@@ -1638,7 +1717,6 @@ function attachCalculationListeners(container, period) {
     container.querySelectorAll(`input[var="bs-due-to-related-parties-custom"][period="${period}"]`)
         .forEach(input => {
             input.addEventListener('change', updateDueToRelatedPartiesSubtotal);
-            input.addEventListener('change', updateTotalDueToRelatedParties);
             input.addEventListener('change', updateTotalLongTermLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
         });
@@ -1719,7 +1797,7 @@ function attachCalculationListeners(container, period) {
     const bsOtherLongTermLiabilitiesGenericInput = container.querySelector(`input[var="bs-other-long-term-liabilities-generic"][period="${period}"]`);
     if (bsOtherLongTermLiabilitiesGenericInput) {
         bsOtherLongTermLiabilitiesGenericInput.addEventListener('change', updateOtherLongTermLiabilitiesSubtotal);
-        bsOtherLongTermLiabilitiesGenericInput.addEventListener('change', updateTotalOtherLongTermLiabilities);
+        bsOtherLongTermLiabilitiesGenericInput.addEventListener('change', updateTotalLongTermLiabilities);
         bsOtherLongTermLiabilitiesGenericInput.addEventListener('change', updateTotalLiabilities);
     }
 
@@ -1727,8 +1805,126 @@ function attachCalculationListeners(container, period) {
     container.querySelectorAll(`input[var="bs-other-long-term-liabilities-custom"][period="${period}"]`)
         .forEach(input => {
             input.addEventListener('change', updateOtherLongTermLiabilitiesSubtotal);
-            input.addEventListener('change', updateTotalOtherLongTermLiabilities);
+            input.addEventListener('change', updateTotalLongTermLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+        });
+
+
+    // For bs-paid-in-capital-subtotal
+    const bsPaidInCapitalSubtotalInput = container.querySelector(`input[var="bs-paid-in-capital-subtotal"][period="${period}"]`);
+    if (bsPaidInCapitalSubtotalInput) {
+        console.log(`Found bs-paid-in-capital-subtotal input for period ${period}`);
+        bsPaidInCapitalSubtotalInput.addEventListener('change', updateTotalEquity);
+        bsPaidInCapitalSubtotalInput.addEventListener('change', updateTotalLiabilitiesAndEquity);
+        bsPaidInCapitalSubtotalInput.addEventListener('change', updateTotalUnbalancedAmount);
+    }
+
+    // For bs-paid-in-capital-generic
+    const bsPaidInCapitalGenericInput = container.querySelector(`input[var="bs-paid-in-capital-generic"][period="${period}"]`);
+    if (bsPaidInCapitalGenericInput) {
+        console.log(`Found bs-paid-in-capital-generic input for period ${period}`);
+        bsPaidInCapitalGenericInput.addEventListener('change', updatePaidInCapitalSubtotal);
+        bsPaidInCapitalGenericInput.addEventListener('change', updateTotalEquity);
+        bsPaidInCapitalGenericInput.addEventListener('change', updateTotalLiabilitiesAndEquity);
+        bsPaidInCapitalGenericInput.addEventListener('change', updateTotalUnbalancedAmount);
+    }
+
+    // For bs-paid-in-capital-custom
+    container.querySelectorAll(`input[var="bs-paid-in-capital-custom"][period="${period}"]`)
+        .forEach(input => {
+            console.log(`Found bs-paid-in-capital-custom input for period ${period}`);
+            input.addEventListener('change', updatePaidInCapitalSubtotal);
+            input.addEventListener('change', updateTotalEquity);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
+        });
+
+    // For bs-retained-earnings-subtotal
+    const bsRetainedEarningsSubtotalInput = container.querySelector(`input[var="bs-retained-earnings-subtotal"][period="${period}"]`);
+    if (bsRetainedEarningsSubtotalInput) {
+        console.log(`Found bs-retained-earnings-subtotal input for period ${period}`);
+        bsRetainedEarningsSubtotalInput.addEventListener('change', updateTotalEquity);
+        bsRetainedEarningsSubtotalInput.addEventListener('change', updateTotalLiabilitiesAndEquity);
+        bsRetainedEarningsSubtotalInput.addEventListener('change', updateTotalUnbalancedAmount);
+    }
+
+    // For bs-prior-year-end-retained-earnings
+    const bsPriorYearEndRetainedEarningsInput = container.querySelector(`input[var="bs-prior-year-end-retained-earnings"][period="${period}"]`);
+    if (bsPriorYearEndRetainedEarningsInput) {
+        console.log(`Found bs-prior-year-end-retained-earnings input for period ${period}`);
+        bsPriorYearEndRetainedEarningsInput.addEventListener('change', updateRetainedEarningsSubtotal);
+        bsPriorYearEndRetainedEarningsInput.addEventListener('change', updateTotalEquity);
+        bsPriorYearEndRetainedEarningsInput.addEventListener('change', updateTotalLiabilitiesAndEquity);
+        bsPriorYearEndRetainedEarningsInput.addEventListener('change', updateTotalUnbalancedAmount);
+    }
+
+    // For bs-current-period-net-profit-after-taxes
+    const bsCurrentPeriodNetProfitInput = container.querySelector(`input[var="bs-current-period-net-profit-after-taxes"][period="${period}"]`);
+    if (bsCurrentPeriodNetProfitInput) {
+        console.log(`Found bs-current-period-net-profit-after-taxes input for period ${period}`);
+        bsCurrentPeriodNetProfitInput.addEventListener('change', updateRetainedEarningsSubtotal);
+        bsCurrentPeriodNetProfitInput.addEventListener('change', updateTotalEquity);
+        bsCurrentPeriodNetProfitInput.addEventListener('change', updateTotalLiabilitiesAndEquity);
+        bsCurrentPeriodNetProfitInput.addEventListener('change', updateTotalUnbalancedAmount);
+    }
+
+    // For bs-current-period-distributions
+    const bsCurrentPeriodDistributionsInput = container.querySelector(`input[var="bs-current-period-distributions"][period="${period}"]`);
+    if (bsCurrentPeriodDistributionsInput) {
+        console.log(`Found bs-current-period-distributions input for period ${period}`);
+        bsCurrentPeriodDistributionsInput.addEventListener('change', updateRetainedEarningsSubtotal);
+        bsCurrentPeriodDistributionsInput.addEventListener('change', updateTotalEquity);
+        bsCurrentPeriodDistributionsInput.addEventListener('change', updateTotalLiabilitiesAndEquity);
+        bsCurrentPeriodDistributionsInput.addEventListener('change', updateTotalUnbalancedAmount);
+    }
+
+    // For bs-current-period-contributions
+    const bsCurrentPeriodContributionsInput = container.querySelector(`input[var="bs-current-period-contributions"][period="${period}"]`);
+    if (bsCurrentPeriodContributionsInput) {
+        console.log(`Found bs-current-period-contributions input for period ${period}`);
+        bsCurrentPeriodContributionsInput.addEventListener('change', updateRetainedEarningsSubtotal);
+        bsCurrentPeriodContributionsInput.addEventListener('change', updateTotalEquity);
+        bsCurrentPeriodContributionsInput.addEventListener('change', updateTotalLiabilitiesAndEquity);
+        bsCurrentPeriodContributionsInput.addEventListener('change', updateTotalUnbalancedAmount);
+    }
+
+    // For bs-retained-earnings-custom
+    container.querySelectorAll(`input[var="bs-retained-earnings-custom"][period="${period}"]`)
+        .forEach(input => {
+            console.log(`Found bs-retained-earnings-custom input for period ${period}`);
+            input.addEventListener('change', updateRetainedEarningsSubtotal);
+            input.addEventListener('change', updateTotalEquity);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
+        });
+
+    // For bs-other-adjustments-to-equity-subtotal
+    const bsOtherAdjustmentsToEquitySubtotalInput = container.querySelector(`input[var="bs-other-adjustments-to-equity-subtotal"][period="${period}"]`);
+    if (bsOtherAdjustmentsToEquitySubtotalInput) {
+        console.log(`Found bs-other-adjustments-to-equity-subtotal input for period ${period}`);
+        bsOtherAdjustmentsToEquitySubtotalInput.addEventListener('change', updateTotalEquity);
+        bsOtherAdjustmentsToEquitySubtotalInput.addEventListener('change', updateTotalLiabilitiesAndEquity);
+        bsOtherAdjustmentsToEquitySubtotalInput.addEventListener('change', updateTotalUnbalancedAmount);
+    }
+
+    // For bs-other-adjustments-to-equity-generic
+    const bsOtherAdjustmentsToEquityGenericInput = container.querySelector(`input[var="bs-other-adjustments-to-equity-generic"][period="${period}"]`);
+    if (bsOtherAdjustmentsToEquityGenericInput) {
+        console.log(`Found bs-other-adjustments-to-equity-generic input for period ${period}`);
+        bsOtherAdjustmentsToEquityGenericInput.addEventListener('change', updateOtherAdjustmentsToEquitySubtotal);
+        bsOtherAdjustmentsToEquityGenericInput.addEventListener('change', updateTotalEquity);
+        bsOtherAdjustmentsToEquityGenericInput.addEventListener('change', updateTotalLiabilitiesAndEquity);
+        bsOtherAdjustmentsToEquityGenericInput.addEventListener('change', updateTotalUnbalancedAmount);
+    }
+
+    // For bs-other-adjustments-to-equity-custom
+    container.querySelectorAll(`input[var="bs-other-adjustments-to-equity-custom"][period="${period}"]`)
+        .forEach(input => {
+            console.log(`Found bs-other-adjustments-to-equity-custom input for period ${period}`);
+            input.addEventListener('change', updateOtherAdjustmentsToEquitySubtotal);
+            input.addEventListener('change', updateTotalEquity);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         });
 
     ///END LINE SEPERATOR FOR BALANCE SHEET///  
@@ -1767,6 +1963,14 @@ function attachEventListeners() {
             console.log(`Found cost-of-goods-sold-generic input for period ${period}`);
             input.addEventListener('change', updateGrossProfit);
             input.addEventListener('change', updateCostOfGoodsSoldSubtotal);
+            input.addEventListener('change', updateNetOperatingIncome);
+            input.addEventListener('change', updateNetIncome);
+            input.addEventListener('change', updateNetProfitAfterTaxes);
+            input.addEventListener('change', updateNetProfitAfterTaxesWithinBalanceSheetEquitySection);
+            input.addEventListener('change', updateRetainedEarningsSubtotal);
+            input.addEventListener('change', updateTotalEquity);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For cost-of-goods-sold-depreciation
@@ -1774,6 +1978,14 @@ function attachEventListeners() {
             console.log(`Found cost-of-goods-sold-depreciation input for period ${period}`);
             input.addEventListener('change', updateGrossProfit);
             input.addEventListener('change', updateCostOfGoodsSoldSubtotal);
+            input.addEventListener('change', updateNetOperatingIncome);
+            input.addEventListener('change', updateNetIncome);
+            input.addEventListener('change', updateNetProfitAfterTaxes);
+            input.addEventListener('change', updateNetProfitAfterTaxesWithinBalanceSheetEquitySection);
+            input.addEventListener('change', updateRetainedEarningsSubtotal);
+            input.addEventListener('change', updateTotalEquity);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For cost-of-goods-sold-custom
@@ -1781,6 +1993,14 @@ function attachEventListeners() {
             console.log(`Found cost-of-goods-sold-custom input for period ${period}`);
             input.addEventListener('change', updateGrossProfit);
             input.addEventListener('change', updateCostOfGoodsSoldSubtotal);
+            input.addEventListener('change', updateNetOperatingIncome);
+            input.addEventListener('change', updateNetIncome);
+            input.addEventListener('change', updateNetProfitAfterTaxes);
+            input.addEventListener('change', updateNetProfitAfterTaxesWithinBalanceSheetEquitySection);
+            input.addEventListener('change', updateRetainedEarningsSubtotal);
+            input.addEventListener('change', updateTotalEquity);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For gross-revenue-generic
@@ -1789,6 +2009,14 @@ function attachEventListeners() {
             input.addEventListener('change', updateSubtotal);
             input.addEventListener('change', updateNetRevenue);
             input.addEventListener('change', updateGrossProfit);
+            input.addEventListener('change', updateNetOperatingIncome);
+            input.addEventListener('change', updateNetIncome);
+            input.addEventListener('change', updateNetProfitAfterTaxes);
+            input.addEventListener('change', updateNetProfitAfterTaxesWithinBalanceSheetEquitySection);
+            input.addEventListener('change', updateRetainedEarningsSubtotal);
+            input.addEventListener('change', updateTotalEquity);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For all gross-revenue-custom fields
@@ -1797,6 +2025,14 @@ function attachEventListeners() {
             input.addEventListener('change', updateSubtotal);
             input.addEventListener('change', updateNetRevenue);
             input.addEventListener('change', updateGrossProfit);
+            input.addEventListener('change', updateNetOperatingIncome);
+            input.addEventListener('change', updateNetIncome);
+            input.addEventListener('change', updateNetProfitAfterTaxes);
+            input.addEventListener('change', updateNetProfitAfterTaxesWithinBalanceSheetEquitySection);
+            input.addEventListener('change', updateRetainedEarningsSubtotal);
+            input.addEventListener('change', updateTotalEquity);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For gross-revenue-subtotal
@@ -1807,6 +2043,11 @@ function attachEventListeners() {
             input.addEventListener('change', updateNetOperatingIncome);
             input.addEventListener('change', updateNetIncome);
             input.addEventListener('change', updateNetProfitAfterTaxes);
+            input.addEventListener('change', updateNetProfitAfterTaxesWithinBalanceSheetEquitySection);
+            input.addEventListener('change', updateRetainedEarningsSubtotal);
+            input.addEventListener('change', updateTotalEquity);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For returns-and-allowances
@@ -1817,6 +2058,11 @@ function attachEventListeners() {
             input.addEventListener('change', updateNetOperatingIncome);
             input.addEventListener('change', updateNetIncome);
             input.addEventListener('change', updateNetProfitAfterTaxes);
+            input.addEventListener('change', updateNetProfitAfterTaxesWithinBalanceSheetEquitySection);
+            input.addEventListener('change', updateRetainedEarningsSubtotal);
+            input.addEventListener('change', updateTotalEquity);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For cost-of-goods-sold-subtotal
@@ -1826,6 +2072,11 @@ function attachEventListeners() {
             input.addEventListener('change', updateNetOperatingIncome);
             input.addEventListener('change', updateNetIncome);
             input.addEventListener('change', updateNetProfitAfterTaxes);
+            input.addEventListener('change', updateNetProfitAfterTaxesWithinBalanceSheetEquitySection);
+            input.addEventListener('change', updateRetainedEarningsSubtotal);
+            input.addEventListener('change', updateTotalEquity);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For net-revenue
@@ -1836,6 +2087,11 @@ function attachEventListeners() {
             input.addEventListener('change', updateNetOperatingIncome);
             input.addEventListener('change', updateNetIncome);
             input.addEventListener('change', updateNetProfitAfterTaxes);
+            input.addEventListener('change', updateNetProfitAfterTaxesWithinBalanceSheetEquitySection);
+            input.addEventListener('change', updateRetainedEarningsSubtotal);
+            input.addEventListener('change', updateTotalEquity);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);;
         }
 
         // For total-operating-expenses
@@ -1850,6 +2106,11 @@ function attachEventListeners() {
             input.addEventListener('change', updateNetOperatingIncome);
             input.addEventListener('change', updateNetIncome);
             input.addEventListener('change', updateNetProfitAfterTaxes);
+            input.addEventListener('change', updateNetProfitAfterTaxesWithinBalanceSheetEquitySection);
+            input.addEventListener('change', updateRetainedEarningsSubtotal);
+            input.addEventListener('change', updateTotalEquity);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For other-operating-expenses-generic
@@ -1858,6 +2119,13 @@ function attachEventListeners() {
             input.addEventListener('change', updateOtherOperatingExpensesSubtotal);
             input.addEventListener('change', updateTotalOperatingExpenses);
             input.addEventListener('change', updateNetOperatingIncome);
+            input.addEventListener('change', updateNetIncome);
+            input.addEventListener('change', updateNetProfitAfterTaxes);
+            input.addEventListener('change', updateNetProfitAfterTaxesWithinBalanceSheetEquitySection);
+            input.addEventListener('change', updateRetainedEarningsSubtotal);
+            input.addEventListener('change', updateTotalEquity);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For other-operating-expenses-custom
@@ -1866,6 +2134,13 @@ function attachEventListeners() {
             input.addEventListener('change', updateOtherOperatingExpensesSubtotal);
             input.addEventListener('change', updateTotalOperatingExpenses);
             input.addEventListener('change', updateNetOperatingIncome);
+            input.addEventListener('change', updateNetIncome);
+            input.addEventListener('change', updateNetProfitAfterTaxes);
+            input.addEventListener('change', updateNetProfitAfterTaxesWithinBalanceSheetEquitySection);
+            input.addEventListener('change', updateRetainedEarningsSubtotal);
+            input.addEventListener('change', updateTotalEquity);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
         
         // Add event listeners for the various operating expenses
@@ -1888,6 +2163,11 @@ function attachEventListeners() {
             input.addEventListener('change', updateTotalOtherIncomeAndExpenses);
             input.addEventListener('change', updateNetIncome);
             input.addEventListener('change', updateNetProfitAfterTaxes);
+            input.addEventListener('change', updateNetProfitAfterTaxesWithinBalanceSheetEquitySection);
+            input.addEventListener('change', updateRetainedEarningsSubtotal);
+            input.addEventListener('change', updateTotalEquity);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
         
         // For other-income-generic
@@ -1897,6 +2177,11 @@ function attachEventListeners() {
             input.addEventListener('change', updateTotalOtherIncomeAndExpenses);
             input.addEventListener('change', updateNetIncome);
             input.addEventListener('change', updateNetProfitAfterTaxes);
+            input.addEventListener('change', updateNetProfitAfterTaxesWithinBalanceSheetEquitySection);
+            input.addEventListener('change', updateRetainedEarningsSubtotal);
+            input.addEventListener('change', updateTotalEquity);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For all other-income-custom fields
@@ -1906,6 +2191,11 @@ function attachEventListeners() {
             input.addEventListener('change', updateTotalOtherIncomeAndExpenses);
             input.addEventListener('change', updateNetIncome);
             input.addEventListener('change', updateNetProfitAfterTaxes);
+            input.addEventListener('change', updateNetProfitAfterTaxesWithinBalanceSheetEquitySection);
+            input.addEventListener('change', updateRetainedEarningsSubtotal);
+            input.addEventListener('change', updateTotalEquity);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For other-income-subtotal
@@ -1914,6 +2204,11 @@ function attachEventListeners() {
             input.addEventListener('change', updateTotalOtherIncomeAndExpenses);
             input.addEventListener('change', updateNetIncome);
             input.addEventListener('change', updateNetProfitAfterTaxes);
+            input.addEventListener('change', updateNetProfitAfterTaxesWithinBalanceSheetEquitySection);
+            input.addEventListener('change', updateRetainedEarningsSubtotal);
+            input.addEventListener('change', updateTotalEquity);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For other-expense-generic
@@ -1923,6 +2218,11 @@ function attachEventListeners() {
             input.addEventListener('change', updateTotalOtherIncomeAndExpenses);
             input.addEventListener('change', updateNetIncome);
             input.addEventListener('change', updateNetProfitAfterTaxes);
+            input.addEventListener('change', updateNetProfitAfterTaxesWithinBalanceSheetEquitySection);
+            input.addEventListener('change', updateRetainedEarningsSubtotal);
+            input.addEventListener('change', updateTotalEquity);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For all other-expense-custom fields
@@ -1932,6 +2232,11 @@ function attachEventListeners() {
             input.addEventListener('change', updateTotalOtherIncomeAndExpenses);
             input.addEventListener('change', updateNetIncome);
             input.addEventListener('change', updateNetProfitAfterTaxes);
+            input.addEventListener('change', updateNetProfitAfterTaxesWithinBalanceSheetEquitySection);
+            input.addEventListener('change', updateRetainedEarningsSubtotal);
+            input.addEventListener('change', updateTotalEquity);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For other-expense-subtotal
@@ -1940,6 +2245,11 @@ function attachEventListeners() {
             input.addEventListener('change', updateTotalOtherIncomeAndExpenses);
             input.addEventListener('change', updateNetIncome);
             input.addEventListener('change', updateNetProfitAfterTaxes);
+            input.addEventListener('change', updateNetProfitAfterTaxesWithinBalanceSheetEquitySection);
+            input.addEventListener('change', updateRetainedEarningsSubtotal);
+            input.addEventListener('change', updateTotalEquity);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 		
 		// For gain on sale of assets
@@ -1948,6 +2258,11 @@ function attachEventListeners() {
             input.addEventListener('change', updateTotalOtherIncomeAndExpenses);
             input.addEventListener('change', updateNetIncome);
             input.addEventListener('change', updateNetProfitAfterTaxes);
+            input.addEventListener('change', updateNetProfitAfterTaxesWithinBalanceSheetEquitySection);
+            input.addEventListener('change', updateRetainedEarningsSubtotal);
+            input.addEventListener('change', updateTotalEquity);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 		
 		// For investment income
@@ -1956,6 +2271,11 @@ function attachEventListeners() {
             input.addEventListener('change', updateTotalOtherIncomeAndExpenses);
             input.addEventListener('change', updateNetIncome);
             input.addEventListener('change', updateNetProfitAfterTaxes);
+            input.addEventListener('change', updateNetProfitAfterTaxesWithinBalanceSheetEquitySection);
+            input.addEventListener('change', updateRetainedEarningsSubtotal);
+            input.addEventListener('change', updateTotalEquity);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 		
 		// For investment income
@@ -1964,20 +2284,57 @@ function attachEventListeners() {
             input.addEventListener('change', updateTotalOtherIncomeAndExpenses);
             input.addEventListener('change', updateNetIncome);
             input.addEventListener('change', updateNetProfitAfterTaxes);
+            input.addEventListener('change', updateNetProfitAfterTaxesWithinBalanceSheetEquitySection);
+            input.addEventListener('change', updateRetainedEarningsSubtotal);
+            input.addEventListener('change', updateTotalEquity);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
         
         // For corporate taxes
         if (input.getAttribute('var') === 'corporate-taxes') {
             console.log(`Found corporate taxes input for period ${period}`);
             input.addEventListener('change', updateNetProfitAfterTaxes);
+            input.addEventListener('change', updateNetProfitAfterTaxesWithinBalanceSheetEquitySection);
+            input.addEventListener('change', updateRetainedEarningsSubtotal);
+            input.addEventListener('change', updateTotalEquity);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 		
 		// For corporate tax refund
         if (input.getAttribute('var') === 'corporate-tax-refund') {
             console.log(`Found corporate tax refund input for period ${period}`);
             input.addEventListener('change', updateNetProfitAfterTaxes);
+            input.addEventListener('change', updateNetProfitAfterTaxesWithinBalanceSheetEquitySection);
+            input.addEventListener('change', updateRetainedEarningsSubtotal);
+            input.addEventListener('change', updateTotalEquity);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
-        
+
+        // For net profit
+        if (input.getAttribute('var') === 'net-profit') {
+            console.log(`Found net profit for period ${period}`);
+            input.addEventListener('change', updateNetIncome);
+            input.addEventListener('change', updateNetProfitAfterTaxes);
+            input.addEventListener('change', updateNetProfitAfterTaxesWithinBalanceSheetEquitySection);
+            input.addEventListener('change', updateRetainedEarningsSubtotal);
+            input.addEventListener('change', updateTotalEquity);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
+        }
+
+        // For net profit after taxes
+        if (input.getAttribute('var') === 'net-profit-after-taxes') {
+            console.log(`Found net profit for period ${period}`);
+            input.addEventListener('change', updateNetProfitAfterTaxes);
+            input.addEventListener('change', updateNetProfitAfterTaxesWithinBalanceSheetEquitySection);
+            input.addEventListener('change', updateRetainedEarningsSubtotal);
+            input.addEventListener('change', updateTotalEquity);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
+        }
         
         ///LINE SEPERATOR FOR BALANCE SHEET///
         
@@ -1986,6 +2343,7 @@ function attachEventListeners() {
             console.log(`Found bs-cash-subtotal input for period ${period}`);
             input.addEventListener('change', updateTotalCurrentAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-cash-generic
@@ -1994,6 +2352,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateBalanceSheetCashSubtotal);
             input.addEventListener('change', updateTotalCurrentAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-cash-at-financial-institution
@@ -2002,6 +2361,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateBalanceSheetCashSubtotal);
             input.addEventListener('change', updateTotalCurrentAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-cash-custom
@@ -2010,6 +2370,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateBalanceSheetCashSubtotal);
             input.addEventListener('change', updateTotalCurrentAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-accounts-receivable-subtotal
@@ -2017,6 +2378,7 @@ function attachEventListeners() {
             console.log(`Found bs-accounts-receivable-subtotal input for period ${period}`);
             input.addEventListener('change', updateTotalCurrentAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-accounts-receivable-generic
@@ -2025,6 +2387,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateBalanceSheetAccountsReceivableSubtotal);
             input.addEventListener('change', updateTotalCurrentAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-allowance-for-doubtful-accounts
@@ -2033,6 +2396,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateBalanceSheetAccountsReceivableSubtotal);
             input.addEventListener('change', updateTotalCurrentAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-accounts-receivable-custom
@@ -2041,6 +2405,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateBalanceSheetAccountsReceivableSubtotal);
             input.addEventListener('change', updateTotalCurrentAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
         
         // For bs-inventory-subtotal
@@ -2048,6 +2413,7 @@ function attachEventListeners() {
             console.log(`Found bs-inventory-subtotal input for period ${period}`);
             input.addEventListener('change', updateTotalCurrentAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-inventory-generic
@@ -2056,6 +2422,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateBalanceSheetInventorySubtotal);
             input.addEventListener('change', updateTotalCurrentAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-inventory-raw-materials
@@ -2064,6 +2431,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateBalanceSheetInventorySubtotal);
             input.addEventListener('change', updateTotalCurrentAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-inventory-work-in-progress
@@ -2072,6 +2440,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateBalanceSheetInventorySubtotal);
             input.addEventListener('change', updateTotalCurrentAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-inventory-finished-goods
@@ -2080,6 +2449,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateBalanceSheetInventorySubtotal);
             input.addEventListener('change', updateTotalCurrentAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-inventory-in-transit
@@ -2088,6 +2458,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateBalanceSheetInventorySubtotal);
             input.addEventListener('change', updateTotalCurrentAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-inventory-custom
@@ -2096,6 +2467,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateBalanceSheetInventorySubtotal);
             input.addEventListener('change', updateTotalCurrentAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-other-current-assets-subtotal
@@ -2103,6 +2475,7 @@ function attachEventListeners() {
             console.log(`Found bs-other-current-assets-subtotal input for period ${period}`);
             input.addEventListener('change', updateTotalCurrentAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-other-current-assets-generic
@@ -2111,6 +2484,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateBalanceSheetOtherCurrentAssetsSubtotal);
             input.addEventListener('change', updateTotalCurrentAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-other-current-assets-deposits
@@ -2119,6 +2493,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateBalanceSheetOtherCurrentAssetsSubtotal);
             input.addEventListener('change', updateTotalCurrentAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-other-current-assets-custom
@@ -2127,12 +2502,14 @@ function attachEventListeners() {
             input.addEventListener('change', updateBalanceSheetOtherCurrentAssetsSubtotal);
             input.addEventListener('change', updateTotalCurrentAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-total-current-assets
         if (input.getAttribute('var') === 'bs-total-current-assets') {
             console.log(`Found bs-total-current-assets input for period ${period}`);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-property-plant-and-equipment-subtotal
@@ -2142,6 +2519,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateNetFixedAssets);
             input.addEventListener('change', updateTotalLongTermAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-property-plant-and-equipment-generic
@@ -2152,6 +2530,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateNetFixedAssets);
             input.addEventListener('change', updateTotalLongTermAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-machinery-and-equipment
@@ -2162,6 +2541,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateNetFixedAssets);
             input.addEventListener('change', updateTotalLongTermAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-titled-vehicles
@@ -2172,6 +2552,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateNetFixedAssets);
             input.addEventListener('change', updateTotalLongTermAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-computer-and-office-equipment
@@ -2182,6 +2563,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateNetFixedAssets);
             input.addEventListener('change', updateTotalLongTermAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-leasehold-improvements
@@ -2192,6 +2574,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateNetFixedAssets);
             input.addEventListener('change', updateTotalLongTermAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-buildings
@@ -2202,6 +2585,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateNetFixedAssets);
             input.addEventListener('change', updateTotalLongTermAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-construction-in-progress
@@ -2212,6 +2596,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateNetFixedAssets);
             input.addEventListener('change', updateTotalLongTermAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-property-plant-and-equipment-custom
@@ -2222,6 +2607,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateNetFixedAssets);
             input.addEventListener('change', updateTotalLongTermAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For accumulated depreciation field to update net pp&e
@@ -2231,6 +2617,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateNetFixedAssets);
             input.addEventListener('change', updateTotalLongTermAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For land (fixed asset) field to update net fixed assets
@@ -2239,6 +2626,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateNetFixedAssets);
             input.addEventListener('change', updateTotalLongTermAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-intangible-assets-subtotal
@@ -2247,6 +2635,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateNetIntangibleAssets);
             input.addEventListener('change', updateTotalLongTermAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-intangible-assets-generic
@@ -2256,6 +2645,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateNetIntangibleAssets);
             input.addEventListener('change', updateTotalLongTermAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-intangible-assets-trademarks-and-licenses
@@ -2265,6 +2655,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateNetIntangibleAssets);
             input.addEventListener('change', updateTotalLongTermAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-intangible-assets-financing-costs
@@ -2274,6 +2665,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateNetIntangibleAssets);
             input.addEventListener('change', updateTotalLongTermAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-inangible-assets-custom
@@ -2283,6 +2675,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateNetIntangibleAssets);
             input.addEventListener('change', updateTotalLongTermAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For accumulated amortiation field to update Net Inangible Assets
@@ -2291,6 +2684,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateNetIntangibleAssets);
             input.addEventListener('change', updateTotalLongTermAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-due-from-related-parties-subtotal
@@ -2299,6 +2693,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateTotalOtherLongTermAssets);
             input.addEventListener('change', updateTotalLongTermAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-due-from-related-parties-generic
@@ -2308,6 +2703,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateTotalOtherLongTermAssets);
             input.addEventListener('change', updateTotalLongTermAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-due-from-related-parties-custom
@@ -2317,6 +2713,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateTotalOtherLongTermAssets);
             input.addEventListener('change', updateTotalLongTermAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-due-from-shareholders-subtotal
@@ -2325,6 +2722,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateTotalOtherLongTermAssets);
             input.addEventListener('change', updateTotalLongTermAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-due-from-shareholders-generic
@@ -2334,6 +2732,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateTotalOtherLongTermAssets);
             input.addEventListener('change', updateTotalLongTermAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-due-from-shareholders-custom
@@ -2343,6 +2742,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateTotalOtherLongTermAssets);
             input.addEventListener('change', updateTotalLongTermAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
         
         // For bs-other-long-term-assets-subtotal
@@ -2351,6 +2751,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateTotalOtherLongTermAssets);
             input.addEventListener('change', updateTotalLongTermAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-other-long-term-assets-generic
@@ -2360,6 +2761,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateTotalOtherLongTermAssets);
             input.addEventListener('change', updateTotalLongTermAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-other-long-term-assets-custom
@@ -2369,6 +2771,7 @@ function attachEventListeners() {
             input.addEventListener('change', updateTotalOtherLongTermAssets);
             input.addEventListener('change', updateTotalLongTermAssets);
             input.addEventListener('change', updateTotalAssets);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         /// BALANCE SHEET LIABILITIES ///
@@ -2378,6 +2781,8 @@ function attachEventListeners() {
             console.log(`Found bs-accounts-payable-subtotal input for period ${period}`);
             input.addEventListener('change', updateTotalCurrentLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
         
         // For bs-accounts-payable-trade
@@ -2386,6 +2791,8 @@ function attachEventListeners() {
             input.addEventListener('change', updateAccountsPayableSubtotal);
             input.addEventListener('change', updateTotalCurrentLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-accounts-payable-other
@@ -2394,6 +2801,8 @@ function attachEventListeners() {
             input.addEventListener('change', updateAccountsPayableSubtotal);
             input.addEventListener('change', updateTotalCurrentLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-accounts-payable-custom
@@ -2402,6 +2811,8 @@ function attachEventListeners() {
             input.addEventListener('change', updateAccountsPayableSubtotal);
             input.addEventListener('change', updateTotalCurrentLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-revolving-lines-of-credit-subtotal
@@ -2409,6 +2820,8 @@ function attachEventListeners() {
             console.log(`Found bs-revolving-lines-of-credit-subtotal input for period ${period}`);
             input.addEventListener('change', updateTotalCurrentLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-revolving-lines-of-credit-generic
@@ -2417,6 +2830,8 @@ function attachEventListeners() {
             input.addEventListener('change', updateRevolvingLinesOfCreditSubtotal);
             input.addEventListener('change', updateTotalCurrentLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-promissory-note-lines-of-credit
@@ -2425,6 +2840,8 @@ function attachEventListeners() {
             input.addEventListener('change', updateRevolvingLinesOfCreditSubtotal);
             input.addEventListener('change', updateTotalCurrentLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-credit-cards
@@ -2433,6 +2850,8 @@ function attachEventListeners() {
             input.addEventListener('change', updateRevolvingLinesOfCreditSubtotal);
             input.addEventListener('change', updateTotalCurrentLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-revolving-lines-of-credit-custom
@@ -2441,6 +2860,8 @@ function attachEventListeners() {
             input.addEventListener('change', updateRevolvingLinesOfCreditSubtotal);
             input.addEventListener('change', updateTotalCurrentLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-current-portion-of-long-term-liabilities-subtotal
@@ -2448,6 +2869,8 @@ function attachEventListeners() {
             console.log(`Found bs-current-portion-of-long-term-liabilities-subtotal input for period ${period}`);
             input.addEventListener('change', updateTotalCurrentLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-current-portion-of-long-term-liabilities-generic
@@ -2456,6 +2879,8 @@ function attachEventListeners() {
             input.addEventListener('change', updateCurrentPortionOfLongTermLiabilitiesSubtotal);
             input.addEventListener('change', updateTotalCurrentLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-current-portion-of-long-term-liabilities-custom
@@ -2464,6 +2889,8 @@ function attachEventListeners() {
             input.addEventListener('change', updateCurrentPortionOfLongTermLiabilitiesSubtotal);
             input.addEventListener('change', updateTotalCurrentLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-accrual-liabilities-subtotal
@@ -2471,6 +2898,8 @@ function attachEventListeners() {
             console.log(`Found bs-accrual-liabilities-subtotal input for period ${period}`);
             input.addEventListener('change', updateTotalCurrentLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-accrual-liabilities-generic
@@ -2479,6 +2908,8 @@ function attachEventListeners() {
             input.addEventListener('change', updateAccrualLiabilitiesSubtotal);
             input.addEventListener('change', updateTotalCurrentLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-accrual-liabilities-customer-advances
@@ -2487,6 +2918,8 @@ function attachEventListeners() {
             input.addEventListener('change', updateAccrualLiabilitiesSubtotal);
             input.addEventListener('change', updateTotalCurrentLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-accrual-liabilities-custom
@@ -2495,6 +2928,8 @@ function attachEventListeners() {
             input.addEventListener('change', updateAccrualLiabilitiesSubtotal);
             input.addEventListener('change', updateTotalCurrentLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-other-current-liabilities-subtotal
@@ -2502,6 +2937,8 @@ function attachEventListeners() {
             console.log(`Found bs-other-current-liabilities-subtotal input for period ${period}`);
             input.addEventListener('change', updateTotalCurrentLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-other-current-liabilities-generic
@@ -2510,6 +2947,8 @@ function attachEventListeners() {
             input.addEventListener('change', updateOtherCurrentLiabilitiesSubtotal);
             input.addEventListener('change', updateTotalCurrentLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-tax-liabilities
@@ -2518,6 +2957,8 @@ function attachEventListeners() {
             input.addEventListener('change', updateOtherCurrentLiabilitiesSubtotal);
             input.addEventListener('change', updateTotalCurrentLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-payroll-liabilities
@@ -2526,6 +2967,8 @@ function attachEventListeners() {
             input.addEventListener('change', updateOtherCurrentLiabilitiesSubtotal);
             input.addEventListener('change', updateTotalCurrentLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-other-current-liabilities-custom
@@ -2534,12 +2977,16 @@ function attachEventListeners() {
             input.addEventListener('change', updateOtherCurrentLiabilitiesSubtotal);
             input.addEventListener('change', updateTotalCurrentLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-total-current-liabilities
         if (input.getAttribute('var') === 'bs-total-current-liabilities') {
             console.log(`Found bs-total-current-liabilities input for period ${period}`);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-long-term-debt-to-be-refinanced-subtotal
@@ -2547,6 +2994,8 @@ function attachEventListeners() {
             console.log(`Found bs-long-term-debt-to-be-refinanced-subtotal input for period ${period}`);
             input.addEventListener('change', updateTotalLongTermLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-long-term-debt-to-be-refinanced-generic
@@ -2555,6 +3004,8 @@ function attachEventListeners() {
             input.addEventListener('change', updateLongTermDebtToBeRefinancedSubtotal);
             input.addEventListener('change', updateTotalLongTermLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-long-term-debt-to-be-refinanced-custom
@@ -2563,6 +3014,8 @@ function attachEventListeners() {
             input.addEventListener('change', updateLongTermDebtToBeRefinancedSubtotal);
             input.addEventListener('change', updateTotalLongTermLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-other-long-term-notes-payable-subtotal
@@ -2570,6 +3023,8 @@ function attachEventListeners() {
             console.log(`Found bs-other-long-term-notes-payable-subtotal input for period ${period}`);
             input.addEventListener('change', updateTotalLongTermLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-other-long-term-notes-payable-subtotal-generic
@@ -2578,6 +3033,8 @@ function attachEventListeners() {
             input.addEventListener('change', updateOtherLongTermNotesPayableSubtotal);
             input.addEventListener('change', updateTotalLongTermLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-other-long-term-notes-payable-custom
@@ -2586,6 +3043,8 @@ function attachEventListeners() {
             input.addEventListener('change', updateOtherLongTermNotesPayableSubtotal);
             input.addEventListener('change', updateTotalLongTermLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-due-to-related-parties-subtotal
@@ -2593,6 +3052,8 @@ function attachEventListeners() {
             console.log(`Found bs-due-to-related-parties-subtotal input for period ${period}`);
             input.addEventListener('change', updateTotalLongTermLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-due-to-related-parties-generic
@@ -2601,6 +3062,8 @@ function attachEventListeners() {
             input.addEventListener('change', updateDueToRelatedPartiesSubtotal);
             input.addEventListener('change', updateTotalLongTermLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-due-to-related-parties-custom
@@ -2609,6 +3072,8 @@ function attachEventListeners() {
             input.addEventListener('change', updateDueToRelatedPartiesSubtotal);
             input.addEventListener('change', updateTotalLongTermLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-due-to-shareholders-subtotal
@@ -2616,6 +3081,8 @@ function attachEventListeners() {
             console.log(`Found bs-due-to-shareholders-subtotal input for period ${period}`);
             input.addEventListener('change', updateTotalLongTermLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-due-to-shareholders-generic
@@ -2624,6 +3091,8 @@ function attachEventListeners() {
             input.addEventListener('change', updateDueToShareholdersSubtotal);
             input.addEventListener('change', updateTotalLongTermLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-due-to-shareholders-custom
@@ -2632,6 +3101,8 @@ function attachEventListeners() {
             input.addEventListener('change', updateDueToShareholdersSubtotal);
             input.addEventListener('change', updateTotalLongTermLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-other-long-term-liabilities-subtotal
@@ -2639,6 +3110,8 @@ function attachEventListeners() {
             console.log(`Found bs-other-long-term-liabilities-subtotal input for period ${period}`);
             input.addEventListener('change', updateTotalLongTermLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-other-long-term-liabilities-generic
@@ -2647,6 +3120,8 @@ function attachEventListeners() {
             input.addEventListener('change', updateOtherLongTermLiabilitiesSubtotal);
             input.addEventListener('change', updateTotalLongTermLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-other-long-term-liabilities-custom
@@ -2655,6 +3130,8 @@ function attachEventListeners() {
             input.addEventListener('change', updateOtherLongTermLiabilitiesSubtotal);
             input.addEventListener('change', updateTotalLongTermLiabilities);
             input.addEventListener('change', updateTotalLiabilities);
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-paid-in-capital-subtotal
@@ -2662,6 +3139,7 @@ function attachEventListeners() {
             console.log(`Found bs-paid-in-capital-subtotal input for period ${period}`);
             input.addEventListener('change', updateTotalEquity);
             input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-paid-in-capital-generic
@@ -2670,6 +3148,7 @@ function attachEventListeners() {
             input.addEventListener('change', updatePaidInCapitalSubtotal);
             input.addEventListener('change', updateTotalEquity);
             input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-paid-in-capital-custom
@@ -2678,13 +3157,13 @@ function attachEventListeners() {
             input.addEventListener('change', updatePaidInCapitalSubtotal);
             input.addEventListener('change', updateTotalEquity);
             input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
         }
 
         // For bs-retained-earnings-subtotal
         if (input.getAttribute('var') === 'bs-retained-earnings-subtotal') {
             console.log(`Found bs-retained-earnings-subtotal input for period ${period}`);
-            input.addEventListener('change', updateRetainedEarningsSubtotal);
-            input.addEventListener('change', updateTotalEquity); // Replace updateTotalLiabilities with updateTotalEquity
+            input.addEventListener('change', updateTotalEquity);
             input.addEventListener('change', updateTotalLiabilitiesAndEquity);
             input.addEventListener('change', updateTotalUnbalancedAmount);
         }
@@ -2693,7 +3172,7 @@ function attachEventListeners() {
         if (input.getAttribute('var') === 'bs-prior-year-end-retained-earnings') {
             console.log(`Found bs-prior-year-end-retained-earnings input for period ${period}`);
             input.addEventListener('change', updateRetainedEarningsSubtotal);
-            input.addEventListener('change', updateTotalEquity); // Replace updateTotalLiabilities with updateTotalEquity
+            input.addEventListener('change', updateTotalEquity);
             input.addEventListener('change', updateTotalLiabilitiesAndEquity);
             input.addEventListener('change', updateTotalUnbalancedAmount);
         }
@@ -2702,7 +3181,7 @@ function attachEventListeners() {
         if (input.getAttribute('var') === 'bs-current-period-net-profit-after-taxes') {
             console.log(`Found bs-current-period-net-profit-after-taxes input for period ${period}`);
             input.addEventListener('change', updateRetainedEarningsSubtotal);
-            input.addEventListener('change', updateTotalEquity); // Replace updateTotalLiabilities with updateTotalEquity
+            input.addEventListener('change', updateTotalEquity);
             input.addEventListener('change', updateTotalLiabilitiesAndEquity);
             input.addEventListener('change', updateTotalUnbalancedAmount);
         }
@@ -2711,7 +3190,7 @@ function attachEventListeners() {
         if (input.getAttribute('var') === 'bs-current-period-distributions') {
             console.log(`Found bs-current-period-distributions input for period ${period}`);
             input.addEventListener('change', updateRetainedEarningsSubtotal);
-            input.addEventListener('change', updateTotalEquity); // Replace updateTotalLiabilities with updateTotalEquity
+            input.addEventListener('change', updateTotalEquity);
             input.addEventListener('change', updateTotalLiabilitiesAndEquity);
             input.addEventListener('change', updateTotalUnbalancedAmount);
         }
@@ -2720,7 +3199,16 @@ function attachEventListeners() {
         if (input.getAttribute('var') === 'bs-current-period-contributions') {
             console.log(`Found bs-current-period-contributions input for period ${period}`);
             input.addEventListener('change', updateRetainedEarningsSubtotal);
-            input.addEventListener('change', updateTotalEquity); // Replace updateTotalLiabilities with updateTotalEquity
+            input.addEventListener('change', updateTotalEquity); 
+            input.addEventListener('change', updateTotalLiabilitiesAndEquity);
+            input.addEventListener('change', updateTotalUnbalancedAmount);
+        }
+
+        // For bs-retained-earnings-custom
+        if (input.getAttribute('var') === 'bs-retained-earnings-custom') {
+            console.log(`Found bs-retained-earnings-custom input for period ${period}`);
+            input.addEventListener('change', updateRetainedEarningsSubtotal);
+            input.addEventListener('change', updateTotalEquity); 
             input.addEventListener('change', updateTotalLiabilitiesAndEquity);
             input.addEventListener('change', updateTotalUnbalancedAmount);
         }
@@ -2829,21 +3317,21 @@ function setupSubtotalFieldListeners() {
     // Add setup for Balance Sheet Other Current Liabilities
     setupSubtotalListenersForGroup('.Balance-Sheet-Other-Current-Liabilities-Input-Group', 'bs-other-current-liabilities-subtotal', updateOtherCurrentLiabilitiesSubtotal);
     // Add setup for Long-Term Debt to Be Refinanced Subtotal
-    setupSubtotalListenersForGroup('.Long-Term-Debt-to-Be-Refinanced-Input-Group', 'bs-long-term-debt-to-be-refinanced-subtotal', updateLongTermDebtToBeRefinancedSubtotal);
+    setupSubtotalListenersForGroup('.Balance-Sheet-Long-Term-Debt-to-Be-Refinanced-Input-Group', 'bs-long-term-debt-to-be-refinanced-subtotal', updateLongTermDebtToBeRefinancedSubtotal);
     // Add setup for Other Long-Term Notes Payable Subtotal
-    setupSubtotalListenersForGroup('.Other-Long-Term-Notes-Payable-Input-Group', 'bs-other-long-term-notes-payable-subtotal', updateOtherLongTermNotesPayableSubtotal);
+    setupSubtotalListenersForGroup('.Balance-Sheet-Other-Long-Term-Notes-Payable-Input-Group', 'bs-other-long-term-notes-payable-subtotal', updateOtherLongTermNotesPayableSubtotal);
     // Add setup for Due to Related Parties Subtotal
-    setupSubtotalListenersForGroup('.Due-to-Related-Parties-Input-Group', 'bs-due-to-related-parties-subtotal', updateDueToRelatedPartiesSubtotal);
+    setupSubtotalListenersForGroup('.Balance-Sheet-Due-to-Related-Parties-Input-Group', 'bs-due-to-related-parties-subtotal', updateDueToRelatedPartiesSubtotal);
     // Add setup for Due to Shareholders Subtotal
-    setupSubtotalListenersForGroup('.Due-to-Shareholders-Input-Group', 'bs-due-to-shareholders-subtotal', updateDueToShareholdersSubtotal);
+    setupSubtotalListenersForGroup('.Balance-Sheet-Due-to-Shareholders-Input-Group', 'bs-due-to-shareholders-subtotal', updateDueToShareholdersSubtotal);
     // Add setup for Other Long-Term Liabilities Subtotal
-    setupSubtotalListenersForGroup('.Other-Long-Term-Liabilities-Input-Group', 'bs-other-long-term-liabilities-subtotal', updateOtherLongTermLiabilitiesSubtotal);
+    setupSubtotalListenersForGroup('.Balance-Sheet-Other-Long-Term-Liabilities-Input-Group', 'bs-other-long-term-liabilities-subtotal', updateOtherLongTermLiabilitiesSubtotal);
     // Add setup for Paid-in Capital Subtotal
-    setupSubtotalListenersForGroup('.Paid-In-Capital-Input-Group', 'paid-in-capital-subtotal', updatePaidInCapitalSubtotal);
+    setupSubtotalListenersForGroup('.Balance-Sheet-Paid-In-Capital-Input-Group', 'bs-paid-in-capital-subtotal', updatePaidInCapitalSubtotal);
     // Add setup for Retained Earnings Subtotal
-    setupSubtotalListenersForGroup('.Retained-Earnings-Input-Group', 'retained-earnings-subtotal', updateRetainedEarningsSubtotal);
+    setupSubtotalListenersForGroup('.Balance-Sheet-Retained-Earnings-Input-Group', 'bs-retained-earnings-subtotal', updateRetainedEarningsSubtotal);
     // Add setup for Other Adjustments to Equity Subtotal
-    setupSubtotalListenersForGroup('.Other-Adjustments-to-Equity-Input-Group', 'other-adjustments-to-equity-subtotal', updateOtherAdjustmentsToEquitySubtotal);
+    setupSubtotalListenersForGroup('.Balance-Sheet-Other-Adjustments-to-Equity-Input-Group', 'bs-other-adjustments-to-equity-subtotal', updateOtherAdjustmentsToEquitySubtotal);
 }
 
 function setupSubtotalListenersForGroup(groupClass, subtotalVar, updateFunction) {
@@ -2915,6 +3403,16 @@ function inputInputHandler(event) {
     if (this.value.indexOf('-') > 0) {
         this.value = this.value.replace('-', '');
     }
+}
+
+function addTabKeyListener(fieldsPerRow) {
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Tab') {
+            event.preventDefault();  // Prevent the default action
+            var direction = event.shiftKey ? 'left' : 'right';  // Determine the direction
+            navigateToInput(document.activeElement, direction, fieldsPerRow);  // Call your navigation function
+        }
+    });
 }
 
 
@@ -3103,6 +3601,11 @@ function attachNavigationEventListeners(containerSelectors) {
                         case 'ArrowDown':
                             event.preventDefault();
                             navigateToInput(this, 'down', fieldsPerRow);
+                            break;
+                        case 'Tab':
+                            event.preventDefault();
+                            var direction = event.shiftKey ? 'left' : 'right';
+                            navigateToInput(this, direction, fieldsPerRow);
                             break;
                     }
                 });
@@ -3446,8 +3949,8 @@ function updateTotalOtherIncomeAndExpenses() {
     const investmentIncome = investmentIncomeField ? parseCurrencyValue(investmentIncomeField.value) || 0 : 0;
     const gainOnSaleOfAssets = gainOnSaleOfAssetsField ? parseCurrencyValue(gainOnSaleOfAssetsField.value) || 0 : 0;
     const otherIncomeSubtotal = otherIncomeSubtotalField ? parseCurrencyValue(otherIncomeSubtotalField.value) || 0 : 0;
-    const lossOnSaleOfAssets = lossOnSaleOfAssetsField ? parseCurrencyValue(lossOnSaleOfAssetsField.value) || 0 : 0;
-    const otherExpenseSubtotal = otherExpenseSubtotalField ? parseCurrencyValue(otherExpenseSubtotalField.value) || 0 : 0;
+    const lossOnSaleOfAssets = lossOnSaleOfAssetsField ? -Math.abs(parseCurrencyValue(lossOnSaleOfAssetsField.value)) || 0 : 0;
+    const otherExpenseSubtotal = otherExpenseSubtotalField ? -Math.abs(parseCurrencyValue(otherExpenseSubtotalField.value)) || 0 : 0;
 
     console.log("Investment Income: ", investmentIncome);
     console.log("Gain on Sale of Assets: ", gainOnSaleOfAssets);
@@ -3989,7 +4492,7 @@ function updateAccountsPayableSubtotal() {
     }
 }
 
-// Current Portion of Long-Term LIabilities Subtotal
+// Current Portion of Long-Term Liabilities Subtotal
 function updateCurrentPortionOfLongTermLiabilitiesSubtotal() {
     console.log("Updating Current Portion of Long-Term Liabilities Subtotal...");
 
@@ -4409,7 +4912,7 @@ function updateRetainedEarningsSubtotal() {
 
     // Get the current period distributions for the current period
     const currentPeriodDistributionsField = document.querySelector(`input[var="bs-current-period-distributions"][period="${period}"]`);
-    const currentPeriodDistributions = currentPeriodDistributionsField ? Math.abs(parseCurrencyValue(currentPeriodDistributionsField.value) || 0) : 0;
+    const currentPeriodDistributions = currentPeriodDistributionsField ? -Math.abs(parseCurrencyValue(currentPeriodDistributionsField.value) || 0) : 0;
     console.log("Current Period Distributions (Absolute Value): ", currentPeriodDistributions);
 
     // Get the current period contributions for the current period
@@ -4417,8 +4920,20 @@ function updateRetainedEarningsSubtotal() {
     const currentPeriodContributions = currentPeriodContributionsField ? Math.abs(parseCurrencyValue(currentPeriodContributionsField.value) || 0) : 0;
     console.log("Current Period Contributions (Absolute Value): ", currentPeriodContributions);
 
+    // Get the custom paid-in capital for the current period
+    const customRetainedEarningsFields = document.querySelectorAll(`input[var="bs-retained-earnings-custom"][period="${period}"]`);
+    let customRetainedEarnings = 0;
+    customRetainedEarningsFields.forEach(field => {
+        const value = parseCurrencyValue(field.value);
+        if (value) {
+            customRetainedEarnings += value;
+        }
+    });
+    console.log("Custom Retained Earnings: ", customRetainedEarnings);
+
+
     // Calculate the retained earnings subtotal
-    const retainedEarningsSubtotal = priorYearEndRetainedEarnings + currentPeriodNetProfitAfterTaxes - currentPeriodDistributions - currentPeriodContributions;
+    const retainedEarningsSubtotal = priorYearEndRetainedEarnings + currentPeriodNetProfitAfterTaxes - currentPeriodDistributions - currentPeriodContributions + customRetainedEarnings;
     console.log("Calculated Retained Earnings Subtotal: ", retainedEarningsSubtotal);
 
     // Update the "bs-retained-earnings-subtotal" input field
@@ -4926,5 +5441,27 @@ function updateTotalUnbalancedAmount() {
         console.log("Total Unbalanced Amount updated to: ", totalUnbalancedAmountField.value);
     } else {
         console.log("Total Unbalanced Amount field not found");
+    }
+}
+
+// Sets the Equity section's "Current Period Net Profit After Taxes" equal to the amount found withthin the respective Income Statement field
+function updateNetProfitAfterTaxesWithinBalanceSheetEquitySection() {
+    console.log("Updating Net Profit After Taxes...");
+
+    const period = this.getAttribute('period');
+    console.log("Period: ", period);
+
+    // Get the value of the net-profit-after-taxes field for the current period
+    const netProfitAfterTaxesField = document.querySelector(`input[var="net-profit-after-taxes"][period="${period}"]`);
+    const netProfitAfterTaxes = netProfitAfterTaxesField ? parseCurrencyValue(netProfitAfterTaxesField.value) || 0 : 0;
+    console.log("Net Profit After Taxes: ", netProfitAfterTaxes);
+
+    // Update the "bs-current-period-net-profit-after-taxes" input field
+    const currentPeriodNetProfitAfterTaxesField = document.querySelector(`input[var="bs-current-period-net-profit-after-taxes"][period="${period}"]`);
+    if (currentPeriodNetProfitAfterTaxesField) {
+        currentPeriodNetProfitAfterTaxesField.value = formatNumberWithCommas(netProfitAfterTaxes.toFixed(2));
+        console.log("Current Period Net Profit After Taxes updated to: ", currentPeriodNetProfitAfterTaxesField.value);
+    } else {
+        console.log("Current Period Net Profit After Taxes field not found");
     }
 }
