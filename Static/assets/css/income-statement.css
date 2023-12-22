@@ -1,0 +1,174 @@
+.row {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation-name: fadeIn;
+  animation-duration: 1s;
+}
+
+body {
+  color: #000;
+}
+
+.toggle-subfields {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 30px;
+  background-color: #ffffff;
+  border: 3.5px solid rgb(15,71,17);
+  border-radius: 50%;
+  text-align: center;
+  line-height: 32px;
+  cursor: pointer;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  transform: rotate(180deg);
+}
+
+.btn-placeholder {
+  display: flex;
+  width: 32px;
+  height: 32px;
+  background-color: #ccc;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 32px;
+  visibility: hidden;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.delete-period, .add-period {
+  cursor: pointer;
+}
+
+.statement-type {
+  height: 24px;
+  width: 192px;
+  border-radius: 5px;
+  font-size: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-shadow: 0 0 3px 1px rgba(0, 0, 0);
+  text-align-last: center;
+}
+
+.arrow-icon {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-left: 2px solid #0f4711;
+  border-bottom: 2px solid #0f4711;
+  transform: rotate(315deg);
+  cursor: pointer;
+  padding-right: 5px;
+}
+
+.add-subfield {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  border: 3.5px solid rgb(15,71,17);
+  text-align: center;
+  line-height: 32px;
+  cursor: pointer;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 0.5px;
+  margin-bottom: 0.5px;
+}
+
+.remove-subfield {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  border: 3.5px solid rgb(228,79,79);
+  text-align: center;
+  line-height: 32px;
+  cursor: pointer;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.centered-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.delete-icon-circle {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+.income-statement {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: inline-flex;
+  align-items: center;
+  box-shadow: 0px 0px;
+}
+
+input[input-type="standard"], input[input-type="contra"] {
+  text-align: right;
+}
+
+input[input-type="variable"]::before {
+  content: "$";
+  position: absolute;
+  left: 10px;
+}
+
+input[input-type="variable"], input[input-type="standard"], input[input-type="contra"] {
+  text-align: right;
+}
+
+.btn-placeholder-large {
+  height: 39.5px;
+}
+
+.btn-placeholder-small {
+  height: 10.5px;
+}
+
+.total-field-input {
+  min-width: 192px;
+}
+
+.standard-input {
+  min-width: 192px;
+}
+
