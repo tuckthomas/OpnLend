@@ -523,11 +523,13 @@ function addPeriodHandler() {
     clonedIncomeStatementContainer.setAttribute('period', newPeriod);
     clonedIncomeStatementContainer.classList.add('fade-in');
 
-    // Reset all input fields within the cloned income statement container
+    // Reset all input fields within the cloned income statement container except 'fiscal-year-end-date', which is inherited from the previous period.
     const incomeInputs = clonedIncomeStatementContainer.querySelectorAll('input');
     incomeInputs.forEach(input => {
-        input.value = '';
-        input.setAttribute('period', newPeriod);  // Update the period attribute
+        if (input.getAttribute('var') !== 'fiscal-year-end-date') {
+            input.value = '';
+        }
+        input.setAttribute('period', newPeriod); // Update the period attribute
     });
 
     // Append the cloned container to the income statement input container
@@ -578,7 +580,7 @@ function addPeriodHandler() {
     attachNavigationEventListeners(clonedBalanceSheetContainer);
     
     // Setup event listeners for date fields to calculate months-in-financial-period for newly added periods
-    setupDateFieldForNewPeriod(newPeriod);
+    setupDateFieldForPeriod(newPeriod);
     
     // Attach event listener for handling the Statement Date fields
     setupStatementDateSyncForNewPeriod(newPeriod);
@@ -3350,7 +3352,7 @@ function setupInputFieldEventListeners(container) {
 }
 
 // Sets up event listners witth the period number argument to assign listeners to dynamically created periods.
-function setupDateFieldForPeriod(period) {
+function setupDateFieldForPeriod(newPeriod) {
     var fieldId = 'Fiscal-Year-End-Date-Input'; // Use the correct ID for each period
     var dateField = document.getElementById(fieldId);
 
