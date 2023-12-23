@@ -335,19 +335,16 @@
                                         <div class="fiscal-year-end-div" style="width: 206px;height: 32px;display: inline-block;margin-bottom: 0px;margin-top: 0px;"><input class="border rounded standard-input" type="text" id="Fiscal-Year-End-Date-Input" var="fiscal-year-end-date" period="1" statement="income-statement" style="text-align: right;width: 192px;border-style: solid;box-shadow: 0px 0px 3px 1px rgb(0, 0, 0);height: 24px;margin-bottom: 0px;margin-top: 0px;"></div><!-- End: #StatementDate -->
                                         <!-- Start: #StatementDate -->
                                         <div class="parent-field" style="width: 206px;height: 32px;display: inline-block;"><input class="border rounded" id="Statement-Date-Input" type="date" style="text-align: right;width: 192px;border-style: solid;box-shadow: 0px 0px 3px 1px rgb(0, 0, 0);height: 24px;" period="1" statement="income-statement" var="statement-date"></div><!-- End: #StatementDate -->
+                                        <!-- Start: #Calcualted Months in Period-->
+                                        <div><input class="border rounded standard-input" type="text" input-type="standard" var="calculated-months" period="1" style="margin-bottom: 4px;background: rgb(238,238,238);margin-top: 2px;" /></div>
                                         <!-- Start: #subtotal-account -->
                                         <div class="Gross-Revenue-Input-Group" calc-group="gross-revenue">
-                                            <!-- Start: #parent -->
-                                            <div class="months-in-financial-period"><input class="border rounded standard-input" type="text" id="Months-In-Financial-Period" input-type="standard" var="calculated-months" period="1" style="background: rgb(238,238,238);"></div><!-- End: #parent -->
-                                            <div class="nested-field-inputs" data-id="nested-gross-revenue">
-                                                <!-- Start: #generic -->
-                                                <div class="generic-field"><input class="border rounded standard-input" type="text" input-type="standard" var="gross-revenue-generic" period="1" calc="sum-generic"></div><!-- End: #generic -->
-                                                <!-- Start: custom -->
-                                                <div class="custom-field" period="1" toggle-id="custom-gross-revenue" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="gross-revenue-custom" custom="1" calc="sum"></div><!-- End: custom -->
+                                            <div class="subtotal-field"><input class="border rounded standard-input" type="text" input-type="standard" var="gross-revenue-subtotal" period="1" calc="subtotal" data-manual-entry="false" /></div>
+                                            <div id="Gross-Revenues-Input-Group" class="nested-field-inputs" data-id="nested-gross-revenue">
+                                                <div class="generic-field" period="1" toggle-id="generic-gross-revenue" custom-id="1"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="gross-revenue-generic" custom="1" calc="sum" /></div>
+                                                <div class="custom-field"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="gross-revenue-custom" /></div>
                                             </div>
                                         </div><!-- End: #subtotal-account -->
-                                        <!-- Start: #parent -->
-                                        <div class="standard-field" style="width: 206px;height: 32px;"><input class="border rounded standard-input" type="text" input-type="standard" period="1" var="gain-on-sale-of-assets"></div><!-- End: #parent -->
                                         <!-- Start: #contra-account -->
                                         <div id="Returns-and-Allowances-Input" class="standard-field"><input class="border rounded standard-input-contra" type="text" input-type="contra" var="returns-and-allowances" period="1"></div><!-- End: #contra-account -->
                                         <!-- Start: #total-account -->
