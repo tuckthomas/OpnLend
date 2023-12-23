@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
     initializeAddSubfieldFunctionality();
     attachEventListeners();
     setupDateFieldForPeriod(1);
+    setupStatementDateSyncForNewPeriod(1);
 
     var navbarContainer = document.getElementById('navbar-container');
     var sidebarBrandImg = document.querySelector('.sidebar-brand img');
@@ -123,6 +124,31 @@ window.onload = function() {
     // Call the function to set up the fade-in on scroll
     setupFadeInOnScroll();
 };
+
+// Function to handle the Statement Date fields' (Income Statement & Balance Sheet) for when one or the other is changed
+function setupStatementDateSyncForNewPeriod(period) {
+    console.log('Function setupStatementDateSyncForNewPeriod called with period: ', period);
+
+    var incomeStatement = document.querySelector('input[period="' + period + '"][statement="income-statement"][var="statement-date"]');
+    var balanceSheet = document.querySelector('input[period="' + period + '"][statement="balance-sheet"][var="statement-date"]');
+
+    console.log('Income Statement Element: ', incomeStatement);
+    console.log('Balance Sheet Element: ', balanceSheet);
+
+    // Rest of your code...
+
+    incomeStatement.addEventListener('change', function() {
+        console.log('Income Statement Date Changed: ', this.value);
+        balanceSheet.value = this.value;
+    });
+
+    balanceSheet.addEventListener('change', function() {
+        console.log('Balance Sheet Date Changed: ', this.value);
+        if (this.value !== incomeStatement.value) {
+            showPopup();
+        }
+    });
+}
 
 // Function to create and initialize the chatbot
 function initializeChatbot() {
@@ -499,7 +525,10 @@ function addPeriodHandler() {
 
     // Reset all input fields within the cloned income statement container
     const incomeInputs = clonedIncomeStatementContainer.querySelectorAll('input');
-    incomeInputs.forEach(input => input.value = '');
+    incomeInputs.forEach(input => {
+        input.value = '';
+        input.setAttribute('period', newPeriod);  // Update the period attribute
+    });
 
     // Append the cloned container to the income statement input container
     const incomeStatementInputContainer = document.querySelector('.input-container');
@@ -515,7 +544,10 @@ function addPeriodHandler() {
 
     // Reset all input fields within the cloned balance sheet container
     const balanceInputs = clonedBalanceSheetContainer.querySelectorAll('input');
-    balanceInputs.forEach(input => input.value = '');
+    balanceInputs.forEach(input => {
+        input.value = '';
+        input.setAttribute('period', newPeriod);  // Update the period attribute
+    });
 
     // Append the cloned container to the balance sheet input container
     balanceSheetContainer.appendChild(clonedBalanceSheetContainer);
@@ -548,6 +580,8 @@ function addPeriodHandler() {
     // Setup event listeners for date fields to calculate months-in-financial-period for newly added periods
     setupDateFieldForNewPeriod(newPeriod);
     
+    // Attach event listener for handling the Statement Date fields
+    setupStatementDateSyncForNewPeriod(newPeriod);
 }
 
 // Prompts the user to confirm desire to delete a financial period. If yes, then proceeds. If not, no change occurs.
@@ -577,7 +611,7 @@ function attachCalculationListeners(container, period) {
     if (genericInput) {
         genericInput.addEventListener('change', updateSubtotal);
         genericInput.addEventListener('change', updateNetRevenue);
-        genericInput.addEventListener('change', updateGrossProfit); // Attach updateGrossProfit here
+        genericInput.addEventListener('change', updateGrossProfit); 
     }
 
     // For all gross-revenue-custom fields
@@ -585,21 +619,21 @@ function attachCalculationListeners(container, period) {
         .forEach(input => {
             input.addEventListener('change', updateSubtotal);
             input.addEventListener('change', updateNetRevenue);
-            input.addEventListener('change', updateGrossProfit); // Attach updateGrossProfit here
+            input.addEventListener('change', updateGrossProfit); 
         });
 
     // For gross-revenue-subtotal
     const subtotalInput = container.querySelector(`input[var="gross-revenue-subtotal"][period="${period}"]`);
     if (subtotalInput) {
         subtotalInput.addEventListener('change', updateNetRevenue);
-        subtotalInput.addEventListener('change', updateGrossProfit); // Attach updateGrossProfit here
+        subtotalInput.addEventListener('change', updateGrossProfit); 
     }
 
     // For returns-and-allowances
     const returnsAndAllowancesInput = container.querySelector(`input[var="returns-and-allowances"][period="${period}"]`);
     if (returnsAndAllowancesInput) {
         returnsAndAllowancesInput.addEventListener('change', updateNetRevenue);
-        returnsAndAllowancesInput.addEventListener('change', updateGrossProfit); // Attach updateGrossProfit here
+        returnsAndAllowancesInput.addEventListener('change', updateGrossProfit); 
     }
 
     // For net-revenue
@@ -607,7 +641,7 @@ function attachCalculationListeners(container, period) {
     if (netRevenueInput) {
         netRevenueInput.addEventListener('change', updateNetRevenue);
         netRevenueInput.addEventListener('change', updateGrossProfit);
-        netRevenueInput.addEventListener('change', updateNetProfitAfterTaxes);// Attach updateGrossProfit here
+        netRevenueInput.addEventListener('change', updateNetProfitAfterTaxes);
     }
 
     // For cost-of-goods-sold-subtotal
