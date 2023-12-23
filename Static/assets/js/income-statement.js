@@ -4076,14 +4076,14 @@ function updateGrossProfit() {
 
         // Get the returns and allowances for the current period
         const returnsAndAllowancesField = document.querySelector(`input[var="returns-and-allowances"][period="${period}"]`);
-        const returnsAndAllowances = returnsAndAllowancesField ? Math.abs(parseCurrencyValue(returnsAndAllowancesField.value)) : 0;
+        const returnsAndAllowances = returnsAndAllowancesField ? -Math.abs(parseCurrencyValue(returnsAndAllowancesField.value)) : 0;
 
         // Get the cost of goods sold subtotal for the current period
         const costOfGoodsSoldSubtotalField = document.querySelector(`input[var="cost-of-goods-sold-subtotal"][period="${period}"]`);
-        const costOfGoodsSoldSubtotal = costOfGoodsSoldSubtotalField ? Math.abs(parseCurrencyValue(costOfGoodsSoldSubtotalField.value)) : 0;
+        const costOfGoodsSoldSubtotal = costOfGoodsSoldSubtotalField ? -Math.abs(parseCurrencyValue(costOfGoodsSoldSubtotalField.value)) : 0;
 
         // Calculate the gross profit
-        const grossProfit = grossRevenueSubtotal - returnsAndAllowances - costOfGoodsSoldSubtotal;
+        const grossProfit = grossRevenueSubtotal + returnsAndAllowances + costOfGoodsSoldSubtotal;
         console.log("Calculated Gross Profit: ", grossProfit);
 
         const formattedGrossProfit = formatNumberWithCommas(grossProfit.toFixed(2));
