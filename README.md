@@ -2,7 +2,7 @@
 
 **_*Update 12/17/2023: I've been working on the dynamic financial spreading front-end for the last two weeks and am nearing completion. Once completed, I'll update the files within this repository. In the meantime, if you are interested, you can test the functionality of the spreading model while keeping in mind that it is incomplete and contains bugs that will be resovled soon. That model can be accessed here: https://credit.opnlend.com/Financials/ *_**
 
-![opnlend-logo](Media/OpnLend-Logo.jpg)
+![opnlend-logo](Media/OpnLend-Logo.png)
 
 ![opnlend-financial-spreading-example](Media/financial_spreading_example.jpg)
 
