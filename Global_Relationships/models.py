@@ -1,90 +1,83 @@
 from django.db import models
-import uuid
-from django.db.models import UniqueConstraint
+from django.core.validators import RegexValidator
+from uuid import uuid4
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
 
-class Affiliate(models.Model):
-    AFFILIATE_TYPE_CHOICES = [
-        ('INDIVIDUAL', 'Individual'),
-        ('BUSINESS', 'Business Entity'),
+
+class GlobalRelationship(models.Model):
+    global_relationship_id = models.UUIDField(default=uuid4, editable=False)
+    Meta_ID = models.TextField()  # Not unique, as it can be shared
+    ACCOUNT_TYPES = [
+        ('business', 'Business'),
+        ('personal', 'Personal'),
     ]
+    Account_Type = models.CharField(max_length=10, choices=ACCOUNT_TYPES)
 
-    affiliate_id = models.AutoField(primary_key=True)
-    affiliate_code = models.CharField(max_length=20)
-    affiliate_type = models.CharField(max_length=10, choices=AFFILIATE_TYPE_CHOICES)
+    def __str__(self):
+        return f"{self.Meta_ID} ({self.Account_Type})"
+
+# Business Account Details
+class BusinessAccountDetails(models.Model):
+    Unique_ID = models.UUIDField(default=uuid4, editable=False, unique=True)
+    Business_Legal_Name = models.TextField()
+    DBA_Name = models.TextField()
+    Entity_Type = models.TextField()
+    Tax_ID = models.BigIntegerField()
+    Domiciled_Locale = models.TextField()
+    Date_of_Formation = models.DateField()
+    Business_Entity_Report_Expiration_Date = models.DateField()
+    OC_EPC_Indication = models.BooleanField()
+    NAICS_Code_Description = models.TextField()
+    NAICS_Code_2022 = models.TextField()
+    DUNS_ID = models.TextField()
+    Website_URL = models.URLField()
+    Primary_Contact_Name = models.TextField()
+    Primary_Contact_Phone = models.CharField(
+        max_length=15, 
+        validators=[
+            RegexValidator(
+                regex=r'^\+?1?\d{9,15}$', 
+                message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed."
+            )
+        ]
+    )
+    Primary_Contact_Email = models.EmailField()
+
+    def __str__(self):
+        return self.Business_Legal_Name
+
+# Personal Account Details
+class PersonalAccountRelationship(models.Model):
+    global_relationship = models.ForeignKey(GlobalRelationship, on_delete=models.CASCADE)
+    personal_account = models.ForeignKey(PersonalAccountDetails, on_delete=models.CASCADE)
 
     class Meta:
-        constraints = [
-            UniqueConstraint(fields=['affiliate_code'], name='unique_affiliate_code')
-        ]
+        unique_together = ('global_relationship', 'personal_account')
+
+
+# Establishes a many-to-many relationship between GlobalRelationship and BusinessAccountDetails, as well as GlobalRelationship and PersonalAccountDetails
+class AccountRelationship(models.Model):
+    global_relationship = models.ForeignKey(GlobalRelationship, on_delete=models.CASCADE)
+
+    # GenericForeignKey components
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    account = GenericForeignKey('content_type', 'object_id')
+
+    class Meta:
+        unique_together = ('global_relationship', 'content_type', 'object_id')
+
+
+# Account Addresses model; can include both business and individual addresses.
+class AccountAddresses(models.Model):
+    Unique_ID = models.ForeignKey(BusinessAccountDetails, on_delete=models.CASCADE)
+    Property_Type = models.TextField()
+    Address_1 = models.TextField()
+    Address_2 = models.TextField(blank=True, null=True)  # Optional field
+    City = models.TextField()
+    State = models.TextField()
+    Zip = models.IntegerField()
 
     def __str__(self):
-        return self.affiliate_code
-
-class Individual(models.Model):
-    JOINTLY_REPORTED_CHOICES = [
-        ('JOINTLY', 'Jointly Reported'),
-        ('SOLE', 'Solely Reported'),
-    ]
-
-    affiliate = models.ForeignKey(Affiliate, on_delete=models.CASCADE, related_name='individuals')
-
-    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    first_name = models.CharField(max_length=50)
-    middle_name = models.CharField(max_length=50, blank=True, null=True)
-    last_name = models.CharField(max_length=50)
-    ssn = models.CharField(max_length=9)
-    dob = models.DateField()
-    address_1 = models.CharField(max_length=100)
-    address_2 = models.CharField(max_length=100, blank=True, null=True)
-    city = models.CharField(max_length=50)
-    state = models.CharField(max_length=50)
-    zip_code = models.CharField(max_length=10)
-    county = models.CharField(max_length=50)
-    country = models.CharField(max_length=50)
-    email = models.EmailField(max_length=254)
-    jointly_reported = models.CharField(max_length=7, choices=JOINTLY_REPORTED_CHOICES)
-    jointly_reported_code = models.CharField(max_length=20, blank=True, null=True)
-
-    def __str__(self):
-        return f"{self.first_name} {self.last_name}"
-
-class Business(models.Model):
-    BUSINESS_TYPE_CHOICES = [
-        ('C-CORP', 'C-Corporation'),
-        ('S-CORP', 'S-Corporation'),
-        ('LLC', 'Limited Liability Company'),
-        ('PARTNERSHIP', 'Partnership'),
-        ('SOLE PROP.', 'Sole Proprietorship'),
-        ('NON-PROFIT', 'Non-Profit Organization'),
-        ('GOVERNMENT', 'Government Entity'),
-    ]
-
-    affiliate = models.ForeignKey(Affiliate, on_delete=models.CASCADE, related_name='businesses')
-
-    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    entity_name = models.CharField(max_length=100)
-    business_type = models.CharField(max_length=50, choices=BUSINESS_TYPE_CHOICES)
-    ein = models.CharField(max_length=9)
-    state_of_formation = models.CharField(max_length=50)
-    date_of_formation = models.DateField()
-    address_1 = models.CharField(max_length=100)
-    address_2 = models.CharField(max_length=100, blank=True, null=True)
-    city = models.CharField(max_length=50)
-    state = models.CharField(max_length=50)
-    zip_code = models.CharField(max_length=10)
-    county = models.CharField(max_length=50)
-    country = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.entity_name
-
-class BeneficialOwnership(models.Model):
-    affiliate = models.ForeignKey(Affiliate, on_delete=models.CASCADE, related_name='beneficial_ownerships')
-
-    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False) 
-    owner_individual = models.ForeignKey(Individual, on_delete=models.CASCADE, blank=True, null=True, related_name='beneficial_ownerships')
-    owner_business = models.ForeignKey(Business, on_delete=models.CASCADE, blank=True, null=True, related_name='beneficial_ownerships')
-    ownership_percentage = models.DecimalField(max_digits=5, decimal_places=2)
-
-    def __str__(self):
-        return f"{self.owner_individual or self.owner_business}: {self.ownership_percentage}%"
+        return f"{self.Address_1}, {self.City}, {self.State} - {self.Zip}"
