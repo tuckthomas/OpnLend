@@ -4,10 +4,10 @@ from uuid import uuid4
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 
-
+# Aggregates Business and Personal Accounts, per FDIC, NCUA, and SBA (size standard) regulations.
 class GlobalRelationship(models.Model):
     global_relationship_id = models.UUIDField(default=uuid4, editable=False)
-    Meta_ID = models.TextField()  # Not unique, as it can be shared
+    Meta_ID = models.TextField()
     ACCOUNT_TYPES = [
         ('business', 'Business'),
         ('personal', 'Personal'),
@@ -17,8 +17,20 @@ class GlobalRelationship(models.Model):
     def __str__(self):
         return f"{self.Meta_ID} ({self.Account_Type})"
 
+# The AccountRelationship model adds a layer of abstraction that allows the application to flexibly and dynamically associate GlobalRelationship entities with various types of accounts. 
+class AccountRelationship(models.Model):
+    global_relationship = models.ForeignKey(GlobalRelationship, on_delete=models.CASCADE)
+
+    # GenericForeignKey components
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    account = GenericForeignKey('content_type', 'object_id')
+
+    class Meta:
+        unique_together = ('global_relationship', 'content_type', 'object_id')
+
 # Business Account Details
-class BusinessAccountDetails(models.Model):
+class BusinessAccount(models.Model):
     Unique_ID = models.UUIDField(default=uuid4, editable=False, unique=True)
     Business_Legal_Name = models.TextField()
     DBA_Name = models.TextField()
@@ -47,31 +59,22 @@ class BusinessAccountDetails(models.Model):
     def __str__(self):
         return self.Business_Legal_Name
 
-# Personal Account Details
-class PersonalAccountRelationship(models.Model):
-    global_relationship = models.ForeignKey(GlobalRelationship, on_delete=models.CASCADE)
-    personal_account = models.ForeignKey(PersonalAccountDetails, on_delete=models.CASCADE)
+# Placeholder PersonalAccount model
+class PersonalAccount(models.Model):
+    Unique_ID = models.UUIDField(default=uuid4, editable=False, unique=True)
+    # Placeholder fields (you can replace these with actual fields later)
+    Name = models.TextField()
+    # ... other personal account specific fields ...
 
-    class Meta:
-        unique_together = ('global_relationship', 'personal_account')
+    def __str__(self):
+        return self.Name
 
-
-# Establishes a many-to-many relationship between GlobalRelationship and BusinessAccountDetails, as well as GlobalRelationship and PersonalAccountDetails
-class AccountRelationship(models.Model):
-    global_relationship = models.ForeignKey(GlobalRelationship, on_delete=models.CASCADE)
-
-    # GenericForeignKey components
+# Account Addresses model; can include both business and individual addresses
+class AccountAddresses(models.Model):
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     account = GenericForeignKey('content_type', 'object_id')
 
-    class Meta:
-        unique_together = ('global_relationship', 'content_type', 'object_id')
-
-
-# Account Addresses model; can include both business and individual addresses.
-class AccountAddresses(models.Model):
-    Unique_ID = models.ForeignKey(BusinessAccountDetails, on_delete=models.CASCADE)
     Property_Type = models.TextField()
     Address_1 = models.TextField()
     Address_2 = models.TextField(blank=True, null=True)  # Optional field
