@@ -1,5 +1,6 @@
 from django.apps import AppConfig
 
 
-class RelationshipsConfig(AppConfig):
-    name = 'relationships'
+class GlobalRelationshipsConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'Global_Relationships'

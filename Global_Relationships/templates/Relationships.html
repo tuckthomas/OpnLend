@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en" data-bss-forced-theme="light">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=1024, initial-scale=1">
+    <title>Opnlend</title>
+	{% load static %}
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css">
+    <link rel="stylesheet" href="{% static 'assets/fonts/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/bs-theme-overrides.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/wysiwyg.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/OpnLend.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/Relationships.css' %}">
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+        <!-- Start: #sidebar -->
+        <nav class="navbar align-items-start Sidebar">
+            <div class="container-fluid p-0"><svg id="navbar-toggler" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20" fill="none" style="font-size:35px;color:var(--bs-primary-text-emphasis);margin-left:auto;" data-bs-toggle="collapse" data-bs-target="#navbar-container" aria-expanded="false" aria-controls="collapsibleContent">
+                    <path fill-rule="evenodd" d="M3 4C3 3.44772 3.44772 3 4 3H16C16.5523 3 17 3.44772 17 4C17 4.55228 16.5523 5 16 5H4C3.44772 5 3 4.55228 3 4ZM3 8C3 7.44772 3.44772 7 4 7H16C16.5523 7 17 7.44772 17 8C17 8.55228 16.5523 9 16 9H4C3.44772 9 3 8.55228 3 8ZM3 12C3 11.4477 3.44772 11 4 11H16C16.5523 11 17 11.4477 17 12C17 12.5523 16.5523 13 16 13H4C3.44772 13 3 12.5523 3 12ZM3 16C3 15.4477 3.44772 15 4 15H16C16.5523 15 17 15.4477 17 16C17 16.5523 16.5523 17 16 17H4C3.44772 17 3 16.5523 3 16Z" fill="white"></path>
+                </svg>
+                <div id="navbar-container" class="container collapse"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#"><img src="/static/assets/img/Icons/opnlend_green.png" width="100" height="72" alt="Opnlend Green Icon"></a>
+                    <ul class="navbar-nav flex-column mb-auto" id="accordionSidebar" style="padding: 11px;">
+                        <li class="nav-item"><li class="nav-item">
+                    <a class="nav-link" href="{% url 'Dashboard' %}">
+                        <img class="sidebar-content" src="/static/assets/img/Sidebar/Dashboard.png" alt="Dashboard" />
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'Relationships' %}">
+                        <img class="sidebar-content" src="/static/assets/img/Sidebar/Global-Relationships.png" alt="Relationships" />
+                        <span class="nav-text">Global Relationships</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'Financials' %}">
+                        <img class="sidebar-content" src="/static/assets/img/Sidebar/Financials.png" alt="Financials" />
+                        <span class="nav-text">Financials</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'Loans' %}">
+                        <img class="sidebar-content" src="/static/assets/img/Sidebar/Loans.png" alt="Loans" />
+                        <span class="nav-text">Loans</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">
+                        <img class="sidebar-content" src="/static/assets/img/Sidebar/Collateral.png" alt="Collateral" />
+                        <span class="nav-text">Collateral</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">
+                        <img class="sidebar-content" src="/static/assets/img/Sidebar/Deposits.png" alt="Deposits" />
+                        <span class="nav-text">Deposits</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">
+                        <img class="sidebar-content" src="/static/assets/img/Sidebar/Profitability.png" alt="Profitability" />
+                        <span class="nav-text">Profitability</span>
+                    </a>
+                </li></li>
+                    </ul>
+                </div>
+            </div>
+        </nav><!-- End: #sidebar -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <section>
+            <nav class="navbar navbar-expand bg-white shadow mb-4 topbar static-top navbar-light" style="background: #faf5ef;border-bottom-style: groove;border-radius: 5px;">
+                <div class="container-fluid">
+                    <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search" style="width: 547px;box-shadow: 0px 0px 7px 1px;border-radius: 10px;">
+                        <div class="input-group" style="min-width: 535px;"><input class="form-control form-control" type="text" placeholder="Search Accounts within Global Relationship....." style="background: rgb(251,251,251);border-color: #009185;" /><button class="btn btn-primary" type="button" style="border-top-style: ridge;border-top-color: var(--bs-body-color);background: #426c73;"><i class="fas fa-search"></i></button></div>
+                    </form>
+                    <div style="margin-right: 250px;margin-left: 50px;"><a href="https://github.com/tuckthomas/opnlend" src="Icons/GitHub_OpnLend_Button.png" style="position: relative;display: flex;color: var(--bs-primary-text-emphasis);" target="_blank"><img class="d-xxl-flex img-pointer" src="/static/assets/img/Icons/GitHub_OpnLend_Button.png" width="124" height="25" style="height: 50px;width: 150px;padding-right: 0px;padding-left: 0px;border-radius: 30px;transform: perspective(0px);backdrop-filter: blur(0px);box-shadow: 0px 0px 8px 1px var(--bs-primary-text-emphasis);border-width: 0.5px;border-style: solid;" /></a></div>
+                </div>
+            </nav>
+        </section>
+        <div class="Combined-Collapsible-Horizontal-Bar"><button class="Collapsible-Toggle-Button"><svg class="d-xxl-flex justify-content-xxl-center align-items-xxl-center" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" style="font-size: 28px;">
+                    <path d="M14.8285 11.9481L16.2427 10.5339L12 6.29122L7.7574 10.5339L9.17161 11.9481L11 10.1196V17.6568H13V10.1196L14.8285 11.9481Z" fill="currentColor"></path>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M19.7782 4.22183C15.4824 -0.0739415 8.51759 -0.0739422 4.22183 4.22183C-0.0739415 8.51759 -0.0739422 15.4824 4.22183 19.7782C8.51759 24.0739 15.4824 24.0739 19.7782 19.7782C24.0739 15.4824 24.0739 8.51759 19.7782 4.22183ZM18.364 5.63604C14.8492 2.12132 9.15076 2.12132 5.63604 5.63604C2.12132 9.15076 2.12132 14.8492 5.63604 18.364C9.15076 21.8787 14.8492 21.8787 18.364 18.364C21.8787 14.8492 21.8787 9.15076 18.364 5.63604Z" fill="currentColor"></path>
+                </svg></button>
+                <div class="Collapsible-Global-Identifiers-Header">
+                    <section class="Global-Identifiers-Header">
+                        <div class="Global-Relationship-Div-Headers" style="min-width: 40%;max-width: 40%;">
+                            <div style="display: inline-flex;max-width: auto;">
+                                <h2 class="text-truncate Global-Headers"><strong>Global Relationship ID:</strong></h2>
+                            </div>
+                            <div class="Global-Header-Text-Field-Div"><input class="Global-Relationship-Text-Field" type="text" name="Global_Relationship_ID" style="margin-top: -3px;" value="{{ Global_Relationship_ID }}" /></div>
+                        </div>
+                        <div class="justify-content-end Global-Relationship-Div-Headers" style="display: inline-flex;min-width: 40%;max-width: 40%;margin-left: 0px;">
+                            <div style="display: inline-flex;">
+                                <h2 class="text-truncate Global-Headers"><strong>Meta ID:</strong></h2>
+                            </div>
+                            <div class="Global-Header-Text-Field-Div"><input class="Global-Relationship-Text-Field" type="text" name="Meta_ID" style="margin-top: -3px;" value="{{ Meta_ID }}" /></div>
+                        </div>
+                        <div class="Hidden-Header-Div"><input class="Global-Relationship-Text-Field" type="text" name="Unique_ID" style="margin-top: -3px;" value="{{ Unique_ID }}" /><input class="Global-Relationship-Text-Field" type="text" name="Unique_Jointly_Reported_ID" style="margin-top: -3px;" value="{{ Unique_Jointly_Reported_ID }}" /></div>
+                    </section>
+                    <div class="Global-Button-Control-Div"><button class="btn btn-primary Global-Relationship-Control-Buttons" type="button" button-name="Add-New-Global-Relationship" style="background: var(--bs-btn-hover-bg);"><strong>Add New Global Relationship</strong></button><button class="btn btn-primary Global-Relationship-Control-Buttons" type="button" button-name="Add-New-Business-Account" style="background: #06583a;"><strong>Add New Business Account</strong></button><button class="btn btn-primary Global-Relationship-Control-Buttons" type="button" button-name="Add-New-Personal-Account" style="background: #06583a;"><strong>Add New Personal Account</strong></button><button class="btn btn-primary Global-Relationship-Control-Buttons" type="button" button-name="Delete-Global-Relationship" style="background: rgba(92,30,24,0.81);"><strong>Delete Global Relationship</strong></button></div>
+                </div>
+            </div>    
+        <div class="Relationship-Div">
+            <section class="Combined-Section">
+                <h2 class="Section-Header"><strong><span style="font-style: normal !important;">Business Account Management</span></strong></h2><svg class="bi bi-arrows-expand Expand-Account-Icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" data-form-id="Business-Form-Icon" data-form-target="Business-Account-Management-Form">
+                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2M8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10"></path>
+                </svg>
+                <section class="Section-Header-Div">
+                    <div class="Tabular-Form" data-form-id="Business-Account-Management-Form">
+                        <div class="card" style="box-shadow: 0px 0px 4px 1px;">
+                            <div>
+                                <ul class="nav nav-tabs nav-justified" role="tablist" style="box-shadow: 0px 0px 3px 1px;border-radius: 10px;">
+                                    <li class="nav-item Tab-Option" role="presentation"><a class="nav-link active Tab-Link" role="tab" data-bs-toggle="tab" href="#tab-1">Account Details and History of Operations</a></li>
+                                    <li class="nav-item Tab-Option" role="presentation"><a class="nav-link Tab-Link" role="tab" data-bs-toggle="tab" href="#tab-2">Account Addresses</a></li>
+                                    <li class="nav-item Tab-Option" role="presentation"><a class="nav-link Tab-Link" role="tab" data-bs-toggle="tab" href="#tab-3">Beneficial Ownership</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div id="tab-1" class="tab-pane active" role="tabpanel">
+                                        <div class="container" style="display: inline-block;padding-right: 0px;padding-left: 4px;min-width: 100%;max-width: 100%;">
+                                            <form id="business-account-form" class="Business-Account-Form" method="post" action="{% url 'submit_business_account' %}">
+                                                <div>{% csrf_token %}</div>
+                                                <header>
+                                                    <div style="display: none;">
+                                                        <div class="Form-Field-Div-Account-ID"><label class="form-label Form-Field-Label-Account">Global Relationship ID<input class="form-control Text-Input-Read-Only" type="text" name="Global_Relationship_ID" readonly /></label></div>
+                                                        <div class="Form-Field-Div-Account-ID"><label class="form-label Form-Field-Label-Account">Global Meta ID<input class="form-control Text-Input-Read-Only" type="text" name="Meta_ID" readonly /></label></div>
+                                                    </div>
+                                                    <div class="Form-Field-Div-Account-ID"><label class="form-label Form-Field-Label-Account">Unique Account ID<input class="form-control Text-Input-Read-Only" type="text" name="Unique_ID" /></label></div>
+                                                    <div class="Sub-Section-Underline-Div">
+                                                        <p class="Tab-Pane-Header"><strong>Account Details</strong></p>
+                                                    </div>
+                                                </header>
+                                                <p class="Form-Required-Text-Header" style="font-size: 15px;margin-bottom: 0px;"><strong><em>* Denotes a required field</em></strong></p>
+                                                <div class="Form-Field-Div-40"><label class="form-label Form-Field-Label-40">Business Legal Name *<input class="form-control Text-Input-40" type="text" name="Business_Legal_Name" required-field="true" /></label></div>
+                                                <div class="Form-Field-Div-40"><label class="form-label Form-Field-Label-40">Doing Business As (DBA)<input class="form-control Text-Input-40" type="text" name="DBA_Name" required-field="false" /></label></div>
+                                                <div class="Form-Field-Div"><label class="form-label Form-Field-Label">Tax ID (EIN)<input class="form-control Text-Input" type="text" name="Tax_ID" required-field="false" /></label></div>
+                                                <div class="Form-Field-Div-OC-EPC"><label class="form-label Form-Field-Label-Large" style="height: auto;width: auto;margin-top: 10px;">Relational Entity Type *<div style="background-color: white;border-radius: 10px;box-shadow: 0px 0px 3px 1px black;padding: 10px;align-items: center;display: flex;flex-wrap: wrap;justify-content: space-between;">
+                                                            <div style="flex: 1 0 50%;"><input id="operatingCompany" type="radio" name="OC_EPC_Indication" value="Operating Company" required /><label for="operatingCompany">Operating Company</label></div>
+                                                            <div style="flex: 1 0 50%;"><input id="eligiblePassiveCompany" type="radio" name="OC_EPC_Indication" value="Eligible Passive Company" required /><label for="eligiblePassiveCompany">Eligible Passive Company</label></div>
+                                                            <div style="flex: 1 0 50%;"><input id="otherRelatedEntity" type="radio" name="OC_EPC_Indication" value="Other Related Entity" required /><label for="otherRelatedEntity">Other Related Entity</label></div>
+                                                        </div></label></div>
+                                                <div class="Form-Field-Div"><label class="form-label Form-Field-Label">Business Entity Type<div class="Dropdown-List"><button id="dropdownMenuButton" class="btn btn-primary dropdown-toggle fs-6 fw-semibold" aria-expanded="false" name="Entity_Type" data-bs-toggle="dropdown" type="button" style="background: rgb(255,255,255);color: var(--bs-body-color);border-radius: 10px;height: 38px;width: 212px;min-width: 100%;padding-top: 0px;border: none;box-shadow: 0px 0px 3px 1px rgba(0,0,0,3);">
+                                                                Select Entity Type
+                                                            </button>
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="min-width: 330px;"><a class="dropdown-item" href="#">C-Corporation</a><a class="dropdown-item" href="#">S-Corporation</a><a class="dropdown-item" href="#">Sole Propretorship</a><a class="dropdown-item" href="#">General Partnership</a><a class="dropdown-item" href="#">Limited Liability Partnership</a><a class="dropdown-item" href="#">Limited Liability Company</a><a class="dropdown-item" href="#">Limited Liability Partnership</a><a class="dropdown-item" href="#">Foreign Partnership</a><a class="dropdown-item" href="#">Non-Profit</a><a class="dropdown-item" href="#">Government Entity</a><a class="dropdown-item" href="#">Other</a></div>
+                                                        </div></label></div>
+                                                <div class="Form-Field-Div"><label class="form-label Form-Field-Label">Domiciled Location<div class="Dropdown-List"><button id="dropdownMenuButton" class="btn btn-primary dropdown-toggle fs-6 fw-semibold" aria-expanded="false" name="Domiciled_Location" data-bs-toggle="dropdown" type="button" style="background: rgb(255,255,255);color: var(--bs-body-color);border-radius: 10px;height: 38px;width: 212px;min-width: 100%;padding-top: 0px;border: none;box-shadow: 0px 0px 3px 1px rgba(0,0,0,3);">
+                                                                Select Domicile
+                                                            </button>
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="min-width: 330px;"><a class="dropdown-item" href="#">Alabama</a><a class="dropdown-item" href="#">Alaska</a><a class="dropdown-item" href="#">Arizona</a><a class="dropdown-item" href="#">Arkansas</a><a class="dropdown-item" href="#">California</a><a class="dropdown-item" href="#">Colorado</a><a class="dropdown-item" href="#">Connecticut</a><a class="dropdown-item" href="#">Delaware</a><a class="dropdown-item" href="#">Florida</a><a class="dropdown-item" href="#">Georgia</a><a class="dropdown-item" href="#">Hawaii</a><a class="dropdown-item" href="#">Idaho</a><a class="dropdown-item" href="#">Illinois</a><a class="dropdown-item" href="#">Indiana</a><a class="dropdown-item" href="#">Iowa</a><a class="dropdown-item" href="#">Kansas</a><a class="dropdown-item" href="#">Kentucky</a><a class="dropdown-item" href="#">Louisiana</a><a class="dropdown-item" href="#">Maine</a><a class="dropdown-item" href="#">Maryland</a><a class="dropdown-item" href="#">Massachusetts</a><a class="dropdown-item" href="#">Michigan</a><a class="dropdown-item" href="#">Minnesota</a><a class="dropdown-item" href="#">Mississippi</a><a class="dropdown-item" href="#">Missouri</a><a class="dropdown-item" href="#">Montana</a><a class="dropdown-item" href="#">Nebraska</a><a class="dropdown-item" href="#">Nevada</a><a class="dropdown-item" href="#">New Hampshire</a><a class="dropdown-item" href="#">New Jersey</a><a class="dropdown-item" href="#">New Mexico</a><a class="dropdown-item" href="#">New York</a><a class="dropdown-item" href="#">North Carolina</a><a class="dropdown-item" href="#">North Dakota</a><a class="dropdown-item" href="#">Ohio</a><a class="dropdown-item" href="#">Oklahoma</a><a class="dropdown-item" href="#">Oregon</a><a class="dropdown-item" href="#">Pennsylvania</a><a class="dropdown-item" href="#">Rhode Island</a><a class="dropdown-item" href="#">South Carolina</a><a class="dropdown-item" href="#">South Dakota</a><a class="dropdown-item" href="#">Tennessee</a><a class="dropdown-item" href="#">Texas</a><a class="dropdown-item" href="#">Utah</a><a class="dropdown-item" href="#">Vermont</a><a class="dropdown-item" href="#">Virginia</a><a class="dropdown-item" href="#">Washington</a><a class="dropdown-item" href="#">West Virginia</a><a class="dropdown-item" href="#">Wisconsin</a><a class="dropdown-item" href="#">Wyoming</a><a class="dropdown-item" href="#">District of Columbia</a><a class="dropdown-item" href="#">Puerto Rico</a><a class="dropdown-item" href="#">Guam</a><a class="dropdown-item" href="#">American Samoa</a><a class="dropdown-item" href="#">U.S. Virgin Islands</a><a class="dropdown-item" href="#">Northern Mariana Islands</a></div>
+                                                        </div></label></div>
+                                                <div class="Form-Field-Div"><label class="form-label Form-Field-Label">Date of Formation<input class="form-control MM-DD-YYYY-Input" type="date" required-field="true" name="Date_of_Formation" /></label></div>
+                                                <div class="Form-Field-Div"><label class="form-label Form-Field-Label">Entity Report Expiration<input class="form-control MM-DD-YYYY-Input" type="date" name="Business_Entity_Report_Expiration_Date" required-field="false" /></label></div>
+                                                <div class="Form-Field-Div"><label class="form-label Form-Field-Label">Website URL<input class="form-control URL-Input" type="url" name="Website_URL" required-field="false" /></label></div>
+                                                <div class="Form-Field-Div"><label class="form-label Form-Field-Label">DUNS ID<input class="form-control Text-Input" type="text" name="DUNS_ID" required-field="false" /></label></div>
+                                                <div class="Form-Field-Div-40"><label class="form-label Form-Field-Label">2022 NAICS Description<input class="form-control Text-Input-40" type="text" name="NAICS_Description" required-field="false" /></label></div>
+                                                <div class="Form-Field-Div-40"><label class="form-label Form-Field-Label">2022 NAICS Code<input class="form-control Text-Input-40" type="text" name="NAICS_Code" required-field="false" /></label></div>
+                                                <div class="Form-Field-Div"><label class="form-label Form-Field-Label">Primary Contact Name<input class="form-control Text-Input" type="text" required-field="false" name="Primary_Contact_Name" /></label></div>
+                                                <div class="Form-Field-Div"><label class="form-label Form-Field-Label">Primary Contact's Phone<input class="form-control Telephone-Number-Input" type="tel" name="Primary_Contact_Phone" required-field="false" /></label></div>
+                                                <div class="Form-Field-Div"><label class="form-label Form-Field-Label">Primary Contact's Email<input class="form-control Email-Address-Input" type="email" name="Primary_Contact_Email" required-field="false" /></label></div>
+                                                <div class="Form-Field-Div-Buttons-Submit"><button id="submit-business-account" class="Submit-Form-Button" type="submit" data-form-id="loan-structure-form">Submit</button></div>
+                                            </form>
+                                        </div>
+                                        <div class="Sub-Section-Underline-Div">
+                                            <p class="Tab-Pane-Header"><strong>Background and History of Operations</strong></p>
+                                        </div>
+                                        <div class="container" style="min-width: 100%;max-width: 100%;padding-top: 0px;margin-top: 0px;">
+                                            <div id="wysiwyg" class="container mt-5" style="min-width: 90%;margin-top: -10px;">
+                                                <div id="toolbar">
+                                                    <div class="btn-group grp" role="group">
+                                                        <div class="dropdown btn-group" role="group" data-bs-toggle="tooltip" title="Font"><button class="btn dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button"><i class="fa fa-font"></i></button>
+                                                            <div id="fonts" class="dropdown-menu"><a class="dropdown-item fnt" href="#" data-font="Serif" style="font-family:'Serif';">Serif</a><a class="dropdown-item fnt" href="#" data-font="Sans" style="font-family:'Sans';">Sans</a><a class="dropdown-item fnt" href="#" data-font="Arial" style="font-family:'Arial';">Arial</a><a class="dropdown-item fnt" href="#" data-font="Arial Black" style="font-family:'Arial Black';">Arial Black</a><a class="dropdown-item fnt" href="#" data-font="Courier" style="font-family:'Courier';">Courier</a><a class="dropdown-item fnt" href="#" data-font="Courier New" style="font-family:'Courier New';">Courier New</a><a class="dropdown-item fnt" href="#" data-font="Comic Sans MS" style="font-family:'Comic Sans MS';">Comic Sans MS</a><a class="dropdown-item fnt" href="#" data-font="Helvetica" style="font-family:'Helvetica';">Helvetica</a><a class="dropdown-item fnt" href="#" data-font="Impact" style="font-family:'Impact';">Impact</a><a class="dropdown-item fnt" href="#" data-font="Lucida Grande" style="font-family:'Lucida Grande';">Lucida Grande<br /></a><a class="dropdown-item fnt" href="#" data-font="Lucida Sans" style="font-family:'Lucida Sans';">Lucida Sans<br /></a><a class="dropdown-item fnt" href="#" data-font="Tahoma" style="font-family:'Tahoma';">Tahoma<br /></a><a class="dropdown-item fnt" href="#" data-font="Times" style="font-family:'Times';">Times<br /></a><a class="dropdown-item fnt" href="#" data-font="Times New Roman" style="font-family:'Times New Roman';">Times New Roman<br /></a><a class="dropdown-item fnt" href="#" data-font="Verdana" style="font-family:'Verdana';">Verdana<br /></a></div>
+                                                        </div>
+                                                        <div class="dropdown btn-group" role="group" data-bs-toggle="tooltip" title="Font Size"><button class="btn dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button"><i class="fa fa-text-height"></i></button>
+                                                            <div class="dropdown-menu"><a class="dropdown-item fntSize" href="#" data-size="1">Super Extra Small</a><a class="dropdown-item fntSize" href="#" data-size="2">Extra Small</a><a class="dropdown-item fntSize" href="#" data-size="3">Small</a><a class="dropdown-item fntSize" href="#" data-size="4">Medium</a><a class="dropdown-item fntSize" href="#" data-size="5">Large</a><a class="dropdown-item fntSize" href="#" data-size="6">Extra Large</a><a class="dropdown-item fntSize" href="#" data-size="7">Super Extra Large</a><a id="h1" class="dropdown-item" href="#">H1</a><a id="h2" class="dropdown-item" href="#">H2</a><a id="h3" class="dropdown-item" href="#">H3</a><a id="h4" class="dropdown-item" href="#">H4</a><a id="h5" class="dropdown-item" href="#">H5</a><a id="h6" class="dropdown-item" href="#">H6</a></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="btn-group grp" role="group">
+                                                        <div class="dropdown btn-group" role="group" data-bs-toggle="tooltip" title="Background Color"><button class="btn dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button"><i class="fa fa-pencil-square"></i></button>
+                                                            <div class="dropdown-menu"><a class="dropdown-item bc" href="#" data-color="#cc4125">Red Berry</a><a class="dropdown-item bc" href="#" data-color="#e06666">Red</a><a class="dropdown-item bc" href="#" data-color="#f6b26b">Orange</a><a class="dropdown-item bc" href="#" data-color="#ffd966">Yellow</a><a class="dropdown-item bc" href="#" data-color="#93c47d">Green</a><a class="dropdown-item bc" href="#" data-color="#76a5af">Cyan</a><a class="dropdown-item bc" href="#" data-color="#6d9eeb">Cornflower Blue</a><a class="dropdown-item bc" href="#" data-color="#6fa8dc">Blue</a><a class="dropdown-item bc" href="#" data-color="#8e7cc3">Purple</a><a class="dropdown-item bc" href="#" data-color="#c27ba0">Magenta</a></div>
+                                                        </div>
+                                                        <div class="dropdown btn-group" role="group" data-bs-toggle="tooltip" title="Font Color"><button class="btn dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button"><i class="fa fa-pencil"></i></button>
+                                                            <div class="dropdown-menu"><a class="dropdown-item fc" href="#" data-color="#000000">Black</a><a class="dropdown-item fc" href="#" data-color="#555555">Dark Grey</a><a class="dropdown-item fc" href="#" data-color="#cccccc">Light Grey</a><a class="dropdown-item fc bg-dark" href="#" data-color="#ffffff">White</a><a class="dropdown-item fc" href="#" data-color="#980000">Red Berry</a><a class="dropdown-item fc" href="#" data-color="#660000">Red</a><a class="dropdown-item fc" href="#" data-color="#783f04">Orange</a><a class="dropdown-item fc bg-dark" href="#" data-color="#ffff00">Yellow</a><a class="dropdown-item fc" href="#" data-color="#274e13">Green</a><a class="dropdown-item fc" href="#" data-color="#0c343d">Cyan</a><a class="dropdown-item fc" href="#" data-color="#1c4587">Cornflower Blue</a><a class="dropdown-item fc" href="#" data-color="#073763">Blue</a><a class="dropdown-item fc" href="#" data-color="#20124d">Purple</a><a class="dropdown-item fc" href="#" data-color="#4c1130">Magenta</a></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="btn-group grp" role="group"><button id="b" class="btn" data-bs-toggle="tooltip" type="button" title="Bold"><i class="fa fa-bold"></i></button><button id="i" class="btn" data-bs-toggle="tooltip" type="button" title="Italic"><i class="fa fa-italic"></i></button><button id="u" class="btn" data-bs-toggle="tooltip" type="button" title="Underline"><i class="fa fa-underline"></i></button></div>
+                                                    <div class="btn-group grp" role="group"><button id="sub" class="btn" data-bs-toggle="tooltip" type="button" title="Subscript"><i class="fa fa-subscript"></i></button><button id="sup" class="btn" data-bs-toggle="tooltip" type="button" title="Superscript"><i class="fa fa-superscript"></i></button></div>
+                                                    <div class="btn-group grp" role="group"><button id="a_left" class="btn" data-bs-toggle="tooltip" type="button" title="Align Left"><i class="fa fa-align-left"></i></button><button id="a_center" class="btn" data-bs-toggle="tooltip" type="button" title="Align Center"><i class="fa fa-align-center"></i></button><button id="a_right" class="btn" data-bs-toggle="tooltip" type="button" title="Align Right"><i class="fa fa-align-right"></i></button><button id="a_justify" class="btn" data-bs-toggle="tooltip" type="button" title="Align Justify"><i class="fa fa-align-justify"></i></button></div>
+                                                    <div class="btn-group grp" role="group"><button id="list_u" class="btn" data-bs-toggle="tooltip" type="button" title="Unordered List"><i class="fa fa-list-ul"></i></button><button id="list_o" class="btn" data-bs-toggle="tooltip" type="button" title="Ordered List"><i class="fa fa-list-ol"></i></button><button id="indent" class="btn" data-bs-toggle="tooltip" type="button" title="Indent"><i class="fa fa-indent"></i></button><button id="outdent" class="btn" data-bs-toggle="tooltip" type="button" title="Outdent"><i class="fa fa-outdent"></i></button></div>
+                                                    <div class="btn-group grp" role="group">
+                                                        <div class="dropdown btn-group" role="group" data-bs-toggle="tooltip" title="Hyperlink"><button class="btn dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button"><i class="fa fa-link"></i></button>
+                                                            <div class="dropdown-menu"><a class="dropdown-item form-inline" href="#" style="min-width: 300px;" title="Enter URL"><input id="txt_link" class="form-control form-control-sm px-2" type="text" style="border: 1px solid #ccc;" placeholder="Enter URL" /><button id="btn_link" class="btn btn-dark btn-sm" type="button">Button</button></a></div>
+                                                        </div><button id="rmv_link" class="btn" data-bs-toggle="tooltip" type="button" title="Remove Link"><i class="fa fa-cut"></i></button><button id="hr" class="btn" data-bs-toggle="tooltip" type="button" title="Horizontal Rule"><i class="fa fa-arrows-h"></i></button><button id="add_img" class="btn" data-bs-toggle="tooltip" type="button" title="Insert Image"><i class="fa fa-image"></i></button>
+                                                    </div>
+                                                    <div class="btn-group grp" role="group"><button id="undo" class="btn" data-bs-toggle="tooltip" type="button" title="Undo"><i class="fa fa-rotate-left"></i></button><button id="redo" class="btn" data-bs-toggle="tooltip" type="button" title="Redo"><i class="fa fa-rotate-right"></i></button></div>
+                                                    <div class="btn-group grp" role="group"><button id="clear_all_styles" class="btn" data-bs-toggle="tooltip" type="button" title="Clear all styles"><i class="fa fa-refresh"></i></button></div>
+                                                </div>
+                                                <div id="editor" class="p-3" style="background: rgb(255,255,255);"></div><input id="file" class="form-control" type="file" name="file" style="visibility: hidden;position: absolute;left: -9999px;top: -9999px;" />
+                                            </div>
+                                        </div>
+                                        <div class="Form-Field-Div-Buttons" style="margin-top: 25px;padding-left: 25px;display: flex;">
+                                            <div class="btn-group" role="group"><button class="text-center border rounded-pill d-xl-flex justify-content-xl-center align-items-xl-center visible Submit-Button" type="button" button-name="Submit-Business-Account-Background">Submit</button></div>
+                                        </div>
+                                    </div>
+                                    <div id="tab-2" class="tab-pane active" role="tabpanel">
+                                        <form id="Account-Address-Form" class="Account-Address-Form" method="post" action="{% url 'submit_account_address' %}">
+                                            <div class="Hidden-Form-Field-Div">
+                                                <div>{% csrf_token %}</div><input class="form-control Text-Input-Read-Only" type="text" name="Unique_ID" /><input class="form-control Text-Input-Read-Only" type="text" name="Global_Relationship_ID" readonly />
+                                            </div>
+                                            <div class="Form-Field-Label-Address"><label class="form-label Form-Field-Label" style="margin-top: 0px;margin-bottom: 0px;">Property Type<div>
+                                                        <div class="Dropdown-List"><button id="dropdownMenuButton" class="btn btn-primary dropdown-toggle fs-6 fw-semibold" aria-expanded="false" style="background: rgb(255,255,255);color: var(--bs-body-color);border-radius: 10px;height: 38px;min-width: 100%;padding-top: 0px;box-shadow: 0px 0px 3px 1px rgba(0,0,0,3);">
+                                                                Select Property Type
+                                                            </button>
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="min-width: 330px;"><a class="dropdown-item" href="#">Commercial Real Estate</a><a class="dropdown-item" href="#">Office</a><a class="dropdown-item" href="#">Factory</a><a class="dropdown-item" href="#">Warehouse</a><a class="dropdown-item" href="#">Other</a></div>
+                                                        </div><input id="businessPropertyTypeInput" type="hidden" name="Property_Type" />
+                                                    </div></label></div>
+                                            <div class="Form-Field-Div-Address"><label class="form-label Form-Field-Label-Address">Address (Street)<input class="form-control Text-Input" type="text" name="Address_1" /></label></div>
+                                            <div class="Form-Field-Div-Address"><label class="form-label Form-Field-Label-Address">Address (Suite, Condo, etc.)<input class="form-control Text-Input" type="text" name="Address_2" /></label></div>
+                                            <div class="Form-Field-Div"><label class="form-label Form-Field-Label">City<input class="form-control Text-Input" type="text" name="City" /></label></div>
+                                            <div class="Form-Field-Div"><label class="form-label Form-Field-Label">State<input class="form-control Text-Input" type="text" name="State" /></label></div>
+                                            <div class="Form-Field-Div"><label class="form-label Form-Field-Label">Zip Code<input class="form-control Text-Input" type="text" name="Zip" /></label></div>
+                                            <div class="Form-Field-Div-Buttons-Submit"><button id="submit-address-form" class="Submit-Form-Button" type="submit" data-form-id="account-address-form">Submit</button></div>
+                                        </form>
+                                        <div class="Sub-Section-Underline-Div">
+                                            <p class="Tab-Pane-Header"><strong>Existing Property</strong></p>
+                                        </div>
+                                        <div class="Table-Div">
+                                            <div class="table-responsive" data-form-id="Existing-Business-Accounts-Table">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col" style="text-align: left;">Property Type</th>
+                                                            <th scope="col" style="text-align: left;">Street</th>
+                                                            <th class="text-center" scope="col">City, State and Zip Code</th>
+                                                            <th class="d-xxl-flex justify-content-xxl-center" scope="col">Property Management Options</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td data-label="Attributes" scope="row" style="text-align: left;">Commercial Real Estate</td>
+                                                            <td data-label="Attributes" scope="row" style="text-align: left;">1234 Yellow Brick Road</td>
+                                                            <td data-label="Base Class">Fort Wayne, IN 46818</td>
+                                                            <td data-label="Simulated Case">
+                                                                <div><button class="border rounded-pill visible Mgmt-Option-Edit-Button" type="button" style="padding-top: 1px;padding-right: 6px;padding-bottom: 1px;padding-left: 6px;">Edit</button><button class="border rounded-pill visible Mgmt-Option-Delete-Button" type="button">Delete</button></div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td data-label="Attributes" scope="row" style="text-align: left;">Office</td>
+                                                            <td data-label="Attributes" scope="row" style="text-align: left;">9876 Office Park Way</td>
+                                                            <td data-label="Base Class">Fort Wayne, IN 46818</td>
+                                                            <td data-label="Simulated Case">
+                                                                <div><button class="border rounded-pill visible Mgmt-Option-Edit-Button" type="button">Edit</button><button class="border rounded-pill visible Mgmt-Option-Delete-Button" type="button">Delete</button></div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="tab-3" class="tab-pane active" role="tabpanel">
+                                        <form id="Beneficial-Ownership-Form" class="Beneficial-Ownership-Form" method="post">
+                                            <div class="Hidden-Form-Field-Div">
+                                                <div>{% csrf_token %}</div><input class="form-control Text-Input-Read-Only" type="text" name="Unique_ID" /><input class="form-control Text-Input-Read-Only" type="text" name="Global_Relationship_ID" readonly />
+                                            </div>
+                                            <div class="Form-Field-Div-40"><label class="form-label Form-Field-Label">Ownership Selection<div class="Dropdown-List"><button id="dropdownMenuButton" class="btn btn-primary dropdown-toggle fs-6 fw-semibold" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="background: rgb(255,255,255);color: var(--bs-body-color);border-radius: 10px;height: 38px;min-width: 100%;padding-top: 0px;border: none;box-shadow: 0px 0px 3px 1px rgba(0,0,0,3);">
+                                                            Select Account
+                                                        </button>
+                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="min-width: 330px;"><a class="dropdown-item" href="#">To Populate from Account Database Table</a></div>
+                                                    </div></label></div>
+                                            <div class="Form-Field-Div"><label class="form-label Form-Field-Label">Ownership Percentage<input class="form-control Text-Input" type="text" /></label></div>
+                                            <div class="Form-Field-Div-Buttons-Submit"><button id="submit-beneficial-ownership-form" class="Submit-Form-Button" type="submit" data-form-id="beneficial-ownership-form">Submit</button></div>
+                                        </form>
+                                        <div class="Sub-Section-Underline-Div">
+                                            <p class="Tab-Pane-Header"><strong>Existing Identified Ownership</strong></p>
+                                        </div>
+                                        <div class="Table-Div">
+                                            <div class="table-responsive" data-form-id="Existing-Business-Accounts-Table">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col" style="text-align: left;">Account Type</th>
+                                                            <th scope="col" style="text-align: left;">Account name</th>
+                                                            <th class="text-center" scope="col">Direct Ownership %</th>
+                                                            <th class="text-center" scope="col">Net Beneficial Ownership %</th>
+                                                            <th class="text-center" scope="col">Ownership Management Options</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td data-label="Attributes" scope="row" style="text-align: left;">Business</td>
+                                                            <td data-label="Attributes" scope="row" style="text-align: left;">Some Example Company, LLC</td>
+                                                            <td data-label="Base Class">50.00%</td>
+                                                            <td data-label="Base Class">N/A</td>
+                                                            <td data-label="Simulated Case">
+                                                                <div style="box-shadow: 0px 0px 0px;"><button class="border rounded-pill visible Mgmt-Option-Edit-Button" type="button" style="padding-top: 1px;padding-right: 6px;padding-bottom: 1px;padding-left: 6px;">Edit</button><button class="border rounded-pill visible Mgmt-Option-Delete-Button" type="button">Delete</button></div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td data-label="Attributes" scope="row" style="text-align: left;">Personal</td>
+                                                            <td data-label="Attributes" scope="row" style="text-align: left;">John Doe</td>
+                                                            <td data-label="Base Class">25.00%</td>
+                                                            <td data-label="Base Class">75.0%</td>
+                                                            <td data-label="Simulated Case">
+                                                                <div><button class="border rounded-pill visible Mgmt-Option-Edit-Button" type="button">Edit</button><button class="border rounded-pill visible Mgmt-Option-Delete-Button" type="button">Delete</button></div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td data-label="Attributes" scope="row" style="text-align: left;">Personal</td>
+                                                            <td data-label="Attributes" scope="row" style="text-align: left;">Jan Smith</td>
+                                                            <td data-label="Base Class">25.00%</td>
+                                                            <td data-label="Base Class">25.00%</td>
+                                                            <td data-label="Simulated Case">
+                                                                <div><button class="border rounded-pill visible Mgmt-Option-Edit-Button" type="button">Edit</button><button class="border rounded-pill visible Mgmt-Option-Delete-Button" type="button">Delete</button></div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="Section-Header-Div">
+                    <div class="Table-Div">
+                        <div class="table-responsive" data-form-id="Existing-Business-Accounts-Table">
+                            <table class="table">
+                                <thead style="border-radius: 10px;">
+                                    <tr>
+                                        <th scope="col" style="text-align: left;">Business Legal Name</th>
+                                        <th scope="col" style="text-align: left;">DBA Name</th>
+                                        <th class="text-center" scope="col">% of Beneficial Ownership identified</th>
+                                        <th class="text-center" scope="col">Account Management Optoins</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="border-radius: 10px;">
+                                    <tr>
+                                        <td data-label="Attributes" scope="row" style="text-align: left;">Example Company Name, LLC</td>
+                                        <td data-label="Attributes" scope="row" style="text-align: left;">Example Company</td>
+                                        <td data-label="Base Class">100%</td>
+                                        <td data-label="Simulated Case">
+                                            <div><button class="border rounded-pill visible Mgmt-Option-Edit-Button" type="button">Edit</button><button class="border rounded-pill visible Mgmt-Option-Delete-Button" type="button">Delete</button></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-label="Attributes" scope="row" style="text-align: left;">Some Other Example, Inc.</td>
+                                        <td data-label="Attributes" scope="row" style="text-align: left;">Some Other Example</td>
+                                        <td data-label="Base Class">45%</td>
+                                        <td data-label="Simulated Case">
+                                            <div><button class="border rounded-pill visible Mgmt-Option-Edit-Button" type="button">Edit</button><button class="border rounded-pill visible Mgmt-Option-Delete-Button" type="button">Delete</button></div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </div>
+        <div class="Relationship-Div">
+            <section class="Combined-Section">
+                <h2 class="Section-Header"><strong><span style="font-style: normal !important;">Personal Account Management</span></strong></h2><svg class="bi bi-arrows-expand Expand-Account-Icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" data-form-id="Personal-Form-Icon" data-form-target="Personal-Account-Management-Form">
+                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2M8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10"></path>
+                </svg>
+                <section class="Section-Header-Div">
+                    <div class="Tabular-Form" data-form-id="Personal-Account-Management-Form">
+                        <form class="Tabular-Form" data-form-id="Personal-Account-Management-Form">
+                            <div class="card" style="padding-top: 0px;box-shadow: 0px 0px 4px 1px;">
+                                <div>
+                                    <ul class="nav nav-tabs nav-justified" role="tablist" style="box-shadow: 0px 0px 3px 1px;border-radius: 10px;">
+                                        <li class="nav-item Tab-Option" role="presentation"><a class="nav-link active Tab-Link" role="tab" data-bs-toggle="tab" href="#tab-4">Account Details and History of Operations</a></li>
+                                        <li class="nav-item Tab-Option" role="presentation"><a class="nav-link Tab-Link" role="tab" data-bs-toggle="tab" href="#tab-5">Account Addresses</a></li>
+                                        <li class="nav-item Tab-Option" role="presentation"><a class="nav-link Tab-Link" role="tab" data-bs-toggle="tab" href="#tab-6">Linked Account Management</a></li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div id="tab-4" class="tab-pane active" role="tabpanel">
+                                            <header>
+                                                <div class="Form-Field-Div-Account" style="width: 40%;display: inline-block;"><label class="form-label Form-Field-Label-Account">Account Number<input class="form-control Text-Input-Read-Only" type="text" field-name="Unique_ID" /></label></div>
+                                                <div class="Form-Field-Div-Account" style="width: 40%;display: inline-block;"><label class="form-label Form-Field-Label-Account">Unique Jointly Reported ID<br /><input class="form-control Text-Input-Read-Only" type="text" name="Unique_Jointly_Reported_ID" /></label></div>
+                                                <div class="Sub-Section-Underline-Div">
+                                                    <p class="Tab-Pane-Header"><strong>Account Details</strong></p>
+                                                </div>
+                                            </header>
+                                            <div class="container" style="display: inline-block;padding-right: 0px;padding-left: 4px;min-width: 100%;max-width: 100%;">
+                                                <div class="Form-Field-Div"><label class="form-label Form-Field-Label">First Name<input class="form-control Text-Input" type="text" field-name="Name_First" /></label></div>
+                                                <div class="Form-Field-Div"><label class="form-label Form-Field-Label">Middle Name<input class="form-control Text-Input" type="text" field-name="Name_Middle" /></label></div>
+                                                <div class="Form-Field-Div"><label class="form-label Form-Field-Label">Last Name<input class="form-control Text-Input" type="text" /></label></div>
+                                                <div class="Form-Field-Div"><label class="form-label Form-Field-Label">Social Security Number<input class="form-control Text-Input" type="text" /></label></div>
+                                                <div class="Form-Field-Div"><label class="form-label Form-Field-Label">Date of Birth<input class="form-control MM-DD-YYYY-Input" type="date" /></label></div>
+                                                <div class="Form-Field-Div"><label class="form-label Form-Field-Label-Large">Tax Filing Status<div class="Tax-Filing-Status" style="background-color: white;width: 212px;border-radius: 10px;box-shadow: 0px 0px 3px 1px black;padding: 10px;align-items: center;">
+                                                            <div style="margin-right: 10px;"><input id="headOfHousehold" type="radio" name="Tax-Filing-Status" value="Head of Household" /><label for="headOfHousehold">Head of Household</label></div>
+                                                            <div><input id="jointlyReported" type="radio" name="Tax-Filing-Status" value="Jointly Reported" /><label for="jointlyReported">Jointly Reported</label></div>
+                                                        </div></label></div>
+                                                <div class="Jointly-Reported-Account-Details-Div">
+                                                    <div class="Spacer" style="padding-top: 20px;"></div>
+                                                    <div class="Sub-Section-Underline-Div">
+                                                        <p class="Tab-Pane-Header"><strong>Jointly Reported Account Details</strong></p>
+                                                    </div>
+                                                    <div class="Form-Field-Div-Account" style="width: 40%;display: inline-block;"><label class="form-label Form-Field-Label-Account">Account Number<input class="form-control Text-Input-Read-Only" type="text" field-name="Unique_ID" /></label></div>
+                                                    <div class="Form-Field-Div-Account" style="width: 40%;display: inline-block;"><label class="form-label Form-Field-Label-Account">Unique Jointly Reported ID<br /><input class="form-control Text-Input-Read-Only" type="text" field-name="Unique_ID" /></label></div>
+                                                    <div class="Form-Field-Div"><label class="form-label Form-Field-Label">First Name<input class="form-control Text-Input" type="text" /></label></div>
+                                                    <div class="Form-Field-Div"><label class="form-label Form-Field-Label">Middle Name<input class="form-control Text-Input" type="text" /></label></div>
+                                                    <div class="Form-Field-Div"><label class="form-label Form-Field-Label">Last Name<input class="form-control Text-Input" type="text" /></label></div>
+                                                    <div class="Form-Field-Div"><label class="form-label Form-Field-Label">Social Security Number<input class="form-control Text-Input" type="text" /></label></div>
+                                                    <div class="Form-Field-Div"><label class="form-label Form-Field-Label">Date of Birth<input class="form-control MM-DD-YYYY-Input" type="date" /></label></div>
+                                                    <div class="Form-Field-Div"><label class="form-label Form-Field-Label">Tax Filing Status<input class="form-control Text-Input-Read-Only" type="text" form-field="Tax-Filing-Status-Joint-Account" /></label></div>
+                                                </div>
+                                            </div>
+                                            <div class="Form-Field-Div-Buttons" style="margin-top: 25px;padding-left: 25px;">
+                                                <div class="btn-group" role="group"><button class="text-center border rounded-pill d-xl-flex justify-content-xl-center align-items-xl-center visible Submit-Button" type="button">Submit</button></div>
+                                            </div>
+                                            <header style="padding-top: 15px;padding-bottom: 0px;margin-bottom: -35px;">
+                                                <div class="Sub-Section-Underline-Div">
+                                                    <p class="Tab-Pane-Header"><strong>Personal Background, Management Experience and Other Information</strong></p>
+                                                </div>
+                                            </header>
+                                            <div class="container" style="min-width: 100%;max-width: 100%;padding-top: 0px;margin-top: 0px;">
+                                                <div id="wysiwyg" class="container mt-5" style="min-width: 90%;margin-top: -10px;">
+                                                    <div id="toolbar">
+                                                        <div class="btn-group grp" role="group">
+                                                            <div class="dropdown btn-group" role="group" data-bs-toggle="tooltip" title="Font"><button class="btn dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button"><i class="fa fa-font"></i></button>
+                                                                <div id="fonts" class="dropdown-menu"><a class="dropdown-item fnt" href="#" data-font="Serif" style="font-family:'Serif';">Serif</a><a class="dropdown-item fnt" href="#" data-font="Sans" style="font-family:'Sans';">Sans</a><a class="dropdown-item fnt" href="#" data-font="Arial" style="font-family:'Arial';">Arial</a><a class="dropdown-item fnt" href="#" data-font="Arial Black" style="font-family:'Arial Black';">Arial Black</a><a class="dropdown-item fnt" href="#" data-font="Courier" style="font-family:'Courier';">Courier</a><a class="dropdown-item fnt" href="#" data-font="Courier New" style="font-family:'Courier New';">Courier New</a><a class="dropdown-item fnt" href="#" data-font="Comic Sans MS" style="font-family:'Comic Sans MS';">Comic Sans MS</a><a class="dropdown-item fnt" href="#" data-font="Helvetica" style="font-family:'Helvetica';">Helvetica</a><a class="dropdown-item fnt" href="#" data-font="Impact" style="font-family:'Impact';">Impact</a><a class="dropdown-item fnt" href="#" data-font="Lucida Grande" style="font-family:'Lucida Grande';">Lucida Grande<br /></a><a class="dropdown-item fnt" href="#" data-font="Lucida Sans" style="font-family:'Lucida Sans';">Lucida Sans<br /></a><a class="dropdown-item fnt" href="#" data-font="Tahoma" style="font-family:'Tahoma';">Tahoma<br /></a><a class="dropdown-item fnt" href="#" data-font="Times" style="font-family:'Times';">Times<br /></a><a class="dropdown-item fnt" href="#" data-font="Times New Roman" style="font-family:'Times New Roman';">Times New Roman<br /></a><a class="dropdown-item fnt" href="#" data-font="Verdana" style="font-family:'Verdana';">Verdana<br /></a></div>
+                                                            </div>
+                                                            <div class="dropdown btn-group" role="group" data-bs-toggle="tooltip" title="Font Size"><button class="btn dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button"><i class="fa fa-text-height"></i></button>
+                                                                <div class="dropdown-menu"><a class="dropdown-item fntSize" href="#" data-size="1">Super Extra Small</a><a class="dropdown-item fntSize" href="#" data-size="2">Extra Small</a><a class="dropdown-item fntSize" href="#" data-size="3">Small</a><a class="dropdown-item fntSize" href="#" data-size="4">Medium</a><a class="dropdown-item fntSize" href="#" data-size="5">Large</a><a class="dropdown-item fntSize" href="#" data-size="6">Extra Large</a><a class="dropdown-item fntSize" href="#" data-size="7">Super Extra Large</a><a id="h1" class="dropdown-item" href="#">H1</a><a id="h2" class="dropdown-item" href="#">H2</a><a id="h3" class="dropdown-item" href="#">H3</a><a id="h4" class="dropdown-item" href="#">H4</a><a id="h5" class="dropdown-item" href="#">H5</a><a id="h6" class="dropdown-item" href="#">H6</a></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="btn-group grp" role="group">
+                                                            <div class="dropdown btn-group" role="group" data-bs-toggle="tooltip" title="Background Color"><button class="btn dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button"><i class="fa fa-pencil-square"></i></button>
+                                                                <div class="dropdown-menu"><a class="dropdown-item bc" href="#" data-color="#cc4125">Red Berry</a><a class="dropdown-item bc" href="#" data-color="#e06666">Red</a><a class="dropdown-item bc" href="#" data-color="#f6b26b">Orange</a><a class="dropdown-item bc" href="#" data-color="#ffd966">Yellow</a><a class="dropdown-item bc" href="#" data-color="#93c47d">Green</a><a class="dropdown-item bc" href="#" data-color="#76a5af">Cyan</a><a class="dropdown-item bc" href="#" data-color="#6d9eeb">Cornflower Blue</a><a class="dropdown-item bc" href="#" data-color="#6fa8dc">Blue</a><a class="dropdown-item bc" href="#" data-color="#8e7cc3">Purple</a><a class="dropdown-item bc" href="#" data-color="#c27ba0">Magenta</a></div>
+                                                            </div>
+                                                            <div class="dropdown btn-group" role="group" data-bs-toggle="tooltip" title="Font Color"><button class="btn dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button"><i class="fa fa-pencil"></i></button>
+                                                                <div class="dropdown-menu"><a class="dropdown-item fc" href="#" data-color="#000000">Black</a><a class="dropdown-item fc" href="#" data-color="#555555">Dark Grey</a><a class="dropdown-item fc" href="#" data-color="#cccccc">Light Grey</a><a class="dropdown-item fc bg-dark" href="#" data-color="#ffffff">White</a><a class="dropdown-item fc" href="#" data-color="#980000">Red Berry</a><a class="dropdown-item fc" href="#" data-color="#660000">Red</a><a class="dropdown-item fc" href="#" data-color="#783f04">Orange</a><a class="dropdown-item fc bg-dark" href="#" data-color="#ffff00">Yellow</a><a class="dropdown-item fc" href="#" data-color="#274e13">Green</a><a class="dropdown-item fc" href="#" data-color="#0c343d">Cyan</a><a class="dropdown-item fc" href="#" data-color="#1c4587">Cornflower Blue</a><a class="dropdown-item fc" href="#" data-color="#073763">Blue</a><a class="dropdown-item fc" href="#" data-color="#20124d">Purple</a><a class="dropdown-item fc" href="#" data-color="#4c1130">Magenta</a></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="btn-group grp" role="group"><button id="b" class="btn" data-bs-toggle="tooltip" type="button" title="Bold"><i class="fa fa-bold"></i></button><button id="i" class="btn" data-bs-toggle="tooltip" type="button" title="Italic"><i class="fa fa-italic"></i></button><button id="u" class="btn" data-bs-toggle="tooltip" type="button" title="Underline"><i class="fa fa-underline"></i></button></div>
+                                                        <div class="btn-group grp" role="group"><button id="sub" class="btn" data-bs-toggle="tooltip" type="button" title="Subscript"><i class="fa fa-subscript"></i></button><button id="sup" class="btn" data-bs-toggle="tooltip" type="button" title="Superscript"><i class="fa fa-superscript"></i></button></div>
+                                                        <div class="btn-group grp" role="group"><button id="a_left" class="btn" data-bs-toggle="tooltip" type="button" title="Align Left"><i class="fa fa-align-left"></i></button><button id="a_center" class="btn" data-bs-toggle="tooltip" type="button" title="Align Center"><i class="fa fa-align-center"></i></button><button id="a_right" class="btn" data-bs-toggle="tooltip" type="button" title="Align Right"><i class="fa fa-align-right"></i></button><button id="a_justify" class="btn" data-bs-toggle="tooltip" type="button" title="Align Justify"><i class="fa fa-align-justify"></i></button></div>
+                                                        <div class="btn-group grp" role="group"><button id="list_u" class="btn" data-bs-toggle="tooltip" type="button" title="Unordered List"><i class="fa fa-list-ul"></i></button><button id="list_o" class="btn" data-bs-toggle="tooltip" type="button" title="Ordered List"><i class="fa fa-list-ol"></i></button><button id="indent" class="btn" data-bs-toggle="tooltip" type="button" title="Indent"><i class="fa fa-indent"></i></button><button id="outdent" class="btn" data-bs-toggle="tooltip" type="button" title="Outdent"><i class="fa fa-outdent"></i></button></div>
+                                                        <div class="btn-group grp" role="group">
+                                                            <div class="dropdown btn-group" role="group" data-bs-toggle="tooltip" title="Hyperlink"><button class="btn dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button"><i class="fa fa-link"></i></button>
+                                                                <div class="dropdown-menu"><a class="dropdown-item form-inline" href="#" style="min-width: 300px;" title="Enter URL"><input id="txt_link" class="form-control form-control-sm px-2" type="text" style="border: 1px solid #ccc;" placeholder="Enter URL" /><button id="btn_link" class="btn btn-dark btn-sm" type="button">Button</button></a></div>
+                                                            </div><button id="rmv_link" class="btn" data-bs-toggle="tooltip" type="button" title="Remove Link"><i class="fa fa-cut"></i></button><button id="hr" class="btn" data-bs-toggle="tooltip" type="button" title="Horizontal Rule"><i class="fa fa-arrows-h"></i></button><button id="add_img" class="btn" data-bs-toggle="tooltip" type="button" title="Insert Image"><i class="fa fa-image"></i></button>
+                                                        </div>
+                                                        <div class="btn-group grp" role="group"><button id="undo" class="btn" data-bs-toggle="tooltip" type="button" title="Undo"><i class="fa fa-rotate-left"></i></button><button id="redo" class="btn" data-bs-toggle="tooltip" type="button" title="Redo"><i class="fa fa-rotate-right"></i></button></div>
+                                                        <div class="btn-group grp" role="group"><button id="clear_all_styles" class="btn" data-bs-toggle="tooltip" type="button" title="Clear all styles"><i class="fa fa-refresh"></i></button></div>
+                                                    </div>
+                                                    <div id="editor" class="p-3" style="background: rgb(255,255,255);"></div><input id="file" class="form-control" type="file" name="file" style="visibility: hidden;position: absolute;left: -9999px;top: -9999px;" />
+                                                </div>
+                                            </div>
+                                            <div class="Form-Field-Div-Buttons" style="margin-top: 25px;padding-left: 25px;">
+                                                <div class="btn-group" role="group"><button class="text-center border rounded-pill d-xl-flex justify-content-xl-center align-items-xl-center visible Submit-Button" type="button">Submit</button></div>
+                                            </div>
+                                        </div>
+                                        <div id="tab-5" class="tab-pane" role="tabpanel">
+                                            <form id="Account-Address-Form-1" class="Account-Address-Form" method="post">
+                                                <div class="Form-Field-Div"><label class="form-label Form-Field-Label" style="margin-top: 0px;margin-bottom: 0px;">Property Type<div class="Dropdown-List"><button id="dropdownMenuButton" class="btn btn-primary dropdown-toggle fs-6 fw-semibold" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="background: rgb(255,255,255);color: var(--bs-body-color);border-radius: 10px;height: 38px;min-width: 100%;padding-top: 0px;border: none;box-shadow: 0px 0px 3px 1px rgba(0,0,0,3);">
+                                                                Select Property Type
+                                                            </button>
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="min-width: 330px;"><a class="dropdown-item" href="#">Primary Residence</a><a class="dropdown-item" href="#">Secondary Residence</a><a class="dropdown-item" href="#">Mailing Address</a><a class="dropdown-item" href="#">Vacation Residence</a><a class="dropdown-item" href="#">Investment Real Estate</a></div>
+                                                        </div></label></div>
+                                                <div class="Form-Field-Div-Address"><label class="form-label Form-Field-Label-Address">Address (Street)<input class="form-control Text-Input" type="text" /></label></div>
+                                                <div class="Form-Field-Div-Address"><label class="form-label Form-Field-Label-Address">Address (Suite, Condo, etc.)<input class="form-control Text-Input" type="text" /></label></div>
+                                                <div class="Form-Field-Div"><label class="form-label Form-Field-Label">City<input class="form-control Text-Input" type="text" /></label></div>
+                                                <div class="Form-Field-Div"><label class="form-label Form-Field-Label">State<input class="form-control Text-Input" type="text" /></label></div>
+                                                <div class="Form-Field-Div"><label class="form-label Form-Field-Label">Zip Code<input class="form-control Text-Input" type="text" /></label></div>
+                                                <div class="Form-Field-Div-Buttons" style="margin-top: 25px;padding-left: 25px;">
+                                                    <div class="btn-group" role="group"><button class="text-center border rounded-pill d-xl-flex justify-content-xl-center align-items-xl-center visible Save-Button" type="button" style="padding-top: 1px;padding-right: 6px;padding-bottom: 1px;padding-left: 6px;display: inline-block;width: 125px;height: 35px;text-align: center;font-weight: bold;background: var(--bs-primary);color: rgb(255,255,255);margin: 5px;margin-right: 5px;margin-bottom: 5px;margin-top: 5px;margin-left: 5px;border-color: var(--bs-body-color);box-shadow: 0px 0px 3px 1px rgb(0,0,0);">Submit</button></div>
+                                                </div>
+                                            </form>
+                                            <div class="Form-Field-Div-Buttons" style="margin-top: 25px;padding-left: 25px;"></div>
+                                            <div class="Sub-Section-Underline-Div">
+                                                <p class="Tab-Pane-Header"><strong>Existing Personal Property</strong></p>
+                                            </div>
+                                            <div class="Table-Div">
+                                                <div class="table-responsive" data-form-id="Existing-Business-Accounts-Table">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col" style="text-align: left;">Property Type</th>
+                                                                <th scope="col" style="text-align: left;">Street</th>
+                                                                <th class="text-center" scope="col">City, State and Zip Code</th>
+                                                                <th class="d-xxl-flex justify-content-xxl-center" scope="col">Property Management Options</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td data-label="Attributes" scope="row" style="text-align: left;">Primary Residence</td>
+                                                                <td data-label="Attributes" scope="row" style="text-align: left;">2233 Fairy Tale Lane</td>
+                                                                <td data-label="Base Class">Fort Wayne, IN 46818</td>
+                                                                <td data-label="Simulated Case">
+                                                                    <div><button class="border rounded-pill visible Mgmt-Option-Edit-Button" type="button" style="padding-top: 1px;padding-right: 6px;padding-bottom: 1px;padding-left: 6px;">Edit</button><button class="border rounded-pill visible Mgmt-Option-Delete-Button" type="button">Delete</button></div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td data-label="Attributes" scope="row" style="text-align: left;">Investment Real Estate</td>
+                                                                <td data-label="Attributes" scope="row" style="text-align: left;">8675 Rental Unit Drive</td>
+                                                                <td data-label="Base Class">Fort Wayne, IN 46818</td>
+                                                                <td data-label="Simulated Case">
+                                                                    <div><button class="border rounded-pill visible Mgmt-Option-Edit-Button" type="button">Edit</button><button class="border rounded-pill visible Mgmt-Option-Delete-Button" type="button">Delete</button></div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="tab-6" class="tab-pane" role="tabpanel">
+                                            <div class="Sub-Section-Underline-Div">
+                                                <p class="Tab-Pane-Header"><strong>Linked Personal Account</strong></p>
+                                            </div>
+                                            <div style="margin-top: -25px;">
+                                                <div class="Form-Field-Div"><label class="form-label Form-Field-Label">Account Name<input class="form-control Text-Input-Read-Only" type="text" /></label></div>
+                                                <div class="Form-Field-Div"><label class="form-label Form-Field-Label">Account Relationship<input class="form-control Text-Input-Read-Only" type="text" /></label></div>
+                                                <div class="btn-group" role="group" style="min-width: 30%;height: 75px;position: static;display: inline-flex;padding-top: 45px;"><button class="text-center border rounded-pill d-xl-flex justify-content-xl-center align-items-xl-center visible Save-Button" type="button" style="padding-top: 1px;padding-right: 6px;padding-bottom: 1px;padding-left: 6px;display: inline-block;width: 33.33%;height: 35px;text-align: center;font-weight: bold;background: var(--bs-primary);color: rgb(255,255,255);margin: 5px;margin-right: 5px;margin-bottom: 5px;margin-top: 5px;margin-left: 5px;border-color: var(--bs-body-color);box-shadow: 0px 0px 3px 1px rgb(0,0,0);">Link New</button><button class="text-center border rounded-pill d-xl-flex justify-content-xl-center align-items-xl-center visible Unlink-Button" type="button" style="padding-top: 1px;padding-right: 6px;padding-bottom: 1px;padding-left: 6px;display: inline-block;width: 33.33%;height: 35px;text-align: center;font-weight: bold;background: var(--bs-danger-text-emphasis);color: rgb(255,255,255);margin: 5px;margin-right: 5px;margin-bottom: 5px;margin-top: 5px;margin-left: 5px;border-color: var(--bs-body-color);box-shadow: 0px 0px 3px 1px rgb(0,0,0);">Unlink</button></div>
+                                            </div>
+                                            <div class="Sub-Section-Underline-Div">
+                                                <p class="Tab-Pane-Header"><strong>Business Account Relationships</strong></p>
+                                            </div>
+                                            <div class="Table-Div">
+                                                <div class="table-responsive" data-form-id="Existing-Business-Accounts-Table" style="border-radius: 10px;">
+                                                    <table class="table">
+                                                        <thead style="border-radius: 10px;">
+                                                            <tr style="border-radius: 10px;">
+                                                                <th scope="col" style="text-align: left;">Account Name</th>
+                                                                <th scope="col" style="text-align: left;">Organizational Role</th>
+                                                                <th class="text-center" scope="col">Personal Effective Ownership %</th>
+                                                                <th class="d-xxl-flex justify-content-xxl-center" scope="col">Account Relationship Management</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td data-label="Attributes" scope="row" style="text-align: left;">Some Example Company, LLC</td>
+                                                                <td data-label="Attributes" scope="row" style="text-align: left;">Member</td>
+                                                                <td data-label="Base Class">30.00%</td>
+                                                                <td data-label="Simulated Case">
+                                                                    <div style="box-shadow: 0px 0px 0px;"><button class="border rounded-pill visible Mgmt-Option-Edit-Button" type="button" style="padding-top: 1px;padding-right: 6px;padding-bottom: 1px;padding-left: 6px;">View</button></div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td data-label="Attributes" scope="row" style="text-align: left;">ABC Company, Inc.</td>
+                                                                <td data-label="Attributes" scope="row" style="text-align: left;">Member</td>
+                                                                <td data-label="Base Class">75.0%</td>
+                                                                <td data-label="Simulated Case">
+                                                                    <div><button class="border rounded-pill visible Mgmt-Option-Edit-Button" type="button">View</button></div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td data-label="Attributes" scope="row" style="text-align: left;">XYZ Industries, Inc.</td>
+                                                                <td data-label="Attributes" scope="row" style="text-align: left;">CEO</td>
+                                                                <td data-label="Base Class">25.00%</td>
+                                                                <td data-label="Simulated Case">
+                                                                    <div><button class="border rounded-pill visible Mgmt-Option-Edit-Button" type="button">View</button></div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <section class="Section-Header-Div">
+                        <div class="Table-Div">
+                            <div class="table-responsive" data-form-id="Existing-Personal-Accounts-Table">
+                                <table class="table">
+                                    <thead style="border-radius: 10px;">
+                                        <tr>
+                                            <th scope="col" style="text-align: left;">Account Name (Head of Household)</th>
+                                            <th scope="col" style="text-align: left;">JOINTLY REPORTED ACCOUNT NAME</th>
+                                            <th class="text-center" scope="col">% of Required fields completed</th>
+                                            <th class="text-center" scope="col">Account Management Optoins</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td data-label="Attributes" scope="row" style="text-align: left;">John Doe</td>
+                                            <td class="text-start" data-label="Base Class">Jane Doe</td>
+                                            <td data-label="Base Class">100%</td>
+                                            <td data-label="Simulated Case">
+                                                <div><button class="border rounded-pill visible Mgmt-Option-Edit-Button" type="button" style="padding-top: 1px;padding-right: 6px;padding-bottom: 1px;padding-left: 6px;">Edit</button><button class="border rounded-pill visible Mgmt-Option-Delete-Button" type="button">Delete</button></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td data-label="Attributes" scope="row" style="text-align: left;">Jan Smith</td>
+                                            <td class="text-start" data-label="Base Class"></td>
+                                            <td data-label="Base Class">100%</td>
+                                            <td data-label="Simulated Case">
+                                                <div><button class="border rounded-pill visible Mgmt-Option-Edit-Button" type="button">Edit</button><button class="border rounded-pill visible Mgmt-Option-Delete-Button" type="button">Delete</button></div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+            </section>
+        </div>
+    </div>
+    </div>
+    <footer class="sticky-footer">
+        <div class="container my-auto">
+            <div class="text-center my-auto copyright"><span class="Footer-Copyright-Text" style="font-size: 19.8px;text-shadow: 0px 0px 20px rgb(0,0,0);">Copyright © OpnLend, Inc.</span></div>
+        </div><a class="d-inline border rounded scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </footer>
+    <!-- Load jQuery and jQuery UI -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- Load Bootstrap, Chart.js, and other custom scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+    <script src="{% static 'assets/js/bs-init.js' %}"></script>
+    <script src="{% static 'assets/js/theme.js' %}"></script>
+    <script src="{% static 'assets/js/wysiwyg-jquery-ui.min.js' %}"></script>
+    <script src="{% static 'assets/js/wysiwyg-jquery.ui-contextmenu.min.js' %}"></script>
+    <script src="{% static 'assets/js/wysiwyg.js' %}"></script>
+    <script src="{% static 'assets/js/Relationships.js' %}"></script>
+    <script src="{% static 'assets/js/OpnLend.js' %}"></script>
+</body>
+
+</html>
+</html>
