@@ -64,12 +64,25 @@ class BusinessAccounts(models.Model):
     class Meta:
         db_table = 'Business_Accounts'
 
-# Placeholder PersonalAccount model
+# Personal Accounts Model
+TAX_FILING_STATUS_CHOICES = [
+    ('Single Filer', 'Single Filer'),
+    ('Head of Household', 'Head of Household'),
+    ('Jointly Reported', 'Jointly Reported'),
+]
+
 class PersonalAccounts(models.Model):
     Global_Relationship_ID = models.ForeignKey(GlobalRelationship, on_delete=models.CASCADE, related_name='Personal_Accounts')
     Unique_ID = models.UUIDField(default=uuid4, editable=False, primary_key=True)
-    Unique_Jointly_Reported_ID = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='joint_account')
-    # More fields to come....
+    Unique_Jointly_Reported_ID = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='Linked_Account')
+    Name_Prefix = models.CharField(max_length=10, blank=True)
+    First_Name = models.CharField(max_length=100)
+    Middle_Name_or_Initial = models.CharField(max_length=100, blank=True)
+    Last_Name = models.CharField(max_length=100)
+    Name_Suffix = models.CharField(max_length=10, blank=True)
+    Social_Security_Number = models.CharField(max_length=11, blank=True)
+    Date_of_Birth = models.DateField(blank=True)
+    Tax_Filing_Status = models.CharField(max_length=20, blank=True, choices=TAX_FILING_STATUS_CHOICES)
 
     def save(self, *args, **kwargs):
         if not self.Unique_ID:
@@ -77,7 +90,7 @@ class PersonalAccounts(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.Name
+        return f"{self.First_Name} {self.Last_Name}"
 
     class Meta:
         db_table = 'Personal_Accounts'
