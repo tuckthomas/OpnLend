@@ -11,11 +11,14 @@ from .models import SBALoanData
 from django.db.models import Count, Sum, Avg, Max, Case, When, Value, CharField, F
 from django.db.models.functions import Coalesce, Concat
 from django.core.serializers import serialize
+from django.core.cache import cache
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
-def home(request):
-    return render(request, 'dashboard/home.html')
+def Dashboard(request):
+    cache.clear()  # Clear the cache
+    return render(request, 'Dashboard.html')
+
 
 logger = logging.getLogger(__name__)  # Get an instance of a logger
 
@@ -26,7 +29,6 @@ def data_table(request):
 
     # Remove state abbreviations from all counties
     project_county = re.sub(r'\(\w{2}\)', '', project_county).strip()
-
 
     # Debug statements to print the values
     print('Institution Name:', institution_name)
@@ -342,7 +344,7 @@ def download_and_process_data(request):
         conversion_dict = {
             'Fcu': 'Federal Credit Union', 'Cu': 'Credit Union', ' Inc.': ', Inc.',
             'Corp': 'Corporation', 'Corp.': 'Corporation', 'Co': 'Company', 'Limited Liability Company': ', LLC',
-            'NA': 'National Association', 'Assoc.': 'Association',
+            ' NA ': 'National Association', 'Assoc.': 'Association',
         }
 
         def acronym_replacer(name):
@@ -358,6 +360,9 @@ def download_and_process_data(request):
 
     # Apply the function
     combined_df = resolve_institution_acronym(combined_df)
+
+    # For Revolver Status, converts "0" to False, "1" to True, and blank to False
+    combined_df['RevolverStatus'] = combined_df['RevolverStatus'].replace({"0": False, "1": True, "": False}).astype(bool)
 
     # Debug progress message
     print("Successfully resolved acronyms.")
@@ -428,19 +433,30 @@ def download_and_process_data(request):
     sbaloandata_csv_path = os.path.join(settings.MEDIA_ROOT, 'CombinedSBAData.csv')
 
     # Indicate the table name
-    table_name = 'SBALoanData'
+    table_name = "SBALoans"
 
     # Delete existing records in the table
     with connection.cursor() as cursor:
-        cursor.execute(f'TRUNCATE TABLE {table_name}')
+        cursor.execute(f'TRUNCATE TABLE \"{table_name}\"')
 
     # Convert the combined_df DataFrame to a CSV file
     combined_df.to_csv(sbaloandata_csv_path, index=False)
 
-    # Use the COPY command to insert data from the CSV file
+    # Print column headers for debugging
+    print("Columns in DataFrame being written to CSV:", combined_df.columns.tolist())
+
+    # Debugging: Print first few lines of CSV file
+    print("First few lines of the CSV file:")
     with open(sbaloandata_csv_path, 'r') as csv_file:
+        for _ in range(5):  # Adjust the range as needed
+            print(csv_file.readline().strip())
+
+    # Use the COPY command to insert data from the CSV file, ignoring the CSV header
+    with open(sbaloandata_csv_path, 'r') as csv_file:
+        # Skip the header row
+        next(csv_file)
         with connection.cursor() as cursor:
-            cursor.copy_expert(f"COPY {table_name} FROM stdin WITH CSV HEADER", csv_file)
+            cursor.copy_expert(f"COPY \"{table_name}\" FROM stdin WITH CSV", csv_file)
 
     # Commit the transaction
     transaction.commit()
@@ -449,7 +465,7 @@ def download_and_process_data(request):
     print("Data operation completed successfully.")
 
     # Redirect to 'home'
-    return redirect('home')
+    return redirect('Dashboard')
 
 @csrf_exempt
 def log_js_error(request):
