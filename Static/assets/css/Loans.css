@@ -1,0 +1,251 @@
+.Relationship-Div, .Background-Div {
+    padding-right: 20%;
+    padding-left: 20%;
+    padding-bottom: 1%;
+    border-bottom-color: rgb(0,0,0);
+  }
+  
+  .sources-and-uses-table, .fee-schedule-table {
+    min-width: 95%;
+  }
+  
+  .fee-schedule-table {
+    max-width: 65%;
+  }
+  
+  .sources-and-uses-container, .sources-and-uses-column {
+    min-width: 100%;
+    max-width: 100%;
+    padding: 0.9rem;
+  }
+  
+  .Text-Input-All-In-Rate {
+    border-radius: 10px;
+    height: 38px;
+    max-width: 40%;
+    box-shadow: 0px 0px 3px 1px;
+  }
+  
+  .Form-Field-Div-Tickler-Filter, .Form-Field-Div-Tickler-Document-List {
+    height: 50px;
+  }
+  
+  .Form-Field-Div-Rate-Guaranty-Applied {
+    height: 75px;
+    display: inline-flex;
+    min-width: 30%;
+    max-width: 40%;
+    margin-right: 15px;
+  }
+  
+  .Form-Field-Div-Primary-Borrower {
+    height: 75px;
+    display: inline-flex;
+    min-width: 65%;
+    max-width: 65%;
+    margin-right: 15px;
+  }
+  
+  .Text-Input-Loan-Purpose, .Text-Input-Other-Repayment-Description {
+    border-radius: 10px;
+    min-height: 48px;
+    max-width: 100%;
+    box-shadow: 0px 0px 3px 1px;
+    overflow: auto;
+    resize: vertical;
+  }
+  
+  .Form-Field-Div-Base-Rate, .Form-Field-Div-Rate-Spread, .Form-Field-Div-All-In-Rate {
+    height: 75px;
+    display: inline-flex;
+    min-width: 30%;
+    max-width: 30%;
+    margin-right: 15px;
+  }
+  
+  .Form-Field-Div-Interest-Type {
+    display: block;
+    min-width: 30%;
+    max-width: 40%;
+    margin-right: 15px;
+  }
+  
+  .Form-Field-Div-Term-and-Amt {
+    height: 75px;
+    display: inline-flex;
+    min-width: 40%;
+    margin-right: 15px;
+  }
+  
+  .Form-Field-Div-Rate-Period-Selection {
+    height: 100%;
+    display: inline-flex;
+    min-width: 40%;
+    margin-right: 15px;
+  }
+  
+  .Interest-Rate-Header {
+    padding-top: 5px;
+    padding-bottom: 0px;
+    margin-bottom: -10px;
+    font-size: 15px;
+  }
+  
+  .Combined-Section-New-Loan-Request, .Combined-Section-Existing-Loans {
+    box-shadow: 0px 0px 6px 4px;
+    border-radius: 10px;
+    margin-top: 30px;
+    background: rgb(65,107,114);
+    border-radius: 25px;
+    padding-bottom: 20px;
+  }
+  
+  .loan-tab-items.nav-justified {
+    box-shadow: 0px 0px 3px 1px;
+    border-radius: 10px;
+  }
+  
+  .loan-tab-items {
+    box-shadow: 0px 0px 3px 1px;
+    border-radius: 10px;
+  }
+  
+  #Loan_Amount {
+    max-width: 50%;
+  }
+  
+  #Loan_Term_Months, #Loan_Term_Amortization, #Loan_Amount {
+    text-align: right;
+  }
+  
+  .delete-source-and-use {
+    width: 10%;
+  }
+  
+  .sources-and-uses-row {
+    height: 16px;
+    font-size: 20px;
+  }
+  
+  .sources-and-uses-header-and-footer {
+    font-weight: bold;
+    height: 16px;
+    font-size: 20px;
+  }
+  
+  .source-description, .use-description {
+    width: 33%;
+    height: 16px;
+  }
+  
+  .fee-description {
+    width: 40%;
+    height: 16px;
+    text-align: left;
+  }
+  
+  .fee-amount {
+    width: 20%;
+  }
+  
+  .source-amount, .use-amount {
+    width: 13%;
+  }
+  
+  delete-icon-column {
+    width: 2%;
+  }
+  
+  .delete-icon-column-fee {
+    width: 10%;
+  }
+  
+  .fee-schedule-row {
+    max-width: 90%;
+  }
+  
+  .Interest-Rate-Period-Group {
+    display: inline-block;
+  }
+  
+  .collateral-table-pledgor-cell {
+    text-align: left;
+  }
+  
+  .net-collateral-value-cell {
+    text-align: right;
+  }
+  
+  .Interest-Rate-Period-Group {
+    box-shadow: 0px 0px 7px 1px;
+    border-radius: 10px;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 0px;
+    margin-right: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  .Interest-Rate-Fields-Div {
+    box-shadow: 0px 0px 7px 1px;
+    border-radius: 10px;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 0px;
+    margin-right: 0px;
+    margin-left: -5px;
+  }
+  
+  .Sources-and-Uses-Add-Row-Button {
+    width: 65px;
+    height: 75px;
+    background: var(--bs-info-text-emphasis);
+    border-radius: 10px;
+    box-shadow: 0px 0px 7px 3px rgba(0,0,0,0.9);
+    color: rgb(255,255,255);
+    padding: 0px;
+    margin-left: 10px;
+    font-weight: bold;
+    border-width: 1px;
+    backdrop-filter: blur(0px);
+    margin-top: 20px;
+    margin-right: 0px;
+  }
+  
+  .Sources-and-Uses-Add-Row-Button, .Fee-Add-Row-Button {
+    width: 65px;
+    height: 75px;
+    background: var(--bs-info-text-emphasis);
+    border-radius: 10px;
+    box-shadow: 0px 0px 7px 3px rgba(0,0,0,0.9);
+    color: rgb(255,255,255);
+    padding: 0px;
+    margin-left: 10px;
+    font-weight: bold;
+    border-width: 1px;
+    backdrop-filter: blur(0px);
+    margin-top: 20px;
+    margin-right: 0px;
+  }
+  
+  .Form-Field-Div-Guaranty {
+    width: 40%;
+    display: inline-flex;
+  }
+  
+  .Tickler-Pane-Header {
+    margin-top: 10px;
+    text-align: center;
+    background: rgb(255,255,255);
+    color: var(--bs-body-color);
+    border-radius: 10px;
+    height: 38px;
+    width: 100%;
+    padding: 0px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 0px 7px 1px;
+  }
+  
+  

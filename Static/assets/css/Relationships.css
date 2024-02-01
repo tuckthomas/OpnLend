@@ -1,0 +1,37 @@
+.Submit-Button {
+  padding-top: 1px;
+  padding-right: 6px;
+  padding-bottom: 1px;
+  padding-left: 6px;
+  display: inline-block;
+  width: 125px;
+  height: 35px;
+  text-align: center;
+  font-weight: bold;
+  background: var(--bs-primary);
+  color: rgb(255,255,255);
+  margin: 5px;
+  border-color: var(--bs-body-color);
+  box-shadow: 0px 0px 3px 1px rgb(0,0,0);
+}
+
+.Form-Field-Label-Address {
+  height: 60px;
+  min-width: 45%;
+  max-width: 45%;
+}
+
+.Relationship-Div, .Background-Div {
+  padding-right: 20%;
+  padding-left: 20%;
+  padding-bottom: 1%;
+  border-bottom-color: rgb(0,0,0);
+}
+
+.Form-Field-Div-Buttons-Submit {
+  padding-top: 15px;
+}
+
+.Form-Field-Div-Address {
+  margin-top: 15px;
+}
