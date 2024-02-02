@@ -1,0 +1,38 @@
+OpnLend, Inc. Custom License Version 1.0
+
+Copyright (c) 2024, Tucker Thomas Olson and OpnLend, Inc.
+
+Permission Notice:
+
+Subject to the conditions stated below, Tucker Thomas Olson and OpnLend, Inc. hereby grant to any person obtaining a copy of this software and associated documentation files (the "Software"), a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable (except as stated in this license) license to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software.
+
+I. Use and Redistribution:
+
+The Software is provided "as is", for both personal and commercial use, subject to the terms of this license.
+Redistribution of the Software in source or binary form must retain this license in its entirety, including this permission notice, conditions, and the following disclaimer.
+
+II. Commercial Use and Monetization:
+
+Commercial use of the Software, including but not limited to offering support, maintenance, training, and managed hosting services, is permitted under this license.
+
+Tucker Thomas Olson and OpnLend, Inc. retain exclusive rights to offer commercial support, maintenance, training, certification programs, and managed hosting services for the Software. Third parties wishing to offer these services must obtain prior written consent from OpnLend, Inc.
+
+III. Contributions and Modifications:
+
+Contributions back to the main project are encouraged but not required. All contributions become the property of Tucker Thomas Olson and OpnLend, Inc., under this license.
+
+Modifications for internal use are permitted. If modifications are distributed, they must be under the same terms of this license.
+
+IV. Trademarks and Branding:
+
+The use of any names or trademarks associated with Tucker Thomas Olson (including derivatives such as "Tucker Olson", "Tucker", "Olson"), and OpnLend, Inc. (including derivatives such as  OpnLend ) and any related logos, trademarks, or branding elements, in any manner that endorses or promotes products derived from this Software, is strictly prohibited without prior written permission from OpnLend, Inc.
+
+Third parties wishing to offer support or services related to the Software, including any derivatives or modifications thereof, are prohibited from using the aforementioned names, trademarks, or branding elements to imply endorsement or an official partnership with Tucker Thomas Olson, "OpnLend, Inc.", or the Software without obtaining prior written permission from OpnLend, Inc.
+
+V. Disclaimer:
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+VI. Governing Law:
+
+This license is governed by the laws of the State of Indiana, United States, without regard to conflict of law principles.
