@@ -26,10 +26,25 @@ IV. Trademarks and Branding:
 
 Usage of names, trademarks, or branding associated with Tucker Thomas Olson and OpnLend, Inc., especially in a manner that suggests endorsement or affiliation, is prohibited without prior written permission. This includes modifications or derivative works that leverage the Software’s UI design or codebase.
 
-V. Disclaimer:
+V. Restricted Entities:
+
+a. Definition: For the purposes of this license, "Restricted Entities" shall refer to entities listed in Section V(d) below, their parent companies, subsidiaries, related parties, and current employees.
+
+b. Restrictions on Use: Restricted Entities, as defined in Section VI(a), are expressly prohibited from using, accessing, or benefiting from the Software for any purpose, whether commercial or non-commercial, and for any use-case whatsoever. This prohibition includes, but is not limited to, usage for development, testing, production, distribution, or any other activities related to the Software.
+
+c. Enforcement: Tucker Thomas Olson and OpnLend, Inc. reserve the right to take legal action against any entity found to be in violation of this license, including seeking damages and injunctive relief as deemed necessary. Such actions may be pursued independently or in conjunction with any other remedies available by law.
+
+d. Restricted Entities: The following entities are considered Restricted Entities for the purposes of this license:
+
+    1. Three Rivers Federal Credit Union
+    2. Aion Financial Technologies, Inc.
+
+e. Waiver: Any waiver of this restriction for specific individuals or entities must be made in writing and signed by Tucker Thomas Olson and OpnLend, Inc.
+
+VI. Disclaimer:
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. THE COPYRIGHT OWNER OR CONTRIBUTORS SHALL NOT BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-VI. Governing Law:
+VII. Governing Law:
 
 This license is governed by the laws of the State of Indiana, United States, without regard to its conflict of law principles
