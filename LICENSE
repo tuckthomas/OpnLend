@@ -2,8 +2,6 @@ OpnLend, Inc. Custom License Version 1.1
 
 Copyright (c) 2024, Tucker Thomas Olson and OpnLend, Inc.
 
-Effective February 2, 2024
-
 Permission Notice:
 
 Subject to the conditions stated below, Tucker Thomas Olson and OpnLend, Inc. hereby grant to any person obtaining a copy of this software and associated documentation files (the "Software"), a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable license to use, modify, and operate the Software for personal or internal commercial operations, such as loan underwriting.
@@ -16,9 +14,9 @@ II. Prohibitions on Commercial Resale and Incorporation:
 
 a. Commercial Resale: Direct commercial resale of the Software, either in its original form or in a modified version, as a standalone product or as part of another product, is strictly prohibited.
 
-b. Incorporation Into Other Products: Incorporating the Software or any of its proprietary components, including custom UI design, into another company’s software or product for the purpose of selling, licensing, or transferring the company or its assets, including the incorporated Software, is strictly prohibited without explicit written permission from Tucker Thomas Olson and OpnLend, Inc., signed and notarized.
+b. Incorporation Into Other Products: Incorporating the Software or any of its proprietary components, including custom UI design, into another company’s software or product for the purpose of selling, licensing, or transferring the company or its assets, including the incorporated Software, is strictly prohibited without explicit written permission from OpnLend, Inc.
 
-c. Services: Offering third-party system training, OpnLend certification programs, OpnLend credit training programs, and managed hosting services using the Software is strictly prohibited without explicit written permission from Tucker Thomas Olson and OpnLend, Inc., signed and notarized. These rights are retained exclusively by Tucker Thomas Olson and OpnLend, Inc.
+c. Services: Offering third-party system training, OpnLend certification programs, OpnLend credit training programs, and managed hosting services using the Software is strictly prohibited without explicit written permission from OpnLend, Inc. These rights are retained exclusively by Tucker Thomas Olson and OpnLend, Inc.
 
 III. Contributions and Modifications:
 
@@ -28,25 +26,10 @@ IV. Trademarks and Branding:
 
 Usage of names, trademarks, or branding associated with Tucker Thomas Olson and OpnLend, Inc., especially in a manner that suggests endorsement or affiliation, is prohibited without prior written permission. This includes modifications or derivative works that leverage the Software’s UI design or codebase.
 
-V. Restricted Entities:
-
-a. Definition: For the purposes of this license, "Restricted Entities" shall refer to entities listed in Section V(d) below, their parent companies, subsidiaries, related parties, and current employees.
-
-b. Restrictions on Use: As of February 2, 2024, the use, access, or benefit of the Software's codebase is strictly prohibited for Restricted Entities, as defined in Section V(a). This prohibition encompasses all purposes, whether commercial or non-commercial, and all use-cases related to the Software, including but not limited to development, testing, production, distribution, or any other activities involving the codebase.
-
-c. Enforcement: Tucker Thomas Olson and OpnLend, Inc. reserve the right to take legal action against any entity found to be in violation of this license, including seeking damages and injunctive relief as deemed necessary. Such actions may be pursued independently or in conjunction with any other remedies available by law.
-
-d. Restricted Entities: The following entities are considered Restricted Entities for the purposes of this license:
-
-    1. Three Rivers Federal Credit Union
-    2. Aion Financial Technologies, Inc.
-
-e. Waiver: Any waiver of this restriction for specific individuals or entities must be made in writing, signed by Tucker Thomas Olson and OpnLend, Inc., and notarized.
-
-VI. Disclaimer:
+V. Disclaimer:
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. THE COPYRIGHT OWNER OR CONTRIBUTORS SHALL NOT BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-VII. Governing Law:
+VI. Governing Law:
 
 This license is governed by the laws of the State of Indiana, United States, without regard to its conflict of law principles
