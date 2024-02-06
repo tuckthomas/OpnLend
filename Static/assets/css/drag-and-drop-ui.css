@@ -1,0 +1,143 @@
+.drag-and-drop-container {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+  }
+  
+  .account-column {
+    margin: 2px;
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    padding: 0px;
+    overflow: auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 7px 0.15px rgba(0,0,0,0.9);
+    width: 25%;
+  }
+  
+  .quick-action-column {
+    margin: 2px;
+    padding: 0px;
+    overflow: auto;
+    border-radius: 10px;
+    width: 15%;
+  }
+  
+  .column {
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    padding: 0px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 7px 0.15px rgba(0,0,0,0.9);
+  }
+  
+  .middle-column {
+    display: flex;
+    flex-direction: column;
+    margin: 0 3px;
+    background-color: var(--bs-secondary-text-emphasis);
+    border: 1px solid #000000;
+    padding: 0px;
+    overflow: visible;
+    border-radius: 10px;
+    flex-grow: 1;
+  }
+  
+  .horizontal-section {
+    margin: 10px;
+    text-indent: 20px;
+    min-height: 125px;
+  }
+  
+  .drag-and-drop-header-vertical, .drag-and-drop-header {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bs-primary);
+    color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 7px 3px rgba(0,0,0,0.9);
+    font-weight: bold;
+  }
+  
+  .drag-and-drop-header-vertical {
+    height: 60px;
+    margin-top: 0;
+  }
+  
+  .drag-and-drop-header {
+    height: 60px;
+    margin-top: 0;
+  }
+  
+  .quick-action-button {
+    min-width: 100%;
+    min-height: 12.5%;
+    background: var(--bs-primary);
+    color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.9);
+    margin-bottom: 10%;
+    font-weight: bold;
+  }
+  
+  .Draggable-Items {
+    text-indent: 20px;
+    font-size: 0.75em;
+  }
+  
+  .draggable-item {
+    background-color: rgba(208,219,220,0.3);
+    box-shadow: 0 2px 4px var(--bs-body-color);
+    border-radius: 20px;
+    margin-top: 4px;
+    position: relative;
+    cursor: pointer;
+    font-size: 1.5em;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    text-indent: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .delete-assigned-account-role-button {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    cursor: pointer;
+    padding: 0 5px;
+    margin-left: 10px;
+    padding-right: 10px;
+  }
+  
+  .drag-and-drop-subheader-div {
+    display: inline-flex;
+  }
+  
+  .drag-and-drop-sub-header {
+    height: 60px;
+    min-width: 33.33%;
+    margin-top: -10px;
+    text-align: center;
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    background: rgba(22,74,82,0.8);
+    color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 7px 3px rgba(0,0,0,0.9);
+    font-weight: bold;
+  }
+  
+  
