@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en" data-bss-forced-theme="light">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=1024, initial-scale=1">
+    <title>Loans</title>
+    {% load static %}
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+Inscriptional+Pahlavi&;display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css">
+    <link rel="stylesheet" href="{% static 'assets/fonts/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/bs-theme-overrides.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/Loans.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/Drag-and-Drop-UI.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/OpnLend.css' %}">
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+        <!-- Start: #sidebar -->
+        <nav class="navbar align-items-start Sidebar">
+            <div class="container-fluid p-0"><svg id="navbar-toggler" xmlns="http://www.w3.org/2000/svg" width="1em"
+                    height="1em" viewBox="0 0 20 20" fill="none"
+                    style="font-size:35px;color:var(--bs-primary-text-emphasis);margin-left:auto;"
+                    data-bs-toggle="collapse" data-bs-target="#navbar-container" aria-expanded="false"
+                    aria-controls="collapsibleContent">
+                    <path fill-rule="evenodd"
+                        d="M3 4C3 3.44772 3.44772 3 4 3H16C16.5523 3 17 3.44772 17 4C17 4.55228 16.5523 5 16 5H4C3.44772 5 3 4.55228 3 4ZM3 8C3 7.44772 3.44772 7 4 7H16C16.5523 7 17 7.44772 17 8C17 8.55228 16.5523 9 16 9H4C3.44772 9 3 8.55228 3 8ZM3 12C3 11.4477 3.44772 11 4 11H16C16.5523 11 17 11.4477 17 12C17 12.5523 16.5523 13 16 13H4C3.44772 13 3 12.5523 3 12ZM3 16C3 15.4477 3.44772 15 4 15H16C16.5523 15 17 15.4477 17 16C17 16.5523 16.5523 17 16 17H4C3.44772 17 3 16.5523 3 16Z"
+                        fill="white"></path>
+                </svg>
+                <div id="navbar-container" class="container collapse"><a
+                        class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0"
+                        href="#"><img src="/static/assets/img/Icons/opnlend_green.png" width="100" height="72"
+                            alt="Opnlend Green Icon"></a>
+                    <ul class="navbar-nav flex-column mb-auto" id="accordionSidebar" style="padding: 11px;">
+                        <li class="nav-item">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'Dashboard' %}">
+                                <img class="sidebar-content" src="/static/assets/img/Sidebar/Dashboard.png"
+                                    alt="Dashboard" />
+                                <span class="nav-text">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'Relationships' %}">
+                                <img class="sidebar-content" src="/static/assets/img/Sidebar/Global-Relationships.png"
+                                    alt="Relationships" />
+                                <span class="nav-text">Global Relationships</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'Financials' %}">
+                                <img class="sidebar-content" src="/static/assets/img/Sidebar/Financials.png"
+                                    alt="Financials" />
+                                <span class="nav-text">Financials</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'Loans' %}">
+                                <img class="sidebar-content" src="/static/assets/img/Sidebar/Loans.png" alt="Loans" />
+                                <span class="nav-text">Loans</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link">
+                                <img class="sidebar-content" src="/static/assets/img/Sidebar/Collateral.png"
+                                    alt="Collateral" />
+                                <span class="nav-text">Collateral</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link">
+                                <img class="sidebar-content" src="/static/assets/img/Sidebar/Deposits.png"
+                                    alt="Deposits" />
+                                <span class="nav-text">Deposits</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link">
+                                <img class="sidebar-content" src="/static/assets/img/Sidebar/Profitability.png"
+                                    alt="Profitability" />
+                                <span class="nav-text">Profitability</span>
+                            </a>
+                        </li>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav><!-- End: #sidebar -->
+        <div id="content-wrapper" class="page-content-wrapper">
+            <section>
+                <nav class="navbar navbar-expand bg-white shadow mb-4 topbar static-top navbar-light"
+                    style="background: #faf5ef;border-bottom-style: groove;border-radius: 5px;">
+                    <div class="container-fluid">
+                        <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search"
+                            style="width: 547px;box-shadow: 0px 0px 7px 1px;border-radius: 10px;">
+                            <div class="input-group" style="min-width: 535px;"><input class="form-control form-control"
+                                    type="text" placeholder="Search Accounts within Global Relationship....."
+                                    style="background: rgb(251,251,251);border-color: #009185;" /><button
+                                    class="btn btn-primary" type="button"
+                                    style="border-top-style: ridge;border-top-color: var(--bs-body-color);background: #426c73;"><i
+                                        class="fas fa-search"></i></button></div>
+                        </form>
+                        <div style="margin-right: 250px;margin-left: 50px;"><a
+                                href="https://github.com/tuckthomas/opnlend"
+                                src="/static/assets/img/Icons/GitHub_OpnLend_Button.png"
+                                style="position: relative;display: flex;color: var(--bs-primary-text-emphasis);"
+                                target="_blank"><img class="d-xxl-flex img-pointer"
+                                    src="/static/assets/img/Icons/GitHub_OpnLend_Button.png" width="124" height="30"
+                                    style="height: 60px;width: 175px;padding-right: 0px;padding-left: 0px;border-radius: 30px;transform: perspective(0px);backdrop-filter: blur(0px);box-shadow: 0px 0px 8px 1px var(--bs-primary-text-emphasis);border-width: 0.5px;border-style: solid;"></a>
+                        </div>
+                    </div>
+                </nav>
+            </section>
+            <div class="Combined-Collapsible-Horizontal-Bar"><button class="Collapsible-Toggle-Button"><svg
+                        class="d-xxl-flex justify-content-xxl-center align-items-xxl-center"
+                        xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none"
+                        style="font-size: 28px;">
+                        <path
+                            d="M14.8285 11.9481L16.2427 10.5339L12 6.29122L7.7574 10.5339L9.17161 11.9481L11 10.1196V17.6568H13V10.1196L14.8285 11.9481Z"
+                            fill="currentColor"></path>
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M19.7782 4.22183C15.4824 -0.0739415 8.51759 -0.0739422 4.22183 4.22183C-0.0739415 8.51759 -0.0739422 15.4824 4.22183 19.7782C8.51759 24.0739 15.4824 24.0739 19.7782 19.7782C24.0739 15.4824 24.0739 8.51759 19.7782 4.22183ZM18.364 5.63604C14.8492 2.12132 9.15076 2.12132 5.63604 5.63604C2.12132 9.15076 2.12132 14.8492 5.63604 18.364C9.15076 21.8787 14.8492 21.8787 18.364 18.364C21.8787 14.8492 21.8787 9.15076 18.364 5.63604Z"
+                            fill="currentColor"></path>
+                    </svg></button>
+                <div class="Collapsible-Global-Identifiers-Header">
+                    <section class="Global-Identifiers-Header">
+                        <div class="Global-Relationship-Div-Headers">
+                            <div>
+                                <h2 class="text-truncate Global-Headers"><strong>Global Relationship ID:</strong></h2>
+                            </div>
+                            <div class="Global-Header-Text-Field-Div"><input class="Global-Relationship-Text-Field"
+                                    type="text" field-name="Global-Relationship-ID" style="margin-top: -3px;" /></div>
+                        </div>
+                        <div class="justify-content-end Global-Relationship-Div-Headers">
+                            <div>
+                                <h2 class="text-truncate Global-Headers"><strong>Meta ID:</strong></h2>
+                            </div>
+                            <div class="Global-Header-Text-Field-Div"><input class="Global-Relationship-Text-Field"
+                                    type="text" field-name="Global-Relationship-Meta-ID" style="margin-top: -3px;" />
+                            </div>
+                        </div>
+                    </section>
+                    <div class="Global-Button-Control-Div"><button
+                            class="btn btn-primary Global-Relationship-Control-Buttons" type="button"
+                            button-name="New_Loan_Request_Button"
+                            style="background: var(--bs-btn-hover-bg);"><strong>New Loan
+                                Request</strong></button><button
+                            class="btn btn-primary Global-Relationship-Control-Buttons" type="button"
+                            button-name="Loan_Renewal_Button" style="background: #06583a;"><strong>Loan
+                                Renewal</strong></button><button
+                            class="btn btn-primary Global-Relationship-Control-Buttons" type="button"
+                            button-name="Change_in_Terms_Button"
+                            style="background: var(--bs-warning-text-emphasis);"><strong>Change in
+                                Terms</strong></button><button
+                            class="btn btn-primary Global-Relationship-Control-Buttons" type="button"
+                            button-name="Loan_Review_Button" style="background: var(--bs-gray-800);"><strong>Loan
+                                Review</strong></button></div>
+                </div>
+            </div>
+            <div class="Background-Div">
+                <section class="Combined-Section-New-Loan-Request">
+                    <h2 class="Section-Header"><strong><span style="font-style: normal !important;">New Loan
+                                Requests</span></strong></h2><svg class="bi bi-arrows-expand Expand-Account-Icon"
+                        xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                        viewBox="0 0 16 16" data-form-id="Loan-Form-Icon"
+                        data-form-target="New-Loan-Requests-Management-Form">
+                        <path fill-rule="evenodd"
+                            d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2M8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10">
+                        </path>
+                    </svg>
+                    <section class="Section-Header-Div">
+                        <section>
+                            <form class="Tabular-Form" data-form-id="New-Loan-Requests-Management-Form">
+                                <div class="card" style="box-shadow: 0px 0px 4px 1px;">
+                                    <div>
+                                        <ul class="nav nav-tabs nav-justified loan-tab-items" role="tablist">
+                                            <li class="nav-item Tab-Option" role="presentation"><a
+                                                    class="nav-link active Tab-Link" role="tab" data-bs-toggle="tab"
+                                                    href="#tab-1">Primary<br />Structure</a></li>
+                                            <li class="nav-item Tab-Option" role="presentation"><a
+                                                    class="nav-link Tab-Link" role="tab" data-bs-toggle="tab"
+                                                    href="#tab-2">Loan<br />Roles</a></li>
+                                            <li class="nav-item Tab-Option" role="presentation"><a
+                                                    class="nav-link Tab-Link" role="tab" data-bs-toggle="tab"
+                                                    href="#tab-3">Policy Exceptions</a></li>
+                                            <li class="nav-item Tab-Option" role="presentation"><a
+                                                    class="nav-link Tab-Link" role="tab" data-bs-toggle="tab"
+                                                    href="#tab-4">Loan<br />Fees</a></li>
+                                            <li class="nav-item Tab-Option" role="presentation"><a
+                                                    class="nav-link Tab-Link" role="tab" data-bs-toggle="tab"
+                                                    href="#tab-5">Sources and Uses</a></li>
+                                            <li class="nav-item Tab-Option" role="presentation"><a
+                                                    class="nav-link Tab-Link" role="tab" data-bs-toggle="tab"
+                                                    href="#tab-6">Collateral<br />Schedule</a></li>
+                                            <li class="nav-item Tab-Option" role="presentation"><a
+                                                    class="nav-link Tab-Link" role="tab" data-bs-toggle="tab"
+                                                    href="#tab-7">Sources of Repayment</a></li>
+                                            <li class="nav-item Tab-Option" role="presentation"><a
+                                                    class="nav-link Tab-Link" role="tab" data-bs-toggle="tab"
+                                                    href="#tab-8">Risk Rating</a></li>
+                                            <li class="nav-item Tab-Option" role="presentation"
+                                                style="min-width: 100%;max-width: 100%;"><a class="nav-link Tab-Link"
+                                                    role="tab" data-bs-toggle="tab" href="#tab-9">Ticklers and Other
+                                                    Loan Reporting Requirements</a></li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div id="tab-1" class="tab-pane active" role="tabpanel">
+                                                <div class="container"
+                                                    style="display: inline-block;padding-right: 0px;padding-left: 4px;min-width: 100%;max-width: 100%;">
+                                                    <form class="Loan-Structure-Form">
+                                                        <div class="Hidden-Form-Field-Div">
+                                                            <div>{% csrf_token %}</div>
+                                                        </div>
+                                                        <div class="Form-Field-Div-Account-Loan-ID"><label
+                                                                class="form-label Form-Field-Label-Account">Loan
+                                                                ID<input class="form-control Text-Input-Read-Only"
+                                                                    type="text" name="Unique_ID"
+                                                                    style="text-align: left;" /></label></div>
+                                                        <div style="display: none;">
+                                                            <div class="Form-Field-Div-Account-ID"><label
+                                                                    class="form-label Form-Field-Label-Account">Global
+                                                                    Relationship ID<input
+                                                                        class="form-control Text-Input-Read-Only"
+                                                                        type="text" name="Global_Relationship_ID"
+                                                                        readonly /></label></div>
+                                                            <div class="Form-Field-Div-Account-ID"><label
+                                                                    class="form-label Form-Field-Label-Account">Primary
+                                                                    Borrower Account Number<input
+                                                                        class="form-control Text-Input-Read-Only"
+                                                                        type="text" name="Primary_Borrower_UUID"
+                                                                        readonly /></label></div>
+                                                        </div>
+                                                        <div class="Form-Field-Div-Large"><label
+                                                                class="form-label Form-Field-Label">Loan Product<div
+                                                                    class="dropdown" type="button"><button
+                                                                        class="dropbtn">Select Loan Program</button>
+                                                                    <div class="dropdown-content">
+                                                                        <div class="submenu-link" data-level="1">Commercial
+                                                                            <div class="submenu" data-level="2">
+                                                                              <a href="#">Term Loan</a>
+                                                                              <a href="#">Revolving Line of Credit</a>
+                                                                              <a href="#">Non-Revolving Line of Credit</a>
+                                                                              <div class="submenu-link" data-level="2">Master Line of Credit
+                                                                                <div class="submenu" data-level="3">
+                                                                                  <a href="#">Commercial Master Line of Credit</a>
+                                                                                  <a href="#">Business Credit Card Master Line of Credit</a>
+                                                                                </div>
+                                                                              </div>
+                                                                              <div class="submenu-link" data-level="2">Construction Loan
+                                                                                <div class="submenu" data-level="3">
+                                                                                  <a href="#">Construction Term Loan</a>
+                                                                                  <a href="#">Construction Line of Credit</a>
+                                                                                </div>
+                                                                              </div>
+                                                                            </div>
+                                                                          </div>
+                                                                          <div class="submenu-link" data-level="1">Consumer
+                                                                            <div class="submenu" data-level="2">
+                                                                              <a href="#">Mortgage</a>
+                                                                              <a href="#">Home Equity Line of Credit</a>
+                                                                              <a href="#">Construction Loan</a>
+                                                                              <a href="#">Installment</a>
+                                                                              <a href="#">Vehicle Loan</a>
+                                                                              <a href="#">Recreational Vehicle Loan</a>
+                                                                              <a href="#">Personal Credit Card</a>
+                                                                              <a href="#">Student Loan</a>
+                                                                              <!-- Add more Level 2 options here if needed -->
+                                                                            </div>
+                                                                          </div>
+                                                                          <div class="submenu-link" data-level="1">FSA
+                                                                            <div class="submenu" data-level="2">
+                                                                              <div class="submenu-link" data-level="2">Guaranteed Loan
+                                                                                <div class="submenu" data-level="3">
+                                                                                  <a href="#">Guaranteed Farm Ownership</a>
+                                                                                  <a href="#">Guaranteed Operating</a>
+                                                                                  <a href="#">EZ Guarantee Farm Ownership</a>
+                                                                                  <a href="#">EZ Guarantee Operating</a>
+                                                                                  <a href="#">Guaranteed Conservation Loan</a>
+                                                                                </div>
+                                                                              </div>
+                                                                              <div class="submenu-link" data-level="2">Direct Loan
+                                                                                <div class="submenu" data-level="3">
+                                                                                  <a href="#">Direct Operating</a>
+                                                                                  <a href="#">Direct Operating Microloan</a>
+                                                                                  <a href="#">Direct Down Payment</a>
+                                                                                  <a href="#">Direct Farm Ownership</a>
+                                                                                  <a href="#">Direct Farm Ownership Participation</a>
+                                                                                  <a href="#">Direct Farm Ownership Microloan</a>
+                                                                                  <a href="#">Direct Emergency</a>
+                                                                                </div>
+                                                                              </div>
+                                                                              <div class="submenu-link" data-level="2">Other
+                                                                                <div class="submenu" data-level="3">
+                                                                                  <a href="#">Guaranteed Conservation Loan</a>
+                                                                                  <a href="#">Land Contract Guarantee</a>
+                                                                                  <a href="#">Highly Fractionated Indian Land Loan</a>
+                                                                                </div>
+                                                                              </div>
+                                                                            </div>
+                                                                          </div>
+                                                                          <div class="submenu-link" data-level="1">SBA
+                                                                            <div class="submenu" data-level="2">
+                                                                              <!-- Level 2 Options -->
+                                                                              <a href="#">SBA 504</a>
+                                                                              <a href="#">SBA 7(a) Small Loan (&lt; $350,000)</a>
+                                                                              <a href="#">SBA 7(a) Large Loan (&gt; $350,000)</a>
+                                                                              <div class="submenu-link" data-level="2">SBA Express
+                                                                                <div class="submenu" data-level="3">
+                                                                                  <!-- Level 3 Options -->
+                                                                                  <a href="#">Revolving with Term-Out</a>
+                                                                                  <a href="#">Term Loan</a>
+                                                                                </div>
+                                                                              </div>
+                                                                              <div class="submenu-link" data-level="2">Export Express
+                                                                                <div class="submenu" data-level="3">
+                                                                                  <!-- Level 3 Options -->
+                                                                                  <a href="#">Revolving</a>
+                                                                                  <a href="#">Term Loan</a>
+                                                                                </div>
+                                                                              </div>
+                                                                              <div class="submenu-link" data-level="2">International Trade Loan
+                                                                                <div class="submenu" data-level="3">
+                                                                                  <!-- Level 3 Options -->
+                                                                                  <a href="#">Permanent Working Capital</a>
+                                                                                  <a href="#">Fixed Assets</a>
+                                                                                </div>
+                                                                              </div>
+                                                                              <div class="submenu-link" data-level="2">Export Working Capital Program Loan
+                                                                                <div class="submenu" data-level="3">
+                                                                                  <!-- Level 3 Options -->
+                                                                                  <a href="#">Revolving</a>
+                                                                                  <a href="#">Non-Revolving</a>
+                                                                                  <a href="#">Asset Based</a>
+                                                                                  <a href="#">Transaction Based</a>
+                                                                                  <a href="#">Standby Letter of Credit</a>
+                                                                                  <a href="#">Renewal/Reissuance</a>
+                                                                                </div>
+                                                                              </div>
+                                                                              <div class="submenu-link" data-level="2">CAPLine
+                                                                                <div class="submenu" data-level="3">
+                                                                                  <!-- Level 3 Options -->
+                                                                                  <a href="#">Working Capital</a>
+                                                                                  <a href="#">Builder's</a>
+                                                                                  <a href="#">Seasonal</a>
+                                                                                  <a href="#">Contract</a></div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div></label></div>
+                                                        <div class="Form-Field-Div-Loan-Amount"><label
+                                                                class="form-label Form-Field-Label">Loan Amount<input
+                                                                    id="Loan_Amount" class="form-control Text-Input"
+                                                                    type="text" name="Loan_Amount"
+                                                                    required-field="true" /></label></div>
+                                                        <div class="Form-Field-Div-Loan-Purpose"><label
+                                                                class="form-label Form-Field-Label">Loan Purpose
+                                                                Descriptoin<textarea
+                                                                    class="form-control Text-Input-Loan-Structure"
+                                                                    name="Loan_Purpose"
+                                                                    field-required="false"></textarea></label></div>
+                                                        <div class="Form-Field-Div-Flex">
+                                                            <div class="Form-Field-Div-20"><label
+                                                                    class="form-label Form-Field-Label">Loan Term
+                                                                    <em>(Months)</em><input id="Loan_Term_Months"
+                                                                        class="form-control Text-Input" type="text"
+                                                                        name="Loan_Term_Months"
+                                                                        required-field="false" /></label></div>
+                                                            <div id="Loan-Amortization" class="Form-Field-Div-20"><label
+                                                                    class="form-label Form-Field-Label">Loan
+                                                                    Amortization <em>(Months)</em><input
+                                                                        id="Loan_Term_Amortization"
+                                                                        class="form-control Text-Input" type="text"
+                                                                        name="Loan_Term_Amortization"
+                                                                        required-field="false" /></label></div>
+                                                        </div>
+                                                        <div class="Pricing-Period-Group-Button-Wrapper"
+                                                            button-target="pricing-period-buttons" pricing-period="1">
+                                                            <div class="Pricing-Period-Group" period-count="1">
+                                                                <h5 class="Repayment-Pricing-Period-Header">
+                                                                    <strong>Repayment and Pricing Period:</strong></h5>
+                                                                <div class="Form-Field-Div-20"><label
+                                                                        class="form-label Form-Field-Label">Repayment
+                                                                        Period Term <em>(Months)</em><input
+                                                                            id="Repayment_Period_Term"
+                                                                            class="form-control Text-Input" type="text"
+                                                                            name="Repayment_Period_Term"
+                                                                            required-field="false" /></label></div>
+                                                                <div class="Form-Field-Div-Flex">
+                                                                    <div class="Form-Field-Div-30"><label
+                                                                            class="form-label Form-Field-Label">Principal
+                                                                            Repayment Frequency<div
+                                                                                class="Dropdown-List"><button
+                                                                                    id="dropdownMenuButton"
+                                                                                    class="btn btn-primary dropdown-toggle fs-6 fw-semibold"
+                                                                                    aria-expanded="false"
+                                                                                    data-bs-toggle="dropdown"
+                                                                                    type="button"
+                                                                                    style="background: rgb(255,255,255);color: var(--bs-body-color);border-radius: 10px;height: 38px;min-width: 100%;padding-top: 0px;border: none;box-shadow: 0px 0px 3px 1px rgba(0,0,0,3);">
+                                                                                    Principal Frequency
+                                                                                </button>
+                                                                                <div class="dropdown-menu"
+                                                                                    aria-labelledby="dropdownMenuButton"
+                                                                                    style="min-width: 330px;"><a
+                                                                                        class="dropdown-item"
+                                                                                        href="#">Weekly</a><a
+                                                                                        class="dropdown-item"
+                                                                                        href="#">Bi-Weekly</a><a
+                                                                                        class="dropdown-item"
+                                                                                        href="#">Monthly</a><a
+                                                                                        class="dropdown-item"
+                                                                                        href="#">Semi-Monthly</a><a
+                                                                                        class="dropdown-item"
+                                                                                        href="#">Quarterly</a><a
+                                                                                        class="dropdown-item"
+                                                                                        href="#">Semi-Annual</a><a
+                                                                                        class="dropdown-item"
+                                                                                        href="#">Annual</a><a
+                                                                                        class="dropdown-item"
+                                                                                        href="#">Custom</a></div>
+                                                                            </div></label></div>
+                                                                    <div class="Form-Field-Div-30"><label
+                                                                            class="form-label Form-Field-Label">Interest
+                                                                            Repayment Frequency<div
+                                                                                class="Dropdown-List"><button
+                                                                                    id="dropdownMenuButton"
+                                                                                    class="btn btn-primary dropdown-toggle fs-6 fw-semibold"
+                                                                                    aria-expanded="false"
+                                                                                    data-bs-toggle="dropdown"
+                                                                                    type="button"
+                                                                                    style="background: rgb(255,255,255);color: var(--bs-body-color);border-radius: 10px;height: 38px;min-width: 100%;padding-top: 0px;border: none;box-shadow: 0px 0px 3px 1px rgba(0,0,0,3);">
+                                                                                    Interest Frequency
+                                                                                </button>
+                                                                                <div class="dropdown-menu"
+                                                                                    aria-labelledby="dropdownMenuButton"
+                                                                                    style="min-width: 330px;"><a
+                                                                                        class="dropdown-item"
+                                                                                        href="#">Weekly</a><a
+                                                                                        class="dropdown-item"
+                                                                                        href="#">Bi-Weekly</a><a
+                                                                                        class="dropdown-item"
+                                                                                        href="#">Monthly</a><a
+                                                                                        class="dropdown-item"
+                                                                                        href="#">Semi-Monthly</a><a
+                                                                                        class="dropdown-item"
+                                                                                        href="#">Quarterly</a><a
+                                                                                        class="dropdown-item"
+                                                                                        href="#">Semi-Annual</a><a
+                                                                                        class="dropdown-item"
+                                                                                        href="#">Annual</a><a
+                                                                                        class="dropdown-item"
+                                                                                        href="#">Custom</a></div>
+                                                                            </div></label></div>
+                                                                </div>
+                                                                <div class="Form-Field-Div-Repayment-Description"><label
+                                                                        class="form-label Form-Field-Label">Other
+                                                                        Repayment Type and Frequency
+                                                                        Description<textarea
+                                                                            class="form-control Text-Input-Loan-Structure"
+                                                                            name="Other_Repayment_Description"
+                                                                            required-field="false"></textarea></label>
+                                                                </div>
+                                                                <div class="Form-Field-Div-Interest-Type"><label
+                                                                        class="form-label Form-Field-Label-Large"
+                                                                        style="height: auto;width: auto;margin-top: 10px;">Rate
+                                                                        Type<div
+                                                                            style="background-color: white;border-radius: 10px;box-shadow: 0px 0px 3px 1px black;padding: 10px;align-items: center;">
+                                                                            <div style="margin-right: 10px;"><input
+                                                                                    id="operatingCompany" type="radio"
+                                                                                    name="entityType"
+                                                                                    value="Operating Company" /><label
+                                                                                    for="operatingCompany">Fixed</label>
+                                                                            </div>
+                                                                            <div><input id="eligiblePassiveCompany"
+                                                                                    type="radio" name="entityType"
+                                                                                    value="Eligible Passive Company" /><label
+                                                                                    for="eligiblePassiveCompany">Variable</label>
+                                                                            </div>
+                                                                        </div></label></div>
+                                                                <div class="Form-Field-Div-Interst-Rate-Guaranty"><label
+                                                                        class="form-label Form-Field-Label">Interest
+                                                                        Rate Guaranty Applied <em>(optional)</em>
+                                                                        <div class="Dropdown-List"><button
+                                                                                id="dropdownMenuButton"
+                                                                                class="btn btn-primary dropdown-toggle fs-6 fw-semibold"
+                                                                                aria-expanded="false"
+                                                                                data-bs-toggle="dropdown" type="button"
+                                                                                style="background: rgb(255,255,255);color: var(--bs-body-color);border-radius: 10px;height: 38px;min-width: 25%;max-width: 25%;padding-top: 0px;border: none;box-shadow: 0px 0px 3px 1px rgba(0,0,0,3);">
+                                                                                N/A
+                                                                            </button>
+                                                                            <div class="dropdown-menu"
+                                                                                aria-labelledby="dropdownMenuButton"
+                                                                                style="min-width: 330px;"><a
+                                                                                    class="dropdown-item"
+                                                                                    href="#">Full</a><a
+                                                                                    class="dropdown-item"
+                                                                                    href="#">Guaranteed</a><a
+                                                                                    class="dropdown-item"
+                                                                                    href="#">Non-Guaranteed</a></div>
+                                                                        </div>
+                                                                    </label></div>
+                                                                <div class="Form-Field-Div"><label
+                                                                        class="form-label Form-Field-Label">Interest
+                                                                        Rate Repricing Frequency<div
+                                                                            class="Dropdown-List"><button
+                                                                                id="dropdownMenuButton"
+                                                                                class="btn btn-primary dropdown-toggle fs-6 fw-semibold"
+                                                                                aria-expanded="false"
+                                                                                data-bs-toggle="dropdown" type="button"
+                                                                                style="background: rgb(255,255,255);color: var(--bs-body-color);border-radius: 10px;height: 38px;min-width: 100%;padding-top: 0px;border: none;box-shadow: 0px 0px 3px 1px rgba(0,0,0,3);">
+                                                                                Repricing Frequency Choices
+                                                                            </button>
+                                                                            <div class="dropdown-menu"
+                                                                                aria-labelledby="dropdownMenuButton"
+                                                                                style="min-width: 330px;"><a
+                                                                                    class="dropdown-item"
+                                                                                    href="#">Weekly</a><a
+                                                                                    class="dropdown-item"
+                                                                                    href="#">Bi-Weekly</a><a
+                                                                                    class="dropdown-item"
+                                                                                    href="#">Monthly</a><a
+                                                                                    class="dropdown-item"
+                                                                                    href="#">Semi-Monthly</a><a
+                                                                                    class="dropdown-item"
+                                                                                    href="#">Quarterly</a><a
+                                                                                    class="dropdown-item"
+                                                                                    href="#">Semi-Annual</a><a
+                                                                                    class="dropdown-item"
+                                                                                    href="#">Annual</a><a
+                                                                                    class="dropdown-item"
+                                                                                    href="#">Custom</a></div>
+                                                                        </div></label></div>
+                                                                <div class="Form-Field-Div"><label
+                                                                        class="form-label Form-Field-Label">Interest
+                                                                        Rate Index<div class="Dropdown-List"><button
+                                                                                id="dropdownMenuButton"
+                                                                                class="btn btn-primary dropdown-toggle fs-6 fw-semibold"
+                                                                                aria-expanded="false"
+                                                                                data-bs-toggle="dropdown" type="button"
+                                                                                style="background: rgb(255,255,255);color: var(--bs-body-color);border-radius: 10px;height: 38px;min-width: 100%;padding-top: 0px;border: none;box-shadow: 0px 0px 3px 1px rgba(0,0,0,3);">
+                                                                                Rate Index Choices
+                                                                            </button>
+                                                                            <div class="dropdown-menu"
+                                                                                aria-labelledby="dropdownMenuButton"
+                                                                                style="min-width: 330px;"><a
+                                                                                    class="dropdown-item" href="#">To
+                                                                                    sync with external data rate index
+                                                                                    source.....</a><a
+                                                                                    class="dropdown-item" href="#">Wall
+                                                                                    Street Journal Prime</a><a
+                                                                                    class="dropdown-item" href="#">SBA
+                                                                                    Peg Rate</a><a class="dropdown-item"
+                                                                                    href="#">Fixed Rate</a><a
+                                                                                    class="dropdown-item"
+                                                                                    href="#">Other</a></div>
+                                                                        </div></label></div>
+                                                                <div class="Interest-Input-Fields-Div"
+                                                                    style="padding-top: 10px;">
+                                                                    <p class="Interest-Rate-Header"><strong><em>Please
+                                                                                input two of the three fields for
+                                                                                auto-calculation of the third
+                                                                                field.</em></strong></p>
+                                                                    <div class="Form-Field-Div-Base-Rate"><label
+                                                                            class="form-label Form-Field-Label">Base
+                                                                            Rate <em>(%)</em><input
+                                                                                class="form-control Text-Input"
+                                                                                type="text" field-name="Base_Rate"
+                                                                                required-field="false" period
+                                                                                pricing-period="1" /></label></div>
+                                                                    <div class="Form-Field-Div-Rate-Spread"><label
+                                                                            class="form-label Form-Field-Label">Rate
+                                                                            Spread <em>(%)</em><input
+                                                                                class="form-control Text-Input"
+                                                                                type="text" field-name="Rate_Spread"
+                                                                                required-field="false"
+                                                                                pricing-period="1" /></label></div>
+                                                                    <div class="Form-Field-Div-All-In-Rate"><label
+                                                                            class="form-label Form-Field-Label">All-In
+                                                                            Rate <em>(%)</em><input
+                                                                                class="form-control Text-Input"
+                                                                                type="text" field-name="All_In_Rate"
+                                                                                required-field="false"
+                                                                                pricing-period="1" /></label></div>
+                                                                </div>
+                                                            </div>
+                                                            <div
+                                                                style="position: relative;margin-top: -10px;padding-bottom: 11px;">
+                                                                <button id="add-pricing-period"
+                                                                    class="add-pricing-period-button" type="button">Add
+                                                                    Period +</button><button id="delete-pricing-period"
+                                                                    class="delete-pricing-period-button"
+                                                                    type="button">Delete Period –</button></div>
+                                                        </div>
+                                                        <div class="Form-Field-Div--Submit-Button-Row"><button
+                                                                id="submit-business-account" class="Submit-Form-Button"
+                                                                type="button"
+                                                                data-form-id="loan-structure-form">Submit</button></div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <div id="tab-2" class="tab-pane" role="tabpanel">
+                                                <div class="drag-and-drop-container">
+                                                    <div class="account-column">
+                                                        <h5 class="drag-and-drop-header-vertical">Available Accounts
+                                                        </h5>
+                                                        <div class="Draggable-Items" column-id="Available-Accounts">
+                                                            <div>
+                                                                <div id="item1" class="draggable-item" draggable="true">
+                                                                    Example Operating Company, Inc.</div>
+                                                                <div id="item2" class="draggable-item" draggable="true">
+                                                                    An EPC, LLC</div>
+                                                                <div id="item3" class="draggable-item" draggable="true">
+                                                                    Some Related Entity, Inc.</div>
+                                                                <div id="item4" class="draggable-item" draggable="true">
+                                                                    John Doe</div>
+                                                                <div id="item4" class="draggable-item" draggable="true">
+                                                                    Jane Doe</div>
+                                                                <div id="item4" class="draggable-item" draggable="true">
+                                                                    Jack Keyemployee</div>
+                                                                <div id="item4" class="draggable-item" draggable="true">
+                                                                    Mark Keyemployee</div>
+                                                                <div id="item4" class="draggable-item" draggable="true">
+                                                                    Linda Keyemployee</div>
+                                                                <div id="item4" class="draggable-item" draggable="true">
+                                                                    Joseph Keyemployee</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="column middle-column">
+                                                        <div class="column">
+                                                            <h5 class="drag-and-drop-header">Primary Borrower</h5>
+                                                            <div id="horizontal-section-primary-borrower"
+                                                                class="horizontal-section" column-id="Primary-Borrower">
+                                                            </div>
+                                                        </div>
+                                                        <div class="column">
+                                                            <h5 class="drag-and-drop-header">Co-Borrowers</h5>
+                                                            <div class="horizontal-section" column-id="Co-Borrower">
+                                                            </div>
+                                                        </div>
+                                                        <div class="column">
+                                                            <h5 class="drag-and-drop-header">Guarantors</h5>
+                                                            <div class="horizontal-section" column-id="Guarantor"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="quick-action-column">
+                                                        <div class="Qucik-Actions"></div><button
+                                                            class="quick-action-button" type="button">Auto-Assign OC and
+                                                            EPC Borrowing Borrowing Relationship</button><button
+                                                            class="quick-action-button" type="button">Add Beneficial
+                                                            Owners as Unlimited Guarantors</button><button
+                                                            class="quick-action-button" type="button">Add Beneficial
+                                                            Owners as Pro-Rata Ownership Share Limited
+                                                            Guarantors</button><button class="quick-action-button"
+                                                            type="button">Auto-Assign Key Employee(s) as Unlimited
+                                                            Guarantors</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="tab-3" class="tab-pane" role="tabpanel"></div>
+                                            <div id="tab-4" class="tab-pane" role="tabpanel">
+                                                <div class="container fee-schedule-container"
+                                                    style="display: inline-flex;">
+                                                    <div class="row fee-schedule-row">
+                                                        <div class="col fee-schedule-column">
+                                                            <div class="table-responsive fee-schedule-table"
+                                                                style="border-width: 0px;border-style: solid;box-shadow: 0px 0px 7px 1px;">
+                                                                <table class="table table-hover table-borderless">
+                                                                    <thead>
+                                                                        <tr class="sources-and-uses-row">
+                                                                            <th class="text-start fee-description">Fee
+                                                                                Type</th>
+                                                                            <th class="text-end fee-amount">$</th>
+                                                                            <th
+                                                                                class="text-center delete-icon-column-fee">
+                                                                            </th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr class="sources-and-uses-row">
+                                                                            <td class="source-description"><input
+                                                                                    class="form-control Text-Input"
+                                                                                    type="text"
+                                                                                    field-name="Fee_Description_1"
+                                                                                    style="text-align: left;" /></td>
+                                                                            <td class="fee-amount"><input
+                                                                                    class="form-control Fee-Amount-Input"
+                                                                                    type="text"
+                                                                                    field-name="Fee_Amount_1"
+                                                                                    style="text-align: right;"
+                                                                                    inputmode="numeric"
+                                                                                    autocomplete="off" /></td>
+                                                                            <td
+                                                                                class="text-center delete-icon-column-fee">
+                                                                                <a class="del-row"
+                                                                                    href="javascript:void(0);"><svg
+                                                                                        class="bi bi-trash-fill trash-delete-icon-fee"
+                                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                                        width="1.5rem" height="1.5rem"
+                                                                                        fill="currentColor"
+                                                                                        viewBox="0 0 16 16"
+                                                                                        style="font-size: 20px;color: var(--bs-danger-text-emphasis);">
+                                                                                        <path
+                                                                                            d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0">
+                                                                                        </path>
+                                                                                    </svg></a></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                    <tfoot class="sources-and-uses-header-and-footer">
+                                                                        <tr>
+                                                                            <td class="fee-description">Fee Total</td>
+                                                                            <td class="fee-amount"
+                                                                                field-name="Fee_Amount_Total"
+                                                                                style="text-align: right;"></td>
+                                                                            <td class="delete-icon-column-fee"></td>
+                                                                        </tr>
+                                                                    </tfoot>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div><button class="btn btn-primary btn-sm Fee-Add-Row-Button"
+                                                        type="button" style="display: inline-block;"><i
+                                                            class="fas fa-plus"></i><strong> Add Row</strong></button>
+                                                </div>
+                                            </div>
+                                            <div id="tab-5" class="tab-pane" role="tabpanel">
+                                                <section class="sources-and-uses-table">
+                                                    <div class="container sources-and-uses-container">
+                                                        <div class="row">
+                                                            <div class="col sources-and-uses-column"><button
+                                                                    class="btn btn-primary btn-sm float-end Sources-and-Uses-Add-Row-Button"
+                                                                    type="button"><i
+                                                                        class="fas fa-plus"></i><strong> Add
+                                                                        Row</strong></button>
+                                                                <div id="myTable"
+                                                                    class="table-responsive sources-and-uses"
+                                                                    style="box-shadow: 0px 0px 7px 1px;">
+                                                                    <table class="table table-hover table-borderless">
+                                                                        <thead>
+                                                                            <tr class="sources-and-uses-row">
+                                                                                <th
+                                                                                    class="text-start source-description">
+                                                                                    Source</th>
+                                                                                <th class="text-end source-amount">$
+                                                                                </th>
+                                                                                <th class="text-start use-description">
+                                                                                    Use</th>
+                                                                                <th class="text-end use-amount">$</th>
+                                                                                <th
+                                                                                    class="text-center delete-icon-column">
+                                                                                </th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr class="sources-and-uses-row">
+                                                                                <td class="source-description"><input
+                                                                                        class="form-control Text-Input"
+                                                                                        type="text"
+                                                                                        field-name="Source_Description_1"
+                                                                                        style="text-align: left;" />
+                                                                                </td>
+                                                                                <td class="source-amount"><input
+                                                                                        class="form-control Source-Amount-Input"
+                                                                                        type="text"
+                                                                                        field-name="Source_Amount_1"
+                                                                                        style="text-align: right;"
+                                                                                        inputmode="numeric"
+                                                                                        autocomplete="off" /></td>
+                                                                                <td class="use-description"><input
+                                                                                        class="form-control Text-Input"
+                                                                                        type="text"
+                                                                                        field-name="Use_Description_1"
+                                                                                        style="text-align: left;" />
+                                                                                </td>
+                                                                                <td class="use-amount"><input
+                                                                                        class="form-control Use-Amount-Input"
+                                                                                        type="text"
+                                                                                        field-name="Use_Amount_1"
+                                                                                        style="text-align: right;"
+                                                                                        inputmode="numeric"
+                                                                                        autocomplete="off" /></td>
+                                                                                <td
+                                                                                    class="text-center delete-icon-column">
+                                                                                    <a class="del-row"
+                                                                                        href="javascript:void(0);"><svg
+                                                                                            class="bi bi-trash-fill trash-delete-icon"
+                                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                                            width="1.5rem"
+                                                                                            height="1.5rem"
+                                                                                            fill="currentColor"
+                                                                                            viewBox="0 0 16 16"
+                                                                                            style="font-size: 20px;color: var(--bs-danger-text-emphasis);">
+                                                                                            <path
+                                                                                                d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0">
+                                                                                            </path>
+                                                                                        </svg></a></td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                        <tfoot
+                                                                            class="sources-and-uses-header-and-footer">
+                                                                            <tr>
+                                                                                <td
+                                                                                    class="text-start source-description">
+                                                                                    Source Total</td>
+                                                                                <td class="source-amount"
+                                                                                    field-name="Source_Amount_Total"
+                                                                                    style="text-align: right;"></td>
+                                                                                <td class="text-start use-description">
+                                                                                    Use Total</td>
+                                                                                <td class="use-amount"
+                                                                                    field-name="Use_Amount_Total"
+                                                                                    style="text-align: right;"></td>
+                                                                                <td class="delete-icon-column"></td>
+                                                                            </tr>
+                                                                        </tfoot>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </div>
+                                            <div id="tab-6" class="tab-pane" role="tabpanel">
+                                                <div class="container">
+                                                    <div class="row navigate-to-add-collateral-row">
+                                                        <div class="col-md-12"></div>
+                                                    </div>
+                                                    <div class="row existing-collateral-row">
+                                                        <div class="col-md-6 collateral-available-column"></div>
+                                                        <div class="col-md-6 collateral-assigned-column"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="container">
+                                                    <div class="Sub-Section-Underline-Div">
+                                                        <p class="Tab-Pane-Header"><strong>Collateral Securing
+                                                                Loan</strong></p>
+                                                    </div>
+                                                    <div class="Table-Div">
+                                                        <div class="table-responsive"
+                                                            data-form-id="Existing-Business-Accounts-Table">
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th scope="col" style="text-align: left;">Lien
+                                                                            Position</th>
+                                                                        <th scope="col" style="text-align: left;">
+                                                                            COllateral Type</th>
+                                                                        <th class="text-center collateral-table-pledgor-cell"
+                                                                            scope="col">Pledgor(S)</th>
+                                                                        <th class="text-center net-collateral-value-cell"
+                                                                            scope="col">Net Collateral Value</th>
+                                                                        <th class="text-center" scope="col">Collateral
+                                                                            Management options</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td data-label="Attributes" scope="row"
+                                                                            style="text-align: left;">1st</td>
+                                                                        <td data-label="Attributes" scope="row"
+                                                                            style="text-align: left;">Owner-Occupied
+                                                                            Commercial Real Estate</td>
+                                                                        <td class="collateral-table-pledgor-cell"
+                                                                            data-label="Base Class">XYZ Holdings, LLC
+                                                                        </td>
+                                                                        <td class="net-collateral-value-cell"
+                                                                            data-label="Base Class">$1,200,000</td>
+                                                                        <td data-label="Simulated Case">
+                                                                            <div style="box-shadow: 0px 0px 0px;">
+                                                                                <button
+                                                                                    class="border rounded-pill visible Mgmt-Option-Edit-Button"
+                                                                                    type="button"
+                                                                                    style="padding-top: 1px;padding-right: 6px;padding-bottom: 1px;padding-left: 6px;">Edit</button><button
+                                                                                    class="border rounded-pill visible Mgmt-Option-Delete-Button"
+                                                                                    type="button">Delete</button></div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td data-label="Attributes" scope="row"
+                                                                            style="text-align: left;">1st</td>
+                                                                        <td data-label="Attributes" scope="row"
+                                                                            style="text-align: left;">All Business
+                                                                            Assets</td>
+                                                                        <td class="collateral-table-pledgor-cell"
+                                                                            data-label="Base Class">ABC Operating
+                                                                            Company, Inc.</td>
+                                                                        <td class="net-collateral-value-cell"
+                                                                            data-label="Base Class">$120,000</td>
+                                                                        <td data-label="Simulated Case">
+                                                                            <div><button
+                                                                                    class="border rounded-pill visible Mgmt-Option-Edit-Button"
+                                                                                    type="button">Edit</button><button
+                                                                                    class="border rounded-pill visible Mgmt-Option-Delete-Button"
+                                                                                    type="button">Delete</button></div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td data-label="Attributes" scope="row"
+                                                                            style="text-align: left;">1st</td>
+                                                                        <td data-label="Attributes" scope="row"
+                                                                            style="text-align: left;">All Business
+                                                                            Assets</td>
+                                                                        <td class="collateral-table-pledgor-cell"
+                                                                            data-label="Base Class">XYZ Holdings, LLC
+                                                                        </td>
+                                                                        <td class="net-collateral-value-cell"
+                                                                            data-label="Base Class">$0</td>
+                                                                        <td data-label="Simulated Case">
+                                                                            <div><button
+                                                                                    class="border rounded-pill visible Mgmt-Option-Edit-Button"
+                                                                                    type="button">Edit</button><button
+                                                                                    class="border rounded-pill visible Mgmt-Option-Delete-Button"
+                                                                                    type="button">Delete</button></div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td data-label="Attributes" scope="row"
+                                                                            style="text-align: left;">2nd</td>
+                                                                        <td data-label="Attributes" scope="row"
+                                                                            style="text-align: left;">Residential Real
+                                                                            Estate</td>
+                                                                        <td class="collateral-table-pledgor-cell"
+                                                                            data-label="Base Class">John Doe, Jane Doe
+                                                                        </td>
+                                                                        <td class="net-collateral-value-cell"
+                                                                            data-label="Base Class">$125,000</td>
+                                                                        <td data-label="Simulated Case">
+                                                                            <div><button
+                                                                                    class="border rounded-pill visible Mgmt-Option-Edit-Button"
+                                                                                    type="button">Edit</button><button
+                                                                                    class="border rounded-pill visible Mgmt-Option-Delete-Button"
+                                                                                    type="button">Delete</button></div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="tab-7" class="tab-pane" role="tabpanel">
+                                                <div class="Form-Field-Div-Repayment-Description"><label
+                                                        class="form-label Form-Field-Label">Primary Source of Repayment
+                                                        Description:<textarea
+                                                            class="form-control Text-Input-Other-Repayment-Description"
+                                                            name="Other_Repayment_Description"
+                                                            required-field="false"></textarea></label></div>
+                                                <div class="Form-Field-Div-Repayment-Description"><label
+                                                        class="form-label Form-Field-Label">Secondary Source of
+                                                        Repayment Description:<br /><textarea
+                                                            class="form-control Text-Input-Other-Repayment-Description"
+                                                            name="Other_Repayment_Description"
+                                                            required-field="false"></textarea></label></div>
+                                                <div class="Form-Field-Div-Repayment-Description"><label
+                                                        class="form-label Form-Field-Label">Tertiary Source of Repayment
+                                                        Description:<br /><textarea
+                                                            class="form-control Text-Input-Other-Repayment-Description"
+                                                            name="Other_Repayment_Description"
+                                                            required-field="false"></textarea></label></div>
+                                            </div>
+                                            <div id="tab-8" class="tab-pane" role="tabpanel">
+                                                <div class="Sub-Section-Underline-Div">
+                                                    <p class="Tab-Pane-Header"><strong>Basic Risk Rating Model to be
+                                                            Added at a Later Date</strong><br /><br /><strong><em>Note:
+                                                                If feasible, I may add a Risk Rating Builder User
+                                                                Interface to allow an institution to build their own
+                                                                integrated Risk Rating model.</em></strong></p>
+                                                </div>
+                                            </div>
+                                            <div id="tab-9" class="tab-pane" role="tabpanel">
+                                                <div class="Sub-Section-Underline-Div">
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="Form-Field-Div-Tickler-Document-List"><label
+                                                                        class="form-label Tickler-Pane-Header"
+                                                                        style="border-radius: 10px;box-shadow: 0px 0px 7px 1px;"><span
+                                                                            style="font-weight: normal !important; text-decoration: underline;">Document
+                                                                            List</span></label></div>
+                                                                <div>
+                                                                    <p class="Tab-Pane-Placeholder">
+                                                                        <strong><em>Placeholder for Drag-and-Drop
+                                                                                'Sender' from institution's
+                                                                                document list.</em></strong></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="Form-Field-Div-Tickler-Filter"><label
+                                                                        class="form-label Form-Field-Label">
+                                                                        <div class="Dropdown-List"><button
+                                                                                id="dropdownMenuButton"
+                                                                                class="btn btn-primary dropdown-toggle fs-6 fw-semibold"
+                                                                                aria-expanded="false"
+                                                                                name="Tickler_Account_Filter_Menu"
+                                                                                data-bs-toggle="dropdown" type="button"
+                                                                                style="background: rgb(255,255,255);color: var(--bs-body-color);border-radius: 10px;height: 38px;min-width: 100%;padding-top: 0px;border: none;box-shadow: 0px 0px 3px 1px rgba(0,0,0,3);">
+                                                                                Select Account
+                                                                            </button>
+                                                                            <div class="dropdown-menu"
+                                                                                aria-labelledby="dropdownMenuButton"
+                                                                                style="min-width: 330px;"><a
+                                                                                    class="dropdown-item"
+                                                                                    href="#">Account List to Populate
+                                                                                    from Database</a></div>
+                                                                        </div>
+                                                                    </label></div>
+                                                                <div>
+                                                                    <p class="Tab-Pane-Placeholder">
+                                                                        <strong><em>Placeholder for Drag-and-Drop
+                                                                                'Receiver' from
+                                                                                institution's document
+                                                                                list.</em></strong><br /><br /></p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <p class="Tab-Pane-Header"><strong>Existing Ticklers and Other Loan
+                                                            Reporting Requirements</strong></p>
+                                                </div>
+                                                <div class="Table-Div">
+                                                    <div class="table-responsive"
+                                                        data-form-id="Existing-Business-Accounts-Table">
+                                                        <table class="table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th scope="col" style="text-align: left;">Tickler
+                                                                        Type</th>
+                                                                    <th scope="col" style="text-align: left;">Account
+                                                                        name</th>
+                                                                    <th class="text-center" scope="col">Document Type
+                                                                    </th>
+                                                                    <th class="text-center" scope="col">Frequency
+                                                                        required</th>
+                                                                    <th class="text-center" scope="col">Document
+                                                                        management</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td data-label="Attributes" scope="row"
+                                                                        style="text-align: left;">Financial</td>
+                                                                    <td data-label="Attributes" scope="row"
+                                                                        style="text-align: left;">XYZ Holdings, LLC</td>
+                                                                    <td data-label="Base Class">Tax Return</td>
+                                                                    <td data-label="Base Class">Annually</td>
+                                                                    <td data-label="Simulated Case">
+                                                                        <div class="Loan-Request-Management-Icons"><i
+                                                                                class="fa fa-pencil-square Loan-Request-Mgmt-Edit-Icon"
+                                                                                style="font-size: 35px;color: rgb(22,74,82);padding-right: 2.5px;padding-left: 2.5px;width: 35px;height: 35px;box-shadow: 0px 0px rgb(0,0,0);"></i><i
+                                                                                class="fa fa-trash Loan-Request-Mgmt-Delete-Icon"
+                                                                                style="font-size: 35px;color: rgb(92,30,24);padding-right: 2.5px;padding-left: 2.5px;width: 35px;height: 35px;"></i>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td data-label="Attributes" scope="row"
+                                                                        style="text-align: left;">Financial</td>
+                                                                    <td data-label="Attributes" scope="row"
+                                                                        style="text-align: left;">ABC Operating, Inc.
+                                                                    </td>
+                                                                    <td data-label="Base Class">Tax Return</td>
+                                                                    <td data-label="Base Class">Annually</td>
+                                                                    <td data-label="Simulated Case">
+                                                                        <div class="Loan-Request-Management-Icons"><i
+                                                                                class="fa fa-pencil-square Loan-Request-Mgmt-Edit-Icon"
+                                                                                style="font-size: 35px;color: rgb(22,74,82);padding-right: 2.5px;padding-left: 2.5px;width: 35px;height: 35px;box-shadow: 0px 0px rgb(0,0,0);"></i><i
+                                                                                class="fa fa-trash Loan-Request-Mgmt-Delete-Icon"
+                                                                                style="font-size: 35px;color: rgb(92,30,24);padding-right: 2.5px;padding-left: 2.5px;width: 35px;height: 35px;"></i>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td data-label="Attributes" scope="row"
+                                                                        style="text-align: left;">Financial</td>
+                                                                    <td data-label="Attributes" scope="row"
+                                                                        style="text-align: left;">John Doe</td>
+                                                                    <td data-label="Base Class">Tax Return</td>
+                                                                    <td data-label="Base Class">Annually</td>
+                                                                    <td data-label="Simulated Case">
+                                                                        <div class="Loan-Request-Management-Icons"><i
+                                                                                class="fa fa-pencil-square Loan-Request-Mgmt-Edit-Icon"
+                                                                                style="font-size: 35px;color: rgb(22,74,82);padding-right: 2.5px;padding-left: 2.5px;width: 35px;height: 35px;box-shadow: 0px 0px rgb(0,0,0);"></i><i
+                                                                                class="fa fa-trash Loan-Request-Mgmt-Delete-Icon"
+                                                                                style="font-size: 35px;color: rgb(92,30,24);padding-right: 2.5px;padding-left: 2.5px;width: 35px;height: 35px;"></i>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </section>
+                    </section>
+                    <section class="Section-Header-Div">
+                        <div class="Table-Div">
+                            <div class="table-responsive" data-form-id="New-Loan-Requests-Table">
+                                <table class="table">
+                                    <thead style="border-radius: 10px;">
+                                        <tr>
+                                            <th scope="col" style="text-align: left;">Loan ID</th>
+                                            <th scope="col" style="text-align: left;">Primary Borrower</th>
+                                            <th scope="col" style="text-align: right;">Loan Request ($)</th>
+                                            <th class="text-center" scope="col">Loan Type</th>
+                                            <th class="text-center" scope="col">Loan Management</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody style="border-radius: 10px;">
+                                        <tr>
+                                            <td scope="col" style="text-align: left;">New Request #000000001</td>
+                                            <td data-label="Attributes" scope="row" style="text-align: left;">Example
+                                                Company Name, LLC</td>
+                                            <td data-label="Attributes" scope="row" style="text-align: right;">
+                                                $2,500,000</td>
+                                            <td data-label="Base Class">Term Loan</td>
+                                            <td data-label="Simulated Case">
+                                                <div
+                                                    class="d-xxl-flex justify-content-xxl-center Loan-Request-Management-Icons">
+                                                    <i class="fa fa-pencil-square Loan-Request-Mgmt-Edit-Icon"
+                                                        data-bs-toggle="tooltip" title="Edit"></i><i
+                                                        class="fa fa-trash Loan-Request-Mgmt-Delete-Icon"
+                                                        data-bs-toggle="tooltip" title="Delete"></i><svg
+                                                        class="Loan-Request-Mgmt-Detailed-Summary-Icon"
+                                                        xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                                        viewBox="0 0 20 20" fill="none" data-bs-toggle="tooltip"
+                                                        title="Overview">
+                                                        <path
+                                                            d="M4 4C4 2.89543 4.89543 2 6 2H10.5858C11.1162 2 11.6249 2.21071 12 2.58579L15.4142 6C15.7893 6.37507 16 6.88378 16 7.41421V16C16 17.1046 15.1046 18 14 18H12.4722C13.4223 16.9385 14 15.5367 14 14C14 10.6863 11.3137 8 8 8C6.46329 8 5.06151 8.57771 4 9.52779V4Z"
+                                                            fill="currentColor"></path>
+                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                            d="M8 10C5.79086 10 4 11.7909 4 14C4 14.7414 4.20229 15.4364 4.55397 16.0318L3.29289 17.2929C2.90237 17.6834 2.90237 18.3166 3.29289 18.7071C3.68342 19.0976 4.31658 19.0976 4.70711 18.7071L5.96818 17.446C6.56362 17.7977 7.25862 18 8 18C10.2091 18 12 16.2091 12 14C12 11.7909 10.2091 10 8 10ZM6 14C6 12.8954 6.89543 12 8 12C9.10457 12 10 12.8954 10 14C10 15.1046 9.10457 16 8 16C7.44744 16 6.94881 15.7772 6.58579 15.4142C6.22276 15.0512 6 14.5526 6 14Z"
+                                                            fill="currentColor"></path>
+                                                    </svg></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td scope="col" style="text-align: left;">New Request #000000002</td>
+                                            <td data-label="Attributes" scope="row" style="text-align: left;">Some Other
+                                                Example, Inc.</td>
+                                            <td data-label="Attributes" scope="row" style="text-align: right;">$775,000
+                                            </td>
+                                            <td data-label="Base Class">Revolving Line of Credit</td>
+                                            <td data-label="Simulated Case">
+                                                <div
+                                                    class="d-xxl-flex justify-content-xxl-center Loan-Request-Management-Icons">
+                                                    <i class="fa fa-pencil-square Loan-Request-Mgmt-Edit-Icon"></i><i
+                                                        class="fa fa-trash Loan-Request-Mgmt-Delete-Icon"></i><svg
+                                                        class="Loan-Request-Mgmt-Detailed-Summary-Icon"
+                                                        xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                                        viewBox="0 0 20 20" fill="none">
+                                                        <path
+                                                            d="M4 4C4 2.89543 4.89543 2 6 2H10.5858C11.1162 2 11.6249 2.21071 12 2.58579L15.4142 6C15.7893 6.37507 16 6.88378 16 7.41421V16C16 17.1046 15.1046 18 14 18H12.4722C13.4223 16.9385 14 15.5367 14 14C14 10.6863 11.3137 8 8 8C6.46329 8 5.06151 8.57771 4 9.52779V4Z"
+                                                            fill="currentColor"></path>
+                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                            d="M8 10C5.79086 10 4 11.7909 4 14C4 14.7414 4.20229 15.4364 4.55397 16.0318L3.29289 17.2929C2.90237 17.6834 2.90237 18.3166 3.29289 18.7071C3.68342 19.0976 4.31658 19.0976 4.70711 18.7071L5.96818 17.446C6.56362 17.7977 7.25862 18 8 18C10.2091 18 12 16.2091 12 14C12 11.7909 10.2091 10 8 10ZM6 14C6 12.8954 6.89543 12 8 12C9.10457 12 10 12.8954 10 14C10 15.1046 9.10457 16 8 16C7.44744 16 6.94881 15.7772 6.58579 15.4142C6.22276 15.0512 6 14.5526 6 14Z"
+                                                            fill="currentColor"></path>
+                                                    </svg></div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+            </div>
+        </div>
+    </div>
+    <footer class="sticky-footer">
+        <div class="container my-auto">
+            <div class="text-center my-auto copyright"><span class="Footer-Copyright-Text"
+                    style="font-size: 19.8px;text-shadow: 0px 0px 20px rgb(0,0,0);">Copyright © OpnLend, Inc.</span>
+            </div>
+        </div><a class="d-inline border rounded scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </footer>
+    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/bs-init.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="{% static 'assets/js/theme.js' %}"></script>
+    <script src="{% static 'assets/js/Loans.js' %}"></script>
+    <script src="{% static 'assets/js/Drag-and-Drop-UI.js' %}"></script>
+    <script src="{% static 'assets/js/OpnLend.js' %}"></script>
+</body>
+
+</html>
