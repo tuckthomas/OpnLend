@@ -1,603 +1,639 @@
 .page-content-wrapper {
-    position: relative;
-  }
+  position: relative;
+}
 
-  .Hidden-Header-Div {
-    display: none;
-  }
-    
-  .Collapsible-Toggle-Button {
-    display: block;
-    position: absolute;
-    left: 50%;
-    top: 45px;
-    transform: translateX(-50%);
-    z-index: 10;
-    border-radius: 50%;
-    transition: transform 0.3s ease;
-    width: 40px;
-    height: 40px;
-    padding: 0px;
-    font-size: 30px;
-    text-align: center;
-    line-height: 30px;
-    border: none;
-    background-color: var(--bs-primary);
-    cursor: pointer;
-    color: #F0EAD6;
-    box-shadow: 0px 0px 11px 2px rgb(0,0,0);
-  }
-  
-  .Collapsible-Toggle-Button svg {
-    width: 100%;
-    height: auto;
-  }
-  
-  .collapsed .Collapsible-Toggle-Button {
-    transform: rotate(180deg);
-  }
-  
-  .Collapsible-Global-Identifiers-Header {
-    margin-top: -10px;
-  }
-  
-  #navbar-toggler:hover {
-    cursor: pointer;
-  }
-  
-  .navbar-toggler {
-    margin-left: auto;
-  }
-  
-  .Sidebar {
-    border-bottom-style: solid;
-    border-radius: 10px;
-    background: rgba(22,74,82,0.81);
-    border-style: solid;
-    border-width: thin;
-    box-shadow: 0px 0px 6px 3px #000000;
-  }
-  
-  .nav-text {
-    color: white;
-  }
-  
-  .sidebar-content {
-    margin-right: -10px;
-    width: 65px;
-    height: 65px;
-    object-fit: cover;
-  }
-  
-  .sticky-footer {
-    border-radius: 10px;
-    border-bottom-style: ridge;
-    background: rgba(22,74,82,0.81);
-  }
-  
-  .Footer-Copyright-Text {
-    color: var(--bs-body-bg);
-    font-weight: bold;
-  }
-  
-  .Combined-Section {
-    box-shadow: 0px 0px 6px 4px;
-    border-radius: 10px;
-    margin-top: 30px;
-    background: rgb(65,107,114);
-    border-radius: 25px;
-    padding-bottom: 20px;
-  }
-  
-  .sources-and-uses-cell {
-    background-color: rgba(255,255,255,0.81);
-  }
-  
-  .form-control-user {
-    box-shadow: 0px 0px 6px 1px #000000;
-  }
-  
-  .form-field-column {
-    height: 65px;
-    margin-right: 20px;
-  }
-  
-  .form-field-column-div {
-    height: 70px;
-    display: inline-flex;
-  }
-  
-  .Global-Relationship-Text-Field {
-    border-radius: 25px;
-    border-style: solid;
-    min-width: 100%;
-    max-width: 100%;
-    height: 40px;
-    background: rgb(248,248,248);
-    margin-top: -5px;
-    margin-left: 5px;
-    box-shadow: 0px 0px 6px 1px rgb(0,0,0);
-    display: inline-flex;
-  }
-  
-  .Global-Header-Text-Field-Div {
-    display: inline-flex;
-    min-width: 50%;
-    max-width: 100%;
-    margin-left: 5px;
-  }
-  
-  .nav-tabs {
-    border: solid var(--bs-body-color);
-    border-width: 0 0 3px 0;
-    font-weight: bold;
-    background: var(--bs-body-bg);
-  }
-  
-  Tab-Link {
-    border-color: rgba(22,74,82,0.81);
-    padding: 0px;
-  }
-  
-  .nav-tabs .nav-link {
-    color: var(--bs-body-color);
-    padding: 0.5rem;
-    height: 100%;
-  }
-  
-  .nav-tabs .nav-link.active {
-    background-color: rgba(22,74,82,0.81);
-    color: white;
-    border-radius: 10px;
-    height: 100%;
-  }
-  
-  [role="tabpanel"] {
-    background-color: rgba(104,154,162,0.1);
-  }
-  
-  .tab-pane {
-    padding: 1rem;
-  }
-  
-  .bi bi-trash {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
-  
-  .Expand-Account-Icon {
-    display: inline-flex;
-    width: 35px;
-    height: 50px;
-    user-select: none;
-    color: rgba(255,255,255);
-    margin-bottom: 5px;
-    display: inline-block;
-  }
-  
-  .Collapse-Account-Icon {
-    display: inline-flex;
-    width: 35px;
-    height: 35px;
-    user-select: none;
-    color: rgba(255,255,255);
-    margin-bottom: 5px;
-    display: none;
-  }
-  
-  .Section-Header {
-    user-select: none;
-    font-size: 28px;
-    display: inline;
-    color: rgba(255,255,255,0.81);
-    padding-left: 25px;
-    padding-right: 25px;
-    color: var(--bs-secondary-border-subtle);
-  }
-  
-  .Section-Header-Div {
-    margin-top: -8.5px;
-    color: rgba(22,74,82,0.81);
-    border-radius: 30px;
-    border-bottom-color: rgba(0,0,0,0.81);
-  }
-  
-  .Global-Relationship-Control-Buttons {
-    border-radius: 6px;
-    padding-right: 3px;
-    padding-left: 3px;
-    border-style: none;
-    margin-right: 1px;
-    margin-left: 1px;
-    box-shadow: 0px 0px 4px 2px rgb(0,0,0);
-    width: 250px;
-  }
-  
-  .Global-Relationship-Control-Buttons:active {
-    box-shadow: 0px 0px 2px 0px rgb(0,0,0) inset;
-    transform: translateY(2px);
-  }
-  
-  .Expand-Account-Icon:hover {
-    cursor: pointer;
-  }
-  
-  .Text-Input-Read-Only {
-    background-color: #f8f8f8;
-  }
-  
-  .form-label {
-    font-weight: bold;
-    min-width: 80%;
-  }
-  
-  .Form-Field-Div {
-    height: 75px;
-    display: inline-flex;
-    min-width: 30%;
-    margin-right: 15px;
-  }
-  
-  .MM-DD-YYYY-Input {
-    border-radius: 10px;
-    height: 38px;
-    max-width: 100%;
-    min-width: 100%;
-    box-shadow: 0px 0px 3px 1px;
-    text-align: right;
-  }
-  
-  .Field-Column {
-    display: inline-block;
-    min-width: 33.3%;
-    max-width: 33.33%;
-  }
-  
-  @media (min-width: 1400px) {
-    .Tab-Option {
-      box-shadow: 0px 0px 2px 0.25px;
-      border-radius: 8px;
-    }
-  }
-  
-  @keyframes pulse {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.1);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
-  
+.Hidden-Header-Div {
+  display: none;
+}
+
+.Collapsible-Toggle-Button {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 45px;
+  transform: translateX(-50%);
+  z-index: 10;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  width: 40px;
+  height: 40px;
+  padding: 0px;
+  font-size: 30px;
+  text-align: center;
+  line-height: 30px;
+  border: none;
+  background-color: var(--bs-primary);
+  cursor: pointer;
+  color: #F0EAD6;
+  box-shadow: 0px 0px 11px 2px rgb(0,0,0);
+}
+
+.Collapsible-Toggle-Button svg {
+  width: 100%;
+  height: auto;
+}
+
+.collapsed .Collapsible-Toggle-Button {
+  transform: rotate(180deg);
+}
+
+.Collapsible-Global-Identifiers-Header {
+  margin-top: -10px;
+}
+
+#navbar-toggler:hover {
+  cursor: pointer;
+}
+
+.navbar-toggler {
+  margin-left: auto;
+}
+
+.Sidebar {
+  border-bottom-style: solid;
+  border-radius: 10px;
+  background: rgba(22,74,82,0.81);
+  border-style: solid;
+  border-width: thin;
+  box-shadow: 0px 0px 6px 3px #000000;
+}
+
+.nav-text {
+  color: white;
+}
+
+.sidebar-content {
+  margin-right: -10px;
+  width: 65px;
+  height: 65px;
+  object-fit: cover;
+}
+
+.sticky-footer {
+  border-radius: 10px;
+  border-bottom-style: ridge;
+  background: rgba(22,74,82,0.81);
+}
+
+.Footer-Copyright-Text {
+  color: var(--bs-body-bg);
+  font-weight: bold;
+}
+
+.Combined-Section {
+  box-shadow: 0px 0px 6px 4px;
+  border-radius: 10px;
+  margin-top: 30px;
+  background: rgb(65,107,114);
+  border-radius: 25px;
+  padding-bottom: 20px;
+}
+
+.sources-and-uses-cell {
+  background-color: rgba(255,255,255,0.81);
+}
+
+.form-control-user {
+  box-shadow: 0px 0px 6px 1px #000000;
+}
+
+.form-field-column {
+  height: 65px;
+  margin-right: 20px;
+}
+
+.form-field-column-div {
+  height: 70px;
+  display: inline-flex;
+}
+
+.Global-Relationship-Text-Field {
+  border-radius: 25px;
+  border-style: solid;
+  min-width: 100%;
+  max-width: 100%;
+  height: 40px;
+  background: rgb(248,248,248);
+  margin-top: -5px;
+  margin-left: 5px;
+  box-shadow: 0px 0px 6px 1px rgb(0,0,0);
+  display: inline-flex;
+  padding-left: 10px;
+  pointer-events: none;
+  user-select: text;
+}
+
+.Global-Header-Text-Field-Div {
+  display: inline-flex;
+  min-width: 50%;
+  max-width: 100%;
+  margin-left: 5px;
+}
+
+.nav-tabs {
+  border: solid var(--bs-body-color);
+  border-width: 0 0 3px 0;
+  font-weight: bold;
+  background: var(--bs-body-bg);
+}
+
+Tab-Link {
+  border-color: rgba(22,74,82,0.81);
+  padding: 0px;
+}
+
+.nav-tabs .nav-link {
+  color: var(--bs-body-color);
+  padding: 0.5rem;
+  height: 100%;
+}
+
+.nav-tabs .nav-link.active {
+  background-color: rgba(22,74,82,0.81);
+  color: white;
+  border-radius: 10px;
+  height: 100%;
+}
+
+[role="tabpanel"] {
+  background-color: rgba(104,154,162,0.1);
+}
+
+.tab-pane {
+  padding: 1rem;
+}
+
+.bi bi-trash {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.Expand-Account-Icon {
+  display: inline-flex;
+  width: 35px;
+  height: 50px;
+  user-select: none;
+  color: rgba(255,255,255);
+  margin-bottom: 5px;
+  display: inline-block;
+}
+
+.Collapse-Account-Icon {
+  display: inline-flex;
+  width: 35px;
+  height: 35px;
+  user-select: none;
+  color: rgba(255,255,255);
+  margin-bottom: 5px;
+  display: none;
+}
+
+.Section-Header {
+  user-select: none;
+  font-size: 28px;
+  display: inline;
+  color: rgba(255,255,255,0.81);
+  padding-left: 25px;
+  padding-right: 25px;
+  color: var(--bs-secondary-border-subtle);
+}
+
+.Section-Header-Div {
+  margin-top: -8.5px;
+  color: rgba(22,74,82,0.81);
+  border-radius: 30px;
+  border-bottom-color: rgba(0,0,0,0.81);
+}
+
+.Global-Relationship-Control-Buttons {
+  border-radius: 6px;
+  padding-right: 3px;
+  padding-left: 3px;
+  border-style: none;
+  margin-right: 1px;
+  margin-left: 1px;
+  box-shadow: 0px 0px 4px 2px rgb(0,0,0);
+  width: 250px;
+}
+
+.Global-Relationship-Control-Buttons:active {
+  box-shadow: 0px 0px 2px 0px rgb(0,0,0) inset;
+  transform: translateY(2px);
+}
+
+.Expand-Account-Icon:hover {
+  cursor: pointer;
+}
+
+.Text-Input-Read-Only {
+  background-color: #f8f8f8;
+}
+
+.form-label {
+  font-weight: bold;
+  min-width: 80%;
+}
+
+.Form-Field-Div {
+  height: 75px;
+  display: inline-flex;
+  min-width: 30%;
+  margin-right: 15px;
+}
+
+.MM-DD-YYYY-Input {
+  border-radius: 10px;
+  height: 38px;
+  max-width: 100%;
+  min-width: 100%;
+  box-shadow: 0px 0px 3px 1px;
+  text-align: right;
+}
+
+.Field-Column {
+  display: inline-block;
+  min-width: 33.3%;
+  max-width: 33.33%;
+}
+
+@media (min-width: 1400px) {
   .Tab-Option {
     box-shadow: 0px 0px 2px 0.25px;
     border-radius: 8px;
   }
-  
-  .Tab-Option:active {
-    box-shadow: 0px 0px 2px 0px rgb(0,0,0) inset;
-    transform: translateY(2px);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
   }
-  
-  .Form-Field-Label {
-    margin-top: 10px;
-    height: 60px;
-    width: 100%;
+  50% {
+    transform: scale(1.1);
   }
-  
-  .Text-Input-Address {
-    min-width: 80%;
-    max-width: 80%;
-    box-shadow: 0px 0px 3px 1px;
+  100% {
+    transform: scale(1);
   }
-  
-  .Tab-Row {
-    overflow: visible;
-    display: block;
-    max-width: 100%;
-  }
-  
-  .Three-Column-Container {
-    display: block;
-  }
-  
-  .Tab-Pane-Header {
-    padding-top: 5px;
-    padding-bottom: 0px;
-    margin-bottom: 0px;
-    font-size: 17px;
-  }
-  
-  .Table-Div {
-    box-shadow: 0px 0px 7px 1px;
-    border-radius: 20px;
-    margin-top: 20px;
-  }
-  
-  .table-responsive {
-    background: var(--bs-secondary);
-    border-radius: 20px;
-    padding-top: 30px;
-    padding-bottom: 15px;
-    background-color: var(--bs-primary);
-  }
-  
-  .Form-Field-Label-Large {
-    height: auto;
-    width: auto;
-    margin-top: 10px;
-  }
-  
-  .Global-Headers {
-    font-size: 25px;
-    color: rgba(255,255,255);
-  }
-  
-  /* Fully Responsive Table */
-  
-  .Mgmt-Option-Edit-Button {
-    width: 75px;
-    height: 35px;
-    background: var(--bs-info-text-emphasis);
-    border-radius: 10px;
-    box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.9);
-    color: rgb(255,255,255);
-    margin-right: 5px;
-    margin-left: 5px;
-    font-weight: bold;
-    border-width: 1px;
-    backdrop-filter: blur(0px);
-  }
-  
-  .Mgmt-Option-Delete-Button {
-    width: 75px;
-    height: 35px;
-    background: var(--bs-danger-text-emphasis);
-    border-radius: 10px;
-    box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.9);
-    color: rgb(255,255,255);
-    margin-right: 5px;
-    margin-left: 5px;
-    font-weight: bold;
-    border-width: 1px;
-    backdrop-filter: blur(0px);
-    padding-top: 1px;
-    padding-right: 6px;
-    padding-bottom: 1px;
-    padding-left: 6px;
-  }
-  
+}
+
+.Tab-Option {
+  box-shadow: 0px 0px 2px 0.25px;
+  border-radius: 8px;
+}
+
+.Tab-Option:active {
+  box-shadow: 0px 0px 2px 0px rgb(0,0,0) inset;
+  transform: translateY(2px);
+}
+
+.Form-Field-Label {
+  margin-top: 10px;
+  height: 60px;
+  width: 100%;
+}
+
+.Text-Input-Address {
+  min-width: 80%;
+  max-width: 80%;
+  box-shadow: 0px 0px 3px 1px;
+}
+
+.Tab-Row {
+  overflow: visible;
+  display: block;
+  max-width: 100%;
+}
+
+.Three-Column-Container {
+  display: block;
+}
+
+.Tab-Pane-Header {
+  padding-top: 5px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  font-size: 17px;
+}
+
+.Table-Div {
+  box-shadow: 0px 0px 7px 1px;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+.table-responsive {
+  background: var(--bs-secondary);
+  border-radius: 20px;
+  padding-top: 30px;
+  padding-bottom: 15px;
+  background-color: var(--bs-primary);
+}
+
+.Form-Field-Label-Large {
+  height: auto;
+  width: auto;
+  margin-top: 10px;
+}
+
+.Global-Headers {
+  font-size: 25px;
+  color: rgba(255,255,255);
+}
+
+/* Fully Responsive Table */
+
+.Mgmt-Option-Edit-Button {
+  width: 75px;
+  height: 35px;
+  background: var(--bs-info-text-emphasis);
+  border-radius: 10px;
+  box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.9);
+  color: rgb(255,255,255);
+  margin-right: 5px;
+  margin-left: 5px;
+  font-weight: bold;
+  border-width: 1px;
+  backdrop-filter: blur(0px);
+}
+
+.Mgmt-Option-Delete-Button {
+  width: 75px;
+  height: 35px;
+  background: var(--bs-danger-text-emphasis);
+  border-radius: 10px;
+  box-shadow: 0px 0px 7px 1px rgba(0,0,0,0.9);
+  color: rgb(255,255,255);
+  margin-right: 5px;
+  margin-left: 5px;
+  font-weight: bold;
+  border-width: 1px;
+  backdrop-filter: blur(0px);
+  padding-top: 1px;
+  padding-right: 6px;
+  padding-bottom: 1px;
+  padding-left: 6px;
+}
+
+table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+
+table th, table td {
+  padding: .625em;
+  text-align: center;
+}
+
+table th {
+  font-size: .85em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 600px) {
   table {
-    border: 1px solid #ccc;
-    border-collapse: collapse;
-    margin: 0;
+    border: 0;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
     padding: 0;
-    width: 100%;
-    table-layout: fixed;
+    position: absolute;
+    width: 1px;
   }
-  
+}
+
+@media screen and (max-width: 600px) {
   table tr {
-    background-color: #f8f8f8;
-    border: 1px solid #ddd;
-    padding: .35em;
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
   }
-  
-  table th, table td {
-    padding: .625em;
-    text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
   }
-  
-  table th {
-    font-size: .85em;
-    letter-spacing: .1em;
+}
+
+@media screen and (max-width: 600px) {
+  table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
     text-transform: uppercase;
   }
-  
-  @media screen and (max-width: 600px) {
-    table {
-      border: 0;
-    }
-  }
-  
-  @media screen and (max-width: 600px) {
-    table thead {
-      border: none;
-      clip: rect(0 0 0 0);
-      height: 1px;
-      margin: -1px;
-      overflow: hidden;
-      padding: 0;
-      position: absolute;
-      width: 1px;
-    }
-  }
-  
-  @media screen and (max-width: 600px) {
-    table tr {
-      border-bottom: 3px solid #ddd;
-      display: block;
-      margin-bottom: .625em;
-    }
-  }
-  
-  @media screen and (max-width: 600px) {
-    table td {
-      border-bottom: 1px solid #ddd;
-      display: block;
-      font-size: .8em;
-      text-align: right;
-    }
-  }
-  
-  @media screen and (max-width: 600px) {
-    table td::before {
-      content: attr(data-label);
-      float: left;
-      font-weight: bold;
-      text-transform: uppercase;
-    }
-  }
-  
-  @media screen and (max-width: 600px) {
-    table td:last-child {
-      border-bottom: 0;
-    }
-  }
-  
-  *, *:after, *:before {
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-  
-  .Sidebar {
-    border-bottom-style: ridge;
-    border-radius: 10px;
-    background: rgba(22,74,82,0.81);
-  }
-  
-  .Global-Relationship-Div-Headers {
-    display: inline-flex;
-    margin-left: 7.5px;
-  }
-  
-  .Sub-Section-Underline-Div {
-    border-bottom: 5px ridge #416b72;
-    margin-bottom: 15px;
-    margin-top: 15px;
-  }
-  
-  .Global-Identifiers-Header {
-    background: rgba(22,74,82,0.81);
-    color: var(--bs-secondary);
-    margin-top: -24px;
-    height: 55px;
-    min-width: 100%;
-    width: 100%;
-    padding-top: 10px;
-    display: inline-flex;
-    box-shadow: 0px 0px 6px 3px #000000;
-    overflow: visible;
-    position: relative;
-  }
-  
-  .Global-Button-Control-Div {
-    border-radius: 10px;
-    margin-top: 2px;
-    padding-bottom: 0px;
-  }
-  
-  .Add-Business-Div {
-    margin-top: 30px;
-    min-width: 98%;
-    max-width: 98%;
-  }
-  
-  .Form-Field-Div-Account {
-    width: 40%;
-    display: inline-block;
-    margin-right: 10px;
-  }
-  
-  .dashboard-button {
-    height: 36px;
-    border-radius: 10px;
-    margin-right: 5px;
-    margin-left: 5px;
-  }
-  
-  .Text-Input, .Text-Input-Read-Only, .URL-Input, .Telephone-Number-Input, .Email-Address-Input, .Text-Input-Loan-Purpose, .Source-Amount-Input, .Use-Amount-Input, .Fee-Amount-Input {
-    border-radius: 10px;
-    height: 38px;
-    max-width: 100%;
-    box-shadow: 0px 0px 3px 1px;
-  }
-  
-  .Form-Field-Div-40 {
-    height: 75px;
-    display: inline-flex;
-    min-width: 40%;
-    margin-right: 15px;
-  }
-  
-  .Form-Field-Label-40 {
-    width: 100%;
-    height: auto;
-    margin-top: 10px;
-  }
-  
-  .Text-Input-40 {
-    border-radius: 10px;
-    height: 38px;
-    min-width: 100%;
-    max-width: 100%;
-    box-shadow: 0px 0px 3px 1px rgb(0,0,0);
-  }
-  
-  .Form-Field-Div-Buttons {
-    padding-top: 20px;
-  }
-  
-  .Submit-Form-Button {
-    padding-top: 1px;
-    padding-right: 6px;
-    padding-bottom: 1px;
-    padding-left: 6px;
-    display: inline-block;
-    width: 125px;
-    height: 35px;
-    text-align: center;
-    font-weight: bold;
-    background: var(--bs-primary);
-    color: rgb(255,255,255);
-    margin: 5px;
-    border-color: var(--bs-body-color);
-    border-radius: 15px;
-    box-shadow: 0px 0px 3px 1px rgb(0,0,0);
-  }
+}
 
-  .Submit-Form-Button:active {
-    box-shadow: 0px 0px 2px 0px rgb(0,0,0) inset;
-    transform: translateY(2px);
-  }  
-  
-  .Form-Field-Div--Submit-Button-Row {
-    margin-top: 25px;
-    padding-left: 25px;
-    display: flex;
+@media screen and (max-width: 600px) {
+  table td:last-child {
+    border-bottom: 0;
   }
-  
-  .Hidden-Form-Field-Div {
-    display: none;
+}
+
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.Sidebar {
+  border-bottom-style: ridge;
+  border-radius: 10px;
+  background: rgba(22,74,82,0.81);
+}
+
+.Global-Relationship-Div-Headers {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+.Sub-Section-Underline-Div {
+  border-bottom: 5px ridge #416b72;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+.Global-Identifiers-Header {
+  background: rgba(22,74,82,0.81);
+  color: var(--bs-secondary);
+  margin-top: -24px;
+  min-height: 55px;
+  min-width: 100%;
+  width: 100%;
+  padding-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  box-shadow: 0px 0px 6px 3px #000000;
+  overflow: visible;
+  position: relative;
+  justify-content: space-between;
+}
+
+@media (max-width: 600px) {
+  .Global-Relationship-Div-Headers {
+    width: 100%;
+    justify-content: center;
+    min-width: 0;
   }
-  
-  /* Style for the dropdown menu */
-  
-  .Dropdown-List .dropdown-menu {
-    min-width: 330px;
-    border: 1px solid black;
-  }
-  
-  /* Style for items in the dropdown */
-  
-  .Dropdown-List .dropdown-item {
-    color: black;
-    font-size: larger;
-  }
-  
-  /* Additional styling for the dropdown button */
-  
-  .Dropdown-List .btn-primary {
-    background: rgb(255,255,255);
-    color: var(--bs-body-color);
-    border-radius: 10px;
-    height: 38px;
-    min-width: 100%;
-    padding-top: 0px;
-    border: none;
-    box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.3);
-  }
-  
-  
+}
+
+.Global-Button-Control-Div {
+  border-radius: 10px;
+  margin-top: 2px;
+  padding-bottom: 0px;
+}
+
+.Add-Business-Div {
+  margin-top: 30px;
+  min-width: 98%;
+  max-width: 98%;
+}
+
+.Form-Field-Div-Account {
+  width: 40%;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.dashboard-button {
+  height: 36px;
+  border-radius: 10px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.Text-Input, .Text-Input-Read-Only, .URL-Input, .Telephone-Number-Input, .Email-Address-Input, .Text-Input-Loan-Purpose, .Source-Amount-Input, .Use-Amount-Input, .Fee-Amount-Input {
+  border-radius: 10px;
+  height: 38px;
+  max-width: 100%;
+  box-shadow: 0px 0px 3px 1px;
+}
+
+.Form-Field-Div-20 {
+  height: 75px;
+  display: inline-flex;
+  min-width: 20%;
+  margin-right: 15px;
+}
+
+.Form-Field-Div-30 {
+  height: 75px;
+  display: inline-flex;
+  min-width: 30%;
+  margin-right: 15px;
+}
+
+.Form-Field-Div-40 {
+  height: 75px;
+  display: inline-flex;
+  min-width: 40%;
+  margin-right: 15px;
+}
+
+.Form-Field-Div-50 {
+  height: 75px;
+  display: inline-flex;
+  min-width: 50%;
+  margin-right: 15px;
+}
+
+.Form-Field-Label-40 {
+  width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+
+.Text-Input-40 {
+  border-radius: 10px;
+  height: 38px;
+  min-width: 100%;
+  max-width: 100%;
+  box-shadow: 0px 0px 3px 1px rgb(0,0,0);
+}
+
+.Form-Field-Div-Buttons {
+  padding-top: 20px;
+}
+
+.Submit-Form-Button {
+  padding-top: 1px;
+  padding-right: 6px;
+  padding-bottom: 1px;
+  padding-left: 6px;
+  display: inline-block;
+  width: 125px;
+  height: 35px;
+  text-align: center;
+  font-weight: bold;
+  background: var(--bs-primary);
+  color: rgb(255,255,255);
+  margin: 5px;
+  border-color: var(--bs-body-color);
+  border-radius: 15px;
+  box-shadow: 0px 0px 3px 1px rgb(0,0,0);
+}
+
+.Submit-Form-Button:active {
+  box-shadow: 0px 0px 2px 0px rgb(0,0,0) inset;
+  transform: translateY(2px);
+}
+
+.Form-Field-Div--Submit-Button-Row {
+  margin-top: 25px;
+  padding-left: 25px;
+  display: flex;
+}
+
+.Hidden-Form-Field-Div {
+  display: none;
+}
+
+/* Style for the dropdown menu */
+
+.Dropdown-List .dropdown-menu {
+  min-width: 330px;
+  border: 1px solid black;
+}
+
+/* Style for items in the dropdown */
+
+.Dropdown-List .dropdown-item {
+  color: black;
+  font-size: larger;
+}
+
+/* Additional styling for the dropdown button */
+
+.Dropdown-List .btn-primary {
+  background: rgb(255,255,255);
+  color: var(--bs-body-color);
+  border-radius: 10px;
+  height: 38px;
+  min-width: 100%;
+  padding-top: 0px;
+  border: none;
+  box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.3);
+}
+
