@@ -1,5 +1,6 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from .api import api # Imports Django Ninja API instance from the api.py file
 from .views import update_session_data
 from Dashboard.views import Dashboard, download_and_process_data, download_csv, data_table, filter_choices, log_js_error, download_filtered_data, delete_filtered_data
 from Financial_Manager.views import Financials
@@ -9,6 +10,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path('api/', api.urls),  # Route API requests to Django Ninja
     path('admin/', admin.site.urls),
     path('', Dashboard, name='Dashboard'),
     path('update-session/', update_session_data, name='update-session'),
