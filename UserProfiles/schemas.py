@@ -1,8 +1,13 @@
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-from .models import CustomUser, UserSession
+from ninja import Schema
 
-@receiver(post_save, sender=CustomUser)
-def create_user_session(sender, instance, created, **kwargs):
-    if created:
-        UserSession.objects.create(user=instance)
+class CreateUserSessionSchema(Schema):
+    global_relationship_id: str
+    meta_id: str
+    unique_id: str
+
+class UserSessionSchema(Schema):
+    id: int
+    global_relationship_id: str
+    meta_id: str
+    unique_id: str
+    user_id: int  # Assuming you want to include the user's ID
