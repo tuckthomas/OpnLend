@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'Authentication.apps.AuthenticationConfig',
     'ninja',
     'Dashboard',
     'Global_Relationships',
@@ -38,6 +39,9 @@ INSTALLED_APPS = [
     'Application_Portal',
     'Underwriting',
     'Portfolio_Management',
+    'Authentication',
+    'UserProfiles',
+    'Settings',
     'sslserver',
 ]
 
