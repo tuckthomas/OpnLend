@@ -1,3 +1,6 @@
+# OpnLend API
+# Centralized endpoints
+
 from ninja import NinjaAPI
 from Global_Relationships.api import router as global_relationships_router
 
