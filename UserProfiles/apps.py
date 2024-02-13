@@ -1,6 +1,9 @@
 from django.apps import AppConfig
 
-
-class UserprofilesConfig(AppConfig):
+class AuthenticationConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'UserProfiles'
+    name = 'Authentication'
+
+    def ready(self):
+        # This imports the signals to ensure they are connected
+        import Authentication.signals
