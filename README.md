@@ -1,17 +1,51 @@
+# OpnLend: An Open Source Loan Origination System
 ![opnlend-logo](Media/OpnLend-Logo.png)
 
-![opnlend-financial-spreading-example](Media/financial_spreading_example.jpg)
+# Global Relationships
+The Global Relationships app serves two primary purposes:
+1. The CRUD-based UI serves as a "mini-CRM" for Business and Personal Account Informatoin
+2. The Global Relationship ID is a Unique ID that can be shared amongst one or more Business or Personal Accoutns. Per FDIC, NCUA, and SBA (Size Standard) requirements, it aggregates related accounts.
 
-**_An open source, modular loan origination system. Initially designed for commercial loan origination, including SBA and USDA loans, while allowing for consumer loan origination moduels to be developed at a later date._**
+# Financials
+The Financials app is the financial spreading and modeling software for spreading business financials, personal tax returns, personal financial statements, and debt scheduels for business and personal accounts.
+**Purpose**
+- Build a financial spreading app within my OpnLend web (Django) application, with a focus on credit analysis.
+- Provide generic spreading statements that allow for core functionality, while allowing users to build their own custom sub-statements that are either separate from the “core” generic models or derivatives of those models.
+- The generic model will be primarily based upon the United States IRS Form 1120 and 1065. This will allow for consistency when, at a later date, implementing automated spreading functionality.
 
-The intent of this project is an "ala carte" approach. The "core apps" are intended to be Loans, Relationships, and Spreading. Each additional app is to be individually installed to the individual or institution's needs (Deposits, Collateral, Profiles, etc.). Later down the road, possibly adding support for the installation of "Third Party Plugins" for community made content (data visualization packages, support for credit reporting agency data pulls, analysis tools, etc.). Furthermore, it is to be locally hosted; mitigating risk of downtime when compared to a 3rd party cloud server, as well as third-party data goverance risk mitigation. With this utilizing Django as the backend, additional security risk mitgatoin is offered when compared to Excel-based models. I am currently developing this within a Djano container (LXC) hosted on my Proxmox home server, integrated with my PostgreSQL database hosted in a separate LXC. I'll likely integrate the relational database solution within the web-hosted application as an option during the installation process, while providing the ability for an institution to opt to integrate their own database soluition. To handle dynamic field creation, the database solution used will require support for JSON fields.
+**Database Design**
+- A given set (Income Statement and Balance Sheet) of financial statements are grouped together by the “parent” Financial Manager Primary Key.
+- In addition to the key fields to form relationships between the Financial Manager and the “child” Income Statement and Balance Sheet tables, the Financial Manager is to store the Business Entity’s Unique Identifier, Statement Date, Period Length, Statement Type (CPA Reviewed, Tax Return, Company Prepared, etc.), Accounting Method, among potential other fields.
+- Additional Financial Statements Offered: Additional database tables where a given record’s dated statement can reconcile to the other “child statements” of the Financial Manager’s primary key record. Examples include the following: Accounts Receivable Aging Summary, Accounts Payable Aging Summary, Inventory Summary Report, Invoices, etc.
+
+**Database Fields: Subtotal, Generic, and Custom (JSON)**
+- Each parent account has an initially hidden “_generic” child account, that any value entered into the parent account is stored in; allowing parent account to continue to aggregate its children account(s).
+- The generic account is only revealed if  the user opts to spread child accounts; opting by selecting a “+” sign or some other form of indication to add child accounts.
+- Infinite addition of entity-specific child accounts allowed via JavaScript, with aggregation to the "parent" subtotal account.
+- The subtotal accounts are solely front-end visual representation allowing for easier data entry. Their values are to not be stored within the database; reducing redundancy.
+
+# Loans
+***Primary Design***
+1. New Loan Requests, which exists for the purpose of underwriting new money requests. If integration of existing loans exists, allows for the ability for the auto-merging of approved, funded loans from the New Loan Requests table to the Existing Loans table.
+2. Existing Loans, allowing for portfolio management, loan renewals, loan reviews, modifications, change of terms, etc.
+
+**Primary Loan (Structure) Details**
+1. Stores the (temporary) New Loan Request Account Number or the existing Account Number if within the Existing Loans table.
+2. Additional Priamry Structure fields include, but are not limited to: Loan Amount, Loan Product, Loan Term, Loan Amortization (if applicable depending on chosen Loan Product), and various Pricing Terms.
+
+**Loan >>> Loan Roles Foreign Key Relationship**
+1. Loan Roles: Defines Borrower, Co-Borrower(s), and Guarantors.
+2. Additional fields include Guaranty Indebtedness (i.e., unlimited vs limited; if limited, dollar amount or percentage of commitment) and Guaranty Security (collateral pledged).
+
+**Loan >>> Loan Collateral Schedule Foreign Key Relationship**
+1. Allows for the assignment of Collateral from the available 'Collateral Pool'.
+
+**Loan >>> Loan Ticklers**
+1. Documetn reporting requirements assigned at the loan-level.
+
+**Loan >>> Loan Fees / Vendor Management**
+1. Assigns individual loan fees, including ability to import directly from Vendor Management (i.e., ordering appraisals, environmental due diligence, etc.)
+
+**Additoinal Geneeral Design Definitions to be Added Later**
 
 
-
-**Background: Commercial Credit Experience (~10 years) and Loan Origination System (LOS) experience.**
-
-I'm in the very beginning stages, including planning and design. While I have been working in commercial credit/underwriting for the last decade, outside of experience with VBA, my experience in coding and databases is beginner to intermediate. Though, am learning more quick than I ever have before thanks to AI tools.
-
-I have experience utilizing various different loan origination systems (Fusion Credit Quest, Abrigo Sageworks, nCino, and others), collaborated with LOS engineers when improving financial institutions' existing integrations, developed various auto filled templates to improve efficiencies, and most recently worked at a FinTech assistig with the micro-loan automated decisioning process. Lastly, using VBA and Microsoft UserForms, along with Microsoft Acccess as an SQL database solution, I've developed simple loan origination systems with the underlying intent on automating redudant tasks. That system inclusive of automated credit memo generation, automated spreading of PDF form fields, and other features more commonly found in (expensive) loan origination systems.
-
-I'm more so using this application as a learning project to continue learning coding while applying my professional commercial credit experience.
