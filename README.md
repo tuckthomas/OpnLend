@@ -25,7 +25,7 @@ Each institution can embedd whichever Business Intelligence product it chooses. 
 
 ![Early-Metabase-SBA-Dashboard-Example](Media/Early-Metabase-SBA-Dashboard-Example.jpg)
 
-To use Metabase as the dashboard front-end, [Docker](https://github.com/docker) is required for installation. I am running Debian 12 within a Proxmox LXC. If using a similar setup or Debian-based system, here's how to install Metabase using Docker:
+To use Metabase as the dashboard front-end, [Docker](https://github.com/docker) is required for installation. In my home development environment, I am running Debian 11 within a Proxmox LXC. If using a similar setup or Debian-based system, here's how to install Metabase using Docker:
 
 - Ensure Docker is installed on your system. For Debian-based systems:
   ```sh
