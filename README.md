@@ -62,9 +62,9 @@ Detailed description to be added at a later date....
 
 ## Loan Applications
 Initial design is to include:
-1. Build-an-Application Module: Allows for an institution to quickly build an onlie loan application that will automatically sync to a 'New Money Request' within the 'Loan' app.
-2. SBA 7a Application Web Forms: Includes API configuration per the publicly available API documents from the SBA.
-3. SBA 504 Web Forms: Includes API configuration per the publicly available API documents from the SBA.
+1. Build-an-Application Module: Will allow for an institution to quickly build an onlie loan application that will automatically sync to a 'New Money Request' within the 'Loan' app.
+2. SBA 7a Application Web Forms: Will include API configuration per the publicly available API documents from the SBA.
+3. SBA 504 Web Forms: Will include API configuration per the publicly available API documents from the SBA.
 4. USDA FSA Web Forms: I need to reserach whether an API is available.
 
 ## Portfolio Management
