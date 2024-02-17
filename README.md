@@ -45,6 +45,8 @@ To use Metabase as the dashboard front-end, [Docker](https://github.com/docker) 
   ```sh
   pip install PyJWT
 
+- Please reference the views.py file and the Dashboard.html file within the Dashboard app for an example of how to complete the embedding process. 
+
 ## Financials
 The Financials app is the financial spreading and modeling software for spreading business financials, personal tax returns, personal financial statements, and debt schedules for business and personal accounts.
 ### Purpose
