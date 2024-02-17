@@ -1,15 +1,19 @@
-![opnlend-logo](Media/OpnLend-Logo.png)
-# An Open Source Loan Origination System
-***No-Nonsense, Privacy Focused Approach:*** All of OpnLend's applications are to be offered free of charge. No hidden costs and no customer data collection. The source code is openly availably for you to download and deploy locally, or you may choose to take advantage of the Paid Premium Support's Cloud Hosting. Do you desire additional security measures not currently implemented? Your institutions IT Deparment may modify the source code to fit your requirements.
+<p align="center">
+  <img src="Media/OpnLend-Logo.png" alt="opnlend-logo">
+</p>
 
-***Placing Your Needs First, As It Should Be:*** Don't need a module? Remove it. Desire to integrate other data or platforms? No one is stopping you. This OpnLend solution is ***intended for your institution to scale based upon on its needs; not the needs of other institutions***. Ultimately, helping you more efficiently lend to businesses of all sizes, farmers, real estate investors, and others to build a better economy.
+<h1 align="center">An Open Source Loan Origination System</h1>
 
-***Additional Premium Features Offered:*** Paid, premium features include, but are not limited to: cloud hosting, customer support, custom proprietary solutions, in-house system training, remote system training, basic credit analysis training, intermediate credit analysis training, advanced credit analysis training, and expert credit analysis training.
+- ***No-Nonsense, Privacy Focused Approach:*** All of OpnLend's applications are to be offered free of charge. No hidden costs and no customer data collection. The source code is openly availably for you to download and deploy locally, or you may choose to take advantage of the Paid Premium Support's Cloud Hosting. Do you desire additional security measures not currently implemented? Your institutions IT Deparment may modify the source code to fit your requirements.
+
+- ***Placing Your Needs First, As It Should Be:*** Don't need a module? Remove it. Desire to integrate other data or platforms? No one is stopping you. This OpnLend solution is ***intended for your institution to scale based upon on its needs; not the needs of other institutions***. Ultimately, helping you more efficiently lend to businesses of all sizes, farmers, real estate investors, and others to build a better economy.
+
+- ***Additional Premium Features Offered:*** Paid, premium features include, but are not limited to: cloud hosting, customer support, custom proprietary solutions, in-house system training, remote system training, basic credit analysis training, intermediate credit analysis training, advanced credit analysis training, and expert credit analysis training.
 
 ## Global Relationships
 The Global Relationships app serves two primary purposes:
-1. The CRUD-based UI serves as a "mini-CRM" for Business and Personal Account Information.
-2. The Global Relationship ID is a Unique ID that can be shared among one or more Business or Personal Accounts. Per FDIC, NCUA, and SBA (Size Standard) requirements, it aggregates related accounts.
+- The CRUD-based UI serves as a "mini-CRM" for Business and Personal Account Information.
+- The Global Relationship ID is a Unique ID that can be shared among one or more Business or Personal Accounts. Per FDIC, NCUA, and SBA (Size Standard) requirements, it aggregates related accounts.
 
 ## Financials
 The Financials app is the financial spreading and modeling software for spreading business financials, personal tax returns, personal financial statements, and debt schedules for business and personal accounts.
@@ -31,47 +35,47 @@ The Financials app is the financial spreading and modeling software for spreadin
 
 ## Loans
 ### Primary Design
-1. New Loan Requests, which exist for the purpose of underwriting new money requests. If integration of existing loans exists, allows for the ability for the auto-merging of approved, funded loans from the New Loan Requests table to the Existing Loans table.
-2. Existing Loans, allowing for portfolio management, loan renewals, loan reviews, modifications, change of terms, etc.
+- New Loan Requests, which exist for the purpose of underwriting new money requests. If integration of existing loans exists, allows for the ability for the auto-merging of approved, funded loans from the New Loan Requests table to the Existing Loans table.
+- Existing Loans, allowing for portfolio management, loan renewals, loan reviews, modifications, change of terms, etc.
 
 ### Primary Loan (Structure) Details
-1. Stores the (temporary) New Loan Request Account Number or the existing Account Number if within the Existing Loans table.
-2. Additional Primary Structure fields include, but are not limited to: Loan Amount, Loan Product, Loan Term, Loan Amortization (if applicable depending on chosen Loan Product), and various Pricing Terms.
+- Stores the (temporary) New Loan Request Account Number or the existing Account Number if within the Existing Loans table.
+- Additional Primary Structure fields include, but are not limited to: Loan Amount, Loan Product, Loan Term, Loan Amortization (if applicable depending on chosen Loan Product), and various Pricing Terms.
 
-### Loan >>> Loan Roles Foreign Key Relationship
-1. Loan Roles: Defines Borrower, Co-Borrower(s), and Guarantors.
-2. Additional fields include Guaranty Indebtedness (i.e., unlimited vs limited; if limited, dollar amount or percentage of commitment) and Guaranty Security (collateral pledged).
+### Loan Roles Foreign Key Relationship
+- Loan Roles: Defines Borrower, Co-Borrower(s), and Guarantors.
+- Additional fields include Guaranty Indebtedness (i.e., unlimited vs limited; if limited, dollar amount or percentage of commitment) and Guaranty Security (collateral pledged).
 
-### Loan >>> Loan Collateral Schedule Foreign Key Relationship
-1. Allows for the assignment of Collateral from the available 'Collateral Pool'.
+### Loan Collateral Schedule Foreign Key Relationship
+- Allows for the assignment of Collateral from the available 'Collateral Pool'.
 
-### Loan >>> Loan Ticklers
-1. Document reporting requirements assigned at the loan level.
+### Loan Ticklers
+- Document reporting requirements assigned at the loan level.
 
-### Loan >>> Loan Fees / Vendor Management
-1. Assigns individual loan fees, including the ability to import directly from Vendor Management (i.e., ordering appraisals, environmental due diligence, etc.)
+### Loan Fees / Vendor Management
+- Assigns individual loan fees, including the ability to import directly from Vendor Management (i.e., ordering appraisals, environmental due diligence, etc.)
 
-### Loan >>> Loan's Sources of Repayment
-1. Detailed description to be added at a later date....
+### Loan's Sources of Repayment
+- Detailed description to be added at a later date....
 
-### Loan >>> Loan Risk Rating
-1.  Detailed description to be added at a later date....
+### Loan Risk Rating
+- Detailed description to be added at a later date....
 
 ## Deposits
 Detailed description to be added at a later date....
 
 ## Loan Applications
 Initial design is to include:
-1. Build-an-Application Module: Will allow for an institution to quickly build an onlie loan application that will automatically sync to a 'New Money Request' within the 'Loan' app.
-2. SBA 7a Application Web Forms: Will include API configuration per the publicly available API documents from the SBA.
-3. SBA 504 Web Forms: Will include API configuration per the publicly available API documents from the SBA.
-4. USDA FSA Web Forms: I need to reserach whether an API is available.
+- Build-an-Application Module: Will allow for an institution to quickly build an onlie loan application that will automatically sync to a 'New Money Request' within the 'Loan' app.
+- SBA 7a Application Web Forms: Will include API configuration per the publicly available API documents from the SBA.
+- SBA 504 Web Forms: Will include API configuration per the publicly available API documents from the SBA.
+- USDA FSA Web Forms: I need to reserach whether an API is available.
 
 ## Portfolio Management
 Detailed description to be added at a later date....
 
 ## Document Portal
-Ultimately, I may integrate an existing open source document management solution as an optional download, as financial institutions may prefer to have their documents stored on their existing primary source of retention.
+I may integrate an existing open source document management solution as an optional download, as financial institutions may prefer to have their documents stored on their existing primary source of retention.
 
 
 ## Additional General Design Definitions to be Added Later
