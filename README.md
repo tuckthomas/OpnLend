@@ -20,7 +20,7 @@ Each institution can embedd whichever Business Intelligence product it chooses. 
 
 **What is Metabase?** [Metabase](https://github.com/metabase/metabase) is open-source business intelligence tool that enables users to explore, visualize, and share data insights without the need for extensive technical knowledge. It allows for easy querying through a user-friendly interface, making it accessible for users to generate reports and dashboards from their data sources. Here is an early example of a dashboard using Metabase:
 
-![Early-Metabase-SBA-Dashboard-Example](media/Early-Metabase-SBA-Dashboard-Example.jpg)
+![Early-Metabase-SBA-Dashboard-Example](Media/Early-Metabase-SBA-Dashboard-Example.jpg)
 
 To use Metabase as the dashboard front-end, [Docker](https://github.com/docker) is required for installation. I am running Debian 12 within a Proxmox LXC. If using a similar setup or Debian-based system, here's how to install Metabase using Docker:
 
