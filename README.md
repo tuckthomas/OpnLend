@@ -13,6 +13,10 @@ Don't need a module? Remove it. Desire to integrate other data or platforms? No 
 ### Additional Premium Features Offered
 Paid, premium features include, but are not limited to: cloud hosting, customer support, custom proprietary solutions, in-house system training, remote system training, basic credit analysis training, intermediate credit analysis training, advanced credit analysis training, and expert credit analysis training.
 
+## Tucker, why are you releasing this for free?
+- I'm tired of having to "recreate the wheel" at each financial institution worked at; sometimes required to use less advanced tools (Excel + VBA) to create financial models and program with due to limited resources offered.
+- I've worked in Commercial Underwriting or Credit Analytical roles at various financial institutions and, as such, have had the privledge to use various difference loan origination systems. From what I've witnessed, there is very little to no innovation being done. Many features offered are technologies that other industries have been utilizing for years. Releasing this system that allows for modifications to the underlying source code provides a new 'baseline' of basic features that all lenders should have in their toolbox.
+
 ## Global Relationships
 The Global Relationships app serves two primary purposes:
 - The CRUD-based UI serves as a "mini-CRM" for Business and Personal Account Information.
