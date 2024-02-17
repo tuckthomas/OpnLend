@@ -57,4 +57,21 @@ The Financials app is the financial spreading and modeling software for spreadin
 ### Loan >>> Loan Risk Rating
 1.  Detailed description to be added at a later date....
 
+## Deposits
+Detailed description to be added at a later date....
+
+## Loan Applications
+Initial design is to include:
+1. Build-an-Application Module: Allows for an institution to quickly build an onlie loan application that will automatically sync to a 'New Money Request' within the 'Loan' app.
+2. SBA 7a Application Web Forms: Includes API configuration per the publicly available API documents from the SBA.
+3. SBA 504 Web Forms: Includes API configuration per the publicly available API documents from the SBA.
+4. USDA FSA Web Forms: I need to reserach whether an API is available.
+
+## Portfolio Management
+Detailed description to be added at a later date....
+
+## Document Portal
+Ultimately, I may integrate an existing open source document management solution as an optional download, as financial institutions may prefer to have their documents stored on their existing primary source of retention.
+
+
 ## Additional General Design Definitions to be Added Later
