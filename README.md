@@ -13,7 +13,7 @@ Don't need a module? Remove it. Desire to integrate other data or platforms? No 
 ### Additional Premium Features Offered
 Paid, premium features include, but are not limited to: cloud hosting, customer support, custom proprietary solutions, in-house system training, remote system training, basic credit analysis training, intermediate credit analysis training, advanced credit analysis training, and expert credit analysis training.
 
-## Tucker, why are you releasing this for free?
+## Tucker, why will you be releasing this for free?
 - I'm tired of having to "recreate the wheel" at each financial institution worked at; often times required to use less advanced tools (Excel + VBA) to program with and create financial models. I'm tried of having those products developed by me become the property of someone else, all while being prevented from taking a copy of my code and models upon leaving.
 - During the last decade, I've worked in Commercial Underwriting or Credit Analytical roles at various financial institutions and, as such, have had the privledge to use various difference loan origination systems. From what I've witnessed, there is very little to no innovation being done. Many features offered are technologies that other industries have been utilizing for years. Releasing this system that allows for modifications to the underlying source code provides a new 'baseline' of basic features that all lenders should have in their toolbox.
 
