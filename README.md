@@ -2,7 +2,7 @@
   <img src="Media/OpnLend-Logo.png" alt="opnlend-logo">
 </p>
 
-<h1 align="center">An Open Source Loan Origination System</h1>
+<h1 align="center">Loan Origination System</h1>
 <p align="center"><em>OpnLend software is a product of OpnLend, Inc.</em></p>
 <p align="center"><em>OpnLend, Inc. is an Indiana registered S-Corporation</em></p>
 
