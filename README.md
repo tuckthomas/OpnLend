@@ -6,7 +6,7 @@
 <h2 align="center">Community Edition</h2>
 <p align="center"><em>OpnLend Community Edition software is a product of OpnLend, Inc.</em></p>
 <p align="center"><em>OpnLend Inc. is an Indiana registered S-Corporation</em></p>
-<p align="center"><em>Inquires may be directed at the sole beneficial owner, Tucker Thomas Olson: tuckerolson13@gmail.com</em></p>
+<p align="center"><em>Inquires regarding the OpnLend proprietary edition may be directed to OpnLend Inc.'s sole beneficial owner, Tucker Thomas Olson: tuckerolson13@gmail.com</em></p>
 
 ### No-Nonsense, Privacy Focused Approach
 All of OpnLend's community edition is offered free of charge. No hidden costs and no customer data collection. The source code is openly availably for you to download and deploy locally, or you may choose to take advantage of the Paid Premium Support's Cloud Hosting. Do you desire additional security measures not currently implemented? Your institutions IT Deparment may modify the source code to fit your requirements.
