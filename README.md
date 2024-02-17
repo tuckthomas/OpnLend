@@ -46,6 +46,6 @@ The Financials app is the financial spreading and modeling software for spreadin
 **Loan >>> Loan Fees / Vendor Management**
 1. Assigns individual loan fees, including ability to import directly from Vendor Management (i.e., ordering appraisals, environmental due diligence, etc.)
 
-**Additoinal Geneeral Design Definitions to be Added Later**
+# Additoinal Geneeral Design Definitions to be Added Later
 
 
