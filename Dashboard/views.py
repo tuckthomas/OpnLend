@@ -2,22 +2,38 @@ import json, csv, re, os, uuid, logging
 from django.http import HttpResponse, JsonResponse
 import pandas as pd
 import requests
+import jwt
+import time
 from django.conf import settings
 from pathlib import Path
 from django.shortcuts import render, redirect
 from django.db import transaction, connection
-from datetime import datetime
-from .models import SBALoanData
+from datetime import datetime, date, timedelta
 from django.db.models import Count, Sum, Avg, Max, Case, When, Value, CharField, F
 from django.db.models.functions import Coalesce, Concat
 from django.core.serializers import serialize
 from django.core.cache import cache
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
+from bs4 import BeautifulSoup
 
 def Dashboard(request):
     cache.clear()  # Clear the cache
-    return render(request, 'Dashboard.html')
+    METABASE_SITE_URL = "https://dashboard.opnlend.com"
+    METABASE_SECRET_KEY = "REPLACE_WITH_YOUR_METABASE_UNIQUE_METABASE_KEY"
+
+    payload = {
+    "resource": {"dashboard": 1},
+    "params": {
+        
+    },
+    "exp": round(time.time()) + (60 * 10) # 10 minute expiration
+    }
+    token = jwt.encode(payload, METABASE_SECRET_KEY, algorithm="HS256")
+
+    iframeUrl = METABASE_SITE_URL + "/embed/dashboard/" + token + "#theme=transparent&bordered=true&titled=true"
+
+    return render(request, 'Dashboard.html', {'iframeUrl': iframeUrl})
 
 
 logger = logging.getLogger(__name__)  # Get an instance of a logger
@@ -98,6 +114,71 @@ def filter_choices(request):
     # Return the filter choices as a JSON response
     return JsonResponse(filter_choices, safe=False)
 
+# Determine if a new fetch should proceed
+def should_fetch_new_data():
+    today = date.today()
+    last_update_log = SBALoanDataUpdateLog.objects.all().aggregate(
+        Max('last_successful_update'),
+        Max('file_date_7a_2010_2019'),
+        Max('file_date_7a_2020_present'),
+        Max('file_date_504')
+    )
+    
+    # Logic to determine if today is after the most recent month-end
+    # and after the most recent files' dates
+    if today.day > 1:  # Assuming a simplistic check for month-end
+        if today > last_update_log['last_successful_update__max']:
+            return True
+    return False
+
+def SBA_Loan_Data_Link_Scraping():
+    # Base URL components
+    base_url = "https://data.sba.gov"
+    target_url = "https://data.sba.gov/en/dataset/7-a-504-foia"
+    
+    # Custom User-Agent header
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
+    }
+    
+    # Fetch the HTML content of the page with a custom User-Agent
+    response = requests.get(target_url, headers=headers)
+    if response.status_code != 200:
+        return "Failed to fetch the webpage"
+    
+    # Find the list of resources
+    resource_list = soup.find('ul', class_='resource-list')
+    if not resource_list:
+        return "Resource list not found"
+    
+    # Titles to look for
+    titles = {
+        "7a_2020": "FOIA - 7(a)(FY2020-Present)",
+        "7a_2010_2019": "FOIA - 7(a)(FY2010-FY2019)",
+        "504": "FOIA - 504 (FY2010-Present) asof"
+    }
+    
+    # Initialize a dictionary to hold the results
+    results = {
+        "7a_2020": None,
+        "7a_2010_2019": None,
+        "504": None
+    }
+    
+    # Iterate over each resource item to find matching titles and extract hrefs
+    for li in resource_list.find_all('li', class_='resource-item'):
+        a_tag = li.find('a', class_='heading')
+        if a_tag and 'title' in a_tag.attrs:
+            title = a_tag['title']
+            if titles["7a_2020"] in title:
+                results["7a_2020"] = base_url + a_tag['href']
+            elif titles["7a_2010_2019"] in title:
+                results["7a_2010_2019"] = base_url + a_tag['href']
+            elif titles["504"] in title and "asof" in title:
+                results["504"] = base_url + a_tag['href']
+    
+    return results
+
 def download_filtered_data(request):
     # Generate the CSV data based on your filtered data
     filtered_data = [...]  # Replace with your filtered data
@@ -175,6 +256,14 @@ def parse_date(date_str):
     return None
 
 def download_and_process_data(request):
+
+    def download_and_process_data(request):
+    # Call the scraping function to get the latest URLs
+        fetched_urls = SBA_Loan_Data_Link_Scraping()
+        if isinstance(fetched_urls, str):
+            # Handle error from SBA_Loan_Data_Link_Scraping
+            return fetched_urls
+
     # Function to download file and save to media folder
     def download_file(url, filename):
         media_path = Path(settings.MEDIA_ROOT)
@@ -206,20 +295,15 @@ def download_and_process_data(request):
         except UnicodeDecodeError:
             return pd.read_csv(local_filename, encoding='ISO-8859-1', low_memory=False)
         except FileNotFoundError:
-            return f"File not found: {local_filename}"
+            raise FileNotFoundError(f"File not found: {local_filename}")
         except Exception as e:
-            return f"Error reading file {local_filename}: {e}"
-    
-    # URLs for the datasets
-    urls_7a = [
-        "https://data.sba.gov/dataset/0ff8e8e9-b967-4f4e-987c-6ac78c575087/resource/02e2e83a-2af1-4ce8-91db-85e20ffadbf7/download/foia-7afy2010-fy2019-asof-230930.csv",
-        "https://data.sba.gov/dataset/0ff8e8e9-b967-4f4e-987c-6ac78c575087/resource/c71ba6cf-b4e0-4e60-98f0-48aeaf4c6460/download/foia-7afy2020-present-asof-230930.csv"
-    ]
-    urls_504 = [
-        "https://data.sba.gov/dataset/0ff8e8e9-b967-4f4e-987c-6ac78c575087/resource/e8023bd1-7d8e-4bd2-8346-47cb6b367beb/download/foia-504-fy2010-present-asof-230930.csv"
-    ]
+            raise ValueError(f"Error reading file {local_filename}: {e}")
 
-    # Download and load datasets into pandas DataFrames
+    # Download SBA.gov's CSV files from the fetched URLs
+    urls_7a = fetched_urls.get("7a_2020", []) + fetched_urls.get("7a_2010_2019", [])
+    urls_504 = fetched_urls.get("504", [])
+
+    # Initialize empty lists to store DataFrames
     dfs_7a = [read_csv_with_encoding(download_file(url, f"7a_{i}.csv")) for i, url in enumerate(urls_7a)]
     dfs_504 = [read_csv_with_encoding(download_file(url, f"504_{i}.csv")) for i, url in enumerate(urls_504)]
 
