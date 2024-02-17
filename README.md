@@ -16,7 +16,7 @@ The Global Relationships app serves two primary purposes:
 - The Global Relationship ID is a Unique ID that can be shared among one or more Business or Personal Accounts. Per FDIC, NCUA, and SBA (Size Standard) requirements, it aggregates related accounts.
 
 ## Dashboard: Embedded Business Intelligence Solution
-Each institution can embedd whichever Business Intelligence produhct they currently utilize. Metabase's Business Intelligence solution will be an installation option for those who may not have an existing Business Intelligence solution or may be exploring alternative solutios. 
+Each institution can embedd whichever Business Intelligence product it chooses. Metabase's Business Intelligence solution will be an installation option for those who may not have an existing Business Intelligence solution or may be exploring alternative solutios. 
 
 **What is Metabase?** [Metabase](https://github.com/metabase/metabase) is open-source business intelligence tool that enables users to explore, visualize, and share data insights without the need for extensive technical knowledge. It allows for easy querying through a user-friendly interface, making it accessible for users to generate reports and dashboards from their data sources.
 
