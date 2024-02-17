@@ -5,7 +5,7 @@
 <h1 align="center">Loan Origination System</h1>
 <h2 align="center">Community Edition</h2>
 <p align="center"><em>OpnLend Community Edition software is a product of OpnLend, Inc.</em></p>
-<p align="center"><em>OpnLend, Inc. is an Indiana registered S-Corporation</em></p>
+<p align="center"><em>OpnLend Inc. is an Indiana registered S-Corporation</em></p>
 <p align="center"><em>Inquires may be directed at the sole beneficial owner, Tucker Thomas Olson: tuckerolson13@gmail.com</em></p>
 
 ### No-Nonsense, Privacy Focused Approach
