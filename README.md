@@ -3,7 +3,7 @@
 </p>
 
 <h1 align="center">An Open Source Loan Origination System</h1>
-<h2 align="center">OpnLend, Inc. is a registered Indiana S-Corporation</h1>
+<h2 align="center">OpnLend, Inc. is a registered Indiana S-Corporation</h2>
 
 ### No-Nonsense, Privacy Focused Approach
 All of OpnLend's applications are to be offered free of charge. No hidden costs and no customer data collection. The source code is openly availably for you to download and deploy locally, or you may choose to take advantage of the Paid Premium Support's Cloud Hosting. Do you desire additional security measures not currently implemented? Your institutions IT Deparment may modify the source code to fit your requirements.
