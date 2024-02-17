@@ -4,11 +4,14 @@
 
 <h1 align="center">An Open Source Loan Origination System</h1>
 
-- ***No-Nonsense, Privacy Focused Approach:*** All of OpnLend's applications are to be offered free of charge. No hidden costs and no customer data collection. The source code is openly availably for you to download and deploy locally, or you may choose to take advantage of the Paid Premium Support's Cloud Hosting. Do you desire additional security measures not currently implemented? Your institutions IT Deparment may modify the source code to fit your requirements.
+### No-Nonsense, Privacy Focused Approach
+All of OpnLend's applications are to be offered free of charge. No hidden costs and no customer data collection. The source code is openly availably for you to download and deploy locally, or you may choose to take advantage of the Paid Premium Support's Cloud Hosting. Do you desire additional security measures not currently implemented? Your institutions IT Deparment may modify the source code to fit your requirements.
 
-- ***Placing Your Needs First, As It Should Be:*** Don't need a module? Remove it. Desire to integrate other data or platforms? No one is stopping you. This OpnLend solution is ***intended for your institution to scale based upon on its needs; not the needs of other institutions***. Ultimately, helping you more efficiently lend to businesses of all sizes, farmers, real estate investors, and others to build a better economy.
+### Placing Your Needs First, As It Should Be
+Don't need a module? Remove it. Desire to integrate other data or platforms? No one is stopping you. My OpnLend solution is ***intended for your institution to scale based upon on its needs; not the needs of other institutions***. Ultimately, helping you more efficiently lend to businesses of all sizes, farmers, real estate investors, and others to build a better economy.
 
-- ***Additional Premium Features Offered:*** Paid, premium features include, but are not limited to: cloud hosting, customer support, custom proprietary solutions, in-house system training, remote system training, basic credit analysis training, intermediate credit analysis training, advanced credit analysis training, and expert credit analysis training.
+### Additional Premium Features Offered
+Paid, premium features include, but are not limited to: cloud hosting, customer support, custom proprietary solutions, in-house system training, remote system training, basic credit analysis training, intermediate credit analysis training, advanced credit analysis training, and expert credit analysis training.
 
 ## Global Relationships
 The Global Relationships app serves two primary purposes:
