@@ -3,13 +3,13 @@
 </p>
 
 <h1 align="center">Loan Origination System</h1>
-<h2 align="center">Community Edition</h2>
-<p align="center"><em>OpnLend Community Edition software is a product of OpnLend, Inc.</em></p>
+<h2 align="center">Community Edition (CE)</h2>
+<p align="center"><em>OpnLend CE software is a product of OpnLend, Inc.</em></p>
 <p align="center"><em>OpnLend Inc. is an Indiana registered S-Corporation</em></p>
 <p align="center"><em>Inquires regarding the OpnLend proprietary edition may be directed to OpnLend Inc.'s sole beneficial owner, Tucker Thomas Olson: tuckerolson13@gmail.com</em></p>
 
 ### No-Nonsense, Privacy Focused Approach
-All of OpnLend's community edition is offered free of charge. No hidden costs and no customer data collection. The source code is openly availably for you to download and deploy locally, or you may choose to take advantage of the Paid Premium Support's Cloud Hosting.
+Do you desire to no longer have to send your customers' data to a remote server owned and operated by someone else? With OpnLend CE, you can deploy a loan origination system locally over your LAN connection.
 
 ### Placing Your Needs First, As It Should Be
 Don't need a module? Remove it. Integration of other AGPL v3 compatible solutions is encouraged. My OpnLend solution is ***intended for your institution to scale based upon on its needs; not the needs of other institutions***. Ultimately, helping you more efficiently lend to businesses of all sizes, farmers, real estate investors, and others to build a better economy.
