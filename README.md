@@ -20,7 +20,9 @@ Paid, premium features include, but are not limited to: cloud hosting, customer 
 ## Tucker, why the free community edition?
 - I'm tired of having to "recreate the wheel" at each financial institution worked at.
 - During the last decade, I've worked in Commercial Underwriting or Credit Analytical roles at various financial institutions. Subsequently, I've had the privledge to use various different loan origination systems. I've seen what works, and what doesn't work.
-- From what I've witnessed, there is very little to no innovation being done. The features offered by loan origination system providers are technologies that other industries have been utilizing for years. In some cases, technologies I've been deploying in my home automation system for years. Banking has, historically, been slow to adopt new technologies. Releasing this free community edition provides a new 'baseline' of basic features that all lenders should have in their toolbox.
+- From what I've witnessed, there is very little to no innovation being done. The features offered by loan origination system providers are technologies that other industries have been utilizing for years.
+- Most bank and credit unions in the United States are small. Often times, the loan origination systems offered by these 'big players' are overkill for the financial institutions actual needs.
+- In some cases, technologies I've been deploying in my home automation system for years. Banking has, historically, been slow to adopt new technologies. Releasing this free community edition provides a new 'baseline' of basic features that all lenders should have in their toolbox.
 
 ## Global Relationships
 The Global Relationships app serves two primary purposes:
