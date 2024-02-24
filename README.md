@@ -7,7 +7,7 @@
 <p align="center"><em>OpnLend CE software is a product of OpnLend, Inc.</em></p>
 <p align="center"><em>OpnLend Inc. is an Indiana registered S-Corporation</em></p>
 <p align="center"><em>Inquires regarding the OpnLend proprietary edition may be directed to OpnLend Inc.'s sole beneficial owner, Tucker Thomas Olson: tuckerolson13@gmail.com</em></p>
-<p align="center"><em>OpnLend's base package (all packages currently seen here) are also free and allow for internal modification. However, are subject to a custom license and terms of use.</em></p>
+<p align="center"><em>OpnLend's base package (all packages currently seen here) allow for internal modifications to the source code. However, are subject to a custom license and terms of use.</em></p>
 
 ### No-Nonsense, Privacy Focused Approach
 Do you desire to no longer have to send your customers' data to a remote server owned and operated by someone else? With OpnLend CE, you can deploy a loan origination system locally over your LAN connection.
