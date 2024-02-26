@@ -18,7 +18,7 @@ Don't need a module? Remove it. Integration of other AGPL v3 compatible solution
 ### Additional Premium Features Offered
 Paid, premium features include, but are not limited to: cloud hosting, customer support, custom proprietary solutions, in-house system training, remote system training, basic credit analysis training, intermediate credit analysis training, advanced credit analysis training, and expert credit analysis training.
 
-## Tucker, why the free community edition?
+## Why the free community edition?
 - I'm tired of having to "recreate the wheel" at each financial institution worked at.
 - During the last decade, I've worked in Commercial Underwriting or Credit Analytical roles at various financial institutions. Subsequently, I've had the privledge to use various different loan origination systems. I've seen what works, and what doesn't work.
 - From what I've witnessed, there is very little to no innovation being done. The features offered by loan origination system providers are technologies that other industries have been utilizing for years.  In some cases, technologies I've been deploying in my home automation system for years. My point is, banking has historically been slow to adopt new technologies.
