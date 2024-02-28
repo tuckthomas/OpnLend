@@ -4,10 +4,11 @@
 
 <h1 align="center">Loan Origination System</h1>
 <h2 align="center">Community Edition (CE)</h2>
-<p align="center"><em>OpnLend CE software is a product of OpnLend, Inc.</em></p>
-<p align="center"><em>OpnLend Inc. is an Indiana registered S-Corporation</em></p>
-<p align="center"><em>Inquires regarding the OpnLend proprietary edition may be directed to OpnLend Inc.'s sole beneficial owner, Tucker Thomas Olson: tuckerolson13@gmail.com</em></p>
-<p align="center"><em>OpnLend's base package (all packages currently seen here) allow for internal modifications to the source code. However, are subject to a custom license and terms of use.</em></p>
+<p align="center"><em>OpnLend CE software is a product of OpnLend, Inc., an Indiana registered S-Corporation.</em></p>
+
+**Inquiry Contact:** All initial inquiries regarding the OpnLend proprietary edition may be directed to OpnLend Inc.'s sole beneficial owner, Tucker Thomas Olson: tuckerolson13@gmail.com.
+
+**Disclosure:** OpnLend's base package (all packages currently seen here) allow for internal modifications to the source code. However, are subject to a custom license and terms of use.
 
 ### No-Nonsense, Privacy Focused Approach
 Do you desire to no longer have to send your customers' data to a remote server owned and operated by someone else? With OpnLend CE, you can deploy a loan origination system locally over your LAN connection.
@@ -30,8 +31,10 @@ The Global Relationships app serves two primary purposes:
 - The CRUD-based UI serves as a "mini-CRM" for Business and Personal Account Information.
 - The Global Relationship ID is a Unique ID that can be shared among one or more Business or Personal Accounts. Per FDIC, NCUA, and SBA (Size Standard) requirements, it aggregates related accounts.
 
-## Dashboard: Embedded Business Intelligence Solution
-Each institution can embedd whichever Business Intelligence product it chooses. Metabase's Business Intelligence solution will be an installation option for those who may not have an existing Business Intelligence solution or may be exploring alternative solutios. 
+## OpnLend Community Edition Dashboard: Embedded Business Intelligence Solution
+Each institution can embedd whichever Business Intelligence product it chooses. Metabase's Business Intelligence solution will be an installation option for those who may not have an existing Business Intelligence solution or may be exploring alternative open-source solutions.
+
+Please note that this dashboard solution is only offered within the open-source Community Edition; adhering to the GNU GPL v3 license. **The proprietary edition, which allows for source code modifications without the GNU GPL v3's requirement of republishing the modified source code, will not include an option to integerate Metabase as the Business Intellignece solution.**
 
 **What is Metabase?** [Metabase](https://github.com/metabase/metabase) is open-source business intelligence tool that enables users to explore, visualize, and share data insights without the need for extensive technical knowledge. It allows for easy querying through a user-friendly interface, making it accessible for users to generate reports and dashboards from their data sources. Here is an early example of a dashboard using Metabase:
 
