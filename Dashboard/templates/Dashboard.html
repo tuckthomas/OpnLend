@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=1024, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Dashboard</title>
     {% load static %}
     <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
@@ -16,65 +16,14 @@
     <link rel="stylesheet" href="{% static 'assets/fonts/fontawesome-all.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/animate.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/bs-theme-overrides.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/OpnLend.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/Dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/OpnLend.css' %}">
 </head>
 
 <body id="page-top" style="padding-right: 0px;">
     <div id="wrapper">
         <!-- Start: #sidebar -->
-        <nav class="navbar align-items-start Sidebar">
-            <div class="container-fluid p-0"><svg id="navbar-toggler" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20" fill="none" style="font-size:35px;color:var(--bs-primary-text-emphasis);margin-left:auto;" data-bs-toggle="collapse" data-bs-target="#navbar-container" aria-expanded="false" aria-controls="collapsibleContent">
-                    <path fill-rule="evenodd" d="M3 4C3 3.44772 3.44772 3 4 3H16C16.5523 3 17 3.44772 17 4C17 4.55228 16.5523 5 16 5H4C3.44772 5 3 4.55228 3 4ZM3 8C3 7.44772 3.44772 7 4 7H16C16.5523 7 17 7.44772 17 8C17 8.55228 16.5523 9 16 9H4C3.44772 9 3 8.55228 3 8ZM3 12C3 11.4477 3.44772 11 4 11H16C16.5523 11 17 11.4477 17 12C17 12.5523 16.5523 13 16 13H4C3.44772 13 3 12.5523 3 12ZM3 16C3 15.4477 3.44772 15 4 15H16C16.5523 15 17 15.4477 17 16C17 16.5523 16.5523 17 16 17H4C3.44772 17 3 16.5523 3 16Z" fill="white"></path>
-                </svg>
-                <div id="navbar-container" class="container collapse"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#"><img src="/static/assets/img/Icons/opnlend_green.png" width="72" height="72" alt="Opnlend Green Icon"></a>
-                    <ul class="navbar-nav flex-column mb-auto" id="accordionSidebar" style="padding: 11px;">
-                        <li class="nav-item"><li class="nav-item">
-                    <a class="nav-link" href="{% url 'Dashboard' %}">
-                        <img class="sidebar-content" src="/static/assets/img/Sidebar/Dashboard.png" alt="Dashboard" />
-                        <span class="nav-text">Dashboard</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'Relationships' %}">
-                        <img class="sidebar-content" src="/static/assets/img/Sidebar/Global-Relationships.png" alt="Relationships" />
-                        <span class="nav-text">Global Relationships</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'Financials' %}">
-                        <img class="sidebar-content" src="/static/assets/img/Sidebar/Financials.png" alt="Financials" />
-                        <span class="nav-text">Financials</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'Loans' %}">
-                        <img class="sidebar-content" src="/static/assets/img/Sidebar/Loans.png" alt="Loans" />
-                        <span class="nav-text">Loans</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link">
-                        <img class="sidebar-content" src="/static/assets/img/Sidebar/Collateral.png" alt="Collateral" />
-                        <span class="nav-text">Collateral</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link">
-                        <img class="sidebar-content" src="/static/assets/img/Sidebar/Deposits.png" alt="Deposits" />
-                        <span class="nav-text">Deposits</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link">
-                        <img class="sidebar-content" src="/static/assets/img/Sidebar/Profitability.png" alt="Profitability" />
-                        <span class="nav-text">Profitability</span>
-                    </a>
-                </li></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        {% include 'sidebar/sidebar.html' %}
         <!-- End: #sidebar -->
     <div id="content-wrapper" class="d-flex flex-column" style="min-height: 100vh;">
         <section>
@@ -84,7 +33,6 @@
                         <div class="input-group" style="min-width: 535px;"><input class="form-control form-control" type="text" placeholder="Search Accounts within Global Relationship....." style="background: rgb(251,251,251);border-color: #009185;" /><button class="btn btn-primary" type="button" style="border-top-style: ridge;border-top-color: var(--bs-body-color);background: #426c73;"><i class="fas fa-search"></i></button></div>
                     </form>
                     <div style="margin-right: 250px;margin-left: 50px;"><a href="https://github.com/tuckthomas/opnlend" src="/static/assets/img/Icons/GitHub_OpnLend_Button.png" style="position: relative;display: flex;color: var(--bs-primary-text-emphasis);" target="_blank"><img class="d-xxl-flex img-pointer" src="/static/assets/img/Icons/GitHub_OpnLend_Button.png" width="124" height="25" style="height: 50px;width: 150px;padding-right: 0px;padding-left: 0px;border-radius: 30px;transform: perspective(0px);backdrop-filter: blur(0px);box-shadow: 0px 0px 8px 1px var(--bs-primary-text-emphasis);border-width: 0.5px;border-style: solid;" /></a></div>
-                </div>
             </nav>
         </section>
         <iframe
@@ -96,44 +44,9 @@
         ></iframe>
     </div>
     </div>
-    <footer class="sticky-footer" style="padding: 0px;">
-        <div class="container py-4 py-lg-5">
-            <div class="row justify-content-center">
-                <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column item">
-                    <h3 class="fs-4" style="color: #ffffff;font-weight: bold;text-decoration: underline;">Site Map</h3>
-                    <ul class="list-unstyled">
-                        <li><a class="link-secondary" href="#">Dashboard</a></li>
-                        <li><a class="link-secondary" href="#">Global Relationships</a></li>
-                        <li><a class="link-secondary" href="#">Financials</a></li>
-                    </ul>
-                </div>
-                <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column item">
-                    <h3 class="fs-4" style="color: #ffffff;font-weight: bold;overflow: hidden;">   </h3>
-                    <ul class="list-unstyled">
-                        <li><a class="link-secondary" href="#">Loans</a></li>
-                        <li><a class="link-secondary" href="#">Collateral</a></li>
-                        <li><a class="link-secondary" href="#">Deposits</a></li>
-                    </ul>
-                </div>
-                <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column item">
-                    <h3 class="fs-4" style="color: #ffffff;font-weight: bold;text-decoration: underline;">About</h3>
-                    <ul class="list-unstyled">
-                        <li><a class="link-secondary" href="#">Mission Statement</a></li>
-                        <li><a class="link-secondary" href="#">About Founder</a></li>
-                        <li></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 text-center text-lg-start d-flex flex-column align-items-center order-first align-items-lg-start order-lg-last item social">
-                    <div class="fw-bold d-flex align-items-center mb-2"><img src="/static/assets/img/Icons/opnlend_green.png" width="62" height="78" /></div>
-                    <p style="color: rgb(255,255,255);font-style: italic;font-size: 14px;">An open source loan origination system.</p>
-                </div>
-            </div>
-            <hr style="color: rgb(255,255,255);border-radius: 10px;border-width: 10px;background: #ffffff;box-shadow: 0px 0px 4px 5px rgb(0,0,0);opacity: 0.34;" />
-            <div class="d-flex justify-content-between align-items-center justify-content-xxl-center pt-3">
-                <ul class="list-inline mb-0"></ul>
-            </div>
-        </div><a class="d-inline border rounded scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
-    </footer>
+    <!-- Start: #footer -->
+    {% include 'footer/footer.html' %}
+    <!-- End: #footer -->
     <!-- Load JavaScript -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
