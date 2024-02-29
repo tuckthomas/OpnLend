@@ -13,6 +13,8 @@
 ### No-Nonsense, Privacy Focused Approach
 Do you desire to no longer have to send your customers' data to a remote server owned and operated by someone else? With OpnLend CE, you can deploy a loan origination system locally over your LAN connection.
 
+From the very start of this project, one of the primary features in mind was the integratoin of AI while maintaining customer data privacy. While the fine-tuned AI model may likely be offered as a properietary feature to OpnLend, it is my full intent to include integration of an open source model for the OpnLend Community Edition. One of the primary challenges around such a model is that the overwhelming majority of commercial banking borrowers are private companies with private financial statements. Most, if not all, publicly available financial LLMs have been trained on publicly available data. Furthermore, existing models currently lack the capacity to evaluate the aggregate relationship (one or more businesses and one of more individuals); including personal financial wherewithal (personal cash flow, liqudiity, assets, liabilities, net worth, etc.).
+
 ### Placing Your Needs First, As It Should Be
 Don't need a module? Remove it. Integration of other AGPL v3 compatible solutions is encouraged. My OpnLend solution is ***intended for your institution to scale based upon on its needs; not the needs of other institutions***. Ultimately, helping you more efficiently lend to businesses of all sizes, farmers, real estate investors, and others to build a better economy.
 
