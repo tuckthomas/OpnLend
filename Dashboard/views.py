@@ -15,12 +15,15 @@ from django.core.serializers import serialize
 from django.core.cache import cache
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
+from Loans.models import SBALoanDataTable
 from bs4 import BeautifulSoup
 
 def Dashboard(request):
+    print(f"BASE_DIR from view: {settings.BASE_DIR}")
+    print(f"Template DIRS from view: {settings.TEMPLATES[0]['DIRS']}")
     cache.clear()  # Clear the cache
-    METABASE_SITE_URL = "https://dashboard.opnlend.com"
-    METABASE_SECRET_KEY = "REPLACE_WITH_YOUR_METABASE_UNIQUE_METABASE_KEY"
+    METABASE_SITE_URL = "https://INPUT_YOUR_HTTPS_URL_HERE"
+    METABASE_SECRET_KEY = "INPUT_YOUR_SECRET_KEY_HERE"
 
     payload = {
     "resource": {"dashboard": 1},
@@ -31,8 +34,8 @@ def Dashboard(request):
     }
     token = jwt.encode(payload, METABASE_SECRET_KEY, algorithm="HS256")
 
-    iframeUrl = METABASE_SITE_URL + "/embed/dashboard/" + token + "#theme=transparent&bordered=true&titled=true"
-
+    iframeUrl = METABASE_SITE_URL + "/embed/dashboard/" + token + "#bordered=false&titled=true"
+    
     return render(request, 'Dashboard.html', {'iframeUrl': iframeUrl})
 
 
@@ -131,6 +134,8 @@ def should_fetch_new_data():
             return True
     return False
 
+
+
 def SBA_Loan_Data_Link_Scraping():
     # Base URL components
     base_url = "https://data.sba.gov"
@@ -146,6 +151,9 @@ def SBA_Loan_Data_Link_Scraping():
     if response.status_code != 200:
         return "Failed to fetch the webpage"
     
+    # Parse the HTML content
+    soup = BeautifulSoup(response.content, 'html.parser')
+    
     # Find the list of resources
     resource_list = soup.find('ul', class_='resource-list')
     if not resource_list:
@@ -158,11 +166,11 @@ def SBA_Loan_Data_Link_Scraping():
         "504": "FOIA - 504 (FY2010-Present) asof"
     }
     
-    # Initialize a dictionary to hold the results
+    # Initialize a dictionary to hold the results with lists as values
     results = {
-        "7a_2020": None,
-        "7a_2010_2019": None,
-        "504": None
+        "7a_2020": [],
+        "7a_2010_2019": [],
+        "504": []
     }
     
     # Iterate over each resource item to find matching titles and extract hrefs
@@ -170,12 +178,10 @@ def SBA_Loan_Data_Link_Scraping():
         a_tag = li.find('a', class_='heading')
         if a_tag and 'title' in a_tag.attrs:
             title = a_tag['title']
-            if titles["7a_2020"] in title:
-                results["7a_2020"] = base_url + a_tag['href']
-            elif titles["7a_2010_2019"] in title:
-                results["7a_2010_2019"] = base_url + a_tag['href']
-            elif titles["504"] in title and "asof" in title:
-                results["504"] = base_url + a_tag['href']
+            for key, value in titles.items():
+                if value in title:
+                    # Append the full URL to the appropriate list in the results dictionary
+                    results[key].append(base_url + a_tag['href'])
     
     return results
 
@@ -255,67 +261,116 @@ def parse_date(date_str):
             continue
     return None
 
+def SBA_Loan_Data_Link_Scraping():
+    target_url = "https://data.sba.gov/en/dataset/7-a-504-foia"
+    
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
+    }
+    
+    response = requests.get(target_url, headers=headers)
+    if response.status_code != 200:
+        return "Failed to fetch the webpage"
+    
+    soup = BeautifulSoup(response.content, 'html.parser')
+    
+    # Initialize a dictionary to hold the results
+    results = {
+        "7a_2020": [],
+        "7a_2010_2019": [],
+        "504": []
+    }
+    
+    # Find all <a> tags within the section you're interested in
+    download_links = soup.select('section#dataset-resources a.resource-url-analytics')
+
+    # Iterate over each link and categorize them based on the presence of specific strings in their 'href'
+    for link in download_links:
+        href = link.get('href')
+        if "foia-504-fy2010-present" in href:
+            results["504"].append(href)
+        elif "foia-7afy2020-present" in href:
+            results["7a_2020"].append(href)
+        elif "foia-7afy2010-fy2019" in href:
+            results["7a_2010_2019"].append(href)
+
+    return results
+
+
+# Function to download file and save to media folder
+def download_file(url, filename):
+    media_path = Path(settings.MEDIA_ROOT)
+    local_filename = media_path / filename
+    try:
+        with requests.get(url, stream=True) as r:
+            r.raise_for_status()
+            with open(local_filename, 'wb') as f:
+                for chunk in r.iter_content(chunk_size=8192): 
+                    f.write(chunk)
+    except requests.exceptions.HTTPError as e:
+        # Error in HTTP response
+        return f"HTTP error occurred while downloading {url}: {e}"
+    except requests.exceptions.ConnectionError:
+        # Error in network connection
+        return f"Network connection error occurred while downloading {url}"
+    except requests.exceptions.Timeout:
+        # Timeout error
+        return f"Timeout occurred while downloading {url}"
+    except requests.exceptions.RequestException:
+        # Other request issues
+        return f"Error occurred while downloading {url}"
+    return local_filename
+
+# Function to read CSV with encoding
+def read_csv_with_encoding(local_filename):
+    try:
+        return pd.read_csv(local_filename, encoding='utf-8', low_memory=False)
+    except UnicodeDecodeError:
+        return pd.read_csv(local_filename, encoding='ISO-8859-1', low_memory=False)
+    except FileNotFoundError:
+        print(f"File not found: {local_filename}")
+        return None
+    except Exception as e:
+        print(f"Error reading file {local_filename}: {e}")
+        return None
+
 def download_and_process_data(request):
-
-    def download_and_process_data(request):
     # Call the scraping function to get the latest URLs
-        fetched_urls = SBA_Loan_Data_Link_Scraping()
-        if isinstance(fetched_urls, str):
-            # Handle error from SBA_Loan_Data_Link_Scraping
-            return fetched_urls
+    fetched_urls = SBA_Loan_Data_Link_Scraping()
+    if isinstance(fetched_urls, str):
+        # Handle error from SBA_Loan_Data_Link_Scraping
+        return HttpResponse(fetched_urls)
 
-    # Function to download file and save to media folder
-    def download_file(url, filename):
-        media_path = Path(settings.MEDIA_ROOT)
-        local_filename = media_path / filename
-        try:
-            with requests.get(url, stream=True) as r:
-                r.raise_for_status()
-                with open(local_filename, 'wb') as f:
-                    for chunk in r.iter_content(chunk_size=8192): 
-                        f.write(chunk)
-        except requests.exceptions.HTTPError as e:
-            # Error in HTTP response
-            return f"HTTP error occurred while downloading {url}: {e}"
-        except requests.exceptions.ConnectionError:
-            # Error in network connection
-            return f"Network connection error occurred while downloading {url}"
-        except requests.exceptions.Timeout:
-            # Timeout error
-            return f"Timeout occurred while downloading {url}"
-        except requests.exceptions.RequestException:
-            # Other request issues
-            return f"Error occurred while downloading {url}"
-        return local_filename
-
-    # Function to read CSV with encoding
-    def read_csv_with_encoding(local_filename):
-        try:
-            return pd.read_csv(local_filename, encoding='utf-8', low_memory=False)
-        except UnicodeDecodeError:
-            return pd.read_csv(local_filename, encoding='ISO-8859-1', low_memory=False)
-        except FileNotFoundError:
-            raise FileNotFoundError(f"File not found: {local_filename}")
-        except Exception as e:
-            raise ValueError(f"Error reading file {local_filename}: {e}")
-
-    # Download SBA.gov's CSV files from the fetched URLs
     urls_7a = fetched_urls.get("7a_2020", []) + fetched_urls.get("7a_2010_2019", [])
     urls_504 = fetched_urls.get("504", [])
 
-    # Initialize empty lists to store DataFrames
-    dfs_7a = [read_csv_with_encoding(download_file(url, f"7a_{i}.csv")) for i, url in enumerate(urls_7a)]
-    dfs_504 = [read_csv_with_encoding(download_file(url, f"504_{i}.csv")) for i, url in enumerate(urls_504)]
+    print(f"URLs 7a: {urls_7a}, Type: {type(urls_7a)}")
+    print(f"URLs 504: {urls_504}, Type: {type(urls_504)}")
+
+    # Download and load datasets into pandas DataFrames
+    dfs_7a = [df for df in (read_csv_with_encoding(download_file(url, f"7a_{i}.csv")) for i, url in enumerate(urls_7a)) if df is not None]
+    dfs_504 = [df for df in (read_csv_with_encoding(download_file(url, f"504_{i}.csv")) for i, url in enumerate(urls_504)) if df is not None]
+
+    # Print column names for 7a datasets
+    print("\nColumn names for 7a datasets:")
+    for i, df in enumerate(dfs_7a):
+        print(f"7a Dataset {i}: {df.columns.tolist()}")
+
+    # Print column names for 504 datasets
+    print("\nColumn names for 504 datasets:")
+    for i, df in enumerate(dfs_504):
+        print(f"504 Dataset {i}: {df.columns.tolist()}")
 
     # Normalize and process 504 dataset
     for df in dfs_504:
-        df.rename(columns={
-            'ThirdPartyLender_Name': 'BankName',
-            'ThirdPartyLender_City': 'BankCity',
-            'ThirdPartyLender_State': 'BankState',
-            'ThirdPartyDollars': 'ThirdPartyDollars_504'
-        }, inplace=True)
-        df['GuaranteedApproval'] = df['GrossApproval'] - df['ThirdPartyDollars_504']
+        if isinstance(df, pd.DataFrame):
+            df.rename(columns={
+                'ThirdPartyLender_Name': 'BankName',
+                'ThirdPartyLender_City': 'BankCity',
+                'ThirdPartyLender_State': 'BankState',
+                'ThirdPartyDollars': 'ThirdPartyDollars_504'
+            }, inplace=True)
+            df['GuaranteedApproval'] = df['GrossApproval'] - df['ThirdPartyDollars_504']
 
     # Combine the 504 datasets
     df_504_combined = pd.concat(dfs_504, ignore_index=True)
@@ -385,10 +440,7 @@ def download_and_process_data(request):
     # Converting 'CongressionalDistrict' to numerical format
     combined_df['CongressionalDistrict'] = pd.to_numeric(combined_df['CongressionalDistrict'])
 
-    # No conversion required for text fields like 'Program', 'BorrName', 'BorrStreet', 'BorrCity', etc.,
-    # as they are already in the desired format (Text)
-
-    # Convert 'BorrState', 'BankState', 'CDC_State', 'ProjectState' to uppercase (assuming they are two-letter abbreviations)
+    # Convert 'BorrState', 'BankState', 'CDC_State', 'ProjectState' to uppercase
     state_fields = ['BorrState', 'BankState', 'CDC_State', 'ProjectState']
     for field in state_fields:
         combined_df[field] = combined_df[field].str.upper()
@@ -428,7 +480,7 @@ def download_and_process_data(request):
         conversion_dict = {
             'Fcu': 'Federal Credit Union', 'Cu': 'Credit Union', ' Inc.': ', Inc.',
             'Corp': 'Corporation', 'Corp.': 'Corporation', 'Co': 'Company', 'Limited Liability Company': ', LLC',
-            ' NA ': 'National Association', 'Assoc.': 'Association',
+            'NA': 'National Association', 'Assoc.': 'Association',
         }
 
         def acronym_replacer(name):
@@ -441,12 +493,9 @@ def download_and_process_data(request):
 
         df['InstitutionName'] = df['InstitutionName'].apply(acronym_replacer)
         return df
-
-    # Apply the function
+    
+     # Apply the function
     combined_df = resolve_institution_acronym(combined_df)
-
-    # For Revolver Status, converts "0" to False, "1" to True, and blank to False
-    combined_df['RevolverStatus'] = combined_df['RevolverStatus'].replace({"0": False, "1": True, "": False}).astype(bool)
 
     # Debug progress message
     print("Successfully resolved acronyms.")
@@ -517,30 +566,19 @@ def download_and_process_data(request):
     sbaloandata_csv_path = os.path.join(settings.MEDIA_ROOT, 'CombinedSBAData.csv')
 
     # Indicate the table name
-    table_name = "SBALoans"
+    table_name = '"SBALoans"'
 
     # Delete existing records in the table
     with connection.cursor() as cursor:
-        cursor.execute(f'TRUNCATE TABLE \"{table_name}\"')
+        cursor.execute(f'TRUNCATE TABLE {table_name}')
 
     # Convert the combined_df DataFrame to a CSV file
     combined_df.to_csv(sbaloandata_csv_path, index=False)
 
-    # Print column headers for debugging
-    print("Columns in DataFrame being written to CSV:", combined_df.columns.tolist())
-
-    # Debugging: Print first few lines of CSV file
-    print("First few lines of the CSV file:")
+    # Use the COPY command to insert data from the CSV file
     with open(sbaloandata_csv_path, 'r') as csv_file:
-        for _ in range(5):  # Adjust the range as needed
-            print(csv_file.readline().strip())
-
-    # Use the COPY command to insert data from the CSV file, ignoring the CSV header
-    with open(sbaloandata_csv_path, 'r') as csv_file:
-        # Skip the header row
-        next(csv_file)
         with connection.cursor() as cursor:
-            cursor.copy_expert(f"COPY \"{table_name}\" FROM stdin WITH CSV", csv_file)
+            cursor.copy_expert(f"COPY {table_name} FROM stdin WITH CSV HEADER", csv_file)
 
     # Commit the transaction
     transaction.commit()
@@ -549,7 +587,7 @@ def download_and_process_data(request):
     print("Data operation completed successfully.")
 
     # Redirect to 'home'
-    return redirect('Dashboard')
+    return redirect('home')
 
 @csrf_exempt
 def log_js_error(request):
