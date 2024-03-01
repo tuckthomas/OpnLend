@@ -1,0 +1,24 @@
+.editor-toolbar {
+    background-color: #f2f2f2;
+    padding: 5px;
+  }
+  
+  .editor-toolbar select, .editor-toolbar input[type="color"], .editor-toolbar button {
+    margin-right: 5px;
+    background: #ffffff;
+    border-radius: 10px;
+  }
+  
+  #editor {
+    width: 95%;
+    min-height: 300px;
+    border: 1px solid #000000;
+    border-width: 2px;
+    padding: 10px;
+    margin: 10px auto;
+    font-family: Arial, sans-serif;
+    overflow-y: auto;
+    background-color: #ffffff;
+  }
+  
+  

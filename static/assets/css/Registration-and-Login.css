@@ -1,0 +1,47 @@
+.focus-ring.registration-and-login-body {
+  background: var(--bs-gray-100);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.registration-and-login-card-body {
+  border-radius: 15px;
+  border-width: thin;
+  box-shadow: 0px 0px 60px 10px #000000;
+  max-height: 80%;
+  min-height: 80%;
+  padding: 0px;
+  background: var(--bs-primary-bg-subtle);
+}
+
+.registration-and-login-card {
+  border-radius: 13.6px;
+  border-style: solid;
+  border-color: rgb(0,0,0);
+  margin-top: 0px;
+}
+
+body::before {
+  content: "";
+  background: rgba(9,30,33,0.7);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.OpnLend-Registration-and-Login-Image {
+  filter: drop-shadow(0px 40px 7px rgba(0,0,0,0.5));
+  transform: perspective(900px) rotateX(5deg);
+}
+
+.login-button {
+  width: 100%;
+  border-radius: 15px;
+}
+
