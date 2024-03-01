@@ -6,7 +6,7 @@
 <h2 align="center">Community Edition (CE)</h2>
 <p align="center"><em>OpnLend CE software is a product of OpnLend, Inc., an Indiana registered S-Corporation.</em></p>
 
-**Inquiry Contact:** All initial inquiries regarding the OpnLend proprietary edition may be directed to OpnLend Inc.'s sole beneficial owner, Tucker Thomas Olson: tuckerolson13@gmail.com.
+**Inquiry Contact:** All initial inquiries regarding the OpnLend proprietary edition may be directed to OpnLend Inc.'s sole beneficial owner, Tucker Thomas Olson: tucker@opnlend.com
 
 **Disclosure:** OpnLend's base package (all packages currently seen here) allow for internal modifications to the source code. However, are subject to a custom license and terms of use.
 
