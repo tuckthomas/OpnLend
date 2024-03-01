@@ -1,10 +1,26 @@
 <section>
-    <nav class="navbar navbar-expand bg-white shadow mb-4 topbar static-top navbar-light" style="background: #faf5ef;border-bottom-style: groove;border-radius: 5px;">
-        <div class="container-fluid">
-            <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search" style="width: 547px;box-shadow: 0px 0px 7px 1px;border-radius: 10px;">
-                <div class="input-group" style="min-width: 535px;"><input class="form-control form-control" type="text" placeholder="Search Accounts within Global Relationship....." style="background: rgb(251,251,251);" /><button class="btn btn-primary" type="button" style="border-top-style: ridge;border-top-color: var(--bs-body-color);background: #426c73;"><i class="fas fa-search"></i></button></div>
-            </form>
-            <div style="margin-right: 250px;margin-left: 50px;"><a href="https://github.com/tuckthomas/opnlend" src="/static/assets/img/Icons/GitHub_OpnLend_Button.png" style="position: relative;display: flex;color: var(--bs-primary-text-emphasis);" target="_blank"><img class="d-xxl-flex img-pointer" src="/static/assets/img/Icons/GitHub_OpnLend_Button.png" width="124" height="25" style="height: 50px;width: 150px;padding-right: 0px;padding-left: 0px;border-radius: 30px;transform: perspective(0px);backdrop-filter: blur(0px);box-shadow: 0px 0px 8px 1px var(--bs-primary-text-emphasis);border-width: 0.5px;border-style: solid;" /></a></div>
-        </div>
-    </nav>
+  <nav class="navbar navbar-expand  bg-white shadow mb-4 topbar static-top  navbar-light" style="background: #faf5ef;border-bottom-style: groove;border-radius: 5px ;">
+      <div class="container-fluid">
+          <div style="margin-left:  50px;"><a href="https://github.com/tuckthomas/opnlend" src="/static/assets/img/Icons/GitHub_OpnLend_Button.png" style="position: relative;display: flex;color: var(--bs-primary-text-emphasis);" target="_blank"><img class="d-xxl-flex img-pointer" src="/static/assets/img/Icons/GitHub_OpnLend_Button.png" width="124" height="25" tabindex="0" style="height: 50px;width: 150px; padding-right: 0px;padding-left: 0 px;border-radius: 30px;backdrop-filter: blur(0px);box-shadow: 0px 0px 8px 1px var(--bs-primary-text-emphasis);border-width: 0.5px;border-style: solid;" /></a></div>
+          <form class="d-none d-sm-inline-block me- auto ms-md-3  my-2 my-md-0 mw-100 navbar-search" style="width:  547px;box-shadow: 0px 0px 7px 1px;border-radius: 10px;">
+              <div class="input-group" style ="min-width: 535px;"><input class="form-control form-control" type="text" placeholder="Search Accounts within Global Relationship....." style="background: rgb(251,251,251);" /><button class="btn btn-primary" type="button" ><i class="fas fa-search"></i></button></div>
+          </form>
+          <div style="margin-right: 250px;">
+            <!-- If the user is logged in, show the username and a logout button -->
+            <div class="navbar-button-text">
+              <!-- If the user is logged in, show the username and a logout button -->
+              <div class="navbar-button" tabindex="0">
+                <span class="logged-in" style="display: none;">
+                  <a href="#" class ="nav-link">Username</a>
+                  <span>|</span>
+                  <a href="#" class="nav-link">Logout</a>
+                </span>
+              </div>
+              <!-- If the user is not logged in, show a sign in button -->
+              <div class="navbar-button-sign-in" tabindex="0">
+                <a href="#" class="nav-link sign-in">Sign In</a>
+              </div>
+            </div>
+      </div>
+  </nav>
 </section>
