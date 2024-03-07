@@ -6,20 +6,31 @@ from django.core.asgi import get_asgi_application
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+print(f"BASE_DIR: {BASE_DIR}")
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'GENERATE YOUR SECURITY_KEY AND REPLACE THIS TEXT'
+SECRET_KEY = 'GENERATE_SECRET_KEY_AND_INPUT_IT_HERE'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 # Host and Encryption Settings
-ALLOWED_HOSTS = [MODIFY THIS TO YOUR HOST]
+ALLOWED_HOSTS = ['[ENTER ALLOWED HOSTS HERE]']
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
+
+# Security settings
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# Session Settings
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+SESSION_COOKIE_SAMESITE = 'Lax'
 
 # Application definition
 
@@ -31,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Authentication.apps.AuthenticationConfig',
-    'ninja',
     'Dashboard',
     'Global_Relationships',
     'Financial_Manager',
@@ -39,14 +49,15 @@ INSTALLED_APPS = [
     'Application_Portal',
     'Underwriting',
     'Portfolio_Management',
-    'Authentication',
     'UserProfiles',
     'Settings',
     'sslserver',
+    'ninja',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -54,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_user_agents.middleware.UserAgentMiddleware',
+    'Authentication.middleware.RedirectMiddleware'
 ]
 
 ROOT_URLCONF = 'OpnLend.urls'
@@ -61,7 +73,7 @@ ROOT_URLCONF = 'OpnLend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,20 +88,22 @@ TEMPLATES = [
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'OpnLend.settings')
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql', # I currently use my PostgreSQL database that is not instaleld within OpnLend. You can change this to a local installed database if desired
-        'NAME': 'opnlend',
-        'USER': 'USERNAME_PLACEHOLDER',
-        'PASSWORD': 'PASSWORD_PLACEHOLDER',
-        'HOST': 'HOST_PLACEHOLDER',
-        'PORT': 'PORT_PLACEHOLDER',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ENTER_DATABASE_NAME_HERE',
+        'USER': 'ENTER_DATABASE_USER_HERE',
+        'PASSWORD': 'ENTER_DATABASE_PASSWORD_HERE',
+        'HOST': 'ENTER_DATABASE_HOST_IP/URL HERE',
+        'PORT': 'ENTER_DATABASE_PORT_HERE_IF_LOCALLY_HOSTED',
     }
 }
+
+# Authentication of user model
+AUTH_USER_MODEL = 'Authentication.CustomUser'
 
 
 # Password validation
@@ -101,6 +115,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS': {
+            'min_length': 12,  # Ensure your desired minimum length
+        }
     },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
@@ -124,15 +141,18 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.1/howto/static-files/
+STATIC_URL = '/static/'
 
-# Static files (CSS, JavaScript, Images)
-COLLECTED_STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
-STATIC_ROOT = COLLECTED_STATIC_ROOT
+# The absolute path to the directory where collectstatic will collect static files for deployment.
+STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
+
+# This is an additional locations where Django will look for static files, in addition to each app's "static" directory.
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
-STATIC_URL = '/static/'
+
+# This is not properly configured yet while still in development; I continue to use my development server, i.e. Django
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Media files
 MEDIA_URL = '/media/'
@@ -169,7 +189,7 @@ LOGGING = {
     },
     'loggers': {
         'django': {
-            'handlers': ['file'],
+            'handlers': ['file', 'console'],
             'level': 'INFO',
             'propagate': True,
         },
