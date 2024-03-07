@@ -5,6 +5,8 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 
 # Aggregates Business and Personal Accounts, per FDIC, NCUA, and SBA (size standard) regulations.
+# Additionally, establishes Global Relationship for other model types, such as Addresses. Which, will be useful
+# for real estate economic analyses.
 class GlobalRelationship(models.Model):
     Global_Relationship_ID = models.UUIDField(default=uuid4, editable=False, primary_key=True)
     Meta_ID = models.CharField(max_length=255)
