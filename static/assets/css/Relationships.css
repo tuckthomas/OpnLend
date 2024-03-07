@@ -1,0 +1,160 @@
+.Submit-Button {
+  padding-top: 1px;
+  padding-right: 6px;
+  padding-bottom: 1px;
+  padding-left: 6px;
+  display: inline-block;
+  width: 125px;
+  height: 35px;
+  text-align: center;
+  font-weight: bold;
+  background: var(--bs-primary);
+  color: rgb(255,255,255);
+  margin: 5px;
+  border-color: var(--bs-body-color);
+  box-shadow: 0px 0px 3px 1px rgb(0,0,0);
+}
+
+.Form-Field-Label-Address {
+  height: 60px;
+  min-width: 45%;
+  max-width: 45%;
+}
+
+.Relationship-Div, .Background-Div {
+  padding-right: 20%;
+  padding-left: 20%;
+  padding-bottom: 1%;
+  border-bottom-color: rgb(0,0,0);
+}
+
+.Form-Field-Div-Buttons-Submit {
+  padding-top: 15px;
+}
+
+.Form-Field-Div-Address {
+  margin-top: 15px;
+}
+
+.Account-Mgmt-Edit-Icon {
+  color: rgb(22,74,82);
+  padding-right: 2.5px;
+  padding-left: 2.5px;
+  width: 35px;
+  height: 35px;
+  font-size: 35px;
+}
+
+.Account-Mgmt-Edit-Icon {
+  font-size: 35px;
+  color: rgb(22,74,82);
+  padding-right: 2.5px;
+  padding-left: 2.5px;
+  width: 35px;
+  height: 35px;
+  font-size: 35px;
+  text-shadow: 1px 3px 1px rgba(0,0,0,0.75);
+}
+
+.Account-Mgmt-Edit-Icon:active, .Account-Mgmt-Delete-Icon:active {
+  box-shadow: 0px 0px 2px 0px rgb(0,0,0) inset;
+  transform: translateY(2px);
+}
+
+.Account-Mgmt-Delete-Icon {
+  font-size: 35px;
+  color: rgb(92,30,24);
+  padding-right: 2.5px;
+  padding-left: 2.5px;
+  width: 35px;
+  height: 35px;
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+}
+
+.Form-Field-Div-Prefix-Suffix {
+  max-width: 18.5%;
+}
+
+.dropdown-wrapper {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.Dropdown-list {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: rgb(255,255,255);
+  color: var(--bs-body-color);
+  border-radius: 10px;
+  height: 38px;
+  min-width: 100%;
+  padding: 0px 30px 0px 10px;
+  box-shadow: 0px 0px 3px 1px var(--bs-body-color);
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.Driver-License-Section {
+  box-shadow: inset 0px 0px 4px 2px;
+  border-radius: 25px;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-top: 10px;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  background-color: rgba(22,74,82,0.8);
+  margin-top: 10px;
+  color: rgb(255,255,255);
+  border-style: solid;
+  border-color: #000000;
+  box-shadow: 0px 0px 3px 0px rgb(0,0,0);
+}
+
+.Identification-Upload-Header {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.toggle-arrow {
+  font-size: 1.2em;
+}
+
+.ID-Upload-Container {
+  display: none;
+}
+
+.ID-Upload-Container.show {
+  display: block;
+}
+
+.dropdown-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--bs-body-color);
+  pointer-events: none;
+}
+
+.Driver-License-Section .col-md-6 {
+  border: 2px dashed #100000;
+  padding: 20px;
+  min-height: 150px;
+  text-align: center;
+  min-width: 100%;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.Form-Required-Text-Header {
+  font-size: 15px;
+  margin-bottom: 0px;
+}
+

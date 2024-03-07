@@ -1,0 +1,99 @@
+/* Base styling for sidebar */
+.sidebar {
+    background-color: rgba(22, 74, 82, 0.81);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transition: opacity 0.5s ease, width 0.5s ease;
+    max-width: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-style: ridge;
+    border-color: black;
+}
+
+/* Prevents text and image selection */
+.sidebar * {
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+
+/* Ensures navbar-toggler-icon is correctly positioned */
+#navbar-toggler-icon {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.sidebar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* Center content vertically */
+    max-width: 100%;
+    /* Ensures container fills sidebar width */
+    padding-top: 40px;
+    padding-bottom: 40px;
+    /* Adds padding to the top and bottom */
+}
+
+.navbar-brand {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Adjusts for when sidebar is collapsed */
+.sidebar.collapsed {
+    width: 4.5% !important;
+}
+
+.sidebar.collapsed .navbar-brand {
+    opacity: 0;
+    transform: scale(0);
+    height: 0;
+    /* Collapse height when not visible */
+    overflow: hidden;
+    /* Prevent overflow */
+}
+
+/* Styling for sidebar icons */
+.sidebar-icon {
+    margin-left: 0px;
+    transition: transform 0.5s, opacity 0.5s;
+    width: 70px;
+    height: 70px;
+}
+
+@media (min-width: 768px) {
+    .sidebar-icon {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+@media (min-width: 992px) {
+    .sidebar {
+        width: auto;
+        /* Adjust width for larger screens */
+    }
+}
+
+/* Make span texts white */
+.sidebar-container span {
+    color: white;
+}
+
+.sidebar-container a {
+    text-decoration: none;
+}
+
+/* Hide span texts when sidebar is collapsed */
+.sidebar.collapsed .sidebar-container span {
+    display: none;
+}
