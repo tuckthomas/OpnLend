@@ -1,8 +1,14 @@
 from django.shortcuts import render, redirect
+import logging
+from django.http import JsonResponse
+from django.views.decorators.http import require_http_methods
 from django.contrib .auth import authenticate, login
 
-def register(request):
-   return render(request, 'registration-and-login/register.html')
+# Set up logging
+logger = logging.getLogger(__name__)
 
-def login(request):
-    return render(request, 'registration-and-login/login.html')
+def Register(request):
+   return render(request, 'Register.html')
+
+def Login(request):
+    return render(request, 'Login.html')
