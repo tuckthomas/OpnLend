@@ -22,8 +22,8 @@ def Dashboard(request):
     print(f"BASE_DIR from view: {settings.BASE_DIR}")
     print(f"Template DIRS from view: {settings.TEMPLATES[0]['DIRS']}")
     cache.clear()  # Clear the cache
-    METABASE_SITE_URL = "https://INPUT_YOUR_HTTPS_URL_HERE"
-    METABASE_SECRET_KEY = "INPUT_YOUR_SECRET_KEY_HERE"
+    METABASE_SITE_URL = "REPLACE_WITH_YOUR_URL"
+    METABASE_SECRET_KEY = "REPLACE_WITH_YOUR_SECRET_KEY"
 
     payload = {
     "resource": {"dashboard": 1},
