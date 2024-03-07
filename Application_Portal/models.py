@@ -22,6 +22,9 @@ class SBAETRANResponse(models.Model):
     def __str__(self):
         return self.LoanAppNm
 
+    class Meta:
+        db_table = 'SBA_ETRAN'
+
 class SBA7aLoanApplication(models.Model):
     # Section: Loan Application
     AgentInvolved = models.CharField(max_length=1)
@@ -383,3 +386,6 @@ class SBA7aLoanApplication(models.Model):
 
     def __str__(self):
         return self.LoanName
+
+    class Meta:
+        db_table = 'SBA_7a_Application'
