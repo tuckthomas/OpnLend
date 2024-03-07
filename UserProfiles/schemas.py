@@ -1,13 +1,26 @@
+from typing import Optional
 from ninja import Schema
+from pydantic import BaseModel
 
-class CreateUserSessionSchema(Schema):
-    global_relationship_id: str
-    meta_id: str
-    unique_id: str
+class UpdateUserSessionSchema(BaseModel):
+    Global_Relationship_ID: Optional[str] = None
+    Meta_ID: Optional[str] = None
+    Business_Unique_ID: Optional[str] = None
+    Personal_Unique_ID: Optional[str] = None
 
-class UserSessionSchema(Schema):
-    id: int
-    global_relationship_id: str
-    meta_id: str
-    unique_id: str
-    user_id: int  # Assuming you want to include the user's ID
+class UpdateUserSessionBusinessSchema(BaseModel):
+    Global_Relationship_ID: Optional[str] = None
+    Meta_ID: Optional[str] = None
+    Business_Unique_ID: Optional[str] = None
+    Personal_Unique_ID: Optional[str] = None
+
+class UpdateUserSessionPersonalSchema(BaseModel):
+    Global_Relationship_ID: Optional[str] = None
+    Meta_ID: Optional[str] = None
+    Personal_Unique_ID: Optional[str] = None
+
+class UserSessionResponse(Schema):
+    Global_Relationship_ID: Optional[str] = None
+    Meta_ID: Optional[str] = None
+    Business_Unique_ID: Optional[str] = None
+    Personal_Unique_ID: Optional[str] = None
