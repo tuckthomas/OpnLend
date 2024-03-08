@@ -1,3 +1,7 @@
+# I have only included the SBALoanDataTable, and its subsequent views.py function seen within the Dashboard app,
+# to have loan data to display in a mock dashboard. When time allows, I may try building a function that produces
+# fake business and personal accounts. Including, aggregation of accounts, loans, collateral, and deposits.
+
 from django.db import models
 
 # Tracks Dates of SBA CSV Files and Most Recent Query Performed; Effectively Limiting the Amount of Queries to SBA Website
