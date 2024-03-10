@@ -1,12 +1,10 @@
-from django.db import models
+from django.db import models, IntegrityError
 from django.core.validators import RegexValidator, MinLengthValidator, MaxLengthValidator
 from uuid import UUID, uuid4
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 
 # Aggregates Business and Personal Accounts, per FDIC, NCUA, and SBA (size standard) regulations.
-# Additionally, establishes Global Relationship for other model types, such as Addresses. Which, will be useful
-# for real estate economic analyses.
 class GlobalRelationship(models.Model):
     Global_Relationship_ID = models.UUIDField(default=uuid4, editable=False, primary_key=True)
     Meta_ID = models.CharField(max_length=255)
@@ -70,31 +68,40 @@ class BusinessAccounts(models.Model):
 # Personal Accounts Model
 TAX_FILING_STATUS_CHOICES = [
     ('Single Filer', 'Single Filer'),
-    ('Head of Household', 'Head of Household'),
-    ('Jointly Reported', 'Jointly Reported'),
+    ('Joint Filer, Head of Household', 'Joint Filer, Head of Household'),
+    ('Joint Filer, Jointly Reported', 'Joint Filer, Jointly Reported'),
 ]
 
-class JointAccount(models.Model):
+# Forms a Joint Relationship for Personal Accounts; allowing for Personal Tax Returns, Personal Financial Statements
+# and Deposits to be analyzed on a jointly reported basis.
+class JointlyReported(models.Model):
     Jointly_Reported_ID = models.UUIDField(default=uuid4, editable=False, primary_key=True, db_column='Jointly_Reported_ID')
-    Accounts = models.ManyToManyField('PersonalAccounts', related_name='Joint_Accounts')
+    Max_Joint_Account_Limit = models.PositiveIntegerField(default=2)  # Change this to set the maximum limit of associated accounts
 
-    def __str__(self):
-        return f"Joint Account {self.Jointly_Reported_ID}"
+    def count_associated_accounts(self):
+        return self.Personal_Accounts.count()
+
+    def save(self, *args, **kwargs):
+        # Check if the current count of associated accounts exceeds the maximum limit
+        if self.count_associated_accounts() > self.Max_Joint_Account_Limit:
+            raise ValueError("Maximum limit (2) of associated accounts exceeded.")
+        super().save(*args, **kwargs)
 
     class Meta:
         db_table = 'Jointly_Reported_Personal_Accounts'
 
 class PersonalAccounts(models.Model):
     Global_Relationship_ID = models.ForeignKey('GlobalRelationship', on_delete=models.CASCADE, related_name='Personal_Accounts', db_column='Global_Relationship_ID')
+    Jointly_Reported_ID = models.ForeignKey('JointlyReported', null=True, blank=True, on_delete=models.CASCADE, related_name='Personal_Accounts', db_column='Jointly_Reported_ID')
     Unique_ID = models.UUIDField(default=uuid4, editable=False, primary_key=True)
-    Name_Prefix = models.CharField(max_length=10, blank=True)
+    Name_Prefix = models.CharField(max_length=10, blank=True, null=True)
     First_Name = models.CharField(max_length=100)
-    Middle_Name_or_Initial = models.CharField(max_length=100, blank=True)
+    Middle_Name = models.CharField(max_length=100, blank=True, null=True)
     Last_Name = models.CharField(max_length=100)
-    Name_Suffix = models.CharField(max_length=10, blank=True)
-    Social_Security_Number = models.CharField(max_length=11, blank=True)
-    Date_of_Birth = models.DateField(blank=True)
-    Tax_Filing_Status = models.CharField(max_length=20, blank=True, choices=TAX_FILING_STATUS_CHOICES)
+    Name_Suffix = models.CharField(max_length=10, blank=True, null=True)
+    Social_Security_Number = models.CharField(max_length=11, blank=True, null=True)
+    Date_of_Birth = models.DateField(blank=True, null=True)
+    Tax_Filing_Status = models.CharField(max_length=30, blank=True, null=True, choices=TAX_FILING_STATUS_CHOICES)
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
@@ -107,9 +114,7 @@ class PersonalAccounts(models.Model):
 
 # Account Addresses model; can include both business and individual addresses
 class AccountAddress(models.Model):
-    Unique_Address_ID = models.UUIDField(default=uuid4, primary_key=True)
-    Unique_ID = models.UUIDField(default=uuid4)
-    Global_Relationship_ID = models.ForeignKey(GlobalRelationship, on_delete=models.CASCADE, related_name='Addresses', db_column='Global_Relationship_ID')
+    Unique_Address_ID = models.UUIDField(default=uuid4, primary_key=True, editable=False)
     Property_Type = models.TextField()
     Address_1 = models.TextField()
     Address_2 = models.TextField(blank=True, null=True)
@@ -122,26 +127,50 @@ class AccountAddress(models.Model):
 
     class Meta:
         db_table = 'Account_Address'
+        constraints = [
+            models.UniqueConstraint(fields=['Address_1', 'Address_2', 'City', 'State', 'Zip'], name='Unique_Address')
+        ]
 
-# Acts as a 'bridge'; allowing it to link to either a BusinessAccount or PersonalAccount
-class BusinessOwnership(models.Model):
-    Beneficial_Ownership = models.ForeignKey('BeneficialOwnership', on_delete=models.CASCADE)
-    ContentType = models.ForeignKey(ContentType, on_delete=models.CASCADE)
-    ObjectId = models.UUIDField()
-    ContentObject = GenericForeignKey('ContentType', 'ObjectId')
-
-    class Meta:
-        db_table = 'Business_Ownership'
-
-# Updated Beneficial Ownership Model
-class BeneficialOwnership(models.Model):
-    Beneficial_Ownership_ID = models.UUIDField(default=uuid4, primary_key=True)
-    Global_Relationship = models.ForeignKey(GlobalRelationship, on_delete=models.CASCADE, related_name='Beneficial_Ownerships', db_column='Global_Relationship_ID')
-    Account_Title = models.CharField(max_length=100, default="Other")
-    Ownership_Percentage = models.DecimalField(max_digits=12, decimal_places=10)
-
-    def __str__(self):
-        return f"{self.Account_Title} - {self.Ownership_Percentage}%"
+# This model acts as a "through" table in a many-to-many relationship;
+# allowing for both business and personal accounts to be assigned to the same Unique_Address_ID
+class AccountAddressLink(models.Model):
+    Unique_Address_ID = models.ForeignKey(AccountAddress, on_delete=models.CASCADE, db_column='Unique_Address_ID')
+    Global_Relationship_ID = models.ForeignKey(GlobalRelationship, on_delete=models.CASCADE, db_column='Global_Relationship_ID')
+    Unique_ID = models.UUIDField()  # This can be the ID of either a Personal or Business account
 
     class Meta:
-        db_table = 'Beneficial_Ownership'
+        db_table = 'Global_Account_Addresses'
+        unique_together = ('Unique_Address_ID', 'Global_Relationship_ID', 'Unique_ID')
+
+# Business_Account: A ForeignKey linking to the BusinessAccounts model, identifying the business account that has beneficial owners.
+# Owner_Account_Unique_ID: Stores the Unique_ID of any account (personal or business) that owns a stake in the Business_Account.
+#                          This field will allow linking to both PersonalAccounts and BusinessAccounts based on their Unique_ID.
+# Ownership_Percentage and Account_Title: Capture the specifics of the ownership stake.
+# Custom Validation: The clean method is overridden to ensure that the business account
+#                    identified by Business_Account cannot have an ownership entry where it is its own owner.
+# It allows any business or personal account within the entire database to be assigned as a beneficial owner; regardless of Global Relationship
+class GlobalBeneficialOwnership(models.Model):
+    Global_Beneficial_Ownership_ID = models.UUIDField(default=uuid4, primary_key=True, editable=False)
+    Business_Account = models.ForeignKey(
+        BusinessAccounts,
+        on_delete=models.CASCADE,
+        related_name='BeneficialOwnership'
+    )
+    Unique_ID = models.UUIDField() # Can be Unique_ID of BusinessAccount or PersonalAccount
+    Ownership_Percentage = models.DecimalField(max_digits=23, decimal_places=20)
+    Account_Title = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        db_table = 'Global_Beneficial_Ownership'
+        constraints = [
+            models.UniqueConstraint(fields=['Business_Account', 'Unique_ID'], name='Unique_Ownership_per_Account')
+        ]
+
+    def clean(self):
+        # Custom validation to ensure the owner is not the business itself
+        if self.Business_Account.Unique_ID == self.Unique_ID:
+            raise ValidationError("A business account cannot own itself.")
+
+    def save(self, *args, **kwargs):
+        self.clean()
+        super().save(*args, **kwargs)
