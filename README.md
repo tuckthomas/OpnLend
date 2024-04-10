@@ -8,27 +8,9 @@
 
 **Inquiry Contact:** All initial inquiries regarding the OpnLend proprietary edition may be directed to OpnLend Inc.'s sole beneficial owner, Tucker Thomas Olson: tucker@opnlend.com
 
-**Disclosure:** OpnLend's base package (all packages currently seen here) allow for internal modifications to the source code. However, are subject to a custom license and terms of use.
+**Update 04/10/2024:** While most of my time outside of work hours is dedicated to this application's ongoing development, those updates being viewable at https://opnlend.com, I am no longer providing updates to this repository. Much of this projects creation was done in hopes of it helping me find work in my field during a bout of unemployment. After many months of trying, I was unable to find employment in my field. However, I am extremely fortunate to have found work in an other area of passion that I have historically volunteered for; the ALS community.
 
-## No-Nonsense, Privacy Focused Approach
-Do you desire to no longer have to send your customers' data to a remote server owned and operated by someone else? With OpnLend CE, you can deploy a loan origination system locally over your LAN connection. From the very get-go of this project, one of the primary features in mind was the integratoin of AI while maintaining customer data privacy. While a fine-tuned AI model is likely to be offered as a properietary feature to OpnLend, it is my full intent to include integration of an open source model for the OpnLend Community Edition. Ideally, the proprietary edition's AI model will be two-tiered: a general model and a 'training model' that any given financial institution can personally curate based upon its existing and future financial statements.
-
-**One of the primary challenges around such a model is that the overwhelming majority of commercial banking borrowers are private companies with private financial statements. Most, if not all, publicly available financial LLMs have been trained on publicly available data. Which, ultimately raises the question of its aplicability for banks, credit unions, etc. Furthermore, existing models currently lack the capacity to evaluate aggregate relationships (one or more businesses and one of more individuals). Which, is required by various regulatory agencies, such as the FDIC, NCUA, SBA (size standard), etc.. This being in addition to the inability to accurately evaluate personal financial wherewithal (personal cash flow via tax returns and Schedule K-1 analysis, personal liqudiity, personal assets, personal net worth, etc.).**
-
-**Utilizing my ten years of commercial credit analysis/underwriting experience at banks, credit unions, and within SBA lending, it is my goal to offer a model within the OpnLend Community Edition that will overcome the aforementioned challenges. That being said, without any funding and the time commitment required for continued development of this project, such hurdles are likely to become my achillies heal. In the extreme unliklihood that I can secure some form of funding for this project, I will maintain committment to releasing an open source AI model. Otherwise, publicly shared development will cease all but immediately.**
-
-## Placing Your Needs First, As It Should Be
-Don't need a module? Remove it. Integration of other AGPL v3 compatible solutions is encouraged. My OpnLend solution is ***intended for your institution to scale based upon on its needs; not the needs of other institutions***. Ultimately, helping you more efficiently lend to businesses of all sizes, farmers, real estate investors, and others to build a better economy.
-
-## Additional Premium Features Offered
-Paid, premium features include, but are not limited to: cloud hosting, customer support, custom proprietary solutions, in-house system training, remote system training, basic credit analysis training, intermediate credit analysis training, advanced credit analysis training, and expert credit analysis training.
-
-## Why the free community edition?
-- I'm tired of having to "recreate the wheel" at each financial institution worked at.
-- During the last decade, I've worked in Commercial Underwriting or Credit Analytical roles at various financial institutions. Subsequently, I've had the privledge to use various different loan origination systems. I've seen what works, and what doesn't work.
-- From what I've witnessed, there is very little to no innovation being done. The features offered by loan origination system providers are technologies that other industries have been utilizing for years.  In some cases, technologies I've been deploying in my home automation system for years. My point is, banking has historically been slow to adopt new technologies.
-- Most bank and credit unions in the United States are small. Often times, the loan origination systems offered by these 'big players' are overkill for the financial institutions actual needs.
-- Releasing this free community edition provides a new 'baseline' of basic features that all lenders should have in their toolbox.
+I plan to continue to develop this project in my spare time, with the hopes of either a) it turning into a passive income source, b) selling a portion of my current sole ownership to a private equity firm interested in funding its ongoing development, or c) selling the application in its entirety.
 
 ## Global Relationships
 The Global Relationships app serves two primary purposes:
