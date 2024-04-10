@@ -3,8 +3,7 @@
 </p>
 
 <h1 align="center">Loan Origination System</h1>
-<h2 align="center">Community Edition (CE)</h2>
-<p align="center"><em>OpnLend CE software is a product of OpnLend, Inc., an Indiana registered S-Corporation.</em></p>
+<p align="center"><em>OpnLend software is a product of OpnLend, Inc., an Indiana registered S-Corporation.</em></p>
 
 **Inquiry Contact:** All initial inquiries regarding the OpnLend proprietary edition may be directed to OpnLend Inc.'s sole beneficial owner, Tucker Thomas Olson: tucker@opnlend.com
 
