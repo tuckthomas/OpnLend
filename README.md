@@ -5,7 +5,7 @@
 <h1 align="center">Loan Origination System</h1>
 <p align="center"><em>OpnLend software is a product of OpnLend, Inc., an Indiana registered S-Corporation.</em></p>
 
-**Inquiry Contact:** All initial inquiries regarding the OpnLend proprietary edition may be directed to OpnLend Inc.'s sole beneficial owner, Tucker Thomas Olson: tucker@opnlend.com
+**Inquiry Contact:** All initial inquiries regarding the OpnLend proprietary edition may be directed to OpnLend Inc.'s sole beneficial owner, Tucker Thomas Olson: tucker@opnlend.com or tuckerolson13@gmail.com
 
 **Update 04/10/2024:** While most of my time outside of work hours is dedicated to this application's ongoing development, those updates being viewable at https://opnlend.com, I am no longer providing updates to this repository. Much of this projects creation was done in hopes of it helping me find work in my field during a bout of unemployment. After many months of trying, I was unable to find employment in my field. However, I am extremely fortunate to have found work in an other area of passion that I have historically volunteered for; the ALS community.
 
